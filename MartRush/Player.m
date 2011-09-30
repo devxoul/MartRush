@@ -11,4 +11,12 @@
 
 @implementation Player
 
+@synthesize playerState;
+@synthesize playerWayState;
+
+-(void)run
+{
+    
+}
+
 @end
