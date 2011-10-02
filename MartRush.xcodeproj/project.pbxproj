@@ -131,6 +131,7 @@
 		03AB07C2143603C4009CA68F /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C1143603C3009CA68F /* Obstacle.m */; };
 		03AB07C8143603DD009CA68F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C7143603DD009CA68F /* Player.m */; };
 		03AB07CB143603E5009CA68F /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07CA143603E5009CA68F /* Boss.m */; };
+		171B4B761438B06B00B94220 /* TitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B4B751438B06B00B94220 /* TitleLayer.m */; };
 		3C396AFE14389791006F7B88 /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AE714389791006F7B88 /* main_bg.jpg */; };
 		3C396AFF14389791006F7B88 /* fruit_apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AE914389791006F7B88 /* fruit_apple.png */; };
 		3C396B0014389791006F7B88 /* fruit_banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AEA14389791006F7B88 /* fruit_banana.png */; };
@@ -410,6 +411,8 @@
 		03AB07C7143603DD009CA68F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		03AB07C9143603E4009CA68F /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
 		03AB07CA143603E5009CA68F /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
+		171B4B741438B06B00B94220 /* TitleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleLayer.h; sourceTree = "<group>"; };
+		171B4B751438B06B00B94220 /* TitleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleLayer.m; sourceTree = "<group>"; };
 		3C396AE714389791006F7B88 /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = main_bg.jpg; path = Resources/main_bg.jpg; sourceTree = "<group>"; };
 		3C396AE914389791006F7B88 /* fruit_apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruit_apple.png; sourceTree = "<group>"; };
 		3C396AEA14389791006F7B88 /* fruit_banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruit_banana.png; sourceTree = "<group>"; };
@@ -866,6 +869,8 @@
 		03AB07CE14360412009CA68F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				171B4B741438B06B00B94220 /* TitleLayer.h */,
+				171B4B751438B06B00B94220 /* TitleLayer.m */,
 				03AB07AB14360322009CA68F /* GameScene.h */,
 				03AB07AC14360322009CA68F /* GameScene.m */,
 				03AB07AE14360331009CA68F /* GameLayer.h */,
@@ -1116,6 +1121,7 @@
 				03AB07C8143603DD009CA68F /* Player.m in Sources */,
 				03AB07CB143603E5009CA68F /* Boss.m in Sources */,
 				BA4257BC143639E3008E7AC5 /* Cart.m in Sources */,
+				171B4B761438B06B00B94220 /* TitleLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
