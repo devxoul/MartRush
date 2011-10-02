@@ -1,4 +1,5 @@
-//
+
+;//
 //  GameScene.m
 //  MartRush
 //
@@ -7,10 +8,59 @@
 //
 
 #import "GameScene.h"
+#import "MovementManager.h"
 #import "GameLayer.h"
 #import "GameUILayer.h"
 
 
+@interface GameScene()
+- (void)initLayers;
+- (void)initArrays;
+- (void)initManagers;
+@end
+
+
 @implementation GameScene
+
+@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager;
+
+- (id)init
+{
+	if( self = [super init] )
+	{
+		[self initLayers];
+		[self initArrays];
+		[self initManagers];
+	}
+	
+	return self;
+}
+
+- (void)initLayers
+{
+	gameLayer = [[GameLayer alloc] init];
+	[self addChild:gameLayer];
+	
+	gameUILayer = [[GameUILayer alloc] init];
+	[self addChild:gameUILayer];
+}
+
+- (void)initArrays
+{
+	merchandises = [[NSMutableArray alloc] init];
+	obstacles = [[NSMutableArray alloc] init];
+}
+
+- (void)initManagers
+{
+	movementManager = [[MovementManager alloc] init];
+	movementManager.gameScene = self;
+}
+
+- (void)draw
+{
+	[super draw];
+	[movementManager update];
+}
 
 @end

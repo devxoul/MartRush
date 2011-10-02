@@ -11,4 +11,6 @@
 
 @implementation Merchandise
 
+@synthesize merchandiseSpr, wayState;
+
 @end
