@@ -11,6 +11,6 @@
 
 @implementation Obstacle
 
-@synthesize obstacleSpr;
+@synthesize obstacleSpr, wayState;
 
 @end
