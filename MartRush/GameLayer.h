@@ -8,12 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+
 #import "GameScene.h"
 
 @interface GameLayer : CCLayer {
     GameScene *gameScene;
 }
 
-@property (nonatomic, retain, readonly) GameScene *gameScene;
+@property (nonatomic, retain) GameScene *gameScene;
+
+- (void)update;
 
 @end

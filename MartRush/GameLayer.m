@@ -7,9 +7,24 @@
 //
 
 #import "GameLayer.h"
+#import "Merchandise.h"
 
 @implementation GameLayer
 
 @synthesize gameScene;
+
+- (id)init
+{
+	if( self = [super init] )
+	{
+		
+	}
+	return self;
+}
+
+- (void)update
+{
+	
+}
 
 @end

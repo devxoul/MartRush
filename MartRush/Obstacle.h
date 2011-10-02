@@ -9,8 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Obstacle : CCSprite {
-    
+@interface Obstacle : NSObject {
+	CCSprite *obstacleSpr;
+	
+	int wayState;
+	int state;
 }
+
+@property (nonatomic, retain) CCSprite *obstacleSpr;
+
+@property int wayState;
 
 @end

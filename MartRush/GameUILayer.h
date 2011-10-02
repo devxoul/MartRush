@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+
 #import "GameScene.h"
 
 @interface GameUILayer : CCLayer {

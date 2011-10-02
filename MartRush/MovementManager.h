@@ -9,8 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "Merchandise.h"
+#import "Obstacle.h"
+
+#import "GameScene.h"
+
 @interface MovementManager : NSObject {
-    
+	GameScene *gameScene;
 }
+
+@property (nonatomic, retain) GameScene *gameScene;
+
+- (void)update;
 
 @end

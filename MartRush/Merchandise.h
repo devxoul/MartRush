@@ -9,8 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Merchandise : CCSprite {
-    
+@interface Merchandise : NSObject {
+	CCSprite *merchandiseSpr;
+	
+	int wayState;
+	int state;
 }
+
+@property (nonatomic, retain) CCSprite *merchandiseSpr;
+
+@property int wayState;
+
 
 @end
