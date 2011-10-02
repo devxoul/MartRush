@@ -11,4 +11,17 @@
 
 @implementation Boss
 
+@synthesize bossState;
+@synthesize bossWayState;
+
+-(void)run
+{
+    
+}
+
+-(void)bossAi
+{
+    
+}
+
 @end

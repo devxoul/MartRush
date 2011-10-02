@@ -131,6 +131,7 @@
 		03AB07C2143603C4009CA68F /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C1143603C3009CA68F /* Obstacle.m */; };
 		03AB07C8143603DD009CA68F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C7143603DD009CA68F /* Player.m */; };
 		03AB07CB143603E5009CA68F /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07CA143603E5009CA68F /* Boss.m */; };
+		BA4257BC143639E3008E7AC5 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4257BB143639E3008E7AC5 /* Cart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -387,6 +388,8 @@
 		03AB07C7143603DD009CA68F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		03AB07C9143603E4009CA68F /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
 		03AB07CA143603E5009CA68F /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
+		BA4257BA143639E3008E7AC5 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
+		BA4257BB143639E3008E7AC5 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -806,6 +809,8 @@
 				03AB07C7143603DD009CA68F /* Player.m */,
 				03AB07C9143603E4009CA68F /* Boss.h */,
 				03AB07CA143603E5009CA68F /* Boss.m */,
+				BA4257BA143639E3008E7AC5 /* Cart.h */,
+				BA4257BB143639E3008E7AC5 /* Cart.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1011,6 +1016,7 @@
 				03AB07C2143603C4009CA68F /* Obstacle.m in Sources */,
 				03AB07C8143603DD009CA68F /* Player.m in Sources */,
 				03AB07CB143603E5009CA68F /* Boss.m in Sources */,
+				BA4257BC143639E3008E7AC5 /* Cart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1110,7 @@
 				03AB07AA1435EF30009CA68F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
