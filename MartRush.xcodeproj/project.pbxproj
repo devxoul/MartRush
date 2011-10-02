@@ -432,6 +432,7 @@
 		3C396AFB14389791006F7B88 /* vegetables_potatoes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables_potatoes.png; sourceTree = "<group>"; };
 		3C396AFC14389791006F7B88 /* vegetables_sweetpotatoes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables_sweetpotatoes.png; sourceTree = "<group>"; };
 		3C396AFD14389791006F7B88 /* vegetables_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables_tomato.png; sourceTree = "<group>"; };
+		3C396B2914389A70006F7B88 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		BA4257BA143639E3008E7AC5 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		BA4257BB143639E3008E7AC5 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -490,6 +491,7 @@
 		03AB064A1435EF2E009CA68F /* MartRush */ = {
 			isa = PBXGroup;
 			children = (
+				3C396B2914389A70006F7B88 /* Const.h */,
 				03AB07CF14360421009CA68F /* Others */,
 				03AB07CE14360412009CA68F /* Scenes */,
 				03AB07CD14360401009CA68F /* Objects */,

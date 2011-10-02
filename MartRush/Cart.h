@@ -17,6 +17,6 @@
     CCSprite* cartSpr;            //카트 이미지
 }
 
--(void)run;
+-(void)update;
 
 @end
