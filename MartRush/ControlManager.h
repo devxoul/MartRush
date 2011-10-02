@@ -10,7 +10,13 @@
 #import "cocos2d.h"
 
 @interface ControlManager : NSObject {
-    
+  NSMutableArray *managedList;
+  CCSprite *cartSprite;
 }
+
+- (ControlManager *)initWithCartSprite:(CCSprite *)_cartSprite;
+- (void)addObjectToList:(CCSprite *)_object;
+- (void)moveObjectWithIndex:(NSUInteger)index ToPosition:(CGPoint)position;
+- (void)removeObjectFromList:(NSUInteger)index;
 
 @end
