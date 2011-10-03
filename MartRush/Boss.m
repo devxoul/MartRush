@@ -15,26 +15,52 @@
 @synthesize bossWayState;
 @synthesize bossY;
 
--(id)init
+
+-(void)init:(GameLayer*)_layer
 {
-    self = [super init];
+    [self createBossRunAnimation:_layer];
     
-    if (self) {
-        // Initialization code here.
-        bossSpr = [[CCSprite alloc] initWithFile:@"fruit_apple.png"];
-        bossSpr.position = ccp(60,20);
-        bossSpr.anchorPoint = ccp(0.5f, 0.0f);
-        
-        [self setBossState:BOSS_STATE_RUN];
-        [self setBossWayState:LEFT_WAY];
-        [self setBossY:BOSS_Y_POSITION];
-        
-        bossHp = 30;                
-    }
+    [self setBossState:BOSS_STATE_RUN];
+    [self setBossWayState:LEFT_WAY];
+    [self setBossY:BOSS_Y_POSITION];
     
-    return self;
+    [self startBossRunnig];
+    
+    bossHp = 30;                    
 }
 
+-(void)createBossRunAnimation:(GameLayer*)_layer
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
+    
+    bossSpr = [CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"];
+    bossSpr.position = ccp(240, 240);
+    bossSpr.anchorPoint = ccp(0.5f, 0.0f);
+    
+    CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run.png"];
+    [bachNode addChild:bossSpr];
+    [_layer addChild:bachNode];
+    
+    NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 5; i++) {
+        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%d.png", i]];
+        [aniFrames addObject:frame];
+    }
+    
+    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.1f];
+    bossRunAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
+}
+
+-(void)startBossRunnig
+{
+    [bossSpr runAction:[CCRepeatForever actionWithAction:bossRunAni]];     
+}
+
+-(void)stopBossRunning
+{
+    [bossSpr stopAllActions];
+}
 
 -(void)update
 {
