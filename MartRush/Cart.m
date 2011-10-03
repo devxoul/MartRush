@@ -10,11 +10,17 @@
 
 @implementation Cart
 
--(void)init:(GameLayer*)_layer
+- (id)init
 {
-    cartSpr = [[CCSprite alloc] initWithFile:@"fruit_apple.png"];
-    cartSpr.position = ccp(60,20);    
-}    
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        cartSpr = [[CCSprite alloc] initWithFile:@"fruit_apple.png"];
+        cartSpr.position = ccp(60,20);
+    }
+    
+    return self;
+}
 
 -(void)update
 {    

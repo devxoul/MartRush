@@ -11,23 +11,8 @@
 
 #import "GameScene.h"
 
-#ifdef MARTRUSH_BOC_EDIT
-#import "Player.h"
-#import "Boss.h"
-
-@class Player;
-@class Boss;
-#endif
-
 @interface GameLayer : CCLayer {
-    
     GameScene *gameScene;
-
-#ifdef MARTRUSH_BOC_EDIT
-    Player* player;
-    Boss* boss;
-#endif
-    
 }
 
 @property (nonatomic, retain) GameScene *gameScene;

@@ -21,6 +21,5 @@
 @property (nonatomic, retain) GameScene *gameScene;
 
 - (void)update;
-- (void)createObstacle:(Obstacle *)obstacle wayState:way;
 
 @end

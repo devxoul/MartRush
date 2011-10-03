@@ -17,31 +17,14 @@
 {
 	if( self = [super init] )
 	{
-#ifdef MARTRUSH_BOC_EDIT        
-		player = [Player alloc];
-        [player init:self];
-        
-        boss = [Boss alloc];
-        [boss init:self];
-#endif
+		
 	}
 	return self;
 }
 
 - (void)update
 {
-#ifdef MARTRUSH_BOC_EDIT
-	[player update];
-#endif
+	
 }
-
-
-#ifdef MARTRUSH_BOC_EDIT
--(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [player setPlayerWayState:RIGHT_WAY];
-}
-#endif
-
 
 @end

@@ -14,13 +14,10 @@
 	
 	int wayState;
 	int state;
-	float speed;
 }
 
 @property (nonatomic, retain) CCSprite *obstacleSpr;
 
 @property int wayState;
-@property int state;
-@property float speed;
 
 @end

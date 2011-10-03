@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@class GameLayer;
-
 @interface Cart : NSObject{
 
     NSMutableArray* itemList;     //카트 담긴 아이템
@@ -19,7 +17,6 @@
     CCSprite* cartSpr;            //카트 이미지
 }
 
--(void)init:(GameLayer*)_layer;
 -(void)update;
 
 @end

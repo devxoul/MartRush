@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "Const.h"
 
 //#import "MovementManager.h"
 //#import "GameLayer.h"
