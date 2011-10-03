@@ -128,7 +128,6 @@
 		03AB07B91436038F009CA68F /* MovementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07B81436038E009CA68F /* MovementManager.m */; };
 		03AB07BC143603AD009CA68F /* CollisionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07BB143603AD009CA68F /* CollisionManager.m */; };
 		03AB07BF143603BD009CA68F /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07BE143603BC009CA68F /* Merchandise.m */; };
-		03AB07C2143603C4009CA68F /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C1143603C3009CA68F /* Obstacle.m */; };
 		03AB07C8143603DD009CA68F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C7143603DD009CA68F /* Player.m */; };
 		03AB07CB143603E5009CA68F /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07CA143603E5009CA68F /* Boss.m */; };
 		3C396AFE14389791006F7B88 /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AE714389791006F7B88 /* main_bg.jpg */; };
@@ -154,6 +153,7 @@
 		3C396B1214389791006F7B88 /* vegetables_sweetpotatoes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFC14389791006F7B88 /* vegetables_sweetpotatoes.png */; };
 		3C396B1314389791006F7B88 /* vegetables_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFD14389791006F7B88 /* vegetables_tomato.png */; };
 		BA4257BC143639E3008E7AC5 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4257BB143639E3008E7AC5 /* Cart.m */; };
+		CFB89DBE1438BACE006675D3 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB89DBD1438BACE006675D3 /* Obstacle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,14 +398,11 @@
 		03AB07B214360337009CA68F /* GameUILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameUILayer.m; sourceTree = "<group>"; };
 		03AB07B41436037F009CA68F /* ControlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlManager.h; sourceTree = "<group>"; };
 		03AB07B51436037F009CA68F /* ControlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlManager.m; sourceTree = "<group>"; };
-		03AB07B71436038E009CA68F /* MovementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementManager.h; sourceTree = "<group>"; };
 		03AB07B81436038E009CA68F /* MovementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementManager.m; sourceTree = "<group>"; };
 		03AB07BA143603AD009CA68F /* CollisionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollisionManager.h; sourceTree = "<group>"; };
 		03AB07BB143603AD009CA68F /* CollisionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollisionManager.m; sourceTree = "<group>"; };
 		03AB07BD143603BC009CA68F /* Merchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Merchandise.h; sourceTree = "<group>"; };
 		03AB07BE143603BC009CA68F /* Merchandise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Merchandise.m; sourceTree = "<group>"; };
-		03AB07C0143603C3009CA68F /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
-		03AB07C1143603C3009CA68F /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
 		03AB07C6143603DD009CA68F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		03AB07C7143603DD009CA68F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		03AB07C9143603E4009CA68F /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Boss.h; sourceTree = "<group>"; };
@@ -435,6 +432,9 @@
 		3C396B2914389A70006F7B88 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		BA4257BA143639E3008E7AC5 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		BA4257BB143639E3008E7AC5 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
+		CFB89DBC1438BACE006675D3 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
+		CFB89DBD1438BACE006675D3 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
+		CFB89DBF1438BAD4006675D3 /* MovementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -838,7 +838,7 @@
 			children = (
 				03AB07B41436037F009CA68F /* ControlManager.h */,
 				03AB07B51436037F009CA68F /* ControlManager.m */,
-				03AB07B71436038E009CA68F /* MovementManager.h */,
+				CFB89DBF1438BAD4006675D3 /* MovementManager.h */,
 				03AB07B81436038E009CA68F /* MovementManager.m */,
 				03AB07BA143603AD009CA68F /* CollisionManager.h */,
 				03AB07BB143603AD009CA68F /* CollisionManager.m */,
@@ -849,10 +849,10 @@
 		03AB07CD14360401009CA68F /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				CFB89DBC1438BACE006675D3 /* Obstacle.h */,
+				CFB89DBD1438BACE006675D3 /* Obstacle.m */,
 				03AB07BD143603BC009CA68F /* Merchandise.h */,
 				03AB07BE143603BC009CA68F /* Merchandise.m */,
-				03AB07C0143603C3009CA68F /* Obstacle.h */,
-				03AB07C1143603C3009CA68F /* Obstacle.m */,
 				03AB07C6143603DD009CA68F /* Player.h */,
 				03AB07C7143603DD009CA68F /* Player.m */,
 				03AB07C9143603E4009CA68F /* Boss.h */,
@@ -1112,10 +1112,10 @@
 				03AB07B91436038F009CA68F /* MovementManager.m in Sources */,
 				03AB07BC143603AD009CA68F /* CollisionManager.m in Sources */,
 				03AB07BF143603BD009CA68F /* Merchandise.m in Sources */,
-				03AB07C2143603C4009CA68F /* Obstacle.m in Sources */,
 				03AB07C8143603DD009CA68F /* Player.m in Sources */,
 				03AB07CB143603E5009CA68F /* Boss.m in Sources */,
 				BA4257BC143639E3008E7AC5 /* Cart.m in Sources */,
+				CFB89DBE1438BACE006675D3 /* Obstacle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

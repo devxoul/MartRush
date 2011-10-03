@@ -15,7 +15,11 @@
     int bossState;          //보스 상태
     int bossWayState;       //보스 도로 방향
     int bossHp;             //보스 생명
-    float bossY;              //보스 y
+    float bossY;            //보스 y
+    
+    int movingTiming;       //보스 움직이는 타이밍 체크 카운트
+    int firingTiming;       //보스 발사하는 타이밍 체크 카운트
+
     
     CCSprite* bossSpr;      //보스 Sprite    
     CCSprite* bossItemSpr;  //보스 item Sprite

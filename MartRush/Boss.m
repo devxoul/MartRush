@@ -46,7 +46,6 @@
     BOOL isMoved = (arc4random()%2 == 0) ? YES : NO ;          // 이동 %는 50%로 고정
     BOOL isFired = (arc4random()%10 < Stage+4 ) ? YES : NO ;   // 발사 %는 스테이지에 따라서 바뀜, 50%, 60%, 70%, 80%, 90%, 스테이지는 1,2,3,4,5로 넘어옴
     
-    
     //이동하면 웨이 상태 변경
     if (isMoved) {
         switch (bossWayState) {
@@ -62,7 +61,7 @@
     }
     
     //발사하면 상태 변화
-    if(isFired){
+    if(isFired && bossState != BOSS_STATE_MOVING){
         bossState = BOSS_STATE_ATTACK;
     }
     
