@@ -61,6 +61,8 @@
 {
 	[super draw];
 	[movementManager update];
+    
+    [gameLayer update];
 }
 
 @end
