@@ -11,6 +11,13 @@
 
 #define MARTRUSH_BOC_EDIT
 
+//GAME STAGE LEVEL
+#define MARTRUSH_STAGE_1            0
+#define MARTRUSH_STAGE_2            1
+#define MARTRUSH_STAGE_3            2
+#define MARTRUSH_STAGE_4            3
+#define MARTRUSH_STAGE_5            4
+
 // PLAYER STATE
 #define PLAYER_STATE_RUN            0
 #define PLAYER_STATE_CRASH          1
@@ -37,6 +44,8 @@
 #define BOSS_STATE_ATTACK           3
 #define BOSS_STATE_MOVING           4
 
+#define BOSS_LEFT_X_POSITION        155
+#define BOSS_RIGHT_X_POSITION       325
 
 #define BOSS_Y_POSITION             100
 

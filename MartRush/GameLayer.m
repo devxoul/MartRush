@@ -22,7 +22,7 @@
         [player init:self];
         
         boss = [Boss alloc];
-        [boss init:self];
+        [boss init:self:MARTRUSH_STAGE_1];
 
         self.isTouchEnabled = YES;
 #endif
@@ -34,7 +34,7 @@
 {
 #ifdef MARTRUSH_BOC_EDIT
 	[player update];
-    [player playerSetZorder:self :0];
+    [boss update];
 #endif
 }
 

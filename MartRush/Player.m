@@ -35,8 +35,8 @@
 
 -(void)playerSetZorder:(GameLayer*)_layer:(int)_z
 {
-    [_layer reorderChild:playerSpr z:_z];
-//    [_layer reorderChild:playerCart->cartSpr z:(_z-1)];
+    [_layer reorderChild:bachNode z:_z];
+    [_layer reorderChild:playerCart->cartSpr z:_z-1];
 }
 
 
@@ -48,7 +48,7 @@
     playerSpr.position = ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION);
     playerSpr.anchorPoint = ccp(0.5f, 0.0f);
     
-    CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
+    bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
     [bachNode addChild:playerSpr];
     [_layer addChild:bachNode ];
 
@@ -111,10 +111,6 @@
         
     }
     else if(playerState == PLAYER_STATE_LEFTARM_MOVE)
-    {
-        
-    }
-    else if(playerState == PLAYER_STATE_RIGHTARM_MOVE)
     {
         
     }

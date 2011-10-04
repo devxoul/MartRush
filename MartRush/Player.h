@@ -23,6 +23,7 @@
     
     CCAnimate* playerRunAni;       //플레이어 Run Animation
 
+    CCSpriteBatchNode *bachNode;
     CCSprite* playerSpr;        //플레이어 Sprite
     Cart* playerCart;           //플레이어 Cart
     
@@ -41,7 +42,7 @@
 -(void)stopPlayerRunning;                               // 스탑 
 
 -(void)playerMovingWay:(int)_num;                       // ControlM에서 호출에서 playerWayState수정
--(void)playerSetZorder:(GameLayer*)_layer:(int)_z;                         // player z order setting
+-(void)playerSetZorder:(GameLayer*)_layer:(int)_z;      // player z order setting
 
 -(void)update;                                          // draw
 

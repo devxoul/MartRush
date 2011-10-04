@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
+#import "Merchandise.h"
 
 @class GameLayer;
+@class Merchandise;
 
 @interface Cart : NSObject{
 @public
@@ -23,7 +25,9 @@
 @property (nonatomic, retain) NSMutableArray* itemList;
 
 -(void)init:(GameLayer*)_layer;
--(void)cartMovingWay:(int)_num;   //카트 길 이동
 -(void)update;
+
+-(void)cartMovingWay:(int)_num;             //카트 길 이동
+-(void)cartItemAdd:(Merchandise*)_item;     //카트 아이템 추가
 
 @end

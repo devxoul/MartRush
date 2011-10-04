@@ -16,7 +16,7 @@
 @synthesize bossY;
 
 
--(void)init:(GameLayer*)_layer
+-(void)init:(GameLayer*)_layer:(int)_stage
 {
     [self createBossRunAnimation:_layer];
     
@@ -27,6 +27,7 @@
     [self startBossRunnig];
     
     bossHp = 30;                    
+    bossStage = _stage;
 }
 
 -(void)createBossRunAnimation:(GameLayer*)_layer
@@ -65,7 +66,24 @@
 -(void)update
 {
     // BOSS DRAW
+    if (nTemp == 0 ) {
+        nTemp = (arc4random() % (100 - (10 * bossStage))) + 4;
+    }
+    
+    if(nTemp == bossCount)
+        [self bossAi:bossStage];
+    
+    bossCount++;
 }
+
+-(void)bossMovingWay:(int)_num
+{
+    if (_num == LEFT_WAY) 
+        [bossSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION)]];
+    else if (_num == RIGHT_WAY)
+        [bossSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(BOSS_RIGHT_X_POSITION, BOSS_Y_POSITION)]];
+}
+
 
 -(void)bossAi:(int) Stage
 {   
@@ -74,14 +92,18 @@
     
     
     //이동하면 웨이 상태 변경
-    if (isMoved) {
-        switch (bossWayState) {
+    if (isMoved) 
+    {
+        switch (bossWayState) 
+        {
             case LEFT_WAY:
                 bossWayState = RIGHT_WAY;
+                [self bossMovingWay:RIGHT_WAY];
                 break;
                 
             case RIGHT_WAY:
                 bossWayState = LEFT_WAY;
+                [self bossMovingWay:LEFT_WAY];
                 break;
         }
         

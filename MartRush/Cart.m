@@ -32,7 +32,12 @@
         [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]];
 }
 
-//276 , 61
+-(void)cartItemAdd:(Merchandise*)_item
+{
+    [itemList addObject:_item];
+    itemCount++;
+}
+
 -(void)update
 {    
     if(itemCount < 3)

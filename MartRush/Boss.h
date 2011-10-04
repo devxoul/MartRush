@@ -23,18 +23,25 @@
     
     CCSprite* bossSpr;      //보스 Sprite    
     CCSprite* bossItemSpr;  //보스 item Sprite
+    
+    int bossCount;          //보스 카운터
+    int nTemp;              //temp variable
+    int bossStage;          //보스 레벨 
 }
 
 @property (readwrite) int bossState;
 @property (readwrite) int bossWayState;
 @property (readwrite) float bossY;
 
--(void)init:(GameLayer*)_layer;
+-(void)init:(GameLayer*)_layer:(int)_stage;
 -(void)update;
--(void)bossAi:(int) Stage;
+-(void)bossAi:(int)Stage;                              // boss ai setting
 
--(void)createBossRunAnimation:(GameLayer*)_layer;
--(void)startBossRunnig;
--(void)stopBossRunning;
+-(void)createBossRunAnimation:(GameLayer*)_layer;       // boss run action create
+-(void)startBossRunnig;                                 // boss run action start
+-(void)stopBossRunning;                                 // boss all action stop
+
+-(void)bossMovingWay:(int)_num;                         // boss way set
+
 
 @end
