@@ -8,18 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Const.h"
 
 @class GameLayer;
 
 @interface Cart : NSObject{
-
+@public
     NSMutableArray* itemList;     //카트 담긴 아이템
     int itemCount;                //아이템 카운트
     
     CCSprite* cartSpr;            //카트 이미지
 }
 
+@property (nonatomic, retain) NSMutableArray* itemList;
+
 -(void)init:(GameLayer*)_layer;
+-(void)cartMovingWay:(int)_num;   //카트 길 이동
 -(void)update;
 
 @end

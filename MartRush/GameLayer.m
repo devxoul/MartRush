@@ -23,6 +23,8 @@
         
         boss = [Boss alloc];
         [boss init:self];
+
+        self.isTouchEnabled = YES;
 #endif
 	}
 	return self;
@@ -32,16 +34,9 @@
 {
 #ifdef MARTRUSH_BOC_EDIT
 	[player update];
+    [player playerSetZorder:self :0];
 #endif
 }
-
-
-#ifdef MARTRUSH_BOC_EDIT
--(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [player setPlayerWayState:RIGHT_WAY];
-}
-#endif
 
 
 @end

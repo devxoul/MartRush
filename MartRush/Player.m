@@ -27,8 +27,18 @@
     playerHp = 3;
     playerCount = 0;
             
+    playerCart = [Cart alloc];
+    [playerCart init:_layer];
+    
     [self startPlayerRunning];
 }
+
+-(void)playerSetZorder:(GameLayer*)_layer:(int)_z
+{
+    [_layer reorderChild:playerSpr z:_z];
+//    [_layer reorderChild:playerCart->cartSpr z:(_z-1)];
+}
+
 
 -(void)createPlayerRunAnimation:(GameLayer*)_layer
 {
@@ -40,7 +50,7 @@
     
     CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
     [bachNode addChild:playerSpr];
-    [_layer addChild:bachNode];
+    [_layer addChild:bachNode ];
 
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
        
@@ -69,9 +79,10 @@
     if (_num == LEFT_WAY) 
     {
         if(playerWayState == RIGHT_WAY)
-        {
+        {            
             playerWayState = LEFT_WAY;
             [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
+            [playerCart cartMovingWay:LEFT_WAY];
         }
         else
             return;
@@ -79,19 +90,22 @@
     else if(_num == RIGHT_WAY)
     {
         if(playerWayState == LEFT_WAY)
-        {
+        {            
             playerWayState = RIGHT_WAY;
             [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
+            [playerCart cartMovingWay:RIGHT_WAY];
         }
         else
             return;
     }
 }
 
+
 -(void)update
 {
+    // 카트 이미지 Draw
+    [playerCart update];
     // 플레이어 이미지 DRAW
-            
     if(playerState == PLAYER_STATE_RUN)
     {
         

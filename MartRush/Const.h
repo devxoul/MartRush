@@ -24,6 +24,12 @@
 #define PLAYER_LEFT_X_POSITION      155
 #define PLAYER_RIGHT_X_POSITION     325
 
+//CART STATE
+#define CART_LEFT_X_POSITION        155
+#define CART_RIGHT_X_POSITION       325
+
+#define CART_Y_POSITION             80
+
 // BOSS STATE
 #define BOSS_STATE_RUN              0
 #define BOSS_STATE_CRASH            1

@@ -169,6 +169,7 @@
 		BA8972BE14390FF200C2D420 /* boss_run_4.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8972B714390FF200C2D420 /* boss_run_4.png */; };
 		BA8972BF14390FF200C2D420 /* boss_run.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA8972B814390FF200C2D420 /* boss_run.plist */; };
 		BA8972C014390FF200C2D420 /* boss_run.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8972B914390FF200C2D420 /* boss_run.png */; };
+		BABAC873143AED650052FFCF /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = BABAC872143AED650052FFCF /* cart.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -465,6 +466,7 @@
 		BA8972B714390FF200C2D420 /* boss_run_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boss_run_4.png; path = Resources/boss_run_4.png; sourceTree = "<group>"; };
 		BA8972B814390FF200C2D420 /* boss_run.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = boss_run.plist; path = Resources/boss_run.plist; sourceTree = "<group>"; };
 		BA8972B914390FF200C2D420 /* boss_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boss_run.png; path = Resources/boss_run.png; sourceTree = "<group>"; };
+		BABAC872143AED650052FFCF /* cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cart.png; path = Resources/cart.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -536,6 +538,7 @@
 		03AB064B1435EF2E009CA68F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BABAC872143AED650052FFCF /* cart.png */,
 				BA8972B214390F4900C2D420 /* boss */,
 				BA8972B014390F3800C2D420 /* player */,
 				3C396AE714389791006F7B88 /* main_bg.jpg */,
@@ -1074,6 +1077,7 @@
 				BA8972BE14390FF200C2D420 /* boss_run_4.png in Resources */,
 				BA8972BF14390FF200C2D420 /* boss_run.plist in Resources */,
 				BA8972C014390FF200C2D420 /* boss_run.png in Resources */,
+				BABAC873143AED650052FFCF /* cart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

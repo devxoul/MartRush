@@ -21,9 +21,9 @@
 
 @interface GameLayer : CCLayer {
     
-    GameScene *gameScene;
-
 #ifdef MARTRUSH_BOC_EDIT
+    //    GameScene *gameScene;
+        
     Player* player;
     Boss* boss;
 #endif
