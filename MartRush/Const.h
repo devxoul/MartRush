@@ -17,6 +17,7 @@
 #define PLAYER_STATE_DEAD           2
 #define PLAYER_STATE_LEFTARM_MOVE   3
 #define PLAYER_STATE_RIGHTARM_MOVE  4
+#define PLAYER_STATE_MOVING         5
 
 #define PLAYER_Y_POSITION           50
 
@@ -28,6 +29,8 @@
 #define BOSS_STATE_CRASH            1
 #define BOSS_STATE_DEAD             2
 #define BOSS_STATE_ATTACK           3
+#define BOSS_STATE_MOVING           4
+
 
 #define BOSS_Y_POSITION             100
 

@@ -88,7 +88,7 @@
     }
     
     //발사하면 상태 변화
-    if(isFired){
+    if(isFired && bossState != BOSS_STATE_MOVING){
         bossState = BOSS_STATE_ATTACK;
     }
     

@@ -71,8 +71,7 @@
         if(playerWayState == RIGHT_WAY)
         {
             playerWayState = LEFT_WAY;
-//            [playerSpr runAction:[CCMoveBy actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
-            [playerSpr runAction:[CCMoveBy actionWithDuration:1 position:ccp(85, 0)]];
+            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
         }
         else
             return;
@@ -82,8 +81,7 @@
         if(playerWayState == LEFT_WAY)
         {
             playerWayState = RIGHT_WAY;
-//            [playerSpr runAction:[CCMoveBy actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
-            [playerSpr runAction:[CCMoveBy actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
+            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
         }
         else
             return;
