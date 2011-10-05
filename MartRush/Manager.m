@@ -15,7 +15,7 @@
 
 - (id)initWithGameScene:(GameScene *)gameScene;
 {
-	if( self = [self init] )
+	if( self = [super init] )
 	{
 		gameScene_ = gameScene;
 	}

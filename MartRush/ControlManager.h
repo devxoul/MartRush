@@ -12,7 +12,7 @@
 
 @class Merchandise;
 
-@interface ControlManager : NSObject {
+@interface ControlManager : Manager {
   NSMutableArray *managedList;
   NSMutableArray *touchList;
   CCSprite *cartSprite;
