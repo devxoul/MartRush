@@ -12,39 +12,48 @@
 
 
 // private methods
-@interface MovementManager()
-- (void)createMerchandise;
+@interface MovementManager(Private)
+//- (void)createMerchandise;
 - (void)createObstacle;
+- (void)moveMerchandise:(Merchandise *)merchandise;
+- (void)moveObstalce:(Obstacle *)obstacle;
 - (void)removeMerchandise:(Merchandise *)merchandise;
 - (void)removeObstacle:(Obstacle *)obstacle;
 - (void)setMerchandiseY:(Merchandise *)merchandise newY:(int)y;
 - (void)setObstacleY:(Obstacle *)obstacle newY:(int)y;
-- (BOOL)willBeRemoved:(CCSprite *)spr;
+- (CATransform3D)get3DTransform;
 @end
 
 
 @implementation MovementManager
 
-@synthesize gameScene;
-
-- (id)init
+- (id)initWithGameScene:(GameScene *)gameScene;
 {
-	if( self = [super init] )
+	if( self = [super initWithGameScene:gameScene] )
 	{
-		
+		[self createMerchandise];
 	}
 	return self;
 }
 
 - (void)update
 {
-	if( arc4random() % 10 == 1 )
+	if( arc4random() % 30 == 1 )
 		[self createMerchandise];
 	
-	for( Merchandise *merchandise in gameScene.merchandises )
+	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		[self setMerchandiseY:merchandise newY:merchandise.merchandiseSpr.position.y - 1.0f];
-		if( [self willBeRemoved:merchandise.merchandiseSpr] )
+		/*glPushMatrix();
+		glRotatef(30.0f, 0.0f, 30.0f, 0.0f);
+		[merchandise.merchandiseSpr visit];
+		glPopMatrix();*/
+		
+		
+//		break;
+		
+		merchandise.z -= 2;
+		
+		if( merchandise.z < 0 )
 		{
 			[self removeMerchandise:merchandise];
 		}
@@ -58,9 +67,11 @@
 	merchandise.merchandiseSpr = [CCSprite spriteWithFile:@"fruit_apple.png"];
 	merchandise.merchandiseSpr.anchorPoint = ccp( 0.5f, 1.0f );
 	merchandise.merchandiseSpr.position = ccp( 240, 320 );
-	int zOrder = ((Merchandise *)[gameScene.merchandises lastObject]).merchandiseSpr.zOrder - 1;
-	[gameScene.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
-	[gameScene.merchandises addObject:merchandise];
+	merchandise.z = 320;
+	int zOrder = ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1;
+	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
+	[gameScene_.merchandises addObject:merchandise];
+//	merchandise.merchandiseSpr.skewY = 30;
 }
 
 - (void)createObstacle
@@ -68,10 +79,25 @@
 	
 }
 
+- (void)createObstacle:(Obstacle *)obstacle wayState:way
+{
+	
+}
+
+- (void)moveMerchandise:(Merchandise *)merchandise
+{
+//	merchandise.merchandiseSpr.position.y += 
+}
+
+- (void)moveObstalce:(Obstacle *)obstacle
+{
+	
+}
+
 - (void)removeMerchandise:(Merchandise *)merchandise
 {
-	[gameScene.gameLayer removeChild:merchandise.merchandiseSpr cleanup:YES];
-	[gameScene.merchandises removeObject:merchandise];
+	[gameScene_.gameLayer removeChild:merchandise.merchandiseSpr cleanup:YES];
+	[gameScene_.merchandises removeObject:merchandise];
 }
 
 - (void)removeObstacle:(Obstacle *)obstacle
@@ -89,11 +115,6 @@
 {
 	obstacle.obstacleSpr.position = ccp(!obstacle.wayState ? y * 3 / 16 + 155 : -1 * y * 3 / 16 + 325, y);
     obstacle.obstacleSpr.scale = (-1 * y * 3 / 8 + 170) / obstacle.obstacleSpr.contentSize.width;
-}
-
-- (BOOL)willBeRemoved:(CCSprite *)spr
-{
-	return spr.position.y < -1 * spr.contentSize.height - 10;
 }
 
 @end

@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "Manager.h"
+
 #import "Merchandise.h"
 #import "Obstacle.h"
 
-#import "GameScene.h"
-
-@interface MovementManager : NSObject {
-	GameScene *gameScene;
+@interface MovementManager : Manager {
+	
 }
 
-@property (nonatomic, retain) GameScene *gameScene;
+- (void)createObstacle:(Obstacle *)obstacle wayState:way;
 
-- (void)update;
 
+- (void)createMerchandise;
 @end

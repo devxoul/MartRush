@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Manager.h"
 
-@interface CollisionManager : NSObject {
+@interface CollisionManager : Manager {
     
 }
 

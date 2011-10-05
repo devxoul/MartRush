@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Manager.h"
 
-@interface ControlManager : NSObject {
+@interface ControlManager : Manager {
   NSMutableArray *managedList;
   CCSprite *cartSprite;
 }
