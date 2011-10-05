@@ -71,7 +71,10 @@
     }
     
     if(nTemp == bossCount)
+    {
         [self bossAi:bossStage];
+        bossCount = 0;
+    }
     
     bossCount++;
 }
