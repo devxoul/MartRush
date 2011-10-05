@@ -8,14 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-
-//#import "MovementManager.h"
-//#import "GameLayer.h"
-//#import "GameUILayer.h"
+#import "Const.h"
 
 @class MovementManager;
 @class GameLayer;
 @class GameUILayer;
+@class ControlManager;
 
 @interface GameScene : CCScene {
 	GameLayer *gameLayer;
@@ -25,6 +23,7 @@
 	NSMutableArray *obstacles;
 	
 	MovementManager *movementManager;
+  ControlManager *controlManager;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
@@ -34,5 +33,6 @@
 @property (nonatomic, retain) NSMutableArray *obstacles;
 
 @property (nonatomic, retain) MovementManager *movementManager;
+@property (retain) ControlManager *controlManager;
 
 @end

@@ -10,21 +10,42 @@
 
 @implementation Cart
 
-- (id)init
+@synthesize itemList;
+
+-(void)init:(GameLayer*)_layer
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        cartSpr = [[CCSprite alloc] initWithFile:@"fruit_apple.png"];
-        cartSpr.position = ccp(60,20);
-    }
+    itemList = [NSMutableArray array];
+    itemCount = 0;
     
-    return self;
+    cartSpr = [[CCSprite alloc] initWithFile:@"cart.png"];
+    [cartSpr setTextureRect:CGRectMake(0, 0, 92, 61)];
+    cartSpr.position = ccp(CART_LEFT_X_POSITION, CART_Y_POSITION);  
+
+    [_layer addChild:cartSpr z:1];
+}    
+
+-(void)cartMovingWay:(int)_num
+{
+    if(_num == LEFT_WAY)
+        [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]];
+    else if(_num == RIGHT_WAY)
+        [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]];
+}
+
+-(void)cartItemAdd:(Merchandise*)_item
+{
+    [itemList addObject:_item];
+    itemCount++;
 }
 
 -(void)update
 {    
-    
+    if(itemCount < 3)
+        [cartSpr setTextureRect:CGRectMake(0, 0, 92, 61)];
+    else if(itemCount < 6)
+        [cartSpr setTextureRect:CGRectMake(92, 0, 92, 61)];
+    else 
+        [cartSpr setTextureRect:CGRectMake(184, 0, 92, 61)];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "GameUILayer.h"
+#import "GameScene.h"
 
 
 @implementation GameUILayer

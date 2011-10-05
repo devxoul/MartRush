@@ -15,31 +15,78 @@
 @synthesize bossWayState;
 @synthesize bossY;
 
--(id)init
+
+-(void)init:(GameLayer*)_layer:(int)_stage
 {
-    self = [super init];
+    [self createBossRunAnimation:_layer];
     
-    if (self) {
-        // Initialization code here.
-        bossSpr = [[CCSprite alloc] initWithFile:@"fruit_apple.png"];
-        bossSpr.position = ccp(60,20);
-        bossSpr.anchorPoint = ccp(0.5f, 0.0f);
-        
-        [self setBossState:BOSS_STATE_RUN];
-        [self setBossWayState:LEFT_WAY];
-        [self setBossY:BOSS_Y_POSITION];
-        
-        bossHp = 30;                
-    }
+    [self setBossState:BOSS_STATE_RUN];
+    [self setBossWayState:LEFT_WAY];
+    [self setBossY:BOSS_Y_POSITION];
     
-    return self;
+    [self startBossRunnig];
+    
+    bossHp = 30;                    
+    bossStage = _stage;
 }
 
+-(void)createBossRunAnimation:(GameLayer*)_layer
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
+    
+    bossSpr = [CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"];
+    bossSpr.position = ccp(240, 240);
+    bossSpr.anchorPoint = ccp(0.5f, 0.0f);
+    
+    CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run.png"];
+    [bachNode addChild:bossSpr];
+    [_layer addChild:bachNode];
+    
+    NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 5; i++) {
+        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%d.png", i]];
+        [aniFrames addObject:frame];
+    }
+    
+    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.1f];
+    bossRunAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
+}
+
+-(void)startBossRunnig
+{
+    [bossSpr runAction:[CCRepeatForever actionWithAction:bossRunAni]];     
+}
+
+-(void)stopBossRunning
+{
+    [bossSpr stopAllActions];
+}
 
 -(void)update
 {
     // BOSS DRAW
+    if (nTemp == 0 ) {
+        nTemp = (arc4random() % (100 - (10 * bossStage))) + 4;
+    }
+    
+    if(nTemp == bossCount)
+    {
+        [self bossAi:bossStage];
+        bossCount = 0;
+    }
+    
+    bossCount++;
 }
+
+-(void)bossMovingWay:(int)_num
+{
+    if (_num == LEFT_WAY) 
+        [bossSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION)]];
+    else if (_num == RIGHT_WAY)
+        [bossSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(BOSS_RIGHT_X_POSITION, BOSS_Y_POSITION)]];
+}
+
 
 -(void)bossAi:(int) Stage
 {   
@@ -48,21 +95,25 @@
     
     
     //이동하면 웨이 상태 변경
-    if (isMoved) {
-        switch (bossWayState) {
+    if (isMoved) 
+    {
+        switch (bossWayState) 
+        {
             case LEFT_WAY:
                 bossWayState = RIGHT_WAY;
+                [self bossMovingWay:RIGHT_WAY];
                 break;
                 
             case RIGHT_WAY:
                 bossWayState = LEFT_WAY;
+                [self bossMovingWay:LEFT_WAY];
                 break;
         }
         
     }
     
     //발사하면 상태 변화
-    if(isFired){
+    if(isFired && bossState != BOSS_STATE_MOVING){
         bossState = BOSS_STATE_ATTACK;
     }
     
