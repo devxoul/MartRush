@@ -18,14 +18,25 @@
 {
 	if( self = [super init] )
 	{
-		self.isTouchEnabled = YES;
+#ifdef MARTRUSH_BOC_EDIT        
+		player = [Player alloc];
+        [player init:self];
+        
+        boss = [Boss alloc];
+        [boss init:self:MARTRUSH_STAGE_1];
+
+        self.isTouchEnabled = YES;
+#endif
 	}
 	return self;
 }
 
 - (void)update
 {
-	
+#ifdef MARTRUSH_BOC_EDIT
+	[player update];
+    [boss update];
+#endif
 }
 
 #pragma mark ControlManager - touch event
@@ -73,4 +84,5 @@
     }
   }
 }
+
 @end

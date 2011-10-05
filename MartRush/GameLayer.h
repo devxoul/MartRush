@@ -10,9 +10,21 @@
 #import "cocos2d.h"
 
 #import "GameScene.h"
+#import "Player.h"
+#import "Boss.h"
 
 @interface GameLayer : CCLayer<CCStandardTouchDelegate> {
     GameScene *gameScene;
+
+@class Player;
+@class Boss;
+
+#ifdef MARTRUSH_BOC_EDIT
+        
+    Player* player;
+    Boss* boss;
+#endif
+    
 }
 
 @property (nonatomic, retain) GameScene *gameScene;

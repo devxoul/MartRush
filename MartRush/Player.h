@@ -2,7 +2,7 @@
 //  Player.h
 //  MartRush
 //
-//  Created by 전 수열 on 11. 9. 30..
+//  Created by 복 & 한 on 11. 9. 30..
 //  Copyright 2011년 Joyfl. All rights reserved.
 //
 
@@ -10,6 +10,8 @@
 #import "cocos2d.h"
 #import "Const.h"
 #import "Cart.h"
+
+@class GameLayer;
 
 @interface Player : NSObject {
     
@@ -19,8 +21,13 @@
     
     float playerY;                //Y
     
+    CCAnimate* playerRunAni;       //플레이어 Run Animation
+
+    CCSpriteBatchNode *bachNode;
     CCSprite* playerSpr;        //플레이어 Sprite
     Cart* playerCart;           //플레이어 Cart
+    
+    int playerCount;
     
 }
 
@@ -28,7 +35,15 @@
 @property (readwrite) int playerWayState;
 @property (readwrite) float playerY;
 
+-(void)init:(GameLayer *)_scene;
 
--(void)update;
+-(void)createPlayerRunAnimation:(GameLayer *)_layer;    // 런 액션 만들기 
+-(void)startPlayerRunning;                              // 런 액션 스타트 
+-(void)stopPlayerRunning;                               // 스탑 
+
+-(void)playerMovingWay:(int)_num;                       // ControlM에서 호출에서 playerWayState수정
+-(void)playerSetZorder:(GameLayer*)_layer:(int)_z;      // player z order setting
+
+-(void)update;                                          // draw
 
 @end
