@@ -11,6 +11,14 @@
 
 @implementation Obstacle
 
-@synthesize obstacleSpr, wayState;
+@synthesize obstacleSpr, wayState, state, speed;
+@synthesize z = z_;
+
+- (void)setZ:(float)z
+{
+	self.obstacleSpr.position = ccp(!self.wayState ? z * 3 / 16 + 155 : -1 * z * 3 / 16 + 325, z );
+	self.obstacleSpr.scale = (-3 * z / 8 + 170) / self.obstacleSpr.contentSize.width;
+	z_ = z;
+}
 
 @end

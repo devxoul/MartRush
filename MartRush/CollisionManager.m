@@ -11,4 +11,19 @@
 
 @implementation CollisionManager
 
+- (id)initWithGameScene:(GameScene *)gameScene
+{
+	if( self = [super initWithGameScene:gameScene] )
+	{
+		
+	}
+	
+	return self;
+}
+
+- (void)update
+{
+	
+}
+
 @end

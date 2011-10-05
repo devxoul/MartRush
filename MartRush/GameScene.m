@@ -14,7 +14,7 @@
 #import "GameUILayer.h"
 
 
-@interface GameScene()
+@interface GameScene(Private)
 - (void)initLayers;
 - (void)initArrays;
 - (void)initManagers;
@@ -57,9 +57,10 @@
 
 - (void)initManagers
 {
-	movementManager = [[MovementManager alloc] init];
-	movementManager.gameScene = self;
-  controlManager = [[ControlManager alloc] init];
+	movementManager = [[MovementManager alloc] initWithGameScene:self];
+	[movementManager createMerchandise];
+  
+	controlManager = [[ControlManager alloc] initWithGameScene:self];
 }
 
 - (void)draw

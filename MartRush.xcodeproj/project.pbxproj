@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0359B79C143B042F001D9D94 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0359B79B143B042F001D9D94 /* Manager.m */; };
 		03AB063B1435EF2E009CA68F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063A1435EF2E009CA68F /* QuartzCore.framework */; };
 		03AB063D1435EF2E009CA68F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063C1435EF2E009CA68F /* OpenGLES.framework */; };
 		03AB063F1435EF2E009CA68F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063E1435EF2E009CA68F /* OpenAL.framework */; };
@@ -157,6 +158,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0359B79A143B042F001D9D94 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
+		0359B79B143B042F001D9D94 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
 		03AB06361435EF2D009CA68F /* MartRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MartRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03AB063A1435EF2E009CA68F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		03AB063C1435EF2E009CA68F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -836,6 +839,8 @@
 		03AB07CC143603EC009CA68F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				0359B79A143B042F001D9D94 /* Manager.h */,
+				0359B79B143B042F001D9D94 /* Manager.m */,
 				03AB07B41436037F009CA68F /* ControlManager.h */,
 				03AB07B51436037F009CA68F /* ControlManager.m */,
 				03AB07B71436038E009CA68F /* MovementManager.h */,
@@ -1116,6 +1121,7 @@
 				03AB07C8143603DD009CA68F /* Player.m in Sources */,
 				03AB07CB143603E5009CA68F /* Boss.m in Sources */,
 				BA4257BC143639E3008E7AC5 /* Cart.m in Sources */,
+				0359B79C143B042F001D9D94 /* Manager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
