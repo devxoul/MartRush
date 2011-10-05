@@ -9,6 +9,7 @@
 
 #import "GameScene.h"
 #import "MovementManager.h"
+#import "ControlManager.h"
 #import "GameLayer.h"
 #import "GameUILayer.h"
 
@@ -22,7 +23,7 @@
 
 @implementation GameScene
 
-@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager;
+@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager;
 
 - (id)init
 {
@@ -43,6 +44,9 @@
 	
 	gameUILayer = [[GameUILayer alloc] init];
 	[self addChild:gameUILayer];
+  
+  gameLayer.gameScene = self;
+  gameUILayer.gameScene = self;
 }
 
 - (void)initArrays
@@ -55,6 +59,7 @@
 {
 	movementManager = [[MovementManager alloc] init];
 	movementManager.gameScene = self;
+  controlManager = [[ControlManager alloc] init];
 }
 
 - (void)draw

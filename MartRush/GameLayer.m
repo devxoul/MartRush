@@ -8,6 +8,7 @@
 
 #import "GameLayer.h"
 #import "Merchandise.h"
+#import "ControlManager.h"
 
 @implementation GameLayer
 
@@ -17,7 +18,7 @@
 {
 	if( self = [super init] )
 	{
-		
+		self.isTouchEnabled = YES;
 	}
 	return self;
 }
@@ -27,4 +28,49 @@
 	
 }
 
+#pragma mark ControlManager - touch event
+
+-(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  for (UITouch *touch in touches) {
+    if (touch) {
+      CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
+     
+      for (Merchandise *merchandise in gameScene.merchandises) {
+        if (CGRectContainsPoint(merchandise.merchandiseSpr.boundingBox, location)) {
+          [gameScene.controlManager addMerchandiseToList:merchandise withTouch:touch];
+          [gameScene.merchandises removeObject:merchandise];
+          break;
+        }
+      }
+    }
+  }
+}
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  for (UITouch *touch in touches) {
+    if (touch) {
+      [gameScene.controlManager moveObjectWithTouch:touch];
+    }
+  }
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  for (UITouch *touch in touches) {
+    if (touch) {
+      [gameScene.controlManager removeObjectWithTouch:touch];
+    }
+  }
+}
+
+- (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+  for (UITouch *touch in touches) {
+    if (touch) {
+      [gameScene.controlManager removeObjectWithTouch:touch];
+    }
+  }
+}
 @end

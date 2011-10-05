@@ -9,14 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class Merchandise;
+
 @interface ControlManager : NSObject {
   NSMutableArray *managedList;
+  NSMutableArray *touchList;
   CCSprite *cartSprite;
 }
 
+- (ControlManager *)init;
 - (ControlManager *)initWithCartSprite:(CCSprite *)_cartSprite;
-- (void)addObjectToList:(CCSprite *)_object;
-- (void)moveObjectWithIndex:(NSUInteger)index ToPosition:(CGPoint)position;
-- (void)removeObjectFromList:(NSUInteger)index;
+- (bool)addMerchandiseToList:(Merchandise *)_object withTouch:(UITouch *)touch;
+- (bool)moveObjectWithTouch:(UITouch *)touch;
+- (bool)removeObjectWithTouch:(UITouch *)touch;
 
 @end

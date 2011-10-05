@@ -11,7 +11,7 @@
 
 #import "GameScene.h"
 
-@interface GameLayer : CCLayer {
+@interface GameLayer : CCLayer<CCStandardTouchDelegate> {
     GameScene *gameScene;
 }
 

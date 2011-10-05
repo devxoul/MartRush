@@ -8,41 +8,81 @@
 
 #import "ControlManager.h"
 
+#import "Merchandise.h"
+
 
 @implementation ControlManager
 
+- (ControlManager *)init
+{
+  if ([super init])
+  {
+    managedList = [[NSMutableArray alloc] initWithCapacity:6];
+    touchList = [[NSMutableArray alloc] initWithCapacity:6];
+    
+    return self;
+  }
+  
+  return nil;
+}
+
 - (ControlManager *)initWithCartSprite:(CCSprite *)_cartSprite;
 {
-  managedList = [[NSMutableArray alloc] initWithCapacity:6];
-  cartSprite = _cartSprite;
+  if ([self init])
+  {
+    cartSprite = _cartSprite;
+    
+    return self;
+  }
   
-  return self;
+  return nil;
 }
 
-- (void)addObjectToList:(CCSprite *)_object
+- (bool)addMerchandiseToList:(Merchandise *)_object withTouch:(UITouch *)touch
 {
+  if (touchList.count >= 6)
+    return NO;
+  
   [managedList addObject:_object];
-}
-
-- (void)moveObjectWithIndex:(NSUInteger)index ToPosition:(CGPoint)position
-{
-  if (index > managedList.count)
-    return;
+  [touchList addObject:touch];
   
-  //TODO :
-  CCSprite *targetSprite = [managedList objectAtIndex:index];
-  CCAction *action = [CCMoveTo actionWithDuration:0.1 position:position];
-  [targetSprite runAction:action];
-
+  return YES;
 }
 
-- (void)removeObjectFromList:(NSUInteger)index
+- (bool)moveObjectWithTouch:(UITouch *)touch
+{
+  if (![touchList indexOfObject:touch])
+    return NO;
+  
+  Merchandise *merchandise = (Merchandise *)[managedList objectAtIndex:[touchList indexOfObject:touch]];
+  
+  CCSprite *targetSprite = (CCSprite *)merchandise.merchandiseSpr;
+  
+  CGPoint targetPoint = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
+  targetPoint.x += targetSprite.boundingBox.size.width / 2;
+  targetPoint.y += targetSprite.boundingBox.size.height / 2;
+  
+  [targetSprite setPosition:targetPoint];
+  
+  return YES;
+}
+
+- (bool)removeObjectWithTouch:(UITouch *)touch
 {
   //TODO : check the position and run moveaction to cart or just fadeout
-  CCSprite *targetSprite = [managedList objectAtIndex:index];
+  if (![touchList indexOfObject:touch])
+    return NO;
+  
+  Merchandise *merchandise = (Merchandise *)[managedList objectAtIndex:[touchList indexOfObject:touch]];
+  
+  CCSprite *targetSprite = (CCSprite *)merchandise.merchandiseSpr;
+
   CCAction *action = [CCFadeOut actionWithDuration:0.3];
   [targetSprite runAction:action];
-  [managedList removeObject:targetSprite];
+  
+  [managedList removeObject:merchandise];
+  [touchList removeObject:touch];
+  return YES;
 }
 
 @end
