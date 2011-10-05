@@ -13,11 +13,11 @@
 #import "Player.h"
 #import "Boss.h"
 
-@interface GameLayer : CCLayer<CCStandardTouchDelegate> {
-    GameScene *gameScene;
-
 @class Player;
 @class Boss;
+
+@interface GameLayer : CCLayer<CCStandardTouchDelegate> {
+    GameScene *gameScene;
 
 #ifdef MARTRUSH_BOC_EDIT
         
@@ -28,6 +28,7 @@
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
+@property (readonly) Player *player;
 
 - (void)update;
 

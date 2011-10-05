@@ -12,7 +12,7 @@
 
 @implementation GameLayer
 
-@synthesize gameScene;
+@synthesize gameScene, player;
 
 - (id)init
 {

@@ -51,7 +51,7 @@
 
 - (bool)moveObjectWithTouch:(UITouch *)touch
 {
-  if (![touchList indexOfObject:touch])
+  if ([touchList indexOfObject:touch] == NSNotFound)
     return NO;
   
   Merchandise *merchandise = (Merchandise *)[managedList objectAtIndex:[touchList indexOfObject:touch]];
@@ -70,7 +70,7 @@
 - (bool)removeObjectWithTouch:(UITouch *)touch
 {
   //TODO : check the position and run moveaction to cart or just fadeout
-  if (![touchList indexOfObject:touch])
+  if ([touchList indexOfObject:touch] == NSNotFound)
     return NO;
   
   Merchandise *merchandise = (Merchandise *)[managedList objectAtIndex:[touchList indexOfObject:touch]];
