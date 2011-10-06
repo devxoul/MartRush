@@ -11,6 +11,7 @@
 @implementation Cart
 
 @synthesize itemList;
+@synthesize cartHp;
 
 -(void)init:(GameLayer*)_layer
 {
@@ -18,7 +19,7 @@
     itemCount = 0;
     
     cartSpr = [[CCSprite alloc] initWithFile:@"cart.png"];
-    [cartSpr setTextureRect:CGRectMake(0, 0, 92, 61)];
+    [cartSpr setTextureRect:CGRectMake(0, 0, 92, 68)];
     cartSpr.position = ccp(CART_LEFT_X_POSITION, CART_Y_POSITION);  
 
     [_layer addChild:cartSpr z:1];
@@ -41,11 +42,11 @@
 -(void)update
 {    
     if(itemCount < 3)
-        [cartSpr setTextureRect:CGRectMake(0, 0, 92, 61)];
+        [cartSpr setTextureRect:CGRectMake(0, 0, 92, 68)];
     else if(itemCount < 6)
-        [cartSpr setTextureRect:CGRectMake(92, 0, 92, 61)];
+        [cartSpr setTextureRect:CGRectMake(92, 0, 92, 68)];
     else 
-        [cartSpr setTextureRect:CGRectMake(184, 0, 92, 61)];
+        [cartSpr setTextureRect:CGRectMake(184, 0, 92, 68)];
 }
 
 @end

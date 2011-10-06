@@ -11,9 +11,7 @@
 
 @interface Merchandise : NSObject {
 	CCSprite *merchandiseSpr;
-	
 	int wayState;
-	int state;
 	
 	float z_;
 }
@@ -21,7 +19,6 @@
 @property (nonatomic, retain) CCSprite *merchandiseSpr;
 
 @property int wayState;
-@property int state;
 @property (nonatomic) float z;
 
 

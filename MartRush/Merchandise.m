@@ -11,7 +11,7 @@
 
 @implementation Merchandise
 
-@synthesize merchandiseSpr, wayState, state;
+@synthesize merchandiseSpr, wayState;
 @synthesize z = z_;
 
 - (id)init
