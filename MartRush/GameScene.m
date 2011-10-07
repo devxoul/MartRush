@@ -60,7 +60,7 @@
 	movementManager = [[MovementManager alloc] initWithGameScene:self];
 	[movementManager createMerchandise];
   
-	controlManager = [[ControlManager alloc] init];
+	controlManager = [[ControlManager alloc] initWithGameScene:self];
 }
 
 - (void)draw
