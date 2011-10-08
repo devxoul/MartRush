@@ -172,6 +172,12 @@
 		BA8972BF14390FF200C2D420 /* boss_run.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA8972B814390FF200C2D420 /* boss_run.plist */; };
 		BA8972C014390FF200C2D420 /* boss_run.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8972B914390FF200C2D420 /* boss_run.png */; };
 		BABAC873143AED650052FFCF /* cart.png in Resources */ = {isa = PBXBuildFile; fileRef = BABAC872143AED650052FFCF /* cart.png */; };
+		CF09C7CD143F14DF00945C8A /* Boom_list.png in Resources */ = {isa = PBXBuildFile; fileRef = CF09C7C7143F14DF00945C8A /* Boom_list.png */; };
+		CF09C7CE143F14DF00945C8A /* Boom_list.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF09C7C8143F14DF00945C8A /* Boom_list.plist */; };
+		CF09C7CF143F14DF00945C8A /* Boom1.png in Resources */ = {isa = PBXBuildFile; fileRef = CF09C7C9143F14DF00945C8A /* Boom1.png */; };
+		CF09C7D0143F14DF00945C8A /* Boom2.png in Resources */ = {isa = PBXBuildFile; fileRef = CF09C7CA143F14DF00945C8A /* Boom2.png */; };
+		CF09C7D1143F14DF00945C8A /* Boom3.png in Resources */ = {isa = PBXBuildFile; fileRef = CF09C7CB143F14DF00945C8A /* Boom3.png */; };
+		CF09C7D2143F14DF00945C8A /* Boom4.png in Resources */ = {isa = PBXBuildFile; fileRef = CF09C7CC143F14DF00945C8A /* Boom4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -473,6 +479,12 @@
 		BA8972B814390FF200C2D420 /* boss_run.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = boss_run.plist; path = Resources/boss_run.plist; sourceTree = "<group>"; };
 		BA8972B914390FF200C2D420 /* boss_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boss_run.png; path = Resources/boss_run.png; sourceTree = "<group>"; };
 		BABAC872143AED650052FFCF /* cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cart.png; path = Resources/cart.png; sourceTree = "<group>"; };
+		CF09C7C7143F14DF00945C8A /* Boom_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom_list.png; sourceTree = "<group>"; };
+		CF09C7C8143F14DF00945C8A /* Boom_list.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Boom_list.plist; sourceTree = "<group>"; };
+		CF09C7C9143F14DF00945C8A /* Boom1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom1.png; sourceTree = "<group>"; };
+		CF09C7CA143F14DF00945C8A /* Boom2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom2.png; sourceTree = "<group>"; };
+		CF09C7CB143F14DF00945C8A /* Boom3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom3.png; sourceTree = "<group>"; };
+		CF09C7CC143F14DF00945C8A /* Boom4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boom4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +556,7 @@
 		03AB064B1435EF2E009CA68F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CF09C7C5143F14D100945C8A /* CollisionAni */,
 				BABAC872143AED650052FFCF /* cart.png */,
 				BA8972B214390F4900C2D420 /* boss */,
 				BA8972B014390F3800C2D420 /* player */,
@@ -991,6 +1004,19 @@
 			name = boss;
 			sourceTree = "<group>";
 		};
+		CF09C7C5143F14D100945C8A /* CollisionAni */ = {
+			isa = PBXGroup;
+			children = (
+				CF09C7C7143F14DF00945C8A /* Boom_list.png */,
+				CF09C7C8143F14DF00945C8A /* Boom_list.plist */,
+				CF09C7C9143F14DF00945C8A /* Boom1.png */,
+				CF09C7CA143F14DF00945C8A /* Boom2.png */,
+				CF09C7CB143F14DF00945C8A /* Boom3.png */,
+				CF09C7CC143F14DF00945C8A /* Boom4.png */,
+			);
+			name = CollisionAni;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1088,6 +1114,12 @@
 				BA8972BF14390FF200C2D420 /* boss_run.plist in Resources */,
 				BA8972C014390FF200C2D420 /* boss_run.png in Resources */,
 				BABAC873143AED650052FFCF /* cart.png in Resources */,
+				CF09C7CD143F14DF00945C8A /* Boom_list.png in Resources */,
+				CF09C7CE143F14DF00945C8A /* Boom_list.plist in Resources */,
+				CF09C7CF143F14DF00945C8A /* Boom1.png in Resources */,
+				CF09C7D0143F14DF00945C8A /* Boom2.png in Resources */,
+				CF09C7D1143F14DF00945C8A /* Boom3.png in Resources */,
+				CF09C7D2143F14DF00945C8A /* Boom4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

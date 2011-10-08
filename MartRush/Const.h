@@ -10,6 +10,7 @@
 #define MartRush_Const_h
 
 #define MARTRUSH_BOC_EDIT
+#define MARTRUSH_HAN_EDIT
 
 //GAME STAGE LEVEL
 #define MARTRUSH_STAGE_1            0

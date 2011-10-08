@@ -31,6 +31,12 @@
     int nTemp2;             //temp2 variable
     
     int bossStage;          //보스 레벨 
+    
+    GameLayer *gameLayer;
+    CCSprite *collisionSpr;
+    
+    CCAnimate* bossCollisionAni;   //보스 충돌
+
 }
 
 @property (readwrite) int bossState;
@@ -54,5 +60,10 @@
 
 -(void)bossMovingWay:(int)_num;                         // boss way set
 
+#ifdef MARTRUSH_HAN_EDIT
+-(void) bossEndCollision:(id)sender;
+-(void) createBossCollisionAnimation:(GameLayer*)_layer;
+-(void) bossDoCollisionAnimation;
+#endif
 
 @end
