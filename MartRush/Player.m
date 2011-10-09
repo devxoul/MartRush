@@ -14,6 +14,8 @@
 @synthesize playerState;
 @synthesize playerWayState;
 @synthesize playerY;
+@synthesize playerBoundingBox;
+@synthesize playerSpeed;
 
 NSString* plistNameArray[10] = 
 {
@@ -37,7 +39,9 @@ NSString* imgNameArray[10] =
     [self setPlayerState:PLAYER_STATE_RUN];
     [self setPlayerWayState:LEFT_WAY];
     [self setPlayerY:PLAYER_Y_POSITION];
-    
+#ifdef MARTRUSH_HAN_EDIT
+    playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+#endif
     playerHp = 3;
     playerCount = 0;
             
@@ -144,6 +148,9 @@ NSString* imgNameArray[10] =
 //            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
             [playerSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)], nil]];
             [playerCart cartMovingWay:LEFT_WAY];
+#ifdef MARTRUSH_HAN_EDIT
+            playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+#endif
         }
         else
             return;
@@ -155,6 +162,9 @@ NSString* imgNameArray[10] =
             playerWayState = RIGHT_WAY;
             [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
             [playerCart cartMovingWay:RIGHT_WAY];
+#ifdef MARTRUSH_HAN_EDIT
+            playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+#endif
         }
         else
             return;

@@ -12,7 +12,9 @@
 
 @synthesize itemList;
 @synthesize cartHp;
-
+#ifdef MARTRUSH_HAN_EDIT
+@synthesize cartSpr;
+#endif
 -(void)init:(GameLayer*)_layer
 {
     itemList = [NSMutableArray array];
