@@ -20,6 +20,7 @@
     int playerHp;               //플레이어 목숨
     
     float playerY;              //Y
+    float playerSpeed;
     
     CCAnimate* playerRunAni;    //플레이어 Run Animation
     CCAnimate* playerStateAni;  //플레이어 런을 제외한 Animation    
@@ -32,11 +33,15 @@
     CCSprite* stateSpr;             
     
     int playerCount;
+    
+    CGRect playerBoundingBox;
 }
 
 @property (readwrite) int playerState;
 @property (readwrite) int playerWayState;
 @property (readwrite) float playerY;
+@property (readwrite) float playerSpeed;
+@property (readonly) CGRect playerBoundingBox;
 
 -(void)init:(GameLayer *)_scene;
 

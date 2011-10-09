@@ -41,7 +41,7 @@
     NSLog(@"CreateBossCollisionAnimation");
     
     //애니메이션 - 충돌생성
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Boom_list.plist"];
+ /*   [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Boom_list.plist"];
     
     collisionSpr = [CCSprite spriteWithSpriteFrameName:@"Boom1.png"];
     collisionSpr.position = bossSpr.position;
@@ -57,22 +57,40 @@
         CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"Boom%d.png", i]];
         [aniFrames addObject:frame];
     }
-    
+        
     CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.1f];
     bossCollisionAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
+*/
+    
+    
+    //스프라이트만 생성
 
+    collisionSpr = [CCSprite spriteWithFile:@"Boom1.png"];
+    collisionSpr.position = bossSpr.position;
+    collisionSpr.anchorPoint = ccp(0.5f, 0.0f);
+    [_layer addChild:collisionSpr];
+
+    
     [collisionSpr setVisible:NO];
-
+    
     
 }
 
 -(void) bossDoCollisionAnimation {
     NSLog(@"bossDoCollisionAnimation");
     
-    [collisionSpr setPosition:bossSpr.position];
     [collisionSpr setVisible:YES];
+    [collisionSpr setPosition:bossSpr.position];
+    
     CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndCollision:)];
-    [collisionSpr runAction:[CCSequence actions:bossCollisionAni, bossCollisionCallback, nil]];
+    
+    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
+    
+    //CCAction *action = [CCFadeOut actionWithDuration:0.3];
+    
+    [collisionSpr runAction:action];
+    [collisionSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];
+    //[collisionSpr runAction:[CCSequence actions:bossCollisionAni, bossCollisionCallback, nil]];
     
 }
 
@@ -81,7 +99,13 @@
 
     [collisionSpr stopAllActions];
     [collisionSpr setVisible:NO];
-    //[collisionSpr removeFromParentAndCleanup:YES];
+
+    bossHp--;
+    if(bossHp == 0){
+        bossState = BOSS_STATE_DEAD;
+    }
+    else
+        bossState = BOSS_STATE_RUN;
 }
 
 #endif
@@ -90,7 +114,7 @@
 
 
 -(void)createBossRunAnimation:(GameLayer*)_layer
-{
+{    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
     bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"] retain
                ];
@@ -140,14 +164,15 @@
     if(nTemp2 == bossAttackCount)
         [self bossAiAttack:MARTRUSH_STAGE_1];
 
-//    if (bossState == BOSS_STATE_MOVING) 
     bossMoveCount++;
     bossAttackCount++;
     
-    if(bossState == BOSS_STATE_CRASH){
-    
-        
-    
+    switch (bossState) {
+        case BOSS_STATE_DEAD:
+            break;
+        case BOSS_STATE_CRASH:
+            [self bossDoCollisionAnimation];
+            break;
     }
 }
 
@@ -164,12 +189,14 @@
 
 -(void)bossEndMoving:(id)sender
 {
+    bossState = BOSS_STATE_RUN;
     bossMoveCount = 0;
     nTemp = 0;
 }
 
 -(void)bossEndAttack:(id)sender
 {
+    bossState = BOSS_STATE_RUN;
     bossAttackCount = 0;
     nTemp2 = 0;
 }
@@ -179,8 +206,9 @@
 {
     BOOL isMoved = (arc4random()%2 == 0) ? YES : NO ;          // 이동 %는 50%로 고정
     //이동하면 웨이 상태 변경
-    if (isMoved && bossState != BOSS_STATE_MOVING) 
+    if (isMoved && bossState == BOSS_STATE_RUN) 
     {
+        bossState = BOSS_STATE_MOVING;
         switch (bossWayState) 
         {
             case LEFT_WAY:
@@ -195,8 +223,6 @@
         }
         
     } 
-    [self bossDoCollisionAnimation];
-
     [self bossEndMoving:self];
 }
 
@@ -207,7 +233,7 @@
     BOOL isFired = (arc4random()%10 < _stage+4 ) ? YES : NO ;   // 발사 %는 스테이지에 따라서 바뀜, 50%, 60%, 70%, 80%, 90%, 스테이지는 1,2,3,4,5로 넘어옴
     
     //발사하면 상태 변화
-    if(isFired && bossState != BOSS_STATE_MOVING){
+    if(isFired && bossState == BOSS_STATE_RUN){
         bossState = BOSS_STATE_ATTACK;
 
 /*        

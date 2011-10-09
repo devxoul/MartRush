@@ -14,6 +14,8 @@
 @synthesize playerState;
 @synthesize playerWayState;
 @synthesize playerY;
+@synthesize playerBoundingBox;
+@synthesize playerSpeed;
 
 NSString* plistNameArray[10] = 
 {
@@ -31,20 +33,23 @@ NSString* imgNameArray[10] =
 
 -(void)init:(GameLayer*)_layer
 {
-//    playerRunAni = [self createAnimation:_layer :PLAYER_STATE_RUN :playerSpr :PLAYER_LEFT_X_POSITION :PLAYER_Y_POSITION :bachNode:6];
-    [self createPlayerRunAnimation:_layer];
-    
-    [self setPlayerState:PLAYER_STATE_RUN];
-    [self setPlayerWayState:LEFT_WAY];
-    [self setPlayerY:PLAYER_Y_POSITION];
-    
-    playerHp = 3;
-    playerCount = 0;
-            
-    playerCart = [Cart alloc];
-    [playerCart init:_layer];
-    
-    [self startPlayerRunning];
+// playerRunAni = [self createAnimation:_layer :PLAYER_STATE_RUN :playerSpr :PLAYER_LEFT_X_POSITION :PLAYER_Y_POSITION :bachNode:6];
+  [self createPlayerRunAnimation:_layer];
+  
+  [self setPlayerState:PLAYER_STATE_RUN];
+  [self setPlayerWayState:LEFT_WAY];
+  [self setPlayerY:PLAYER_Y_POSITION];
+
+  playerHp = 3;
+  playerCount = 0;
+          
+  playerCart = [Cart alloc];
+  [playerCart init:_layer];
+  
+  [self startPlayerRunning];
+#ifdef MARTRUSH_HAN_EDIT
+  playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+#endif
 }
 
 -(void)playerSetZorder:(GameLayer*)_layer:(int)_z
@@ -144,6 +149,9 @@ NSString* imgNameArray[10] =
 //            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
             [playerSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)], nil]];
             [playerCart cartMovingWay:LEFT_WAY];
+#ifdef MARTRUSH_HAN_EDIT
+            playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+#endif
         }
         else
             return;
@@ -155,6 +163,9 @@ NSString* imgNameArray[10] =
             playerWayState = RIGHT_WAY;
             [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
             [playerCart cartMovingWay:RIGHT_WAY];
+#ifdef MARTRUSH_HAN_EDIT
+            playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+#endif
         }
         else
             return;
