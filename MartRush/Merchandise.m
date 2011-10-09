@@ -11,7 +11,7 @@
 
 @implementation Merchandise
 
-@synthesize merchandiseSpr, wayState;
+@synthesize merchandiseSpr, wayState, name, price;
 @synthesize z = z_;
 
 - (id)init
@@ -26,9 +26,6 @@
 - (void)setZ:(float)z
 {
 	self.merchandiseSpr.position = ccp(!self.wayState ? z * 9 / 17 : -9 * z / 17 + 480, z);
-	
-	// Obstacle
-//	self.merchandiseSpr.position = ccp(!self.wayState ? z * 3 / 16 + 155 : -1 * z * 3 / 16 + 325, z );
 	self.merchandiseSpr.scale = (-3 * z / 8 + 170) / self.merchandiseSpr.contentSize.width;
 	z_ = z;
 }
