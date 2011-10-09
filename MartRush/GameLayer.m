@@ -9,6 +9,8 @@
 #import "GameLayer.h"
 #import "Merchandise.h"
 #import "ControlManager.h"
+#import "Player.h"
+#import "Boss.h"
 
 @implementation GameLayer
 
@@ -76,6 +78,12 @@
 {
   for (UITouch *touch in touches) {
     if (touch) {
+<<<<<<< master
+=======
+<<<<<<< Xoul
+      [gameScene.controlManager removeObjectWithTouch:touch];
+=======
+>>>>>>> local
       if (![gameScene.controlManager removeObjectWithTouch:touch])
       {
         CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
@@ -84,16 +92,28 @@
           NSLog(@"%f, %f", location.x, location.y);
           if ((location.x > ((location.y * 9 / 17) + 20)) && (location.x < 240))
           {
+<<<<<<< master
             player.playerWayState = LEFT_WAY;
+=======
+            [player playerMovingWay:LEFT_WAY];
+>>>>>>> local
             NSLog(@"Move Left");
           }
           else if((location.x < ((-9 * location.y / 17 + 480) - 20)) && (location.x > 240))
           {
+<<<<<<< master
             player.playerWayState = RIGHT_WAY;
+=======
+            [player playerMovingWay:RIGHT_WAY];
+>>>>>>> local
             NSLog(@"Move Right");
           }
         }
       }
+<<<<<<< master
+=======
+>>>>>>> local
+>>>>>>> local
     }
   }
 }

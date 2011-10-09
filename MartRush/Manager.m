@@ -15,7 +15,15 @@
 
 - (id)initWithGameScene:(GameScene *)gameScene;
 {
+<<<<<<< master
 	if( self = [super init] )
+=======
+<<<<<<< Xoul
+	if( self = [self init] )
+=======
+	if( [self init] )
+>>>>>>> local
+>>>>>>> local
 	{
 		gameScene_ = gameScene;
 	}

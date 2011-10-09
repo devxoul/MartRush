@@ -10,8 +10,11 @@
 #import "cocos2d.h"
 
 #import "GameScene.h"
+<<<<<<< Xoul
 #import "Player.h"
 #import "Boss.h"
+=======
+>>>>>>> local
 
 @interface GameLayer : CCLayer<CCStandardTouchDelegate> {
     GameScene *gameScene;
