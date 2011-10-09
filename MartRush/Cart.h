@@ -20,9 +20,11 @@
     int itemCount;                //아이템 카운트
     
     CCSprite* cartSpr;            //카트 이미지
+    int cartHp;                   //카트 체력
 }
 
 @property (nonatomic, retain) NSMutableArray* itemList;
+@property (readwrite) int cartHp;
 
 -(void)init:(GameLayer*)_layer;
 -(void)update;

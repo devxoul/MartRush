@@ -27,6 +27,7 @@
 
         self.isTouchEnabled = YES;
 #endif
+        
 	}
 	return self;
 }
@@ -36,6 +37,11 @@
 #ifdef MARTRUSH_BOC_EDIT
 	[player update];
   [boss update];
+#endif
+
+#ifdef MARTRUSH_HAN_EDIT
+    [boss setBossState:BOSS_STATE_CRASH];
+
 #endif
 }
 

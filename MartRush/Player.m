@@ -15,9 +15,23 @@
 @synthesize playerWayState;
 @synthesize playerY;
 
+NSString* plistNameArray[10] = 
+{
+    @"player_run",
+    @"player_crash",
+    @"player_dead",
+    @"player_leftarm",
+    @"player_rightarm"
+};
+
+NSString* imgNameArray[10] = 
+{
+    @"player_"
+};
 
 -(void)init:(GameLayer*)_layer
 {
+//    playerRunAni = [self createAnimation:_layer :PLAYER_STATE_RUN :playerSpr :PLAYER_LEFT_X_POSITION :PLAYER_Y_POSITION :bachNode:6];
     [self createPlayerRunAnimation:_layer];
     
     [self setPlayerState:PLAYER_STATE_RUN];
@@ -50,7 +64,7 @@
     
     bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
     [bachNode addChild:playerSpr];
-    [_layer addChild:bachNode ];
+    [_layer addChild:bachNode z:2];
 
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
        
@@ -62,10 +76,56 @@
     CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.05f];
     playerRunAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
 }
+//
+//-(CCAnimate*)createAnimation:(GameLayer*)_layer:(int)_state:(CCSprite*)_spr:(float)_x:(float)_y:(CCSpriteBatchNode*)_bnode:(int)_count
+//{
+//    NSString* sTemp = plistNameArray[_state];    
+//    sTemp = [sTemp stringByAppendingFormat:@".plist"];
+//        
+//    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:sTemp];
+//    
+//    [sTemp init];
+//    sTemp = imgNameArray[_state];
+//    sTemp = [sTemp stringByAppendingFormat:@"0.png"];
+//    
+//    _spr = [CCSprite spriteWithSpriteFrameName:sTemp];
+//    _spr.position = ccp(_x, _y);
+//    
+//    [sTemp init];
+//    sTemp = plistNameArray[_state];
+//    sTemp = [sTemp stringByAppendingFormat:@".png"];
+//    
+//    _bnode = [CCSpriteBatchNode batchNodeWithFile:sTemp];
+//    [_bnode addChild:_spr];
+//    [_layer addChild:_bnode];
+//    
+//    NSMutableArray *aniFrames = [NSMutableArray array];
+//    
+//    for (int i = 0; i < _count; i++) 
+//    {
+//        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_%d.png", i]];
+//        [aniFrames addObject:frame];
+//    }
+//    
+//    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.05f];
+//    CCAnimate* _ani = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];
+//    
+//    return _ani;
+//}
 
 -(void)startPlayerRunning
 {
     [playerSpr runAction:[CCRepeatForever actionWithAction:playerRunAni]];
+}
+
+-(void)createPlayerStateAnimation:(GameLayer*)_layer
+{
+    
+}
+
+-(void)startPlayerStating:(CCAnimate*)_ani
+{
+    [stateSpr runAction:[CCSequence actions:_ani, nil]];
 }
 
 -(void)stopPlayerRunning
@@ -81,7 +141,8 @@
         if(playerWayState == RIGHT_WAY)
         {            
             playerWayState = LEFT_WAY;
-            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
+//            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
+            [playerSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)], nil]];
             [playerCart cartMovingWay:LEFT_WAY];
         }
         else
@@ -107,14 +168,6 @@
     [playerCart update];
     // 플레이어 이미지 DRAW
     if(playerState == PLAYER_STATE_RUN)
-    {
-        
-    }
-    else if(playerState == PLAYER_STATE_LEFTARM_MOVE)
-    {
-        
-    }
-    else if(playerState == PLAYER_STATE_RIGHTARM_MOVE)
     {
         
     }
