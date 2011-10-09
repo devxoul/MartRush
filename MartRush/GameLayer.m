@@ -14,7 +14,7 @@
 
 @implementation GameLayer
 
-@synthesize gameScene;
+@synthesize gameScene, player;
 
 - (id)init
 {
@@ -22,12 +22,12 @@
 	{
 #ifdef MARTRUSH_BOC_EDIT        
 		player = [Player alloc];
-        [player init:self];
-        
-        boss = [Boss alloc];
-        [boss init:self:MARTRUSH_STAGE_1];
+    [player init:self];
+    
+    boss = [Boss alloc];
+    [boss init:self:MARTRUSH_STAGE_1];
 
-        self.isTouchEnabled = YES;
+    self.isTouchEnabled = YES;
 #endif
         
 	}
@@ -78,12 +78,6 @@
 {
   for (UITouch *touch in touches) {
     if (touch) {
-<<<<<<< master
-=======
-<<<<<<< Xoul
-      [gameScene.controlManager removeObjectWithTouch:touch];
-=======
->>>>>>> local
       if (![gameScene.controlManager removeObjectWithTouch:touch])
       {
         CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
@@ -92,28 +86,16 @@
           NSLog(@"%f, %f", location.x, location.y);
           if ((location.x > ((location.y * 9 / 17) + 20)) && (location.x < 240))
           {
-<<<<<<< master
-            player.playerWayState = LEFT_WAY;
-=======
             [player playerMovingWay:LEFT_WAY];
->>>>>>> local
             NSLog(@"Move Left");
           }
           else if((location.x < ((-9 * location.y / 17 + 480) - 20)) && (location.x > 240))
           {
-<<<<<<< master
-            player.playerWayState = RIGHT_WAY;
-=======
             [player playerMovingWay:RIGHT_WAY];
->>>>>>> local
             NSLog(@"Move Right");
           }
         }
       }
-<<<<<<< master
-=======
->>>>>>> local
->>>>>>> local
     }
   }
 }

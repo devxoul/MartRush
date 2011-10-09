@@ -32,7 +32,6 @@
     CCSprite* stateSpr;             
     
     int playerCount;
-    
 }
 
 @property (readwrite) int playerState;

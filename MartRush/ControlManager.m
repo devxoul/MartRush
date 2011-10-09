@@ -8,7 +8,7 @@
 
 #import "ControlManager.h"
 #import "Merchandise.h"
-
+#import "GameLayer.h"
 
 @implementation ControlManager
 
@@ -24,19 +24,6 @@
   
   return nil;
 }
-
-- (ControlManager *)initWithGameScene:(GameScene *)_gameScene andCartSprite:(CCSprite *)_cartSprite
-{
-  if ([self initWithGameScene:_gameScene])
-  {
-    cartSprite = _cartSprite;
-    
-    return self;
-  }
-  
-  return nil;
-}
-
 
 - (bool)addMerchandiseToList:(Merchandise *)_object withTouch:(UITouch *)touch
 {
@@ -55,7 +42,7 @@
 
 - (bool)moveObjectWithTouch:(UITouch *)touch
 {
-  if (![touchList indexOfObject:touch])
+  if ([touchList indexOfObject:touch] == NSNotFound)
     return NO;
   
   Merchandise *merchandise = (Merchandise *)[managedList objectAtIndex:[touchList indexOfObject:touch]];
@@ -73,7 +60,7 @@
 - (bool)removeObjectWithTouch:(UITouch *)touch
 {
   //TODO : check the position and run moveaction to cart or just fadeout
-  if (![touchList indexOfObject:touch])
+  if ([touchList indexOfObject:touch] == NSNotFound)
     return NO;
   
   Merchandise *merchandise = (Merchandise *)[managedList objectAtIndex:[touchList indexOfObject:touch]];
@@ -84,9 +71,9 @@
   
   CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
   
-  if (CGRectContainsPoint(cartSprite.boundingBox, location))
+  if (CGRectContainsPoint(gameScene_.gameLayer.player.boundingBox, location))
   {
-    action = [CCSequence actions:[CCFadeOut actionWithDuration:0.3], [CCMoveTo actionWithDuration:0.3 position:CGPointMake(cartSprite.position.x + cartSprite.boundingBox.size.width / 2, cartSprite.position.y + cartSprite.boundingBox.size.height / 2)], [CCScaleTo actionWithDuration:0.3 scale:0.1], nil];
+    action = [CCSequence actions:[CCFadeOut actionWithDuration:0.3], [CCMoveTo actionWithDuration:0.3 position:CGPointMake(gameScene_.gameLayer.player.position.x + gameScene_.gameLayer.player.boundingBox.size.width / 2, gameScene_.gameLayer.player.position.y + gameScene_.gameLayer.player.boundingBox.size.height / 2)], [CCScaleTo actionWithDuration:0.3 scale:0.1], nil];
   }
   else
   {

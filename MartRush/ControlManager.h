@@ -15,11 +15,9 @@
 @interface ControlManager : Manager {
   NSMutableArray *managedList;
   NSMutableArray *touchList;
-  CCSprite *cartSprite;
 }
 
 - (ControlManager *)init;
-- (ControlManager *)initWithGameScene:(GameScene *)_gameScene andCartSprite:(CCSprite *)_cartSprite;
 - (bool)addMerchandiseToList:(Merchandise *)_object withTouch:(UITouch *)touch;
 - (bool)moveObjectWithTouch:(UITouch *)touch;
 - (bool)removeObjectWithTouch:(UITouch *)touch;
