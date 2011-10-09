@@ -35,27 +35,29 @@
 	}
 	return self;
 }
-
+          
 - (void)update
-{
-	if( arc4random() % 30 == 1 )
-		[self createMerchandise];
+{	
+	if( arc4random() % 50 == 1 )
+		[self createObstacle];
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		/*glPushMatrix();
-		glRotatef(30.0f, 0.0f, 30.0f, 0.0f);
-		[merchandise.merchandiseSpr visit];
-		glPopMatrix();*/
-		
-		
-//		break;
-		
 		merchandise.z -= 2;
 		
-		if( merchandise.z < 0 )
+		if( merchandise.z < -100 )
 		{
-			[self removeMerchandise:merchandise];
+//			[self removeMerchandise:merchandise];
+		}
+	}
+	
+	for( Obstacle *obstacle in gameScene_.obstacles )
+	{
+		obstacle.z -= 20;
+		
+		if( obstacle.z < -100 )
+		{
+			[self removeObstacle:obstacle];
 		}
 	}
 }
@@ -67,7 +69,7 @@
 	merchandise.merchandiseSpr = [CCSprite spriteWithFile:@"fruit_apple.png"];
 	merchandise.merchandiseSpr.anchorPoint = ccp( 0.5f, 1.0f );
 	merchandise.merchandiseSpr.position = ccp( 240, 320 );
-	merchandise.z = 320;
+	merchandise.z = 1000;
 	int zOrder = ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1;
 	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
 	[gameScene_.merchandises addObject:merchandise];
@@ -76,7 +78,15 @@
 
 - (void)createObstacle
 {
-	
+	Obstacle *obstacle = [[Obstacle alloc] init];
+	obstacle.wayState = arc4random() % 2;
+	obstacle.obstacleSpr = [CCSprite spriteWithFile:@"fruit_banana.png"];
+	obstacle.obstacleSpr.anchorPoint = ccp( 0.5f, 1.0f );
+//	obstacle.obstacleSpr.position = ccp( 240, 320 );
+	obstacle.z = 5000;
+	int zOrder = ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1;
+	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
+	[gameScene_.obstacles addObject:obstacle];
 }
 
 - (void)createObstacle:(Obstacle *)obstacle wayState:way
@@ -102,7 +112,8 @@
 
 - (void)removeObstacle:(Obstacle *)obstacle
 {
-	
+	[gameScene_.gameLayer removeChild:obstacle.obstacleSpr cleanup:YES];
+	[gameScene_.obstacles removeObject:obstacle];
 }
 
 - (void)setMerchandiseY:(Merchandise *)merchandise newY:(int)y

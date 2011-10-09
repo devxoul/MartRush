@@ -13,16 +13,20 @@
 	CCSprite *merchandiseSpr;
 	
 	int wayState;
-	int state;
 	
 	float z_;
+	
+	NSString *name;
+	int price;
 }
 
 @property (nonatomic, retain) CCSprite *merchandiseSpr;
 
 @property int wayState;
-@property int state;
 @property (nonatomic) float z;
+
+@property (nonatomic, retain) NSString *name;
+@property int price;
 
 
 @end
