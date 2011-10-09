@@ -19,7 +19,7 @@
 }
 
 - (ControlManager *)init;
-- (ControlManager *)initWithCartSprite:(CCSprite *)_cartSprite;
+- (ControlManager *)initWithGameScene:(GameScene *)_gameScene andCartSprite:(CCSprite *)_cartSprite;
 - (bool)addMerchandiseToList:(Merchandise *)_object withTouch:(UITouch *)touch;
 - (bool)moveObjectWithTouch:(UITouch *)touch;
 - (bool)removeObjectWithTouch:(UITouch *)touch;

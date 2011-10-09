@@ -7,7 +7,6 @@
 //
 
 #import "ControlManager.h"
-
 #import "Merchandise.h"
 
 
@@ -26,9 +25,9 @@
   return nil;
 }
 
-- (ControlManager *)initWithCartSprite:(CCSprite *)_cartSprite;
+- (ControlManager *)initWithGameScene:(GameScene *)_gameScene andCartSprite:(CCSprite *)_cartSprite
 {
-  if ([self init])
+  if ([self initWithGameScene:_gameScene])
   {
     cartSprite = _cartSprite;
     
@@ -38,6 +37,7 @@
   return nil;
 }
 
+
 - (bool)addMerchandiseToList:(Merchandise *)_object withTouch:(UITouch *)touch
 {
   if (touchList.count >= 6)
@@ -45,6 +45,10 @@
   
   [managedList addObject:_object];
   [touchList addObject:touch];
+  
+  [gameScene_.merchandises removeObject:_object];
+  
+  [_object.merchandiseSpr runAction:[CCScaleTo actionWithDuration:0.3 scale:0.35]];
   
   return YES;
 }
@@ -59,7 +63,6 @@
   CCSprite *targetSprite = (CCSprite *)merchandise.merchandiseSpr;
   
   CGPoint targetPoint = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
-  targetPoint.x += targetSprite.boundingBox.size.width / 2;
   targetPoint.y += targetSprite.boundingBox.size.height / 2;
   
   [targetSprite setPosition:targetPoint];
@@ -77,7 +80,19 @@
   
   CCSprite *targetSprite = (CCSprite *)merchandise.merchandiseSpr;
 
-  CCAction *action = [CCFadeOut actionWithDuration:0.3];
+  CCAction *action;
+  
+  CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
+  
+  if (CGRectContainsPoint(cartSprite.boundingBox, location))
+  {
+    action = [CCSequence actions:[CCFadeOut actionWithDuration:0.3], [CCMoveTo actionWithDuration:0.3 position:CGPointMake(cartSprite.position.x + cartSprite.boundingBox.size.width / 2, cartSprite.position.y + cartSprite.boundingBox.size.height / 2)], [CCScaleTo actionWithDuration:0.3 scale:0.1], nil];
+  }
+  else
+  {
+    action = [CCFadeOut actionWithDuration:0.3];
+  }
+  
   [targetSprite runAction:action];
   
   [managedList removeObject:merchandise];

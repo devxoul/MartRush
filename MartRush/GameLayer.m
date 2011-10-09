@@ -35,7 +35,7 @@
 {
 #ifdef MARTRUSH_BOC_EDIT
 	[player update];
-    [boss update];
+  [boss update];
 #endif
 }
 
@@ -50,7 +50,6 @@
       for (Merchandise *merchandise in gameScene.merchandises) {
         if (CGRectContainsPoint(merchandise.merchandiseSpr.boundingBox, location)) {
           [gameScene.controlManager addMerchandiseToList:merchandise withTouch:touch];
-          [gameScene.merchandises removeObject:merchandise];
           break;
         }
       }
@@ -71,7 +70,24 @@
 {
   for (UITouch *touch in touches) {
     if (touch) {
-      [gameScene.controlManager removeObjectWithTouch:touch];
+      if (![gameScene.controlManager removeObjectWithTouch:touch])
+      {
+        CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
+        if (location.y >= 0 && location.y <= 100)
+        {
+          NSLog(@"%f, %f", location.x, location.y);
+          if ((location.x > ((location.y * 9 / 17) + 20)) && (location.x < 240))
+          {
+            player.playerWayState = LEFT_WAY;
+            NSLog(@"Move Left");
+          }
+          else if((location.x < ((-9 * location.y / 17 + 480) - 20)) && (location.x > 240))
+          {
+            player.playerWayState = RIGHT_WAY;
+            NSLog(@"Move Right");
+          }
+        }
+      }
     }
   }
 }
