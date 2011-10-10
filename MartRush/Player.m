@@ -26,31 +26,18 @@
     [self setPlayerState:PLAYER_STATE_RUN];
     [self setPlayerWayState:LEFT_WAY];
     [self setPlayerY:PLAYER_Y_POSITION];
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     
->>>>>>> 97248ffda0d0a0d3b3d164eb05dbea66dfa80a14
-=======
-    
->>>>>>> 97248ffda0d0a0d3b3d164eb05dbea66dfa80a14
     playerHp = 3;
     playerCount = 0;
     
     playerCart = [Cart alloc];
-<<<<<<< HEAD
-<<<<<<< HEAD
     [playerCart init:_layer];
 
 #ifdef MARTRUSH_HAN_EDIT
     playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
 #endif
-=======
     [playerCart init:gamelayer];
->>>>>>> 97248ffda0d0a0d3b3d164eb05dbea66dfa80a14
-=======
     [playerCart init:gamelayer];
->>>>>>> 97248ffda0d0a0d3b3d164eb05dbea66dfa80a14
     
     [self startPlayerRunning];
 }
