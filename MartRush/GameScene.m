@@ -28,7 +28,7 @@
 - (id)init
 {
 	if( self = [super init] )
-	{
+	{		
 		[self initLayers];
 		[self initArrays];
 		[self initManagers];
@@ -58,7 +58,6 @@
 - (void)initManagers
 {
 	movementManager = [[MovementManager alloc] initWithGameScene:self];
-	[movementManager createMerchandise];
   
 	controlManager = [[ControlManager alloc] init];
 }

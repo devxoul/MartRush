@@ -23,7 +23,7 @@
 	NSMutableArray *obstacles;
 	
 	MovementManager *movementManager;
-  ControlManager *controlManager;
+	ControlManager *controlManager;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;

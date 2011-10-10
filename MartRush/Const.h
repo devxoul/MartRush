@@ -53,5 +53,11 @@
 #define LEFT_WAY                    0
 #define RIGHT_WAY                   1
 
+// Z ORDER
+#define Z_ORDER_BACKGROUND			0
+#define Z_ORDER_MERCHANDISE			100000000
+#define Z_ORDER_OBSTACLE			200000000
+#define Z_ORDER_PLAYER				200000001
+#define Z_ORDER_DRAGGING_MERCHANDISE	200000002
 
 #endif

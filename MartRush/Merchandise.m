@@ -25,8 +25,29 @@
 
 - (void)setZ:(float)z
 {
-	self.merchandiseSpr.position = ccp(!self.wayState ? z * 9 / 17 : -9 * z / 17 + 480, z);
-	self.merchandiseSpr.scale = (-3 * z / 8 + 170) / self.merchandiseSpr.contentSize.width;
+	float cameraY = 180;
+	float cameraAngle = 30;
+	float tanAngle = tanf(cameraAngle * M_PI / 180);
+	
+	float h = 180;
+	
+	float angle = (90 - cameraAngle) * M_PI / 180;
+	
+	float z2 = cameraY / ( tanAngle + cameraY / z );
+	float y2 = cameraY * tanAngle / (tanAngle + cameraY / z);
+	
+	float z_2 = cameraY / ( tanAngle + ( cameraY - h ) / z );
+	float y_2 = cameraY * tanAngle / ( tanAngle + ( cameraY - h ) / z );
+	
+//	float z3 = cosf(angle) * z2 - sinf(angle) * y2;
+	float y3 = sinf(angle) * z2 + cosf(angle) * y2;
+	
+//	float z_3 = cosf(angle) * z_2 - sinf(angle) * y_2;
+	float y_3 = sinf(angle) * z_2 + cosf(angle) * y_2;
+	
+	self.merchandiseSpr.position = ccp( !wayState ? y3 / 0.9 - 200 : -1 * y3 / 0.9 + 680, y3 );
+	self.merchandiseSpr.scale = 0.5 * ( y_3 - y3 ) / self.merchandiseSpr.contentSize.width;
+	
 	z_ = z;
 }
 
