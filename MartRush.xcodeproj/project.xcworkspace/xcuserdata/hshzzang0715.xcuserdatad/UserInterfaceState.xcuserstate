@@ -1887,8 +1887,8 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>339944184.15970701</real>
-		<string>{209, 1053}</string>
+		<real>339944230.14812601</real>
+		<string>{0, 1496}</string>
 		<string>{1056, 0}</string>
 		<dict>
 			<key>$class</key>
@@ -1935,9 +1935,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339944205.37165898</real>
-		<string>{331, 1749}</string>
-		<string>{896, 47}</string>
+		<real>339944261.305776</real>
+		<string>{833, 1670}</string>
+		<string>{1424, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -2794,9 +2794,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339944183.65349901</real>
-		<string>{0, 732}</string>
-		<string>{5736, 0}</string>
+		<real>339944271.75102901</real>
+		<string>{0, 1261}</string>
+		<string>{464, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -4573,7 +4573,7 @@
 				<integer>371</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>339944196.44556499</real>
+			<real>339944259.01351398</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -4584,7 +4584,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 오후 9:56</string>
+		<string>Today at 오후 9:57</string>
 		<integer>234</integer>
 		<string>MartRush</string>
 		<dict>
@@ -5365,7 +5365,7 @@
 				<integer>439</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Player.m</string>
+		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Boss.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5383,7 +5383,7 @@
 				<integer>441</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Player.h</string>
+		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Player.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -5401,7 +5401,7 @@
 				<integer>443</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Boss.m</string>
+		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Player.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6036,7 +6036,7 @@
 				<integer>506</integer>
 			</dict>
 		</dict>
-		<string>Player.m</string>
+		<string>Boss.m</string>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -6108,7 +6108,7 @@
 				<integer>25</integer>
 			</dict>
 			<key>NS.string</key>
-			<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Player.m</string>
+			<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Boss.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -6173,10 +6173,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>339944205.37222999</real>
-		<string>{331, 1749}</string>
-		<string>{896, 47}</string>
-		<string>-playerBoundingBox</string>
+		<real>339944271.751598</real>
+		<string>{0, 1261}</string>
+		<string>{464, 0}</string>
+		<string>-init::</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -6195,7 +6195,7 @@
 				<integer>524</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Player.m</string>
+		<string>file://localhost/Users/hshzzang0715/Desktop/MartRush/MartRush/Boss.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7732,7 +7732,7 @@
 		</dict>
 		<string>IDEUtilitiesArea</string>
 		<real>260</real>
-		<string>Player.m</string>
+		<string>Boss.m</string>
 	</array>
 	<key>$top</key>
 	<dict>
