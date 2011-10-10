@@ -33,9 +33,7 @@
     playerCart = [Cart alloc];
     [playerCart init:_layer];
 
-#ifdef MARTRUSH_HAN_EDIT
     playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
-#endif
     [playerCart init:gamelayer];
     [playerCart init:gamelayer];
     
