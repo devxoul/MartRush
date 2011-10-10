@@ -30,47 +30,44 @@
     [self setBossY:BOSS_Y_POSITION];
     [self startBossRunnig];
     gameLayer = _layer;
-    bossHp = 30;                    
+    bossHp = 4;                    
     bossStage = _stage;
+    nTemp = 0;
+    nTemp2 = 0;
+    bossAttackCount = 0;
+    bossMoveCount = 0;
 }
 
 #ifdef MARTRUSH_HAN_EDIT
 
--(void) createBossCollisionAnimation:(GameLayer*)_layer
-{
-    NSLog(@"CreateBossCollisionAnimation");
-    
-    //애니메이션 - 충돌생성
- /*   [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Boom_list.plist"];
-    
-    collisionSpr = [CCSprite spriteWithSpriteFrameName:@"Boom1.png"];
-    collisionSpr.position = bossSpr.position;
-    collisionSpr.anchorPoint = ccp(0.5f, 0.0f);
-    
-    CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"Boom_list.png"];
-    [bachNode addChild:collisionSpr];
-    [_layer addChild:bachNode];
-    
-    NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
-    
-    for (int i = 1; i < 5; i++) {
-        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"Boom%d.png", i]];
-        [aniFrames addObject:frame];
-    }
-        
-    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.1f];
-    bossCollisionAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
-*/
-    
-    
-    //스프라이트만 생성
+-(void) bossEndDead{
+    NSLog(@"bossEndDead");
 
+}
+
+-(void) bossDoDead{
+    NSLog(@"bossDoDead");
+    
+    CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndDead:)];
+    
+    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+    
+    [bossSpr runAction:action];
+    [bossSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];
+    //[collisionSpr runAction:[CCSequence actions:bossCollisionAni, bossCollisionCallback, nil]];
+
+}
+
+-(void) createBossCollisionAnimation:(GameLayer*)_layer{
+    NSLog(@"CreateBossCollisionAnimation");
+
+    //스프라이트 생성
     collisionSpr = [CCSprite spriteWithFile:@"Boom1.png"];
     collisionSpr.position = bossSpr.position;
     collisionSpr.anchorPoint = ccp(0.5f, 0.0f);
     [_layer addChild:collisionSpr];
 
-    
+    //안보이게 설정
     [collisionSpr setVisible:NO];
     
     
@@ -81,16 +78,15 @@
     
     [collisionSpr setVisible:YES];
     [collisionSpr setPosition:bossSpr.position];
-    
+    [self stopBossRunning];
+    //충돌 애니메이션 후
     CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndCollision:)];
     
-    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
-    
-    //CCAction *action = [CCFadeOut actionWithDuration:0.3];
-    
+    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:
+                                  1.0];
+        
     [collisionSpr runAction:action];
     [collisionSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];
-    //[collisionSpr runAction:[CCSequence actions:bossCollisionAni, bossCollisionCallback, nil]];
     
 }
 
@@ -103,9 +99,12 @@
     bossHp--;
     if(bossHp == 0){
         bossState = BOSS_STATE_DEAD;
+        NSLog(@"Boss last collision");
     }
-    else
+    else{
         bossState = BOSS_STATE_RUN;
+        [self startBossRunnig];
+    }
 }
 
 #endif
@@ -116,8 +115,7 @@
 -(void)createBossRunAnimation:(GameLayer*)_layer
 {    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
-    bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"] retain
-               ];
+    bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"] retain];
     bossSpr.position = ccp(240, BOSS_Y_POSITION);
     bossSpr.anchorPoint = ccp(0.5f, 0.0f);
     
@@ -169,6 +167,8 @@
     
     switch (bossState) {
         case BOSS_STATE_DEAD:
+            //스테이지 종료 - 
+            NSLog(@"boss Dead");
             break;
         case BOSS_STATE_CRASH:
             [self bossDoCollisionAnimation];
@@ -189,16 +189,16 @@
 
 -(void)bossEndMoving:(id)sender
 {
-    bossState = BOSS_STATE_RUN;
     bossMoveCount = 0;
     nTemp = 0;
+    bossState = BOSS_STATE_RUN;
 }
 
 -(void)bossEndAttack:(id)sender
 {
-    bossState = BOSS_STATE_RUN;
     bossAttackCount = 0;
     nTemp2 = 0;
+    bossState = BOSS_STATE_RUN;
 }
 
 
@@ -223,7 +223,7 @@
         }
         
     } 
-    [self bossEndMoving:self];
+
 }
 
 
@@ -236,20 +236,18 @@
     if(isFired && bossState == BOSS_STATE_RUN){
         bossState = BOSS_STATE_ATTACK;
 
-/*        
+#ifdef MARTRUSH_HAN_EDIT
         //Obstacle 생성..
-        Obstacle *tempObstacle = [[Obstacle alloc] init];
+        Obstacle *tempObstacle = [[Obstacle alloc] init];	
         [tempObstacle setWayState:bossWayState];
         [tempObstacle setObstacleSpr:bossItemSpr];
         [tempObstacle setSpeed:1.003];
-        [tempObstacle setState:1.1];
         [tempObstacle setZ:1000.0];
-        
-        [[[gameLayer gameScene] movementManager] createObstacle:tempObstacle wayState:bossWayState];
+        [[[gameLayer gameScene] movementManager] createObstacle:tempObstacle];
         [tempObstacle release];
- */
+#endif
     }    
-   // [self bossDoCollisionAnimation];
+    //[self bossDoCollisionAnimation];
 
     [self bossEndAttack:self];
 

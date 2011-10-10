@@ -79,7 +79,7 @@
 	
 }
 
-- (void)createObstacle:(Obstacle *)obstacle wayState:way
+- (void)createObstacle:(Obstacle *)obstacle
 {
 	
 }

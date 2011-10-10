@@ -39,14 +39,15 @@ NSString* imgNameArray[10] =
     [self setPlayerState:PLAYER_STATE_RUN];
     [self setPlayerWayState:LEFT_WAY];
     [self setPlayerY:PLAYER_Y_POSITION];
+    playerHp = 3;
+    playerCount = 0;
+    
+    playerCart = [Cart alloc];
+    [playerCart init:_layer];
+
 #ifdef MARTRUSH_HAN_EDIT
     playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
 #endif
-    playerHp = 3;
-    playerCount = 0;
-            
-    playerCart = [Cart alloc];
-    [playerCart init:_layer];
     
     [self startPlayerRunning];
 }

@@ -21,10 +21,10 @@
 #ifdef MARTRUSH_BOC_EDIT        
 		player = [Player alloc];
         [player init:self];
-        
+#ifdef MARTRUSH_HAN_EDIT  
         boss = [Boss alloc];
         [boss init:self:MARTRUSH_STAGE_1];
-
+#endif
         self.isTouchEnabled = YES;
 #endif
         
@@ -40,7 +40,7 @@
 #endif
 
 #ifdef MARTRUSH_HAN_EDIT
-    [boss setBossState:BOSS_STATE_CRASH];
+    //[boss setBossState:BOSS_STATE_CRASH];
 
 #endif
 }

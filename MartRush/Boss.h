@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
-
-@class GameLayer;
+#import "Obstacle.h"
+#import "GameLayer.h"
+#import "MovementManager.h"
 
 @interface Boss : NSObject{
     
