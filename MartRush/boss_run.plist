@@ -5,90 +5,134 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>Boom1.png</key>
+		<key>boss_run_0.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {100, 100}}</string>
+			<string>{{3, 0}, {64, 68}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -0}</string>
+			<string>{1, -0}</string>
 			<key>spriteSize</key>
-			<string>{100, 100}</string>
+			<string>{64, 68}</string>
 			<key>spriteSourceSize</key>
-			<string>{100, 100}</string>
+			<string>{68, 68}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{0, 0}, {100, 100}}</string>
+			<string>{{0, 0}, {64, 68}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Boom2.png</key>
+		<key>boss_run_1.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {100, 100}}</string>
+			<string>{{3, 4}, {64, 64}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -0}</string>
+			<string>{1, -2}</string>
 			<key>spriteSize</key>
-			<string>{100, 100}</string>
+			<string>{64, 64}</string>
 			<key>spriteSourceSize</key>
-			<string>{100, 100}</string>
+			<string>{68, 68}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{102, 0}, {100, 100}}</string>
+			<string>{{66, 0}, {64, 64}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Boom3.png</key>
+		<key>boss_run_2.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {100, 100}}</string>
+			<string>{{2, 8}, {64, 60}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -0}</string>
+			<string>{0, -4}</string>
 			<key>spriteSize</key>
-			<string>{100, 100}</string>
+			<string>{64, 60}</string>
 			<key>spriteSourceSize</key>
-			<string>{100, 100}</string>
+			<string>{68, 68}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{204, 0}, {100, 100}}</string>
+			<string>{{132, 0}, {64, 60}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
 		
-		<key>Boom4.png</key>
+		<key>boss_run_3.png</key>
 		<dict>
 			<key>aliases</key>
 			<array>
 			
 			</array>
 			<key>spriteColorRect</key>
-			<string>{{0, 0}, {100, 100}}</string>
+			<string>{{3, 6}, {64, 62}}</string>
 			<key>spriteOffset</key>
-			<string>{0, -0}</string>
+			<string>{1, -3}</string>
 			<key>spriteSize</key>
-			<string>{100, 100}</string>
+			<string>{64, 62}</string>
 			<key>spriteSourceSize</key>
-			<string>{100, 100}</string>
+			<string>{68, 68}</string>
 			<key>spriteTrimmed</key>
 			<true/>
 			<key>textureRect</key>
-			<string>{{306, 0}, {100, 100}}</string>
+			<string>{{198, 0}, {64, 62}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>boss_run_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 2}, {64, 66}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -1}</string>
+			<key>spriteSize</key>
+			<string>{64, 66}</string>
+			<key>spriteSourceSize</key>
+			<string>{68, 68}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{264, 0}, {64, 66}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>boss_run_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 0}, {64, 68}}</string>
+			<key>spriteOffset</key>
+			<string>{1, -0}</string>
+			<key>spriteSize</key>
+			<string>{64, 68}</string>
+			<key>spriteSourceSize</key>
+			<string>{68, 68}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{330, 0}, {64, 68}}</string>
 			<key>textureRotated</key>
 			<false/>
 		</dict>
@@ -101,9 +145,9 @@
 		<key>format</key>
 		<integer>3</integer>
 		<key>size</key>
-		<string>{512, 512}</string>
+		<string>{512, 128}</string>
 		<key>name</key>
-		<string>Untitled</string>
+		<string>boss_run</string>
 		<key>premultipliedAlpha</key>
 		<false/>
 		<key>target</key>

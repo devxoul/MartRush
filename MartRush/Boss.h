@@ -2,15 +2,16 @@
 //  Boss.h
 //  MartRush
 //
-//  Created by 전 수열 on 11. 9. 30..
+//  Created by 복 & 한 on 11. 9. 30..
 //  Copyright 2011년 Joyfl. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
-
-@class GameLayer;
+#import "Obstacle.h"
+#import "GameLayer.h"
+#import "MovementManager.h"
 
 @interface Boss : NSObject{
     

@@ -15,6 +15,8 @@
 
 @interface Player : NSObject {
     
+    GameLayer* gamelayer;
+    
     int playerState;            //플레이어 상태
     int playerWayState;         //플레이어 way 방향
     int playerHp;               //플레이어 목숨
@@ -45,16 +47,15 @@
 
 -(void)init:(GameLayer *)_scene;
 
--(void)createPlayerRunAnimation:(GameLayer*)_layer;     // 런 액션 만들기 
+-(void)createPlayerRunAnimation;                        // 런 액션 만들기 
 -(void)startPlayerRunning;                              // 런 액션 스타트 
 
--(void)createPlayerStateAnimation:(GameLayer*)_layer;   // state에 따른 액션 만들기
--(void)startPlayerStating:(CCAnimate*)_ani;             // state 액션 스타트 
- 
+-(void)createPlayerStateAnimation;                      // state에 따른 액션 만들기
+
 -(void)stopPlayerRunning;                               // 스탑 
 
 -(void)playerMovingWay:(int)_num;                       // ControlM에서 호출에서 playerWayState수정
--(void)playerSetZorder:(GameLayer*)_layer:(int)_z;      // player z order setting
+-(void)playerSetZorder:(int)_z;                         // player z order setting
 
 -(void)update;                                          // draw
 

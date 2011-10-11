@@ -24,7 +24,6 @@
 		bg.anchorPoint = ccp( 0, 0 );
 		[self addChild:bg];
 		
-#ifdef MARTRUSH_BOC_EDIT        
 		player = [Player alloc];
     [player init:self];
     
@@ -46,7 +45,7 @@
 #endif
 
 #ifdef MARTRUSH_HAN_EDIT
-    [boss setBossState:BOSS_STATE_CRASH];
+    //[boss setBossState:BOSS_STATE_CRASH];
 
 #endif
 }

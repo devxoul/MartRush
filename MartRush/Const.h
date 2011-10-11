@@ -41,9 +41,10 @@
 // BOSS STATE
 #define BOSS_STATE_RUN              0
 #define BOSS_STATE_CRASH            1
-#define BOSS_STATE_DEAD             2
-#define BOSS_STATE_ATTACK           3
-#define BOSS_STATE_MOVING           4
+#define BOSS_STATE_CRASHING         2
+#define BOSS_STATE_DEAD             3
+#define BOSS_STATE_ATTACK           4
+#define BOSS_STATE_MOVING           5
 
 #define BOSS_LEFT_X_POSITION        155
 #define BOSS_RIGHT_X_POSITION       325
@@ -59,6 +60,6 @@
 #define Z_ORDER_MERCHANDISE			100000000
 #define Z_ORDER_OBSTACLE			200000000
 #define Z_ORDER_PLAYER				200000001
-#define Z_ORDER_DRAGGING_MERCHANDISE	200000002
+#define Z_ORDER_DRAGGING_MERCHANDISE    200000002
 
 #endif

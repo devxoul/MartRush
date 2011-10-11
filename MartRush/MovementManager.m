@@ -32,7 +32,7 @@
 	}
 	return self;
 }
-
+          
 - (void)update
 {	
 	if( arc4random() % 30 == 1 )
@@ -47,7 +47,17 @@
 		
 		if( merchandise.z < -100 )
 		{
-			[self removeMerchandise:merchandise];
+//			[self removeMerchandise:merchandise];
+		}
+	}
+	
+	for( Obstacle *obstacle in gameScene_.obstacles )
+	{
+		obstacle.z -= 20;
+		
+		if( obstacle.z < -100 )
+		{
+			[self removeObstacle:obstacle];
 		}
 	}
 	
@@ -92,8 +102,7 @@
 //	merchandise.merchandiseSpr.position.y += 
 }
 
-- (void)moveObstalce:(Obstacle *)obstacle
-{
+- (void)createObstacle:(NSString *)image way:(int)wayState z:(float)z speed:(float)speed{
 	
 }
 
