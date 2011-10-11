@@ -23,4 +23,7 @@
 	return self;
 }
 
+- (void)update
+{
+}
 @end

@@ -133,6 +133,7 @@
 		03AB07C8143603DD009CA68F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07C7143603DD009CA68F /* Player.m */; };
 		03AB07CB143603E5009CA68F /* Boss.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB07CA143603E5009CA68F /* Boss.m */; };
 		171B4B761438B06B00B94220 /* TitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B4B751438B06B00B94220 /* TitleLayer.m */; };
+		3C08DEFA1442B7380053D9E2 /* ResultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C08DEF91442B7380053D9E2 /* ResultScene.m */; };
 		3C396AFE14389791006F7B88 /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AE714389791006F7B88 /* main_bg.jpg */; };
 		3C396AFF14389791006F7B88 /* fruit_apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AE914389791006F7B88 /* fruit_apple.png */; };
 		3C396B0014389791006F7B88 /* fruit_banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AEA14389791006F7B88 /* fruit_banana.png */; };
@@ -155,6 +156,7 @@
 		3C396B1114389791006F7B88 /* vegetables_potatoes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFB14389791006F7B88 /* vegetables_potatoes.png */; };
 		3C396B1214389791006F7B88 /* vegetables_sweetpotatoes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFC14389791006F7B88 /* vegetables_sweetpotatoes.png */; };
 		3C396B1314389791006F7B88 /* vegetables_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFD14389791006F7B88 /* vegetables_tomato.png */; };
+		3CD76DD21443D86B00D3B6CE /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD76DD11443D86B00D3B6CE /* GameOverScene.m */; };
 		BA4257BC143639E3008E7AC5 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4257BB143639E3008E7AC5 /* Cart.m */; };
 		BA6B33EF1438D106000D67AE /* player_0.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6B33E71438D106000D67AE /* player_0.png */; };
 		BA6B33F01438D106000D67AE /* player_1.png in Resources */ = {isa = PBXBuildFile; fileRef = BA6B33E81438D106000D67AE /* player_1.png */; };
@@ -438,6 +440,8 @@
 		03AB07CA143603E5009CA68F /* Boss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Boss.m; sourceTree = "<group>"; };
 		171B4B741438B06B00B94220 /* TitleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleLayer.h; sourceTree = "<group>"; };
 		171B4B751438B06B00B94220 /* TitleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleLayer.m; sourceTree = "<group>"; };
+		3C08DEF81442B7380053D9E2 /* ResultScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultScene.h; sourceTree = "<group>"; };
+		3C08DEF91442B7380053D9E2 /* ResultScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultScene.m; sourceTree = "<group>"; };
 		3C396AE714389791006F7B88 /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = main_bg.jpg; path = Resources/main_bg.jpg; sourceTree = "<group>"; };
 		3C396AE914389791006F7B88 /* fruit_apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruit_apple.png; sourceTree = "<group>"; };
 		3C396AEA14389791006F7B88 /* fruit_banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruit_banana.png; sourceTree = "<group>"; };
@@ -461,6 +465,8 @@
 		3C396AFC14389791006F7B88 /* vegetables_sweetpotatoes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables_sweetpotatoes.png; sourceTree = "<group>"; };
 		3C396AFD14389791006F7B88 /* vegetables_tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vegetables_tomato.png; sourceTree = "<group>"; };
 		3C396B2914389A70006F7B88 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		3CD76DD01443D86B00D3B6CE /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		3CD76DD11443D86B00D3B6CE /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
 		BA4257BA143639E3008E7AC5 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		BA4257BB143639E3008E7AC5 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
 		BA6B33E71438D106000D67AE /* player_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = player_0.png; path = Resources/player_0.png; sourceTree = "<group>"; };
@@ -930,6 +936,10 @@
 				03AB07AF14360331009CA68F /* GameLayer.m */,
 				03AB07B114360337009CA68F /* GameUILayer.h */,
 				03AB07B214360337009CA68F /* GameUILayer.m */,
+				3C08DEF81442B7380053D9E2 /* ResultScene.h */,
+				3C08DEF91442B7380053D9E2 /* ResultScene.m */,
+				3CD76DD01443D86B00D3B6CE /* GameOverScene.h */,
+				3CD76DD11443D86B00D3B6CE /* GameOverScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1240,6 +1250,8 @@
 				BA4257BC143639E3008E7AC5 /* Cart.m in Sources */,
 				0359B79C143B042F001D9D94 /* Manager.m in Sources */,
 				171B4B761438B06B00B94220 /* TitleLayer.m in Sources */,
+				3C08DEFA1442B7380053D9E2 /* ResultScene.m in Sources */,
+				3CD76DD21443D86B00D3B6CE /* GameOverScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

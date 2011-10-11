@@ -74,7 +74,15 @@
   
   if (CGRectIntersectsRect(gameScene_.gameLayer.player.playerBoundingBox, CGRectMake(location.x - targetSprite.boundingBox.size.width/2, location.y - targetSprite.boundingBox.size.height/2, targetSprite.boundingBox.size.width, targetSprite.boundingBox.size.height)))
   {
-    action = [CCSequence actions:[CCMoveTo actionWithDuration:0.3 position:CGPointMake(gameScene_.gameLayer.player.playerBoundingBox.origin.x + gameScene_.gameLayer.player.playerBoundingBox.size.width / 2, gameScene_.gameLayer.player.playerBoundingBox.origin.y + gameScene_.gameLayer.player.playerBoundingBox.size.height / 2)], [CCScaleTo actionWithDuration:0.3 scale:0.1], [CCFadeOut actionWithDuration:0.3], nil];
+    // 카트에 물건 담기
+    action = [CCSequence actions:
+              [CCMoveTo actionWithDuration:0.3 position:
+               CGPointMake(
+                           gameScene_.gameLayer.player.playerBoundingBox.origin.x + gameScene_.gameLayer.player.playerBoundingBox.size.width / 2,
+                           gameScene_.gameLayer.player.playerBoundingBox.origin.y + gameScene_.gameLayer.player.playerBoundingBox.size.height / 2)],
+              [CCScaleTo actionWithDuration:0.3 scale:0.1],
+              [CCFadeOut actionWithDuration:0.3], nil];
+    //[gameScene_.gameLayer.player.cart cartItemAdd:merchandise];
   }
   else
   {
@@ -86,6 +94,13 @@
   [managedList removeObject:merchandise];
   [touchList removeObject:touch];
   return YES;
+}
+
+- (void)dealloc
+{
+  [managedList dealloc];
+  [touchList dealloc];
+  [super dealloc];
 }
 
 @end
