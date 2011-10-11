@@ -18,7 +18,7 @@
 	
 }
 
-- (void)createObstacle:(Obstacle *)obstacle;
+- (void)createObstacle:(NSString *)image way:(int)wayState z:(float)z speed:(float)speed;
 - (void)createMerchandise;
 
 @end

@@ -55,8 +55,6 @@
 -(void)stopPlayerRunning;                               // 스탑 
 
 -(void)playerMovingWay:(int)_num;                       // ControlM에서 호출에서 playerWayState수정
--(void)playerEndMoving:(id)sender;                      // 무빙하고 end
-
 -(void)playerSetZorder:(int)_z;                         // player z order setting
 
 -(void)update;                                          // draw

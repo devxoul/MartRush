@@ -2,7 +2,7 @@
 //  Boss.m
 //  MartRush
 //
-//  Created by 전 수열 on 11. 9. 30..
+//  Created by 복 & 한 on 11. 9. 30..
 //  Copyright 2011년 Joyfl. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @implementation Boss
 
-@synthesize bossState;
+@dynamic bossState;
 @synthesize bossWayState;
 @synthesize bossY;
 @synthesize bossHp;
@@ -40,21 +40,17 @@
 
 #ifdef MARTRUSH_HAN_EDIT
 
--(void) bossEndDead{
+-(void) bossEndDead:(id)sender{
     NSLog(@"bossEndDead");
-
+    [bossSpr setVisible:NO];
 }
-
 -(void) bossDoDead{
     NSLog(@"bossDoDead");
     
-    CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndDead:)];
-    
-    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
-    
+    CCCallFunc* bossDoDeadEndCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndDead:)];
+    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:2.0];    
     [bossSpr runAction:action];
-    [bossSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];
-    //[collisionSpr runAction:[CCSequence actions:bossCollisionAni, bossCollisionCallback, nil]];
+    [bossSpr runAction:[CCSequence actions:action, bossDoDeadEndCallback,nil]];
 
 }
 
@@ -62,7 +58,7 @@
     NSLog(@"CreateBossCollisionAnimation");
 
     //스프라이트 생성
-    collisionSpr = [CCSprite spriteWithFile:@"Boom1.png"];
+    collisionSpr = [CCSprite spriteWithFile:@"Boom.png"];
     collisionSpr.position = bossSpr.position;
     collisionSpr.anchorPoint = ccp(0.5f, 0.0f);
     [_layer addChild:collisionSpr];
@@ -82,8 +78,7 @@
     //충돌 애니메이션 후
     CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndCollision:)];
     
-    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:
-                                  1.0];
+    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
         
     [collisionSpr runAction:action];
     [collisionSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];
@@ -91,7 +86,7 @@
 }
 
 -(void) bossEndCollision:(id)sender{
-    NSLog(@"bossEndCollision");
+//    NSLog(@"bossEndCollision");
 
     [collisionSpr stopAllActions];
     [collisionSpr setVisible:NO];
@@ -100,6 +95,7 @@
     if(bossHp == 0){
         bossState = BOSS_STATE_DEAD;
         NSLog(@"Boss last collision");
+        [self bossDoDead];
     }
     else{
         bossState = BOSS_STATE_RUN;
@@ -144,6 +140,18 @@
     [bossSpr stopAllActions];
 }
 
+-(void)setBossState:(int)State{
+    switch (State) {
+        case BOSS_STATE_CRASH:
+            bossState = BOSS_STATE_CRASHING;
+            [self bossDoCollisionAnimation];
+            break;
+    }
+}
+
+-(int)getBossState{
+    return bossState;
+}
 
 
 -(void)update
@@ -156,24 +164,22 @@
         nTemp2 = (arc4random() % (100 - (10 * bossStage) + bossHp)) + 4;
     }
     
+  
+
+    if( arc4random() % 100 == 3 && bossState == BOSS_STATE_RUN){
+        [self setBossState:BOSS_STATE_CRASH];
+    }
+    
     if(nTemp == bossMoveCount)
         [self bossAiMoving:MARTRUSH_STAGE_1];
 
     if(nTemp2 == bossAttackCount)
         [self bossAiAttack:MARTRUSH_STAGE_1];
-
+    
+    
     bossMoveCount++;
     bossAttackCount++;
     
-    switch (bossState) {
-        case BOSS_STATE_DEAD:
-            //스테이지 종료 - 
-            NSLog(@"boss Dead");
-            break;
-        case BOSS_STATE_CRASH:
-            [self bossDoCollisionAnimation];
-            break;
-    }
 }
 
 -(void)bossMovingWay:(int)_num
@@ -189,15 +195,11 @@
 
 -(void)bossEndMoving:(id)sender
 {
-    bossMoveCount = 0;
-    nTemp = 0;
     bossState = BOSS_STATE_RUN;
 }
 
 -(void)bossEndAttack:(id)sender
 {
-    bossAttackCount = 0;
-    nTemp2 = 0;
     bossState = BOSS_STATE_RUN;
 }
 
@@ -206,6 +208,9 @@
 {
     BOOL isMoved = (arc4random()%2 == 0) ? YES : NO ;          // 이동 %는 50%로 고정
     //이동하면 웨이 상태 변경
+    bossMoveCount = 0;
+    nTemp = 0;
+    
     if (isMoved && bossState == BOSS_STATE_RUN) 
     {
         bossState = BOSS_STATE_MOVING;
@@ -232,25 +237,20 @@
 {
     BOOL isFired = (arc4random()%10 < _stage+4 ) ? YES : NO ;   // 발사 %는 스테이지에 따라서 바뀜, 50%, 60%, 70%, 80%, 90%, 스테이지는 1,2,3,4,5로 넘어옴
     
+    bossAttackCount = 0;
+    nTemp2 = 0;
+    
     //발사하면 상태 변화
     if(isFired && bossState == BOSS_STATE_RUN){
         bossState = BOSS_STATE_ATTACK;
 
 #ifdef MARTRUSH_HAN_EDIT
-        //Obstacle 생성..
-        Obstacle *tempObstacle = [[Obstacle alloc] init];	
-        [tempObstacle setWayState:bossWayState];
-        [tempObstacle setObstacleSpr:bossItemSpr];
-        [tempObstacle setSpeed:1.003];
-        [tempObstacle setZ:1000.0];
-        [[[gameLayer gameScene] movementManager] createObstacle:tempObstacle];
-        [tempObstacle release];
+        //Obstacle 생성..   
+        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" way:bossWayState z:200000000 speed:bossStage];
+        bossState = BOSS_STATE_RUN;
 #endif
     }    
-    //[self bossDoCollisionAnimation];
-
-    [self bossEndAttack:self];
-
+    
 }
 
 @end

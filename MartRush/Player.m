@@ -31,12 +31,8 @@
     playerCount = 0;
     
     playerCart = [Cart alloc];
-    [playerCart init:_layer];
+    [playerCart init:gamelayer];
 
-    playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
-    [playerCart init:gamelayer];
-    [playerCart init:gamelayer];
-    
     [self startPlayerRunning];
 }
 
@@ -54,20 +50,20 @@
 
 -(void)createPlayerRunAnimation
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"player_run.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
     
-    playerSpr = [CCSprite spriteWithSpriteFrameName:@"player_0.png"];
+    playerSpr = [CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"];
     playerSpr.position = ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION);
     playerSpr.anchorPoint = ccp(0.5f, 0.0f);
     
-    bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
+    bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run.png"];
     [bachNode addChild:playerSpr];
     [gamelayer addChild:bachNode z:2];
 
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
        
     for (int i = 0; i < 6; i++) {
-        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_%d.png", i]];
+        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%d.png", i]];
         [aniFrames addObject:frame];
     }
     
@@ -100,7 +96,6 @@
     {
         if(playerWayState == RIGHT_WAY)
         {
-                        
             playerWayState = LEFT_WAY;
             [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]];
             [playerCart cartMovingWay:LEFT_WAY];
@@ -112,11 +107,8 @@
     {
         if(playerWayState == LEFT_WAY)
         {            
-            CCCallFunc* playerEndMoving = [CCCallFunc actionWithTarget:self selector:@selector(playerEndMoving:)];                      
-            
             playerWayState = RIGHT_WAY;
-            [playerSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)], 
-                                                      playerEndMoving, nil]];
+            [playerSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]];
             [playerCart cartMovingWay:RIGHT_WAY];
         }
         else
