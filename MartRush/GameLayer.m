@@ -20,6 +20,10 @@
 {
 	if( self = [super init] )
 	{
+		CCSprite *bg = [CCSprite spriteWithFile:@"game_bg.jpg"];
+		bg.anchorPoint = ccp( 0, 0 );
+		[self addChild:bg];
+		
 #ifdef MARTRUSH_BOC_EDIT        
 		player = [Player alloc];
     [player init:self];

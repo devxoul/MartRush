@@ -17,6 +17,5 @@
 @property (nonatomic, retain, readonly) GameScene *gameScene;
 
 - (id)initWithGameScene:(GameScene *)gameScene;
-- (void)update;
 
 @end

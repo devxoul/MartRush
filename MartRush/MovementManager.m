@@ -10,18 +10,15 @@
 #import "Merchandise.h"
 #import "Obstacle.h"
 
-
 // private methods
 @interface MovementManager(Private)
-//- (void)createMerchandise;
-- (void)createObstacle;
+- (void)createMerchandise:(NSString *)image wayState:(int)wayState;
+
 - (void)moveMerchandise:(Merchandise *)merchandise;
 - (void)moveObstalce:(Obstacle *)obstacle;
+
 - (void)removeMerchandise:(Merchandise *)merchandise;
 - (void)removeObstacle:(Obstacle *)obstacle;
-- (void)setMerchandiseY:(Merchandise *)merchandise newY:(int)y;
-- (void)setObstacleY:(Obstacle *)obstacle newY:(int)y;
-- (CATransform3D)get3DTransform;
 @end
 
 
@@ -31,29 +28,32 @@
 {
 	if( self = [super initWithGameScene:gameScene] )
 	{
-		[self createMerchandise];
+		
 	}
 	return self;
 }
-          
+
 - (void)update
 {	
-	if( arc4random() % 50 == 1 )
-		[self createObstacle];
+	if( arc4random() % 30 == 1 )
+	{
+		[self createMerchandise:@"fruit_apple.png" wayState:arc4random() % 2];
+		[self createObstacle:@"fruit_banana.png" wayState:arc4random() % 2 z:3500 speed:20];
+	}
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		merchandise.z -= 2;
+		merchandise.z -= 20;
 		
 		if( merchandise.z < -100 )
 		{
-//			[self removeMerchandise:merchandise];
+			[self removeMerchandise:merchandise];
 		}
 	}
 	
 	for( Obstacle *obstacle in gameScene_.obstacles )
 	{
-		obstacle.z -= 20;
+		obstacle.z -= obstacle.speed;
 		
 		if( obstacle.z < -100 )
 		{
@@ -62,36 +62,29 @@
 	}
 }
 
-- (void)createMerchandise
+- (void)createMerchandise:(NSString *)image wayState:(int)wayState
 {
 	Merchandise *merchandise = [[Merchandise alloc] init];
-	merchandise.wayState = arc4random() % 2;
-	merchandise.merchandiseSpr = [CCSprite spriteWithFile:@"fruit_apple.png"];
+	merchandise.merchandiseSpr = [CCSprite spriteWithFile:image];
 	merchandise.merchandiseSpr.anchorPoint = ccp( 0.5f, 1.0f );
-	merchandise.merchandiseSpr.position = ccp( 240, 320 );
-	merchandise.z = 1000;
-	int zOrder = ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1;
+	merchandise.wayState = wayState;
+	merchandise.z = 3500;
+	int zOrder = [gameScene_.merchandises lastObject] ? ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1 : Z_ORDER_MERCHANDISE;
 	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
 	[gameScene_.merchandises addObject:merchandise];
-//	merchandise.merchandiseSpr.skewY = 30;
 }
 
-- (void)createObstacle
+- (void)createObstacle:(NSString *)image wayState:(int)wayState z:(float)z speed:(float)speed
 {
 	Obstacle *obstacle = [[Obstacle alloc] init];
-	obstacle.wayState = arc4random() % 2;
-	obstacle.obstacleSpr = [CCSprite spriteWithFile:@"fruit_banana.png"];
+	obstacle.obstacleSpr = [CCSprite spriteWithFile:image];
 	obstacle.obstacleSpr.anchorPoint = ccp( 0.5f, 1.0f );
-//	obstacle.obstacleSpr.position = ccp( 240, 320 );
-	obstacle.z = 5000;
-	int zOrder = ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1;
+	obstacle.wayState = wayState;
+	obstacle.z = z;
+	obstacle.speed = speed;
+	int zOrder = [gameScene_.obstacles lastObject] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
 	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
 	[gameScene_.obstacles addObject:obstacle];
-}
-
-- (void)createObstacle:(Obstacle *)obstacle wayState:way
-{
-	
 }
 
 - (void)moveMerchandise:(Merchandise *)merchandise
@@ -118,14 +111,14 @@
 
 - (void)setMerchandiseY:(Merchandise *)merchandise newY:(int)y
 {
-	merchandise.merchandiseSpr.position = ccp(!merchandise.wayState ? y * 9 / 17 : -9 * y / 17 + 480, y);
-	merchandise.merchandiseSpr.scale = (-1 * y * 3 / 8 + 170) / merchandise.merchandiseSpr.contentSize.width;
+	merchandise.merchandiseSpr.position = ccp( !merchandise.wayState ? y * 9 / 17 : -9 * y / 17 + 480, y );
+	merchandise.merchandiseSpr.scale = ( -1 * y * 3 / 8 + 170 ) / merchandise.merchandiseSpr.contentSize.width;
 }
 
 - (void)setObstacleY:(Obstacle *)obstacle newY:(int)y
 {
-	obstacle.obstacleSpr.position = ccp(!obstacle.wayState ? y * 3 / 16 + 155 : -1 * y * 3 / 16 + 325, y);
-    obstacle.obstacleSpr.scale = (-1 * y * 3 / 8 + 170) / obstacle.obstacleSpr.contentSize.width;
+	obstacle.obstacleSpr.position = ccp(!obstacle.wayState ? y * 3 / 16 + 155 : -1 * y * 3 / 16 + 325, y );
+    obstacle.obstacleSpr.scale = ( -1 * y * 3 / 8 + 170 ) / obstacle.obstacleSpr.contentSize.width;
 }
 
 @end
