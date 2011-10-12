@@ -33,9 +33,10 @@
 -(void)cartMovingWay:(int)_num
 {
     if(_num == LEFT_WAY)
-        [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]];
+        [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]]];           
+    
     else if(_num == RIGHT_WAY)
-        [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]];
+        [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]]];           
 }
 
 -(void)cartItemAdd:(Merchandise*)_item

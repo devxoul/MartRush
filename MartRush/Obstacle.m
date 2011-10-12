@@ -36,7 +36,7 @@
 //	float z_3 = cosf(angle) * z_2 - sinf(angle) * y_2;
 	float y_3 = sinf(angle) * z_2 + cosf(angle) * y_2;
 	
-	self.obstacleSpr.position = ccp( self.wayState ? y3 / 3 + 120 : -1 * y3 / 3 + 360, y3 );
+	self.obstacleSpr.position = ccp( !self.wayState ? y3 / 3 + 120 : -1 * y3 / 3 + 360, y3 );
 	self.obstacleSpr.scale = 0.5 * ( y_3 - y3 ) / self.obstacleSpr.contentSize.width;
 	
 	z_ = z;
