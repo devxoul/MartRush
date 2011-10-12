@@ -79,7 +79,7 @@
     if ([missionDictionary objectForKey:name] > 0) {
       [missionDictionary setObject:[NSNumber numberWithInt:([[missionDictionary objectForKey:name] intValue] - 1)] forKey:name];
       numberOfCorrect++;
-      compensation += 100/*[(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price]*/;
+      compensation += [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price];
       [numberOfCorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfCorrect]];
       [compensationLabel setString:[NSString stringWithFormat:@"%d", compensation]];
     }
@@ -103,6 +103,7 @@
   }
   else
   {
+    // Goto Stage Select Menu
     [[CCDirector sharedDirector] popScene];
   }
 }

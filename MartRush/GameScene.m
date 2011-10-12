@@ -23,7 +23,7 @@
 
 @implementation GameScene
 
-@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager;
+@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager, missionName;
 @synthesize gameState;
 
 -(id)init
@@ -45,9 +45,10 @@
 	return nil;
 }
 
-- (id)initWithMissionName:(NSString *)missionName
+- (id)initWithMissionName:(NSString *)missionName_
 {
 	if (self = [self init]) {
+    missionName = [missionName_ retain];
     gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:missionName ofType:@"plist"]];
     
     [self initManagers];

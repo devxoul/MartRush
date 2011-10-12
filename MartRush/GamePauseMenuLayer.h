@@ -9,8 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameScene;
+
 @interface GamePauseMenuLayer : CCLayer {
-    
+  GameScene *gameScene;
 }
+
++ (CCLayer *)layerWithStage:(GameScene *)gameScene;
+
+- (id)initWithStage:(GameScene *)gameScene;
 
 @end

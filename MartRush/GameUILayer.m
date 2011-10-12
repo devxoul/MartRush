@@ -70,7 +70,8 @@
     pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" block:^(id sender) {
       gameScene.gameState = GAME_STATE_PAUSE;
       // TODO: show pause menu
-      [self addChild:[GamePauseMenuLayer node] z:10000];
+      [self addChild:[GamePauseMenuLayer layerWithStage:gameScene] z:10000];
+      gameScene.gameLayer.isTouchEnabled = NO;
     }];
     pause.anchorPoint = ccp(0.5f, 0.0f);        
     

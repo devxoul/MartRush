@@ -8,13 +8,21 @@
 
 #import "GamePauseMenuLayer.h"
 #import "GameScene.h"
+#import "GameScene.h"
 
 
 @implementation GamePauseMenuLayer
 
-- (id)init
++ (CCLayer *)layerWithStage:(GameScene *)gameScene
+{
+  return [[[GamePauseMenuLayer alloc] initWithStage:gameScene] autorelease];
+}
+
+- (id)initWithStage:(GameScene *)gameScene_
 {
   if (self = [super init]) {
+    gameScene = gameScene_;
+    
     CCLayerColor *backgroundLayer = [CCLayerColor layerWithColor:ccc4(0, 0, 0, 50)];
     [self addChild:backgroundLayer];
     
@@ -22,20 +30,24 @@
     [self addChild:menuBackground];
     
     CCMenu *menu = [CCMenu menuWithItems:
-                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Continue" fontName:@"" fontSize:24] block:^(id sender) {
+                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:gameScene.missionName fontName:@"Marker Felt" fontSize:24]],
+                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Continue" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
       // Continue
       [self removeFromParentAndCleanup:YES];
-    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Mute" fontName:@"" fontSize:24] block:^(id sender) {
+      gameScene.gameState = GAME_STATE_START;
+      [gameScene.gameLayer setIsTouchEnabled:YES];
+    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Mute" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
       // Mute
-    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Restart" fontName:@"" fontSize:24] block:^(id sender) {
+    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Restart" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
       // Restart
-      [[CCDirector sharedDirector] replaceScene:[CCTransitionFlipX transitionWithDuration:0.5 scene:[GameScene node]]];
-    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"StageSelect" fontName:@"" fontSize:24] block:^(id sender) {
+      [[CCDirector sharedDirector] replaceScene:[CCTransitionFlipX transitionWithDuration:0.5 scene:[[[GameScene alloc] initWithMissionName:gameScene.missionName] autorelease]]];
+    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"StageSelect" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
       // StageSelect
       [[CCDirector sharedDirector] popScene];
     }], nil];
     
     [menu alignItemsVertically];
+    [menu setPosition:CGPointMake(240, 160)];
     
     [self addChild:menu];
     
@@ -44,4 +56,8 @@
   return nil;
 }
 
+-(void)dealloc
+{
+  [super dealloc];
+}
 @end

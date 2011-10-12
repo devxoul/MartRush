@@ -21,7 +21,7 @@
 	</array>
 	<key>length</key>
 	<integer>10000</integer>
-	<key>boos</key>
+	<key>boss</key>
 	<false/>
 </dict>
 </plist>

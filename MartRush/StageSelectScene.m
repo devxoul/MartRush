@@ -23,9 +23,25 @@
 - (id)init
 {
   if (self = [super init]) {
+    CCSprite *background = [CCSprite spriteWithFile:@""];
+    [background setPosition:CGPointMake(240, 160)];
+    [self addChild:background];
+    
     stageInfoArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]];
     
-    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:nil cols:4 rows:1 position:CGPointMake(240, 160) padding:CGPointMake(20, 0)];
+    NSMutableArray *menuArray = [NSMutableArray array];
+    for (NSString *stageName in stageInfoArray) {
+      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:
+                                [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png"]]
+                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png"]]
+                                                               target:self selector:@selector(selectLevel:)];
+      item.tag = [stageInfoArray indexOfObject:stageName];
+      [menuArray addObject:item];
+    }
+    
+    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:4 rows:1 position:CGPointMake(240, 160) padding:CGPointMake(20, 0)];
+    
+    [menu setPosition:CGPointMake(240, 160)];
     
     [self addChild:menu];
     
@@ -37,7 +53,7 @@
 
 - (void)selectLevel:(id)sender
 {
-  [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] initWithMissionName:@""] autorelease]];
+  [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] initWithMissionName:[stageInfoArray objectAtIndex:[sender tag]]] autorelease]];
 }
 
 @end

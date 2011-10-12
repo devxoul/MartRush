@@ -30,8 +30,10 @@
     [boss init:self:MARTRUSH_STAGE_1];
 
     self.isTouchEnabled = YES;
+    
+    return self;
 	}
-	return self;
+	return nil;
 }
 
 - (void)update
