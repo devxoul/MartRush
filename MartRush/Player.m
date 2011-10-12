@@ -161,7 +161,7 @@
     if(playerCount == 50)
         //        [self playerMovingWay:RIGHT_WAY];
         //        [self createPlayerStateAnimation];
-        playerState = PLAYER_STATE_DEAD;
+//        playerState = PLAYER_STATE_DEAD;
         
         playerCount++;
     
