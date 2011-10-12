@@ -27,7 +27,6 @@
 #endif
         self.isTouchEnabled = YES;
 #endif
-        
 	}
 	return self;
 }
