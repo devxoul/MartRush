@@ -114,7 +114,7 @@
 	
 	// Run the intro Scene
 //	[[CCDirector sharedDirector] runWithScene: [GameOverScene scene]];
-	[[CCDirector sharedDirector] runWithScene: [GameScene node]];
+	[[CCDirector sharedDirector] runWithScene: [TitleLayer scene]];
 }
 
 

@@ -7,8 +7,6 @@
 //
 
 #import "GameOverScene.h"
-#import "SimpleAudioEngine.h"
-
 
 @implementation GameOverScene
 
