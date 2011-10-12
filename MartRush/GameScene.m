@@ -85,7 +85,7 @@
     }
     else if (gameState == GAME_STATE_OVER)
     {
-        [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
+      [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
     }
     else if(gameState == GAME_STATE_CLEAR)
     {

@@ -14,6 +14,15 @@
 @synthesize obstacleSpr, wayState, state, speed;
 @synthesize z = z_;
 
+- (id)init
+{
+  if (self = [super init])
+  {
+    return self;
+  }
+  return nil;
+}
+
 - (void)setZ:(float)z
 {	
 	float cameraY = 180;

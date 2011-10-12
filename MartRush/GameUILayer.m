@@ -82,10 +82,6 @@
 }
 
 - (void)update{
-    
-    if(i==200)
-        i=0;
-    i += 1;
     [gauge setTextureRect:CGRectMake(0,0,i,30)];
 }
 

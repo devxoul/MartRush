@@ -58,6 +58,7 @@
 		
 		if( 0 <= obstacle.z && obstacle.z <= 50 && obstacle.wayState == gameScene_.gameLayer.player.playerWayState )
 		{
+      NSLog(@"%d, %d", obstacle.wayState, gameScene_.gameLayer.player.playerWayState);
 			gameScene_.gameLayer.player.playerState = PLAYER_STATE_CRASH;
 			[self removeObstacle:obstacle];
 		}
