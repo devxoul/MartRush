@@ -56,7 +56,7 @@
 #define BOSS_LEFT_X_POSITION        155
 #define BOSS_RIGHT_X_POSITION       325
 
-#define BOSS_Y_POSITION             180
+#define BOSS_Y_POSITION             210
 
 // WAY STATE
 #define LEFT_WAY                    0

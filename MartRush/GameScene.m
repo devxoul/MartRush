@@ -13,7 +13,8 @@
 #import "GameLayer.h"
 #import "GameUILayer.h"
 #import "ResultScene.h"
-
+#import "BossUILayer.h"
+#import "BonusUILayer.h"
 
 @interface GameScene(Private)
 - (void)initLayers;
@@ -24,7 +25,7 @@
 
 @implementation GameScene
 
-@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager;
+@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager,bossUILayer;
 @synthesize gameState;
 
 - (id)init
@@ -48,11 +49,19 @@
 	gameLayer = [[GameLayer alloc] init];
 	[self addChild:gameLayer];
 	
-	gameUILayer = [[GameUILayer alloc] init];
-	[self addChild:gameUILayer];
-  
-  gameLayer.gameScene = self;
-  gameUILayer.gameScene = self;
+	//gameUILayer = [[GameUILayer alloc] init];
+	//[self addChild:gameUILayer];
+    
+   // bossUILayer = [[BossUILayer alloc] init];
+//	[self addChild:bossUILayer];
+    
+    bonusUILayer = [[BonusUILayer alloc] init];
+    [self addChild:bonusUILayer];
+
+    gameLayer.gameScene = self;
+    bonusUILayer.gameScene = self;
+    //bossUILayer.gameScene = self;
+    //gameUILayer.gameScene = self;
 }
 
 - (void)initArrays
@@ -77,7 +86,9 @@
         [movementManager update];
 
         [gameLayer update];        
-        [gameUILayer update];
+        //[gameUILayer update];
+        //[bossUILayer update];
+        [bonusUILayer update];
     }
     else if (gameState == GAME_STATE_PAUSE)
     {

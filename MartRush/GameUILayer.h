@@ -21,6 +21,7 @@
     CCSprite *heartSprite2;
     CCSprite *heartSprite3;
     
+    CCSprite *gaugeBg;
     CCSprite *gauge;
     
     CCSprite *infoButton;
@@ -45,5 +46,6 @@
 @property (nonatomic, retain) CCMenuItemImage *pause;
 
 -(void)update;
+-(void) gaugeUpdate;
 
 @end

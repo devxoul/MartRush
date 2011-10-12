@@ -8,7 +8,7 @@
 
 #import "GameUILayer.h"
 #import "GameScene.h"
-
+#import "Player.h"
 
 @implementation GameUILayer
 
@@ -50,8 +50,13 @@
         startIcon.anchorPoint = ccp(0.5f, 0.0f);
         [self addChild:startIcon];
         
-        gauge = [CCSprite spriteWithTexture:[[CCTextureCache sharedTextureCache] addImage:@"gauge.png"] rect:CGRectMake(0,0,0,30)];
-        [gauge setPosition:ccp(153,285)];
+        gaugeBg = [[CCSprite alloc] initWithFile:@"gaugebg.png"];
+        [gaugeBg setPosition:ccp(253,294)];
+        gaugeBg.anchorPoint = ccp(0.5f, 0.0f);
+        [self addChild:gaugeBg];
+
+        gauge = [CCSprite spriteWithTexture:[[CCTextureCache sharedTextureCache] addImage:@"gauge.png"] rect:CGRectMake(0,0,0,8)];
+        [gauge setPosition:ccp(155,296)];
         gauge.anchorPoint = ccp(0.0f, 0.0f);
         
         [self addChild:gauge];
@@ -82,11 +87,29 @@
 }
 
 - (void)update{
-    
+    if(gameScene.gameLayer.player.playerHp == 2){
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        [heartSprite3 runAction:action];
+        
+    }  
+    if(gameScene.gameLayer.player.playerHp == 1){
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        [heartSprite2 runAction:action];
+        
+    }  
+    if(gameScene.gameLayer.player.playerHp == 0){
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        [heartSprite1 runAction:action];
+        
+    }
+    [self gaugeUpdate];
+}
+
+-(void) gaugeUpdate{
     if(i==200)
         i=0;
     i += 1;
-    [gauge setTextureRect:CGRectMake(0,0,i,30)];
+    [gauge setTextureRect:CGRectMake(0,0,i,8)];
 }
 
 @end

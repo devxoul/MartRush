@@ -14,7 +14,7 @@
 
 @implementation GameLayer
 
-@synthesize gameScene, player;
+@synthesize gameScene, player, boss;
 
 - (id)init
 {

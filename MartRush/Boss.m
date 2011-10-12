@@ -15,6 +15,7 @@
 @synthesize bossWayState;
 @synthesize bossY;
 @synthesize bossHp;
+@synthesize bossMaxHp;
 
 
 -(void)init:(GameLayer*)_layer:(int)_stage
@@ -30,7 +31,8 @@
     [self setBossY:BOSS_Y_POSITION];
     [self startBossRunnig];
     gameLayer = _layer;
-    bossHp = 1;                    
+    bossHp = 30;  
+    bossMaxHp = bossHp;
     bossStage = _stage;
     nTemp = 0;
     nTemp2 = 0;
@@ -125,7 +127,7 @@
     
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 9; i++) {
         CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%d.png", i]];
         [aniFrames addObject:frame];
     }

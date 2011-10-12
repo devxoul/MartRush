@@ -18,13 +18,17 @@
 @class GameUILayer;
 @class ControlManager;
 @class Cart;
+@class BossUILayer;
+@class BonusUILayer;
 
 @interface GameScene : CCScene {
     
 @public
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
-	
+    BossUILayer *bossUILayer;
+	BonusUILayer *bonusUILayer;
+    
 	NSMutableArray *merchandises;
 	NSMutableArray *obstacles;
 	
@@ -38,6 +42,8 @@
 
 @property (nonatomic, retain) GameLayer *gameLayer;
 @property (nonatomic, retain) GameUILayer *gameUILayer;
+@property (nonatomic, retain) BossUILayer *bossUILayer;
+@property (nonatomic, retain) BonusUILayer *bonusUILayer;
 
 @property (nonatomic, retain) NSMutableArray *merchandises;
 @property (nonatomic, retain) NSMutableArray *obstacles;

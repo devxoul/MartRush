@@ -29,7 +29,7 @@
     [self setPlayerWayState:LEFT_WAY];
     [self setPlayerY:PLAYER_Y_POSITION];
     
-    playerHp = 3;
+    playerHp = 100;
     playerCount = 0;
     
     playerCart = [Cart alloc];
