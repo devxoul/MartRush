@@ -53,6 +53,14 @@
     return player.playerCart;
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+    
+    [player dealloc];
+    [boss dealloc];
+}
+
 #pragma mark ControlManager - touch event
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -31,7 +31,6 @@
 	ControlManager *controlManager;
     
     int gameState;
-    Cart* _cart;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;

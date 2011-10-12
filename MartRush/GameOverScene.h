@@ -14,11 +14,11 @@
 
 @interface GameOverScene : CCLayer<CCStandardTouchDelegate> {
     
-    CCMenuItemImage* menuTry;
-    CCMenuItemImage* menuMain;
-    CCMenuItemImage* menuShop;
-    
-    CCMenu* overMenu;    
+//    CCMenuItemImage* menuTry;
+//    CCMenuItemImage* menuMain;
+//    CCMenuItemImage* menuShop;
+//    
+//    CCMenu* overMenu;    
 }
 
 +(CCScene *)scene;

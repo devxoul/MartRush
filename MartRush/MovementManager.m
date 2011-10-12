@@ -9,6 +9,8 @@
 #import "MovementManager.h"
 #import "Merchandise.h"
 #import "Obstacle.h"
+#import "GameLayer.h"
+#import "Player.h"
 
 // private methods
 @interface MovementManager(Private)
@@ -28,36 +30,25 @@
 {
 	if( self = [super initWithGameScene:gameScene] )
 	{
-		
 	}
 	return self;
 }
-          
+
 - (void)update
 {	
-	if( arc4random() % 30 == 1 )
+	if( arc4random() % 60 == 1 )
 	{
 		[self createMerchandise:@"fruit_apple.png" wayState:arc4random() % 2];
-		[self createObstacle:@"fruit_banana.png" wayState:arc4random() % 2 z:3500 speed:20];
+		[self createObstacle:@"fruit_banana.png" wayState:arc4random() % 2 z:3500 speed:10];
 	}
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		merchandise.z -= 20;
+		merchandise.z -= 10;
 		
-		if( merchandise.z < -100 )
+		if( merchandise.z < 0 )
 		{
-//			[self removeMerchandise:merchandise];
-		}
-	}
-	
-	for( Obstacle *obstacle in gameScene_.obstacles )
-	{
-		obstacle.z -= 20;
-		
-		if( obstacle.z < -100 )
-		{
-			[self removeObstacle:obstacle];
+			[self removeMerchandise:merchandise];
 		}
 	}
 	
@@ -65,7 +56,13 @@
 	{
 		obstacle.z -= obstacle.speed;
 		
-		if( obstacle.z < -100 )
+		if( 0 <= obstacle.z && obstacle.z <= 50 && obstacle.wayState == gameScene_.gameLayer.player.playerWayState )
+		{
+			gameScene_.gameLayer.player.playerState = PLAYER_STATE_CRASH;
+			[self removeObstacle:obstacle];
+		}
+		
+		if( obstacle.z < 0 )
 		{
 			[self removeObstacle:obstacle];
 		}
@@ -81,7 +78,7 @@
 	merchandise.z = 3500;
 	int zOrder = [gameScene_.merchandises lastObject] ? ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1 : Z_ORDER_MERCHANDISE;
 	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
-	[gameScene_.merchandises addObject:merchandise];
+	[gameScene_.merchandises addObject:[merchandise autorelease]];
 }
 
 - (void)createObstacle:(NSString *)image wayState:(int)wayState z:(float)z speed:(float)speed
@@ -94,7 +91,7 @@
 	obstacle.speed = speed;
 	int zOrder = [gameScene_.obstacles lastObject] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
 	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
-	[gameScene_.obstacles addObject:obstacle];
+	[gameScene_.obstacles addObject:[obstacle autorelease]];
 }
 
 - (void)moveMerchandise:(Merchandise *)merchandise
@@ -102,7 +99,8 @@
 //	merchandise.merchandiseSpr.position.y += 
 }
 
-- (void)createObstacle:(NSString *)image way:(int)wayState z:(float)z speed:(float)speed{
+- (void)moveObstalce:(Obstacle *)obstacle
+{
 	
 }
 

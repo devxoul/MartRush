@@ -250,7 +250,7 @@
 
 #ifdef MARTRUSH_HAN_EDIT
         //Obstacle 생성..   
-        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" way:bossWayState z:200000000 speed:bossStage];
+        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" wayState:bossWayState z:200000000 speed:(float)bossStage];
         bossState = BOSS_STATE_RUN;
 #endif
     }    

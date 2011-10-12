@@ -37,14 +37,14 @@
       
     [self addChild:background z:0];
       
-    menuMain = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Main.png" selectedImage:@"GameOver_Btn_Main_click.png" target:self selector:@selector(menuItemMain:)];
+    CCMenuItemImage* menuMain = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Main.png" selectedImage:@"GameOver_Btn_Main_click.png" target:self selector:@selector(menuItemMain:)];
 
-    menuTry = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Retry.png" selectedImage:@"GameOver_Btn_Retry_click.png" target:self selector:@selector(menuItemTry:)];
+    CCMenuItemImage*menuTry = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Retry.png" selectedImage:@"GameOver_Btn_Retry_click.png" target:self selector:@selector(menuItemTry:)];
 
     [menuMain setPosition:ccp(170, -60)];
     [menuTry setPosition:ccp(170, -105)];
  
-    overMenu = [CCMenu menuWithItems:menuTry ,menuMain, nil];
+    CCMenu* overMenu = [CCMenu menuWithItems:menuTry ,menuMain, nil];
     [self addChild:overMenu];
       
   }
@@ -64,6 +64,11 @@
 -(void)menuItemShop:(id)sender
 {
     
+}
+
+-(void)dealloc
+{
+    [super dealloc];
 }
 
 //- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
