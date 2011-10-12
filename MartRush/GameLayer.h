@@ -30,6 +30,6 @@
 @property (readonly) Player *player;
 
 - (void)update;
-- (Cart*) getCartpointer;
+- (Cart*)getCartpointer;
 
 @end

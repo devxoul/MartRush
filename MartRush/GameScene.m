@@ -51,8 +51,8 @@
 	gameUILayer = [[GameUILayer alloc] init];
 	[self addChild:gameUILayer];
   
-    gameLayer.gameScene = self;
-    gameUILayer.gameScene = self;
+  gameLayer.gameScene = self;
+  gameUILayer.gameScene = self;
 }
 
 - (void)initArrays
@@ -95,20 +95,21 @@
     }
     else if(gameState == GAME_STATE_CLEAR)
     {
-      [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.playerCart.itemList]];
+      [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.playerCart.itemList andMission:missionDictionary]];
     }
 }
 
 -(void)dealloc
 {
-    [super dealloc];
-    
-    [merchandises dealloc];
-    [obstacles dealloc];
-    [movementManager dealloc];
-    [controlManager dealloc];
-    
-    [gameLayer dealloc];
-    [gameUILayer dealloc];
+  [merchandises dealloc];
+  [obstacles dealloc];
+  [movementManager dealloc];
+  [controlManager dealloc];
+  
+  [gameLayer dealloc];
+  [gameUILayer dealloc];
+
+  [super dealloc];
 }
+
 @end

@@ -30,8 +30,10 @@
 	
 	MovementManager *movementManager;
 	ControlManager *controlManager;
+  
+  NSMutableDictionary *missionDictionary;
     
-    int gameState;
+  int gameState;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
