@@ -82,7 +82,7 @@
                            gameScene_.gameLayer.player.playerBoundingBox.origin.y + gameScene_.gameLayer.player.playerBoundingBox.size.height / 2)],
               [CCScaleTo actionWithDuration:0.3 scale:0.1],
               [CCFadeOut actionWithDuration:0.3], nil];
-    //[gameScene_.gameLayer.player.cart cartItemAdd:merchandise];
+    [gameScene_.gameLayer.player.playerCart cartItemAdd:merchandise];
   }
   else
   {

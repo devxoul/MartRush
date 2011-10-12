@@ -54,12 +54,12 @@
 
 -(void)menuItemTry:(id)sender
 {
-    [[CCDirector sharedDirector] pushScene:[GameScene node]];
+    [[CCDirector sharedDirector] replaceScene:[GameScene node]];
 }
 
 -(void)menuItemMain:(id)sender
 {
-    [[CCDirector sharedDirector] pushScene:[TitleLayer scene]];
+    [[CCDirector sharedDirector] popScene];
 }
 
 -(void)menuItemShop:(id)sender

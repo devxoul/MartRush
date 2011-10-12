@@ -102,12 +102,10 @@
           if ((location.x > ((location.y * 9 / 17) + 20)) && (location.x < 240))
           {
             [player playerMovingWay:LEFT_WAY];
-            NSLog(@"Move Left");
           }
           else if((location.x < ((-9 * location.y / 17 + 480) - 20)) && (location.x > 240))
           {
             [player playerMovingWay:RIGHT_WAY];
-            NSLog(@"Move Right");
           }
         }
       }

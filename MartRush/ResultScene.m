@@ -11,6 +11,7 @@
 
 #import "ResultScene.h"
 #import "SimpleAudioEngine.h"
+#import "Merchandise.h"
 
 @interface ResultScene(private)
 - (void)addMerchandise;
@@ -66,7 +67,7 @@
       [merchandise removeFromParentAndCleanup:YES];
       [merchandiseArray removeObject:merchandise];
       --i;
-      // TODO: add new merchandise animation
+      
       [self addMerchandise];
     }
   }
@@ -74,7 +75,7 @@
 
 - (void)addMerchandise
 {
-  CCSprite *sprite = [CCSprite spriteWithFile:@""];
+  CCSprite *sprite = [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] merchandiseSpr];
   [sprite setPosition:START_POSITION];
   
   [gottenMerchandiseArray removeObjectAtIndex:0];
@@ -86,13 +87,13 @@
     [CCFadeOut actionWithDuration:0.4],
     nil]];
   
-  [self addChild:sprite];
+  [self addChild:sprite z:5];
   [merchandiseArray addObject:sprite];
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  
+  [[CCDirector sharedDirector] popScene];
 }
 
 @end

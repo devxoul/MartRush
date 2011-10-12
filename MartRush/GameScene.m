@@ -9,8 +9,10 @@
 #import "GameScene.h"
 #import "MovementManager.h"
 #import "ControlManager.h"
+#import "Player.h"
 #import "GameLayer.h"
 #import "GameUILayer.h"
+#import "ResultScene.h"
 
 
 @interface GameScene(Private)
@@ -83,7 +85,7 @@
     }
     else if (gameState == GAME_STATE_OVER)
     {
-        [[CCDirector sharedDirector] pushScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
 //        [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:0.5 scene:[GameOverScene scene]]];
 //        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:3 scene:[GameOverScene scene]]];
 //        [[CCDirector sharedDirector] replaceScene:[CCTransitionRadialCCW transitionWithDuration:1 scene:[GameOverScene scene]]];  // 화면 시계 방향 전환 
@@ -93,7 +95,7 @@
     }
     else if(gameState == GAME_STATE_CLEAR)
     {
-        
+      [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.playerCart.itemList]];
     }
 }
 

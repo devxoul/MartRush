@@ -18,7 +18,8 @@
 
 -(void)init:(GameLayer*)_layer
 {
-    itemList = [NSMutableArray array];
+  if (self = [super init]) {
+    itemList = [[NSMutableArray alloc] init];
     itemCount = 0;
     
     cartSpr = [[CCSprite alloc] initWithFile:@"cart.png"];
@@ -26,6 +27,7 @@
     cartSpr.position = ccp(CART_LEFT_X_POSITION, CART_Y_POSITION);  
 
     [_layer addChild:cartSpr z:1];
+  }
 }    
 
 -(void)cartMovingWay:(int)_num
@@ -50,6 +52,12 @@
         [cartSpr setTextureRect:CGRectMake(92, 0, 92, 68)];
     else 
         [cartSpr setTextureRect:CGRectMake(184, 0, 92, 68)];
+}
+
+-(void)dealloc
+{
+  [itemList dealloc];
+  [super dealloc];
 }
 
 @end
