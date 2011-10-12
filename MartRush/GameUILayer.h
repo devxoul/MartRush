@@ -18,7 +18,6 @@
   CCSprite *backGround;
     
   NSMutableArray *heartArray;
-  CCSprite *heartProto;
   
   CCSprite *gauge;
   

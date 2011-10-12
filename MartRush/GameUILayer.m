@@ -9,6 +9,7 @@
 #import "GameUILayer.h"
 #import "GameScene.h"
 #import "Player.h"
+#import "GamePauseMenuLayer.h"
 
 @implementation GameUILayer
 
@@ -69,10 +70,11 @@
     pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" block:^(id sender) {
       gameScene.gameState = GAME_STATE_PAUSE;
       // TODO: show pause menu
+      [self addChild:[GamePauseMenuLayer node] z:10000];
     }];
     pause.anchorPoint = ccp(0.5f, 0.0f);        
     
-    pauseMenu = [CCMenu menuWithItems:pause, info,nil];
+    pauseMenu = [CCMenu menuWithItems:pause, info, nil];
     pauseMenu.anchorPoint = ccp(0.5f, 0.0f);
     
     [pauseMenu setPosition:ccp(0,0)];

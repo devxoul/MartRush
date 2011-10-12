@@ -37,29 +37,22 @@
       
     [self addChild:background z:0];
       
-    CCMenuItemImage* menuMain = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Main.png" selectedImage:@"GameOver_Btn_Main_click.png" target:self selector:@selector(menuItemMain:)];
+    CCMenuItemImage *menuMain = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Main.png" selectedImage:@"GameOver_Btn_Main_click.png" block:^(id sender){
+          [[CCDirector sharedDirector] popScene];
+    }];
 
-    CCMenuItemImage*menuTry = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Retry.png" selectedImage:@"GameOver_Btn_Retry_click.png" target:self selector:@selector(menuItemTry:)];
+    CCMenuItemImage *menuTry = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Retry.png" selectedImage:@"GameOver_Btn_Retry_click.png" block:^(id sender) {
+      [[CCDirector sharedDirector] replaceScene:[[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
+    }];
 
     [menuMain setPosition:ccp(170, -60)];
     [menuTry setPosition:ccp(170, -105)];
  
-    CCMenu* overMenu = [CCMenu menuWithItems:menuTry ,menuMain, nil];
-    [self addChild:overMenu];
+    [self addChild:[CCMenu menuWithItems:menuTry, menuMain, nil]];
 
 		return self;
   }
   return nil;
-}
-
--(void)menuItemTry:(id)sender
-{
-    [[CCDirector sharedDirector] replaceScene:[GameScene node]];
-}
-
--(void)menuItemMain:(id)sender
-{
-    [[CCDirector sharedDirector] popScene];
 }
 
 -(void)menuItemShop:(id)sender
@@ -72,13 +65,4 @@
     [super dealloc];
 }
 
-//- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//  for (UITouch *touch in touches) {
-//    if (touch) {
-//      // Touch anywhere... popScene(main?)
-//      [[CCDirector sharedDirector] popScene];
-//    }
-//  }
-//}
 @end

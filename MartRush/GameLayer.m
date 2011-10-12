@@ -25,7 +25,7 @@
 		[self addChild:bg];
 		
 		player = [[Player alloc] initWithGameLayer:self];
-
+    
     boss = [Boss alloc];
     [boss init:self:MARTRUSH_STAGE_1];
 
@@ -36,10 +36,8 @@
 
 - (void)update
 {
-#ifdef MARTRUSH_BOC_EDIT
 	[player update];
   [boss update];
-#endif
 
   if (player.state == PLAYER_STATE_DEAD)
   {
@@ -95,9 +93,8 @@
       if (![gameScene.controlManager removeObjectWithTouch:touch])
       {
         CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
-        if (location.y >= 0 && location.y <= 100)
+        if (location.y >= 0 && location.y <= 150)
         {
-          NSLog(@"%f, %f", location.x, location.y);
           if ((location.x > ((location.y * 9 / 17) + 20)) && (location.x < 240))
           {
             player.wayState = LEFT_WAY;

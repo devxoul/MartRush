@@ -16,14 +16,10 @@
 @class Cart;
 
 @interface GameLayer : CCLayer<CCStandardTouchDelegate> {
-
-    GameScene *gameScene;
-    
-#ifdef MARTRUSH_BOC_EDIT       
-    Player* player;
-    Boss* boss;
-#endif
-    
+  GameScene *gameScene;
+  
+  Player* player;
+  Boss* boss;
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
