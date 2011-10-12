@@ -30,7 +30,7 @@
         boss = [Boss alloc];
         [boss init:self:MARTRUSH_STAGE_1];
 
-        self.isTouchEnabled = YES;        
+        self.isTouchEnabled = YES;
 	}
 	return self;
 }
