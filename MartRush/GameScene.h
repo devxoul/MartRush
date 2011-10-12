@@ -31,9 +31,9 @@
 	MovementManager *movementManager;
 	ControlManager *controlManager;
   
-  NSMutableDictionary *missionDictionary;
+  NSDictionary *gameInfoDictionary;
     
-  int gameState;
+  NSInteger gameState;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
