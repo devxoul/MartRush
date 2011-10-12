@@ -1,5 +1,4 @@
 
-;//
 //  GameScene.m
 //  MartRush
 //
@@ -24,6 +23,7 @@
 @implementation GameScene
 
 @synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager;
+@synthesize gameState;
 
 - (id)init
 {
@@ -32,6 +32,10 @@
 		[self initLayers];
 		[self initArrays];
 		[self initManagers];
+        
+        gameState = GAME_STATE_START;
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
 	}
 	
 	return self;
@@ -45,8 +49,8 @@
 	gameUILayer = [[GameUILayer alloc] init];
 	[self addChild:gameUILayer];
   
-  gameLayer.gameScene = self;
-  gameUILayer.gameScene = self;
+    gameLayer.gameScene = self;
+    gameUILayer.gameScene = self;
 }
 
 - (void)initArrays
@@ -65,9 +69,44 @@
 - (void)draw
 {
 	[super draw];
-	[movementManager update];
+
+    if (gameState == GAME_STATE_START) 
+    {
+        [movementManager update];
+
+        [gameLayer update];        
+        [gameUILayer update];
+    }
+    else if (gameState == GAME_STATE_PAUSE)
+    {
+        
+    }
+    else if (gameState == GAME_STATE_OVER)
+    {
+        [[CCDirector sharedDirector] pushScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
+//        [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:0.5 scene:[GameOverScene scene]]];
+//        [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:3 scene:[GameOverScene scene]]];
+//        [[CCDirector sharedDirector] replaceScene:[CCTransitionRadialCCW transitionWithDuration:1 scene:[GameOverScene scene]]];  // 화면 시계 방향 전환 
+//        [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameOverScene scene]]];
     
-    [gameLayer update];
+//        gameState = GAME_STATE_OVERING;
+    }
+    else if(gameState == GAME_STATE_CLEAR)
+    {
+        
+    }
 }
 
+-(void)dealloc
+{
+    [super dealloc];
+    
+    [merchandises dealloc];
+    [obstacles dealloc];
+    [movementManager dealloc];
+    [controlManager dealloc];
+    
+    [gameLayer dealloc];
+    [gameUILayer dealloc];
+}
 @end

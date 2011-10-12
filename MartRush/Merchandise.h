@@ -11,6 +11,7 @@
 
 @interface Merchandise : NSObject {
 	CCSprite *merchandiseSpr;
+	
 	int wayState;
 	
 	float z_;

@@ -25,10 +25,10 @@
 		[self addChild:bg];
 		
 		player = [Player alloc];
-    [player init:self];
+        [player init:self];
     
-    boss = [Boss alloc];
-    [boss init:self:MARTRUSH_STAGE_1];
+        boss = [Boss alloc];
+        [boss init:self:MARTRUSH_STAGE_1];
 
     self.isTouchEnabled = YES;
 	}
@@ -39,13 +39,26 @@
 {
 #ifdef MARTRUSH_BOC_EDIT
 	[player update];
-  [boss update];
+    [boss update];
 #endif
 
-#ifdef MARTRUSH_HAN_EDIT
-    //[boss setBossState:BOSS_STATE_CRASH];
+    if (player.playerState == PLAYER_STATE_DEAD)
+    {
+        gameScene.gameState = GAME_STATE_OVER;
+    }
+}
 
-#endif
+-(Cart*) getCartpointer
+{
+    return player.playerCart;
+}
+
+-(void)dealloc
+{
+    [super dealloc];
+    
+    [player dealloc];
+    [boss dealloc];
 }
 
 #pragma mark ControlManager - touch event
@@ -65,6 +78,7 @@
     }
   }
 }
+
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {

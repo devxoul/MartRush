@@ -15,6 +15,7 @@
 
 @interface Player : NSObject {
     
+    @public
     GameLayer* gamelayer;
     
     int playerState;            //플레이어 상태
@@ -26,7 +27,7 @@
     
     CCAnimate* playerRunAni;    //플레이어 Run Animation
     CCAnimate* playerStateAni;  //플레이어 런을 제외한 Animation    
-
+    
     CCSpriteBatchNode *bachNode;
     CCSprite* playerSpr;        //플레이어 Sprite
     Cart* playerCart;           //플레이어 Cart
@@ -44,15 +45,17 @@
 @property (readwrite) float playerY;
 @property (readwrite) float playerSpeed;
 @property (readonly) CGRect playerBoundingBox;
+@property (readwrite) int playerHp;
+@property (retain) Cart* playerCart;
 
 -(void)init:(GameLayer *)_scene;
 
 -(void)createPlayerRunAnimation;                        // 런 액션 만들기 
 -(void)startPlayerRunning;                              // 런 액션 스타트 
+-(void)stopPlayerRunning;                               // 스탑 
 
 -(void)createPlayerStateAnimation;                      // state에 따른 액션 만들기
-
--(void)stopPlayerRunning;                               // 스탑 
+-(void)endPlayerCrash:(id)sender;                       // 무빙하고 end
 
 -(void)playerMovingWay:(int)_num;                       // ControlM에서 호출에서 playerWayState수정
 -(void)playerSetZorder:(int)_z;                         // player z order setting

@@ -30,7 +30,7 @@
     [self setBossY:BOSS_Y_POSITION];
     [self startBossRunnig];
     gameLayer = _layer;
-    bossHp = 4;                    
+    bossHp = 1;                    
     bossStage = _stage;
     nTemp = 0;
     nTemp2 = 0;
@@ -41,16 +41,20 @@
 #ifdef MARTRUSH_HAN_EDIT
 
 -(void) bossEndDead:(id)sender{
+    
     NSLog(@"bossEndDead");
     [bossSpr setVisible:NO];
+
 }
+
 -(void) bossDoDead{
+
     NSLog(@"bossDoDead");
-    
     CCCallFunc* bossDoDeadEndCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndDead:)];
-    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:2.0];    
+    CCFiniteTimeAction *action = [CCRotateBy actionWithDuration:2.0f angle:7200.0f];    
+    CCFiniteTimeAction *action1 = [CCFadeOut actionWithDuration:2.0f];    
     [bossSpr runAction:action];
-    [bossSpr runAction:[CCSequence actions:action, bossDoDeadEndCallback,nil]];
+    [bossSpr runAction:[CCSequence actions:action1, bossDoDeadEndCallback,nil]];
 
 }
 
@@ -60,7 +64,7 @@
     //스프라이트 생성
     collisionSpr = [CCSprite spriteWithFile:@"boom.png"];
     collisionSpr.position = bossSpr.position;
-    collisionSpr.anchorPoint = ccp(0.5f, 0.0f);
+    collisionSpr.anchorPoint = ccp(0.5f, 0.25f);
     [_layer addChild:collisionSpr];
 
     //안보이게 설정
@@ -246,7 +250,7 @@
 
 #ifdef MARTRUSH_HAN_EDIT
         //Obstacle 생성..   
-        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" way:bossWayState z:200000000 speed:bossStage];
+        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" wayState:bossWayState z:200000000 speed:(float)bossStage];
         bossState = BOSS_STATE_RUN;
 #endif
     }    

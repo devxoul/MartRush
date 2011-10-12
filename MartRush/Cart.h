@@ -25,9 +25,11 @@
 
 @property (nonatomic, retain) NSMutableArray* itemList;
 @property (readwrite) int cartHp;
+
 #ifdef MARTRUSH_HAN_EDIT
 @property (readonly) CCSprite* cartSpr;
 #endif
+
 -(void)init:(GameLayer*)_layer;
 -(void)update;
 

@@ -9,9 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "GameScene.h"
+#import "TitleLayer.h"
+
 @interface GameOverScene : CCLayer<CCStandardTouchDelegate> {
     
+//    CCMenuItemImage* menuTry;
+//    CCMenuItemImage* menuMain;
+//    CCMenuItemImage* menuShop;
+//    
+//    CCMenu* overMenu;    
 }
 
 +(CCScene *)scene;
+
+-(void)menuItemTry:(id)sender;
+-(void)menuItemMain:(id)sender;
+-(void)menuItemShop:(id)sender;
+
 @end

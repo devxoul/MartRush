@@ -21,6 +21,5 @@
 - (void)createObstacle:(NSString *)image wayState:(int)wayState z:(float)z speed:(float)speed;
 
 - (void)update;
-//- (void)createMerchandise;
 
 @end
