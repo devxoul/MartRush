@@ -22,14 +22,24 @@
     CCSprite *backGround;
     CCSprite *gauge;
     
+    
     CCSprite *infoButton;
     CCSprite *pauseButton;
     
     float i;
     
+    CCMenu *pauseMenu;
+    
+    CCMenuItemImage *info;
+    CCMenuItemImage *pause;
+    
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
+
+@property (nonatomic, retain) CCMenu *pauseMenu;
+@property (nonatomic, retain) CCMenuItemImage *info;
+@property (nonatomic, retain) CCMenuItemImage *pause;
 
 -(void)update;
 

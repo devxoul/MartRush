@@ -13,6 +13,9 @@
 @implementation GameUILayer
 
 @synthesize gameScene;
+@synthesize pauseMenu;
+@synthesize info;
+@synthesize pause;
 
 - (id)init
 {
@@ -26,17 +29,17 @@
         [self addChild:backGround];
         
         heartSprite1 = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [heartSprite1 setPosition:ccp(25,285)];
+        [heartSprite1 setPosition:ccp(18,285)];
         heartSprite1.anchorPoint = ccp(0.5f, 0.0f);
         [self addChild:heartSprite1];
 
         heartSprite2 = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [heartSprite2 setPosition:ccp(65,285)];
+        [heartSprite2 setPosition:ccp(36,285)];
         heartSprite2.anchorPoint = ccp(0.5f, 0.0f);
         [self addChild:heartSprite2];
 
         heartSprite3 = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [heartSprite3 setPosition:ccp(105,285)];
+        [heartSprite3 setPosition:ccp(54,285)];
         heartSprite3.anchorPoint = ccp(0.5f, 0.0f);
         [self addChild:heartSprite3];
         
@@ -53,6 +56,15 @@
         
         [self addChild:gauge];
 
+        
+        info = [CCMenuItemImage itemFromNormalImage:@"heart.png" selectedImage:@"" target:self selector:nil];
+        info.anchorPoint = ccp(0.5f, 0.0f);
+        
+        
+        pause = [CCMenuItemImage itemFromNormalImage:@"" selectedImage:@"" target:self selector:nil];
+        pause.anchorPoint = ccp(0.5f, 0.0f);
+
+        
         infoButton = [[CCSprite alloc] initWithFile:@"heart.png"];
         [infoButton setPosition:ccp(415,285)];
         infoButton.anchorPoint = ccp(0.5f, 0.0f);
