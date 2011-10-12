@@ -14,6 +14,18 @@
 @synthesize obstacleSpr, wayState, state, speed;
 @synthesize z = z_;
 
+- (id)initWithWay:(NSInteger)way andSprite:(CCSprite *)sprite andSpeed:(float)_speed
+{
+  if (self = [super init])
+  {
+    wayState = way;
+    obstacleSpr = sprite;
+    speed = _speed;
+    return self;
+  }
+  return nil;
+}
+
 - (void)setZ:(float)z
 {	
 	float cameraY = 180;

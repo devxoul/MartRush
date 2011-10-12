@@ -12,21 +12,22 @@
 @interface Merchandise : NSObject {
 	CCSprite *merchandiseSpr;
 	
-	int wayState;
+	NSInteger wayState;
 	
 	float z_;
 	
 	NSString *name;
-	int price;
+	NSInteger price;
 }
 
 @property (nonatomic, retain) CCSprite *merchandiseSpr;
 
-@property int wayState;
+@property NSInteger wayState;
 @property (nonatomic) float z;
 
 @property (nonatomic, retain) NSString *name;
-@property int price;
+@property NSInteger price;
 
+- (id)initWithName:(NSString *)name andSprite:(CCSprite *)sprite andWay:(NSInteger)way andPrice:(NSInteger)price_ andZ:(float)z;
 
 @end

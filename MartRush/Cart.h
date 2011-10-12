@@ -17,23 +17,22 @@
 @interface Cart : NSObject{
 @public
     NSMutableArray* itemList;     //카트 담긴 아이템
-    int itemCount;                //아이템 카운트
     
     CCSprite* cartSpr;            //카트 이미지
-    int cartHp;                   //카트 체력
+    NSInteger cartHp;                   //카트 체력
 }
 
-@property (nonatomic, retain) NSMutableArray* itemList;
-@property (readwrite) int cartHp;
+@property (retain, readonly) NSMutableArray* itemList;
+@property (readwrite) NSInteger cartHp;
+@property (readwrite) NSInteger wayState;
 
 #ifdef MARTRUSH_HAN_EDIT
 @property (readonly) CCSprite* cartSpr;
 #endif
 
--(void)init:(GameLayer*)_layer;
+-(id)init:(GameLayer*)_layer;
 -(void)update;
 
--(void)cartMovingWay:(int)_num;             //카트 길 이동
 -(void)cartItemAdd:(Merchandise*)_item;     //카트 아이템 추가
 
 @end

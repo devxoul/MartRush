@@ -11,42 +11,43 @@
 
 @implementation Player
 
-@synthesize playerState;
-@synthesize playerWayState;
-@synthesize playerY;
-@synthesize playerSpeed;
-@synthesize playerHp;
-@synthesize playerCart;
+@synthesize state;
+@synthesize y;
+@synthesize speed;
+@synthesize hp;
+@synthesize cart;
 
 // state 액션 구현
 
--(void)init:(GameLayer*)_layer
+-(id)initWithGameLayer:(GameLayer*)_layer
 {
+  if (self = [super init]) {
     gamelayer = _layer;
     [self createPlayerRunAnimation];
     
-    [self setPlayerState:PLAYER_STATE_RUN];
-    [self setPlayerWayState:LEFT_WAY];
-    [self setPlayerY:PLAYER_Y_POSITION];
+    state = PLAYER_STATE_RUN;
+    wayState = LEFT_WAY;
+    y = PLAYER_Y_POSITION;
     
-    playerHp = 3;
-    playerCount = 0;
+    hp = 3;
     
-    playerCart = [Cart alloc];
-    [playerCart init:gamelayer];
+    cart = [[Cart alloc] init:gamelayer];
     
     [self startPlayerRunning];
+    return self;
+  }
+  return nil;
 }
 
-- (CGRect)playerBoundingBox
+- (CGRect)boundingBox
 {
-    return CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
+    return CGRectUnion([spr boundingBox], [[cart cartSpr] boundingBox]);
 }
 
 -(void)playerSetZorder:(int)_z
 {
     [gamelayer reorderChild:bachNode z:_z];
-    [gamelayer reorderChild:playerCart->cartSpr z:_z-1];
+    [gamelayer reorderChild:cart->cartSpr z:_z-1];
 }
 
 
@@ -54,12 +55,12 @@
 {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"player_run.plist"];
     
-    playerSpr = [CCSprite spriteWithSpriteFrameName:@"player_run_0.png"];
-    playerSpr.position = ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION);
-    playerSpr.anchorPoint = ccp(0.5f, 0.0f);
+    spr = [CCSprite spriteWithSpriteFrameName:@"player_run_0.png"];
+    spr.position = ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION);
+    spr.anchorPoint = ccp(0.5f, 0.0f);
     
     bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
-    [bachNode addChild:playerSpr];
+    [bachNode addChild:spr];
     [gamelayer addChild:bachNode z:2];
     
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
@@ -70,101 +71,94 @@
     }
     
     CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.05f];
-    playerRunAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
+    runAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
 }
 
 
 -(void)startPlayerRunning
 {
-    [playerSpr runAction:[CCRepeatForever actionWithAction:playerRunAni]];
+    [spr runAction:[CCRepeatForever actionWithAction:runAni]];
 }
 
 -(void)stopPlayerRunning
 {
-    [playerSpr stopAllActions];
+    [spr stopAllActions];
 }
 
 -(void)createPlayerStateAnimation
 {
-    if(playerState == PLAYER_STATE_CRASH)
+    if(state == PLAYER_STATE_CRASH)
     {
         CCCallFunc* endPlayerCrash = [CCCallFunc actionWithTarget:self selector:@selector(endPlayerCrash:)];
         
         stateSpr = [[CCSprite alloc] initWithFile:@"crash_effect.png"];
         
-        int _z = playerSpr.zOrder;
+        int _z = spr.zOrder;
         [gamelayer addChild:stateSpr z:(_z) + 1];
         
-        stateSpr.position = ccp(playerSpr.position.x, playerSpr.position.y + 40);
+        stateSpr.position = ccp(spr.position.x, spr.position.y + 40);
         stateSpr.anchorPoint = ccp(0.5f, 0.0f);
         
         [stateSpr runAction:[CCSequence actions:[CCFadeOut actionWithDuration:1] ,endPlayerCrash, nil]];
-        playerState = PLAYER_STATE_CRASHING;
+        state = PLAYER_STATE_CRASHING;
     }
 }
 
 -(void)endPlayerCrash:(id)sender
 {
-    if (playerHp <= 0)
-        playerState = PLAYER_STATE_DEAD;
-    else
-    {
-        playerState = PLAYER_STATE_RUN;
-        playerHp--;
-    }
+  if (hp <= 0)
+    state = PLAYER_STATE_DEAD;
+  else
+  {
+    state = PLAYER_STATE_RUN;
+    hp--;
+  }
 }
 
--(void)playerMovingWay:(int)_num
+-(NSInteger)wayState
 {
-    if (_num == LEFT_WAY) 
+  return wayState;
+}
+
+-(void)setWayState:(NSInteger)_wayState
+{
+    if (_wayState == LEFT_WAY) 
     {
-        if(playerWayState == RIGHT_WAY)
+        if(wayState == RIGHT_WAY)
         {
-            playerWayState = LEFT_WAY;
-            [playerSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]]];           
-            [playerCart cartMovingWay:LEFT_WAY];
+            wayState = LEFT_WAY;
+            [spr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]]];           
+            cart.wayState = LEFT_WAY;
         }
-        else
-            return;
     }
-    else if(_num == RIGHT_WAY)
+    else if(_wayState == RIGHT_WAY)
     {
-        if(playerWayState == LEFT_WAY)
+        if(wayState == LEFT_WAY)
         {            
-            playerWayState = RIGHT_WAY;
-            [playerSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]]];           
-            [playerCart cartMovingWay:RIGHT_WAY];
+            wayState = RIGHT_WAY;
+            [spr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]]];           
+            cart.wayState = RIGHT_WAY;
         }
-        else
-            return;
     }
 }
 
 
 -(void)update
 {
-    // 카트 이미지 Draw
-    [playerCart update];
-    // 플레이어 이미지 DRAW
-    if(playerState == PLAYER_STATE_RUN)
-    {
-        
-    }
-    else if(playerState == PLAYER_STATE_CRASH)
-    {
-        [self createPlayerStateAnimation];
-    }
-    else if(playerState == PLAYER_STATE_DEAD)
-    {
-    }
-    
-    if(playerCount == 50)
-        //        [self playerMovingWay:RIGHT_WAY];
-        //        [self createPlayerStateAnimation];
-//        playerState = PLAYER_STATE_DEAD;
-        
-        playerCount++;
-    
+  // 카트 이미지 Draw
+  [cart update];
+  // 플레이어 이미지 DRAW
+  if(state == PLAYER_STATE_RUN)
+  {
+      
+  }
+  else if(state == PLAYER_STATE_CRASH)
+  {
+    [self createPlayerStateAnimation];
+  }
+  else if(state == PLAYER_STATE_DEAD)
+  {
+  }
 }
 
 

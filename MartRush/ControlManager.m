@@ -72,19 +72,19 @@
   
   CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
   
-  if (CGRectIntersectsRect(gameScene_.gameLayer.player.playerBoundingBox, CGRectMake(location.x - targetSprite.boundingBox.size.width/2, location.y - targetSprite.boundingBox.size.height/2, targetSprite.boundingBox.size.width, targetSprite.boundingBox.size.height)))
+  if (CGRectIntersectsRect(gameScene_.gameLayer.player.boundingBox, CGRectMake(location.x - targetSprite.boundingBox.size.width/2, location.y - targetSprite.boundingBox.size.height/2, targetSprite.boundingBox.size.width, targetSprite.boundingBox.size.height)))
   {
     // 카트에 물건 담기
     action = [CCSequence actions:
               [CCMoveTo actionWithDuration:0.3 position:
                CGPointMake(
-                           gameScene_.gameLayer.player.playerBoundingBox.origin.x + gameScene_.gameLayer.player.playerBoundingBox.size.width / 2,
-                           gameScene_.gameLayer.player.playerBoundingBox.origin.y + gameScene_.gameLayer.player.playerBoundingBox.size.height / 2)],
+                           gameScene_.gameLayer.player.boundingBox.origin.x + gameScene_.gameLayer.player.boundingBox.size.width / 2,
+                           gameScene_.gameLayer.player.boundingBox.origin.y + gameScene_.gameLayer.player.boundingBox.size.height / 2)],
               [CCScaleTo actionWithDuration:0.3 scale:0.1],
               [CCFadeOut actionWithDuration:0.3], [CCCallBlockN actionWithBlock:^(CCNode *node) {
       [node removeFromParentAndCleanup:YES];
     }],nil];
-    [gameScene_.gameLayer.player.playerCart cartItemAdd:merchandise];
+    [gameScene_.gameLayer.player.cart cartItemAdd:merchandise];
   }
   else
   {

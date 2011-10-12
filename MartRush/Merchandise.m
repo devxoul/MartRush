@@ -14,13 +14,20 @@
 @synthesize merchandiseSpr, wayState, name, price;
 @synthesize z = z_;
 
-- (id)init
+- (id)initWithName:(NSString *)name_ andSprite:(CCSprite *)sprite andWay:(NSInteger)way andPrice:(NSInteger)price_ andZ:(float)z
 {
-	if( self = [super init] )
-	{
-		
-	}
-	return self;
+  if (self = [self init])
+  {
+    merchandiseSpr = [sprite retain];
+    wayState = way;
+    name = [name_ retain];
+    price = price_;
+    [self setZ:z];
+    
+    return self;
+  }
+  
+  return nil;
 }
 
 - (void)setZ:(float)z
@@ -49,6 +56,14 @@
 	self.merchandiseSpr.scale = 0.5 * ( y_3 - y3 ) / self.merchandiseSpr.contentSize.width;
 	
 	z_ = z;
+}
+
+-(void)dealloc
+{
+  [merchandiseSpr release];
+  [name release];
+  
+  [super dealloc];
 }
 
 @end

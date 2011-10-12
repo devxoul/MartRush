@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>mission</key>
+	<dict>
+		<key>fruit_apple</key>
+		<integer>10</integer>
+	</dict>
+	<key>merchandises</key>
+	<array>
+		<string>fruit_cherry</string>
+		<string>fruit_banana</string>
+		<string>fruit_grape</string>
+		<string>fruit_apple</string>
+		<string>fruit_kiwi</string>
+	</array>
+	<key>obstacles</key>
+	<array>
+		<string>vegetables_tomato</string>
+	</array>
+	<key>length</key>
+	<integer>10000</integer>
+	<key>boss</key>
+	<false/>
+</dict>
+</plist>

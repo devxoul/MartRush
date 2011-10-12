@@ -15,8 +15,11 @@
 #import "Obstacle.h"
 
 @interface MovementManager : Manager {
-	
+	NSArray *obstacleTypeArray;
+  NSArray *merchandiseTypeArray;
 }
+
+- (id)initWithGameScene:(GameScene *)gameScene andGameInfo:(NSDictionary *)gameInfo;
 
 - (void)createObstacle:(NSString *)image wayState:(int)wayState z:(float)z speed:(float)speed;
 

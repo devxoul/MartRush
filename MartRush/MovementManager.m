@@ -26,20 +26,23 @@
 
 @implementation MovementManager
 
-- (id)initWithGameScene:(GameScene *)gameScene;
+- (id)initWithGameScene:(GameScene *)gameScene andGameInfo:(NSDictionary *)gameInfo;
 {
-	if( self = [super initWithGameScene:gameScene] )
-	{
-	}
-	return self;
+  if (self = [super initWithGameScene:gameScene]) {
+    obstacleTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"obstacles"]];
+    merchandiseTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"merchandises"]];
+    
+    return self;
+  }
+  return nil;
 }
 
 - (void)update
 {	
 	if( arc4random() % 60 == 1 )
 	{
-		[self createMerchandise:@"fruit_apple.png" wayState:arc4random() % 2];
-		[self createObstacle:@"fruit_banana.png" wayState:arc4random() % 2 z:3500 speed:10];
+		[self createMerchandise:[merchandiseTypeArray objectAtIndex:arc4random()%merchandiseTypeArray.count] wayState:arc4random() % 2];
+		[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:3500 speed:10];
 	}
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
@@ -56,9 +59,10 @@
 	{
 		obstacle.z -= obstacle.speed;
 		
-		if( 0 <= obstacle.z && obstacle.z <= 50 && obstacle.wayState == gameScene_.gameLayer.player.playerWayState )
+		if( 0 <= obstacle.z && obstacle.z <= 50 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
 		{
-			gameScene_.gameLayer.player.playerState = PLAYER_STATE_CRASH;
+      // hit
+			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
 			[self removeObstacle:obstacle];
 		}
 		
@@ -71,24 +75,22 @@
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
 {
-	Merchandise *merchandise = [[Merchandise alloc] init];
-	merchandise.merchandiseSpr = [CCSprite spriteWithFile:image];
+	Merchandise *merchandise = [[Merchandise alloc] initWithName:image andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andWay:wayState andPrice:100 andZ:3500];
 	merchandise.merchandiseSpr.anchorPoint = ccp( 0.5f, 1.0f );
-	merchandise.wayState = wayState;
-	merchandise.z = 3500;
+  
 	int zOrder = [gameScene_.merchandises lastObject] ? ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1 : Z_ORDER_MERCHANDISE;
+  
 	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
 	[gameScene_.merchandises addObject:[merchandise autorelease]];
 }
 
 - (void)createObstacle:(NSString *)image wayState:(int)wayState z:(float)z speed:(float)speed
 {
-	Obstacle *obstacle = [[Obstacle alloc] init];
-	obstacle.obstacleSpr = [CCSprite spriteWithFile:image];
+	Obstacle *obstacle = [[Obstacle alloc] initWithWay:wayState andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andSpeed:speed];
+  
 	obstacle.obstacleSpr.anchorPoint = ccp( 0.5f, 1.0f );
-	obstacle.wayState = wayState;
 	obstacle.z = z;
-	obstacle.speed = speed;
+  
 	int zOrder = [gameScene_.obstacles lastObject] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
 	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
 	[gameScene_.obstacles addObject:[obstacle autorelease]];

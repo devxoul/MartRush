@@ -24,6 +24,8 @@
 @public
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
+  
+  NSString *missionName;
 	
 	NSMutableArray *merchandises;
 	NSMutableArray *obstacles;
@@ -31,9 +33,9 @@
 	MovementManager *movementManager;
 	ControlManager *controlManager;
   
-  NSMutableDictionary *missionDictionary;
+  NSMutableDictionary *gameInfoDictionary;
     
-  int gameState;
+  NSInteger gameState;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
@@ -45,5 +47,10 @@
 @property (nonatomic, retain) MovementManager *movementManager;
 @property (retain) ControlManager *controlManager;
 
-@property (readwrite) int gameState;
+@property (readwrite) NSInteger gameState;
+
+@property (readonly) NSString *missionName;
+
+- (id)initWithMissionName:(NSString *)missionName;
+
 @end
