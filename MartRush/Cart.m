@@ -41,9 +41,9 @@
 -(void)setWayState:(NSInteger)wayState
 {
   if(wayState == LEFT_WAY)
-      [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]];
+        [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]]];           
   else if(wayState == RIGHT_WAY)
-      [cartSpr runAction:[CCMoveTo actionWithDuration:1 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]];
+        [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]]];           
 }
 
 -(void)cartItemAdd:(Merchandise*)_item

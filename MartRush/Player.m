@@ -127,7 +127,7 @@
         if(wayState == RIGHT_WAY)
         {
             wayState = LEFT_WAY;
-            [spr runAction:[CCEaseInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)] rate:2.0]];
+            [spr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]]];           
             cart.wayState = LEFT_WAY;
         }
     }
@@ -136,7 +136,7 @@
         if(wayState == LEFT_WAY)
         {            
             wayState = RIGHT_WAY;
-            [spr runAction:[CCEaseInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)] rate:2.0]];
+            [spr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]]];           
             cart.wayState = RIGHT_WAY;
         }
     }
