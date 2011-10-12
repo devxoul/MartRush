@@ -34,6 +34,8 @@
 		[self initManagers];
         
         gameState = GAME_STATE_START;
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
 	}
 	
 	return self;

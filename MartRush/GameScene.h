@@ -11,6 +11,7 @@
 #import "Const.h"
 #import "GameOverScene.h"
 #import "ResultScene.h"
+#import "SimpleAudioEngine.h"
 
 @class MovementManager;
 @class GameLayer;
