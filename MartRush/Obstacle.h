@@ -12,8 +12,8 @@
 @interface Obstacle : NSObject {
 	CCSprite *obstacleSpr;
 	
-	int wayState;
-	int state;
+	NSInteger wayState;
+	NSInteger state;
 	float speed;
 	
 	float z_;
@@ -21,9 +21,10 @@
 
 @property (nonatomic, retain) CCSprite *obstacleSpr;
 
-@property int wayState;
-@property int state;
+@property (readonly) NSInteger wayState;
+@property NSInteger state;
 @property float speed;
 @property (nonatomic) float z;
 
+- (id)initWithWay:(NSInteger)way andSprite:(CCSprite *)sprite andSpeed:(float)_speed;
 @end

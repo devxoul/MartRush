@@ -156,6 +156,7 @@
 		3C396B1214389791006F7B88 /* vegetables_sweetpotatoes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFC14389791006F7B88 /* vegetables_sweetpotatoes.png */; };
 		3C396B1314389791006F7B88 /* vegetables_tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C396AFD14389791006F7B88 /* vegetables_tomato.png */; };
 		3CD76DD21443D86B00D3B6CE /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CD76DD11443D86B00D3B6CE /* GameOverScene.m */; };
+		3CEF414B1446210600134F14 /* fruit_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF414A1446210600134F14 /* fruit_1.plist */; };
 		BA25D2031445DF5800CB29F0 /* gamebg_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BA25D2021445DF5800CB29F0 /* gamebg_sound.mp3 */; };
 		BA4257BC143639E3008E7AC5 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4257BB143639E3008E7AC5 /* Cart.m */; };
 		BA8FD8511444899B00707EA4 /* player_run.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8FD84A1444899B00707EA4 /* player_run.png */; };
@@ -481,6 +482,7 @@
 		3C396B2914389A70006F7B88 /* Const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
 		3CD76DD01443D86B00D3B6CE /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
 		3CD76DD11443D86B00D3B6CE /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		3CEF414A1446210600134F14 /* fruit_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_1.plist; path = Resources/fruit_1.plist; sourceTree = "<group>"; };
 		BA25D2021445DF5800CB29F0 /* gamebg_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gamebg_sound.mp3; path = Resources/sounds/gamebg_sound.mp3; sourceTree = "<group>"; };
 		BA4257BA143639E3008E7AC5 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cart.h; sourceTree = "<group>"; };
 		BA4257BB143639E3008E7AC5 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cart.m; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				03AB065A1435EF2E009CA68F /* Icon@2x.png */,
 				03AB065C1435EF2E009CA68F /* Info.plist */,
 				03AB065D1435EF2E009CA68F /* iTunesArtwork */,
+				3CEF414A1446210600134F14 /* fruit_1.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1115,6 +1118,7 @@
 		03AB062D1435EF2D009CA68F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Joyfl;
 			};
 			buildConfigurationList = 03AB06301435EF2D009CA68F /* Build configuration list for PBXProject "MartRush" */;
@@ -1208,6 +1212,7 @@
 				CF8072A2144608AD0003311F /* uilayer_bg.png in Resources */,
 				CF8072A514460CCE0003311F /* pause_pressed.png in Resources */,
 				CF8072A614460CCE0003311F /* pause.png in Resources */,
+				3CEF414B1446210600134F14 /* fruit_1.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

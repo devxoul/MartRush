@@ -17,7 +17,6 @@
 
 @interface GameScene(Private)
 - (void)initLayers;
-- (void)initArrays;
 - (void)initManagers;
 @end
 
@@ -27,20 +26,35 @@
 @synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager;
 @synthesize gameState;
 
-- (id)init
+-(id)init
 {
-	if( self = [super init] )
+  if( self = [super init] )
 	{		
-		[self initLayers];
-		[self initArrays];
-		[self initManagers];
-        
-        gameState = GAME_STATE_START;
-        
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
+    merchandises = [[NSMutableArray alloc] init];
+    obstacles = [[NSMutableArray alloc] init];
+    
+    [self initLayers];
+    
+    gameState = GAME_STATE_START;
+    
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
+    
+    return self;
 	}
 	
-	return self;
+	return nil;
+}
+
+- (id)initWithMissionName:(NSString *)missionName
+{
+	if (self = [self init]) {
+    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:missionName ofType:@"plist"]];
+    
+    [self initManagers];
+    
+    return self;
+  }
+  return nil;
 }
 
 - (void)initLayers
@@ -55,15 +69,9 @@
   gameUILayer.gameScene = self;
 }
 
-- (void)initArrays
-{
-	merchandises = [[NSMutableArray alloc] init];
-	obstacles = [[NSMutableArray alloc] init];
-}
-
 - (void)initManagers
 {
-	movementManager = [[MovementManager alloc] initWithGameScene:self];
+	movementManager = [[MovementManager alloc] initWithGameScene:self andGameInfo:gameInfoDictionary];
   
 	controlManager = [[ControlManager alloc] initWithGameScene:self];
 }
@@ -72,31 +80,37 @@
 {
 	[super draw];
 
-    if (gameState == GAME_STATE_START) 
-    {
-        [movementManager update];
+  if (gameState == GAME_STATE_START) 
+  {
+    [movementManager update];
 
-        [gameLayer update];        
-        [gameUILayer update];
+    [gameLayer update];    
+    gameUILayer.processedPortion += 1.0f / [[gameInfoDictionary objectForKey:@"length"] intValue] * 200;
+    [gameUILayer update];
+    if (gameUILayer.processedPortion >= 200) {
+      gameState = GAME_STATE_CLEAR;
     }
-    else if (gameState == GAME_STATE_PAUSE)
-    {
-        
-    }
-    else if (gameState == GAME_STATE_OVER)
-    {
-      [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
-    }
-    else if(gameState == GAME_STATE_CLEAR)
-    {
-      [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.playerCart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
-    }
+  }
+  else if (gameState == GAME_STATE_PAUSE)
+  {
+    
+  }
+  else if (gameState == GAME_STATE_OVER)
+  {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
+  }
+  else if(gameState == GAME_STATE_CLEAR)
+  {
+    [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.cart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
+  }
 }
 
 -(void)dealloc
 {
   [merchandises dealloc];
   [obstacles dealloc];
+  [gameInfoDictionary dealloc];
+  
   [movementManager dealloc];
   [controlManager dealloc];
   

@@ -24,11 +24,10 @@
 		bg.anchorPoint = ccp( 0, 0 );
 		[self addChild:bg];
 		
-		player = [Player alloc];
-        [player init:self];
-    
-        boss = [Boss alloc];
-        [boss init:self:MARTRUSH_STAGE_1];
+		player = [[Player alloc] initWithGameLayer:self];
+
+    boss = [Boss alloc];
+    [boss init:self:MARTRUSH_STAGE_1];
 
     self.isTouchEnabled = YES;
 	}
@@ -39,26 +38,26 @@
 {
 #ifdef MARTRUSH_BOC_EDIT
 	[player update];
-    [boss update];
+  [boss update];
 #endif
 
-    if (player.playerState == PLAYER_STATE_DEAD)
-    {
-        gameScene.gameState = GAME_STATE_OVER;
-    }
+  if (player.state == PLAYER_STATE_DEAD)
+  {
+      gameScene.gameState = GAME_STATE_OVER;
+  }
 }
 
 -(Cart*) getCartpointer
 {
-    return player.playerCart;
+  return player.cart;
 }
 
 -(void)dealloc
 {
-    [super dealloc];
-    
-    [player dealloc];
-    [boss dealloc];
+  [player dealloc];
+  [boss dealloc];
+  
+  [super dealloc];
 }
 
 #pragma mark ControlManager - touch event
@@ -101,11 +100,11 @@
           NSLog(@"%f, %f", location.x, location.y);
           if ((location.x > ((location.y * 9 / 17) + 20)) && (location.x < 240))
           {
-            [player playerMovingWay:LEFT_WAY];
+            player.wayState = LEFT_WAY;
           }
           else if((location.x < ((-9 * location.y / 17 + 480) - 20)) && (location.x > 240))
           {
-            [player playerMovingWay:RIGHT_WAY];
+            player.wayState = RIGHT_WAY;
           }
         }
       }

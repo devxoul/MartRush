@@ -31,7 +31,7 @@
 	MovementManager *movementManager;
 	ControlManager *controlManager;
   
-  NSDictionary *gameInfoDictionary;
+  NSMutableDictionary *gameInfoDictionary;
     
   NSInteger gameState;
 }
@@ -46,4 +46,7 @@
 @property (retain) ControlManager *controlManager;
 
 @property (readwrite) int gameState;
+
+- (id)initWithMissionName:(NSString *)missionName;
+
 @end
