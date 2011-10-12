@@ -919,10 +919,10 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>340122311.76279199</real>
+		<real>340122332.10520798</real>
 		<string>{555, 2015}</string>
 		<false/>
-		<string>{1367, 0}</string>
+		<string>{2450, 0}</string>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -5519,9 +5519,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>340122311.76218301</real>
+		<real>340122332.10465598</real>
 		<string>{555, 2015}</string>
-		<string>{1367, 0}</string>
+		<string>{2450, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
