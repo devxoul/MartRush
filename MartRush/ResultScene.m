@@ -32,14 +32,28 @@
 
 - (CCLayer *)initWithMerchandises:(NSArray *)merchandises
 {
-  if ([super init])
+  if (self = [super init])
   {
     merchandiseArray = [[NSMutableArray alloc] init];
     gottenMerchandiseArray = [[NSMutableArray alloc] initWithArray:merchandises];
+    
+    CCSprite *background = [CCSprite spriteWithFile:@""];
+    
+    [background setPosition:CGPointMake(240, 160)];
+    [self addChild:background z:0];
+    
+    CCSprite *reciept = [CCSprite spriteWithFile:@""];
+    
+    [reciept setPosition:CGPointMake(270, 20)];
+    [self addChild:reciept z:10];
+    
     [self addMerchandise];
     [self schedule:@selector(update)];
+    
+    return self;
   }
-  return self;
+  
+  return nil;
 }
 
 - (void)update:(ccTime)dt

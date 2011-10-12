@@ -15,12 +15,14 @@
 
 - (id)initWithGameScene:(GameScene *)gameScene;
 {
-	if([self init])
+	if(self = [self init])
 	{
 		gameScene_ = gameScene;
+    
+    return self;
 	}
   
-	return self;
+	return nil;
 }
 
 - (void)update

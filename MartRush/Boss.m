@@ -58,7 +58,7 @@
     NSLog(@"CreateBossCollisionAnimation");
 
     //스프라이트 생성
-    collisionSpr = [CCSprite spriteWithFile:@"Boom.png"];
+    collisionSpr = [CCSprite spriteWithFile:@"boom.png"];
     collisionSpr.position = bossSpr.position;
     collisionSpr.anchorPoint = ccp(0.5f, 0.0f);
     [_layer addChild:collisionSpr];

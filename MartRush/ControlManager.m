@@ -15,7 +15,7 @@
 
 - (ControlManager *)init
 {
-  if ([super init])
+  if (self = [super init])
   {
     managedList = [[NSMutableArray alloc] initWithCapacity:6];
     touchList = [[NSMutableArray alloc] initWithCapacity:6];

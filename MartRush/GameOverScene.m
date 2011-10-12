@@ -25,7 +25,7 @@
 
 - (id)init
 {
-  if ([super init]) {
+  if (self = [super init]) {
     [self setIsTouchEnabled:YES];
     // Play BGM
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"" loop:YES];
@@ -34,8 +34,10 @@
     CCSprite *background = [CCSprite spriteWithFile:@""];
     
     [self addChild:background z:0];
+    
+    return self;
   }
-  return self;
+  return nil;
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

@@ -31,8 +31,6 @@
     [boss init:self:MARTRUSH_STAGE_1];
 
     self.isTouchEnabled = YES;
-#endif
-        
 	}
 	return self;
 }
