@@ -52,12 +52,13 @@
 
 -(void)menuItemTry:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[GameScene node]];
+//    [[CCDirector sharedDirector] replaceScene:[GameScene node]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];
 }
 
 -(void)menuItemMain:(id)sender
 {
-    [[CCDirector sharedDirector] popScene];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];
 }
 
 -(void)menuItemShop:(id)sender
@@ -70,13 +71,4 @@
     [super dealloc];
 }
 
-//- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//  for (UITouch *touch in touches) {
-//    if (touch) {
-//      // Touch anywhere... popScene(main?)
-//      [[CCDirector sharedDirector] popScene];
-//    }
-//  }
-//}
 @end

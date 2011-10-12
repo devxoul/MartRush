@@ -26,7 +26,7 @@
 		
 		self.isTouchEnabled = YES;
         
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
+//        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
         
         titleBgSprite = [[CCSprite alloc] initWithFile:@"mart_bg.jpg"];
         titleBgSprite.anchorPoint = CGPointZero;
@@ -49,7 +49,6 @@
     
 //    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[MenuLayer scene]]];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];
-    
     [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
 

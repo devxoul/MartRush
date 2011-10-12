@@ -20,4 +20,13 @@
     return self;
 }
 
++(CCScene*)scene
+{
+    CCScene *scene = [CCScene node];
+    StageSelectLayer *layer = [StageSelectLayer node];
+    [scene addChild:layer];
+    
+    return scene;           
+}
+
 @end

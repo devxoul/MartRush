@@ -22,6 +22,9 @@
 {
     CCSprite *menuBgSprite;
     
+    CCMenuItemImage* mainmenu[4];
+    CCLabelTTF* mainmenuLb[4];
+    
     CCSprite *arrowRSprite;
     CCSprite *arrowRPressedSprite;
     CCSprite *arrowLSprite;
@@ -43,13 +46,19 @@
 
 +(CCScene*) scene;
 
--(void)moveStageScene:(id)sender;
+-(void)moveStage:(id)sender;
+-(void)moveTutorial:(id)sender;
+-(void)moveShop:(id)sender;
+
+-(void)moveSetting:(id)sender;
+
+-(void)moveFacebook:(id)sender;
+-(void)moveRank:(id)sender;
+-(void)moveInfo:(id)sender;
 
 -(void)onArrowTouch:(id)sender;
 -(void)openArrow;
 -(void)closeArrow;
 
--(void)setting:(id)sender;
--(void)shop:(id)sender;
 
 @end

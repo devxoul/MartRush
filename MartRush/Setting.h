@@ -8,11 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "MenuLayer.h"
+
+@class MenuLayer;
 
 @interface Setting : CCLayer
 {
+    CCSprite *settingBgSprite;
     
+    CCMenuItemImage *menu_back;
+    
+    CCMenu *backMenu;   
 }
 
 +(CCScene*) scene;
+-(void)back:(id)sender;
+
 @end
