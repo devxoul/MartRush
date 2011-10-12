@@ -68,6 +68,7 @@
 	[movementManager update];
     
     [gameLayer update];
+    [gameUILayer update];
 }
 
 @end
