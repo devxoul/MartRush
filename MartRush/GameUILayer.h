@@ -15,16 +15,15 @@
 @interface GameUILayer : CCLayer {
     GameScene *gameScene;
     
+    CCSprite *backGround;
+    
     CCSprite *heartSprite1;
     CCSprite *heartSprite2;
     CCSprite *heartSprite3;
     
-    CCSprite *backGround;
+    CCSprite *startIcon;
     CCSprite *gauge;
-    
-    
-    CCSprite *infoButton;
-    CCSprite *pauseButton;
+    CCSprite *endIcon;
     
     float i;
     
