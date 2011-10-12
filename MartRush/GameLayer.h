@@ -13,12 +13,13 @@
 
 @class Player;
 @class Boss;
+@class Cart;
 
 @interface GameLayer : CCLayer<CCStandardTouchDelegate> {
-    GameScene *gameScene;
 
-#ifdef MARTRUSH_BOC_EDIT
-        
+    GameScene *gameScene;
+    
+#ifdef MARTRUSH_BOC_EDIT       
     Player* player;
     Boss* boss;
 #endif
@@ -29,5 +30,6 @@
 @property (readonly) Player *player;
 
 - (void)update;
+- (Cart*) getCartpointer;
 
 @end

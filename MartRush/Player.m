@@ -15,31 +15,13 @@
 @synthesize playerWayState;
 @synthesize playerY;
 @synthesize playerSpeed;
+@synthesize playerHp;
+@synthesize playerCart;
 
 // state 액션 구현
 
 -(void)init:(GameLayer*)_layer
 {
-	/*
-<<<<<<< HEAD
-// playerRunAni = [self createAnimation:_layer :PLAYER_STATE_RUN :playerSpr :PLAYER_LEFT_X_POSITION :PLAYER_Y_POSITION :bachNode:6];
-  [self createPlayerRunAnimation:_layer];
-  
-  [self setPlayerState:PLAYER_STATE_RUN];
-  [self setPlayerWayState:LEFT_WAY];
-  [self setPlayerY:PLAYER_Y_POSITION];
-
-  playerHp = 3;
-  playerCount = 0;
-          
-  playerCart = [Cart alloc];
-  [playerCart init:_layer];
-  
-  [self startPlayerRunning];
-#ifdef MARTRUSH_HAN_EDIT
-  playerBoundingBox = CGRectUnion([playerSpr boundingBox], [[playerCart cartSpr] boundingBox]);
-#endif
-*/
     gamelayer = _layer;
     [self createPlayerRunAnimation];
     
@@ -52,7 +34,7 @@
     
     playerCart = [Cart alloc];
     [playerCart init:gamelayer];
-
+    
     [self startPlayerRunning];
 }
 
@@ -70,20 +52,20 @@
 
 -(void)createPlayerRunAnimation
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"player_run.plist"];
     
-    playerSpr = [CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"];
+    playerSpr = [CCSprite spriteWithSpriteFrameName:@"player_run_0.png"];
     playerSpr.position = ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION);
     playerSpr.anchorPoint = ccp(0.5f, 0.0f);
     
-    bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run.png"];
+    bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
     [bachNode addChild:playerSpr];
     [gamelayer addChild:bachNode z:2];
-
+    
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
-       
+    
     for (int i = 0; i < 6; i++) {
-        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%d.png", i]];
+        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_run_%d.png", i]];
         [aniFrames addObject:frame];
     }
     
@@ -105,9 +87,31 @@
 -(void)createPlayerStateAnimation
 {
     if(playerState == PLAYER_STATE_CRASH)
-        stateSpr = [[CCSprite alloc] initWithFile:@"player_crash.png"];    
-    
-    [gamelayer addChild:stateSpr z:playerSpr.zOrder + 1];
+    {
+        CCCallFunc* endPlayerCrash = [CCCallFunc actionWithTarget:self selector:@selector(endPlayerCrash:)];
+        
+        stateSpr = [[CCSprite alloc] initWithFile:@"crash_effect.png"];
+        
+        int _z = playerSpr.zOrder;
+        [gamelayer addChild:stateSpr z:(_z) + 1];
+        
+        stateSpr.position = ccp(playerSpr.position.x, playerSpr.position.y + 40);
+        stateSpr.anchorPoint = ccp(0.5f, 0.0f);
+        
+        [stateSpr runAction:[CCSequence actions:[CCFadeOut actionWithDuration:1] ,endPlayerCrash, nil]];
+        playerState = PLAYER_STATE_CRASHING;
+    }
+}
+
+-(void)endPlayerCrash:(id)sender
+{
+    if (playerHp <= 0)
+        playerState = PLAYER_STATE_DEAD;
+    else
+    {
+        playerState = PLAYER_STATE_RUN;
+        playerHp--;
+    }
 }
 
 -(void)playerMovingWay:(int)_num
@@ -146,17 +150,23 @@
     {
         
     }
+    else if(playerState == PLAYER_STATE_CRASH)
+    {
+        [self createPlayerStateAnimation];
+    }
     else if(playerState == PLAYER_STATE_DEAD)
     {
-        
     }
     
     if(playerCount == 50)
-//        [self playerMovingWay:RIGHT_WAY];
-    
-    playerCount++;
+        //        [self playerMovingWay:RIGHT_WAY];
+        //        [self createPlayerStateAnimation];
+        playerState = PLAYER_STATE_DEAD;
         
+        playerCount++;
+    
 }
+
 
 @end
 

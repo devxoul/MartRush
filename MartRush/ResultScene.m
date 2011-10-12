@@ -32,7 +32,7 @@
 
 - (CCLayer *)initWithMerchandises:(NSArray *)merchandises
 {
-  if ([super init])
+  if (self = [super init])
   {
     merchandiseArray = [[NSMutableArray alloc] init];
     gottenMerchandiseArray = [[NSMutableArray alloc] initWithArray:merchandises];

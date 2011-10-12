@@ -9,13 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
+#import "GameOverScene.h"
+#import "ResultScene.h"
 
 @class MovementManager;
 @class GameLayer;
 @class GameUILayer;
 @class ControlManager;
+@class Cart;
 
 @interface GameScene : CCScene {
+    
+@public
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
 	
@@ -24,6 +29,9 @@
 	
 	MovementManager *movementManager;
 	ControlManager *controlManager;
+    
+    int gameState;
+    Cart* _cart;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
@@ -35,4 +43,5 @@
 @property (nonatomic, retain) MovementManager *movementManager;
 @property (retain) ControlManager *controlManager;
 
+@property (readwrite) int gameState;
 @end
