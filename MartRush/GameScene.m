@@ -13,6 +13,7 @@
 #import "GameLayer.h"
 #import "GameUILayer.h"
 #import "ResultScene.h"
+#import "UserData.h"
 
 
 @interface GameScene(Private)
@@ -23,7 +24,7 @@
 
 @implementation GameScene
 
-@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager, missionName;
+@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager;
 @synthesize gameState;
 
 -(id)init
@@ -39,23 +40,15 @@
     
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
     
+    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[UserData userData].lastPlayedStage ofType:@"plist"]];
+    
+    [self initManagers];
+
+    
     return self;
 	}
 	
 	return nil;
-}
-
-- (id)initWithMissionName:(NSString *)missionName_
-{
-	if (self = [self init]) {
-    missionName = [missionName_ retain];
-    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:missionName ofType:@"plist"]];
-    
-    [self initManagers];
-    
-    return self;
-  }
-  return nil;
 }
 
 - (void)initLayers

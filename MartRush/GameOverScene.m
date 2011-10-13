@@ -8,6 +8,7 @@
 
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
+#import "UserData.h"
 
 
 @implementation GameOverScene
@@ -42,7 +43,7 @@
     }];
 
     CCMenuItemImage *menuTry = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Retry.png" selectedImage:@"GameOver_Btn_Retry_click.png" block:^(id sender) {
-      [[CCDirector sharedDirector] replaceScene:[[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
+      [[CCDirector sharedDirector] replaceScene:[[[GameScene alloc] init] autorelease]];
     }];
 
     [menuMain setPosition:ccp(170, -60)];

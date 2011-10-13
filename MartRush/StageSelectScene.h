@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "SlidingMenuGrid.h"
 
 @interface StageSelectScene : CCLayer {
   NSArray *stageInfoArray;

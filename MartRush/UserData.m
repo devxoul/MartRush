@@ -10,13 +10,14 @@
 
 @implementation UserData
 
-@synthesize money;
+@synthesize money, lastPlayedStage;
 
 + (UserData *)userData
 {
   static UserData *ret;
   
-  if (!ret) {
+  if (!ret)
+  {
     ret = [[UserData alloc] init];
   }
   
@@ -25,7 +26,8 @@
 
 - (id)init
 {
-  if (self = [super init]) {
+  if (self = [super init])
+  {
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] pathForResource:@"UserData" ofType:@"plist"]];
     
     money = [[dict objectForKey:@"money"] integerValue];

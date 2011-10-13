@@ -9,6 +9,7 @@
 #import "StageSelectScene.h"
 #import "GameScene.h"
 #import "UserData.h"
+#import "SlidingMenuGrid.h"
 
 @implementation StageSelectScene
 
@@ -75,7 +76,8 @@
 - (void)selectLevel:(id)sender
 {
   if ([(CCMenuItem *)sender isEnabled]) {
-    [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] initWithMissionName:[stageInfoArray objectAtIndex:[sender tag]]] autorelease]];
+    [UserData userData].lastPlayedStage = [stageInfoArray objectAtIndex:[sender tag]];
+    [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] init] autorelease]];
   }
   else
   {

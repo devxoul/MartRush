@@ -13,9 +13,12 @@
   NSUInteger money;
   
   NSMutableArray *boughtStage;
+  
+  NSString *lastPlayedStage;
 }
 
 @property (readwrite) NSUInteger money;
+@property (retain, readwrite) NSString *lastPlayedStage;
 
 + (UserData *)userData;
 

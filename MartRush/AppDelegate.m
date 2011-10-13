@@ -68,7 +68,7 @@
 						];
 	
 	glView.multipleTouchEnabled = YES;
-	
+  
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
@@ -114,7 +114,7 @@
 	
 	// Run the intro Scene
 //	[[CCDirector sharedDirector] runWithScene: [GameOverScene scene]];
-	[[CCDirector sharedDirector] runWithScene: [[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
+	[[CCDirector sharedDirector] runWithScene: [[[GameScene alloc] init] autorelease]];
 }
 
 
