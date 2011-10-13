@@ -12,6 +12,7 @@
 
 @interface StageSelectScene : CCLayer {
   NSArray *stageInfoArray;
+  CCLabelTTF *moneyLabel;
 }
 
 + (CCScene *)scene;

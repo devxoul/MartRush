@@ -12,6 +12,7 @@
 #import "ResultScene.h"
 #import "SimpleAudioEngine.h"
 #import "Merchandise.h"
+#import "UserData.h"
 
 @interface ResultScene(private)
 - (void)updateLabel;
@@ -50,12 +51,10 @@
     [reciept setPosition:CGPointMake(270, 20)];
     [self addChild:reciept z:10];
     
-    numberOfCorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"" fontSize:24];
-    numberOfMiscorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"" fontSize:24];
-    compensationLabel = [CCLabelTTF labelWithString:@"0" fontName:@"" fontSize:24];
+    numberOfCorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Nanum Pen Script" fontSize:24];
+    numberOfMiscorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Nanum Pen Script" fontSize:24];
+    compensationLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Nanum Pen Script" fontSize:24];
     
-    
-    // TODO: replace labels
     [numberOfCorrectLabel setPosition:CGPointMake(0, 0)];
     [numberOfMiscorrectLabel setPosition:CGPointMake(0, 0)];
     [compensationLabel setPosition:CGPointMake(0, 0)];
@@ -76,9 +75,11 @@
 {
   if (gottenMerchandiseArray.count > 0) {
     NSString *name = [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] name];
+    
     if ([missionDictionary objectForKey:name] > 0) {
       [missionDictionary setObject:[NSNumber numberWithInt:([[missionDictionary objectForKey:name] intValue] - 1)] forKey:name];
       numberOfCorrect++;
+      
       compensation += [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price];
       [numberOfCorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfCorrect]];
       [compensationLabel setString:[NSString stringWithFormat:@"%d", compensation]];
@@ -104,6 +105,8 @@
   else
   {
     // Goto Stage Select Menu
+    [UserData userData].money += compensation;
+    [[UserData userData] saveToFile];
     [[CCDirector sharedDirector] popScene];
   }
 }

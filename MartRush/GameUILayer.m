@@ -34,11 +34,11 @@
     
     heart = [CCSprite spriteWithFile:@"heart.png"];
     [heart setPosition:ccp(58,285)];
-    [heartArray addObject:[heart autorelease]];
+    [heartArray addObject:heart];
     
     heart = [CCSprite spriteWithFile:@"heart.png"];
     [heart setPosition:ccp(91,285)];
-    [heartArray addObject:[heart autorelease]];
+    [heartArray addObject:heart];
     
     for (CCSprite *heart in heartArray) {
       heart.anchorPoint = ccp(0.5f, 0.0f);
