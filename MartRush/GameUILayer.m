@@ -86,22 +86,26 @@
 	return self;
 }
 
-- (void)update{
+-(void) heartUpdate{
     if(gameScene.gameLayer.player.playerHp == 2){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
         [heartSprite3 runAction:action];
         
     }  
     if(gameScene.gameLayer.player.playerHp == 1){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
         [heartSprite2 runAction:action];
         
     }  
     if(gameScene.gameLayer.player.playerHp == 0){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
-        [heartSprite1 runAction:action];
-        
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];        
+        CCCallFunc* gameEnd = [CCCallFunc actionWithTarget:self selector:@selector(endGame:)];
+        [heartSprite1 runAction:[CCSequence actions:action, gameEnd,nil]];        
     }
+}
+
+- (void)update{
+
     [self gaugeUpdate];
 }
 
@@ -110,6 +114,11 @@
         i=0;
     i += 1;
     [gauge setTextureRect:CGRectMake(0,0,i,8)];
+}
+
+-(void)endGame:(id)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
 }
 
 @end

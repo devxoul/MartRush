@@ -8,35 +8,56 @@
 
 #import "Player.h"
 #import "Const.h"
+#import "GameLayer.h"
+#import "GameUILayer.h"
+#import "BossUILayer.h"
 
 @implementation Player
 
 @synthesize playerState;
 @synthesize playerWayState;
 @synthesize playerY;
-@synthesize playerSpeed;
 @synthesize playerHp;
 @synthesize playerCart;
-
+@synthesize playerRunDistance;
+@synthesize playerSpeed;
 // state 액션 구현
 
--(void)init:(GameLayer*)_layer
-{
+-(void)init:(GameLayer*)_layer{
     gamelayer = _layer;
     [self createPlayerRunAnimation];
+    
+    int _z = playerSpr.zOrder;
+    stateSpr = [[CCSprite alloc] initWithFile:@"crash_effect.png"];
+    [gamelayer addChild:stateSpr z:(_z) + 1];
+    stateSpr.anchorPoint = ccp(0.5f, 0.0f);
+    [stateSpr setVisible:NO];
     
     [self setPlayerState:PLAYER_STATE_RUN];
     [self setPlayerWayState:LEFT_WAY];
     [self setPlayerY:PLAYER_Y_POSITION];
     
-    playerHp = 100;
+    playerHp = 3;
     playerCount = 0;
     
     playerCart = [Cart alloc];
     [playerCart init:gamelayer];
     
+    playerSpeed = gamelayer.gameScene.stageNumber + 10 ;
+    
     [self startPlayerRunning];
 }
+
+/*
+-(void)setPlayerStateCrash:(int)State{
+    switch (State) {
+        case PLAYER_STATE_CRASH:
+            playerState = PLAYER_STATE_CRASH;
+            [self createPlayerStateAnimation];
+            break;
+    }
+}
+ */
 
 - (CGRect)playerBoundingBox
 {
@@ -60,16 +81,16 @@
     
     bachNode = [CCSpriteBatchNode batchNodeWithFile:@"player_run.png"];
     [bachNode addChild:playerSpr];
-    [gamelayer addChild:bachNode z:2];
+    [gamelayer addChild:bachNode z:Z_ORDER_PLAYER];
     
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 9; i++) {
         CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_run_%d.png", i]];
         [aniFrames addObject:frame];
     }
     
-    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.05f];
+    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.03f];
     playerRunAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
 }
 
@@ -88,30 +109,38 @@
 {
     if(playerState == PLAYER_STATE_CRASH)
     {
-        CCCallFunc* endPlayerCrash = [CCCallFunc actionWithTarget:self selector:@selector(endPlayerCrash:)];
-        
-        stateSpr = [[CCSprite alloc] initWithFile:@"crash_effect.png"];
-        
-        int _z = playerSpr.zOrder;
-        [gamelayer addChild:stateSpr z:(_z) + 1];
-        
-        stateSpr.position = ccp(playerSpr.position.x, playerSpr.position.y + 40);
-        stateSpr.anchorPoint = ccp(0.5f, 0.0f);
-        
-        [stateSpr runAction:[CCSequence actions:[CCFadeOut actionWithDuration:1] ,endPlayerCrash, nil]];
+        [stateSpr setVisible:YES];
         playerState = PLAYER_STATE_CRASHING;
+
+        CCCallFunc* endPlayerCrashCall = [CCCallFunc actionWithTarget:self selector:@selector(endPlayerCrash:)];
+                
+        stateSpr.position = ccp(playerSpr.position.x, playerSpr.position.y + 40);
+        
+        [stateSpr runAction:[CCSequence actions:[CCFadeOut actionWithDuration:1] ,endPlayerCrashCall, nil]];
+        playerState = PLAYER_STATE_CRASHING;
+        playerHp--;
+        
+        switch (gamelayer.gameScene.stageType) {
+            case STAGE_TYPE_NORMAL:
+                [gamelayer.gameScene.gameUILayer heartUpdate];
+                break;
+            case STAGE_TYPE_BOSS:
+                [gamelayer.gameScene.bossUILayer heartUpdate];
+                break;
+        }
+        
+        if (playerHp <= 0)
+        {   
+            playerState = PLAYER_STATE_DEAD;
+            gamelayer.gameScene.gameState = GAME_STATE_OVER;
+        }
     }
 }
 
 -(void)endPlayerCrash:(id)sender
 {
-    if (playerHp <= 0)
-        playerState = PLAYER_STATE_DEAD;
-    else
-    {
+    if(playerHp > 0)
         playerState = PLAYER_STATE_RUN;
-        playerHp--;
-    }
 }
 
 -(void)playerMovingWay:(int)_num
@@ -152,7 +181,7 @@
     }
     else if(playerState == PLAYER_STATE_CRASH)
     {
-        [self createPlayerStateAnimation];
+      [self createPlayerStateAnimation];
     }
     else if(playerState == PLAYER_STATE_DEAD)
     {

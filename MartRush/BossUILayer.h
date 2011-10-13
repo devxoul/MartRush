@@ -45,7 +45,8 @@
 @property (nonatomic, retain) CCMenuItemImage *pause;
 
 -(void)update;
--(void) gaugeUpdate;
-
+-(void)gaugeUpdate;
+-(void)endGame:(id)sender;
+-(void) heartUpdate;
 
 @end

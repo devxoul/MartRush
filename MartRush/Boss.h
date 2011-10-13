@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
-#import "Obstacle.h"
-#import "GameLayer.h"
-#import "MovementManager.h"
+
+@class GameLayer;
 
 @interface Boss : NSObject{
     
@@ -47,7 +46,7 @@
 @property (readwrite) int bossHp;
 @property (readwrite) int bossMaxHp;
 
--(void)init:(GameLayer*)_layer:(int)_stage;
+-(void)init:(GameLayer*)_layer;
 -(void)update;
 
 -(void)bossAiMoving:(int)_stage;                        // boss ai setting

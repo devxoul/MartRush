@@ -28,7 +28,8 @@
         [player init:self];
     
         boss = [Boss alloc];
-        [boss init:self:MARTRUSH_STAGE_1];
+
+        [boss init:self];
 
     self.isTouchEnabled = YES;
 	}

@@ -10,6 +10,7 @@
 #import "Boss.h"
 #import "GameScene.h"
 #import "Player.h"
+#import "GameLayer.h"
 
 @implementation BonusUILayer
 
@@ -52,7 +53,7 @@
         [self addChild:startIcon];
         
       
-        countLabel = [[CCLabelTTF alloc] initWithString:[NSString stringWithFormat:@"%d", limitTime] fontName:@"marker felt" fontSize:25];
+        countLabel = [[CCLabelTTF alloc] initWithString:[NSString stringWithFormat:@"%d", limitTime] fontName:@"BurstMyBubble" fontSize:25];
         [countLabel setPosition:ccp(253,285)];
         countLabel.anchorPoint = ccp(0.5f, 0.0f);
         [countLabel setColor:ccBLACK];
@@ -86,20 +87,21 @@
 }
 
 - (void)update{
+    
     if(gameScene.gameLayer.player.playerHp == 2){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
         [heartSprite3 runAction:action];
         
     }  
     if(gameScene.gameLayer.player.playerHp == 1){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
         [heartSprite2 runAction:action];
         
     }  
     if(gameScene.gameLayer.player.playerHp == 0){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
-        [heartSprite1 runAction:action];
-        
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];        
+        CCCallFunc* gameEnd = [CCCallFunc actionWithTarget:self selector:@selector(endGame:)];
+        [heartSprite1 runAction:[CCSequence actions:action, gameEnd,nil]];        
     }
     [self gaugeUpdate];
 }

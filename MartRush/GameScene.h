@@ -33,9 +33,12 @@
 	NSMutableArray *obstacles;
 	
 	MovementManager *movementManager;
-	ControlManager *controlManager;
+    ControlManager *controlManager;
   
   NSMutableDictionary *missionDictionary;
+    
+    int stageNumber;
+    int stageType;
     
   int gameState;
 }
@@ -52,4 +55,10 @@
 @property (retain) ControlManager *controlManager;
 
 @property (readwrite) int gameState;
+
+@property (readwrite) int stageNumber;
+@property (readwrite) int stageType;
+
+- (void)init:(int)_stageType:(int)_stageNumber;
+
 @end
