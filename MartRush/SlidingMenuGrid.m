@@ -9,7 +9,7 @@
 
 @implementation SlidingMenuGrid
 
-//@synthesize padding;
+@synthesize padding;
 @synthesize menuOrigin;
 @synthesize touchOrigin;
 @synthesize touchStop;

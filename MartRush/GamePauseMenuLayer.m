@@ -9,6 +9,7 @@
 #import "GamePauseMenuLayer.h"
 #import "Const.h"
 #import "GameScene.h"
+#import "UserData.h"
 
 
 @implementation GamePauseMenuLayer
@@ -30,18 +31,18 @@
     [self addChild:menuBackground];
     
     CCMenu *menu = [CCMenu menuWithItems:
-                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:gameScene.missionName fontName:@"Marker Felt" fontSize:24]],
-                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Continue" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
+                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:[UserData userData].lastPlayedStage fontName:@"Nanum Pen Script" fontSize:24]],
+                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Continue" fontName:@"Nanum Pen Script" fontSize:24] block:^(id sender) {
       // Continue
       [self removeFromParentAndCleanup:YES];
       gameScene.gameState = GAME_STATE_START;
       [gameScene.gameLayer setIsTouchEnabled:YES];
-    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Mute" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
+    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Mute" fontName:@"Nanum Pen Script" fontSize:24] block:^(id sender) {
       // Mute
-    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Restart" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
+    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Restart" fontName:@"Nanum Pen Script" fontSize:24] block:^(id sender) {
       // Restart
-      [[CCDirector sharedDirector] replaceScene:[CCTransitionFlipX transitionWithDuration:0.5 scene:[[[GameScene alloc] initWithMissionName:gameScene.missionName] autorelease]]];
-    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"StageSelect" fontName:@"Marker Felt" fontSize:24] block:^(id sender) {
+      [[CCDirector sharedDirector] replaceScene:[CCTransitionFlipX transitionWithDuration:0.5 scene:[[[GameScene alloc] init] autorelease]]];
+    }], [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"StageSelect" fontName:@"Nanum Pen Script" fontSize:24] block:^(id sender) {
       // StageSelect
       [[CCDirector sharedDirector] popScene];
     }], nil];

@@ -12,12 +12,12 @@
 
 @class GameLayer;
 
-
 @interface Boss : NSObject{
     
     int bossState;          //보스 상태
     int bossWayState;       //보스 도로 방향
     int bossHp;             //보스 생명
+    int bossMaxHp;
     float bossY;            //보스 y
     
     CCAnimate* bossRunAni;  //보스 run
@@ -44,8 +44,9 @@
 @property (readwrite) int bossWayState;
 @property (readwrite) float bossY;
 @property (readwrite) int bossHp;
+@property (readwrite) int bossMaxHp;
 
--(void)init:(GameLayer*)_layer:(int)_stage;
+-(void)init:(GameLayer*)_layer;
 -(void)update;
 
 -(void)bossAiMoving:(int)_stage;                        // boss ai setting

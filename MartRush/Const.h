@@ -13,6 +13,10 @@
 #define MARTRUSH_HAN_EDIT
 
 #define TUTORIAL_MAX_SCENE          6
+//STAGE TYPE
+#define STAGE_TYPE_NORMAL			0
+#define STAGE_TYPE_BOSS				1
+#define STAGE_TYPE_BONUS			2
 
 //GAME STAGE LEVEL
 #define MARTRUSH_STAGE_1            0
@@ -55,10 +59,10 @@
 #define BOSS_STATE_ATTACK           4
 #define BOSS_STATE_MOVING           5
 
-#define BOSS_LEFT_X_POSITION        155
-#define BOSS_RIGHT_X_POSITION       325
+#define BOSS_LEFT_X_POSITION        210
+#define BOSS_RIGHT_X_POSITION       270
 
-#define BOSS_Y_POSITION             180
+#define BOSS_Y_POSITION             210
 
 // WAY STATE
 #define LEFT_WAY                    0
@@ -70,5 +74,14 @@
 #define Z_ORDER_OBSTACLE			200000000
 #define Z_ORDER_PLAYER				200000001
 #define Z_ORDER_DRAGGING_MERCHANDISE    200000002
+
+// Default Z
+#define DEFAULT_Z					3500
+
+// Level Design
+#define MIN_GAP						400
+#define LEVEL_SPEEDS				[]
+#define LEVEL_DISTANCES				[]
+
 
 #endif

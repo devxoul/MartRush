@@ -14,28 +14,33 @@
 @class GameUILayer;
 @class ControlManager;
 @class Cart;
+@class BossUILayer;
+@class BonusUILayer;
 
 @interface GameScene : CCScene {
     
 @public
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
-  
-    NSString *missionName;
-	
+  BossUILayer *bossUILayer;
+	BonusUILayer *bonusUILayer;
 	NSMutableArray *merchandises;
 	NSMutableArray *obstacles;
 	
 	MovementManager *movementManager;
-	ControlManager *controlManager;
+  ControlManager *controlManager;
   
   NSMutableDictionary *gameInfoDictionary;
     
   NSInteger gameState;
+	NSInteger stageNumber;
+  NSInteger stageType;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
 @property (nonatomic, retain) GameUILayer *gameUILayer;
+@property (nonatomic, retain) BossUILayer *bossUILayer;
+@property (nonatomic, retain) BonusUILayer *bonusUILayer;
 
 @property (nonatomic, retain) NSMutableArray *merchandises;
 @property (nonatomic, retain) NSMutableArray *obstacles;
@@ -45,8 +50,9 @@
 
 @property (readwrite) NSInteger gameState;
 
-@property (readonly) NSString *missionName;
+@property (readwrite) NSInteger stageNumber;
+@property (readwrite) NSInteger stageType;
 
-- (id)initWithMissionName:(NSString *)missionName;
+- (void)init:(NSInteger)_stageType:(NSInteger)_stageNumber;
 
 @end

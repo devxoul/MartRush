@@ -35,7 +35,7 @@
     CCSpriteBatchNode *bachNodeState;       
     CCSprite* stateSpr;             
     
-    CGRect boundingBox;
+    float playerRunDistance;
 }
 
 @property (readwrite) NSInteger state;
@@ -45,6 +45,7 @@
 @property (readonly) CGRect boundingBox;
 @property (readwrite) NSInteger hp;
 @property (retain) Cart* cart;
+@property (readwrite) float playerRunDistance;
 
 -(id)initWithGameLayer:(GameLayer *)_layer;
 

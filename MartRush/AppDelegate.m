@@ -14,6 +14,7 @@
 #import "GameOverScene.h"
 #import "TitleLayer.h"
 #import "RootViewController.h"
+#import "UserData.h"
 
 @implementation AppDelegate
 
@@ -69,7 +70,7 @@
 						];
 	
 	glView.multipleTouchEnabled = YES;
-	
+  
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 	
@@ -114,9 +115,7 @@
 	[self removeStartupFlicker];
 	
 	// Run the intro Scene
-//	[[CCDirector sharedDirector] runWithScene: [GameOverScene scene]];
 	[[CCDirector sharedDirector] runWithScene: [TitleLayer scene]];
-//	[[CCDirector sharedDirector] runWithScene: [[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
 }
 
 

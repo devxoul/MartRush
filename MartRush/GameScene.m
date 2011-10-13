@@ -19,6 +19,9 @@
 #import "ResultScene.h"
 #import "SimpleAudioEngine.h"
 
+#import "UserData.h"
+#import "BossUILayer.h"
+#import "BonusUILayer.h"
 
 @interface GameScene(Private)
 - (void)initLayers;
@@ -28,51 +31,72 @@
 
 @implementation GameScene
 
-@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager, missionName;
-@synthesize gameState;
+@synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager,bossUILayer, bonusUILayer;
+@synthesize gameState, stageNumber, stageType;
 
 -(id)init
 {
   if( self = [super init] )
 	{		
+    [self init:1 :1];
     merchandises = [[NSMutableArray alloc] init];
     obstacles = [[NSMutableArray alloc] init];
-    
-    [self initLayers];
-    
     gameState = GAME_STATE_START;
     
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
     
+    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[UserData userData].lastPlayedStage ofType:@"plist"]];
+    
+    stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
+    
+    [self initLayers];
+    [self initManagers];
+
     return self;
 	}
 	
 	return nil;
 }
 
-- (id)initWithMissionName:(NSString *)missionName_
+- (void)init:(int)_stageType:(int)_stageNumber
 {
-	if (self = [self init]) {
-    missionName = [missionName_ retain];
-    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:missionName ofType:@"plist"]];
+    stageType = _stageType;
+    stageNumber = _stageNumber;
     
+    [self initLayers];
+    //[self initArrays];
     [self initManagers];
     
-    return self;
-  }
-  return nil;
+    gameState = GAME_STATE_START;
+    
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Game BGM.mp3"];
 }
 
 - (void)initLayers
 {
 	gameLayer = [[GameLayer alloc] init];
+  
 	[self addChild:gameLayer];
 	
-	gameUILayer = [[GameUILayer alloc] init];
-	[self addChild:gameUILayer];
-  
+  switch (stageType) {
+    case STAGE_TYPE_NORMAL:
+        gameUILayer = [[GameUILayer alloc] init];
+        gameUILayer.gameScene = self;
+        [self addChild:gameUILayer];
+        break;
+    case STAGE_TYPE_BOSS:
+        bossUILayer = [[BossUILayer alloc] init];
+        bossUILayer.gameScene = self;
+        [self addChild:bossUILayer];
+        break;
+    case STAGE_TYPE_BONUS:
+        bonusUILayer = [[BonusUILayer alloc] init];
+        bonusUILayer.gameScene = self;
+        [self addChild:bonusUILayer];
+        break;
+  }
+
   gameLayer.gameScene = self;
-  gameUILayer.gameScene = self;
 }
 
 - (void)initManagers
@@ -89,27 +113,55 @@
   if (gameState == GAME_STATE_START) 
   {
     [movementManager update];
-
-    [gameLayer update];    
-    gameUILayer.processedPortion += 1.0f / [[gameInfoDictionary objectForKey:@"length"] intValue] * 200;
-    [gameUILayer update];
-
-    if (gameUILayer.processedPortion >= 200) {
-      gameState = GAME_STATE_CLEAR;
+    [gameLayer update];
+    gameUILayer.processedPortion +=  1.0 / [[gameInfoDictionary objectForKey:@"length"] integerValue] * 199;
+        
+    switch (stageType) {
+      case STAGE_TYPE_NORMAL:
+          [gameUILayer update];
+          break;
+      case STAGE_TYPE_BOSS:
+          [bossUILayer update];
+          break;
+      case STAGE_TYPE_BONUS:
+          [bonusUILayer update];
+          break;
     }
   }
+    
   else if (gameState == GAME_STATE_PAUSE)
   {
-    
+    switch (stageType) {
+      case STAGE_TYPE_NORMAL:
+          [gameUILayer update];
+          break;
+      case STAGE_TYPE_BOSS:
+          [bossUILayer update];
+          break;
+      case STAGE_TYPE_BONUS:
+          [bonusUILayer update];
+          break;
+    }
   }
   else if (gameState == GAME_STATE_OVER)
   {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
+    switch (stageType) {
+      case STAGE_TYPE_NORMAL:
+          [gameUILayer update];
+          break;
+      case STAGE_TYPE_BOSS:
+          [bossUILayer update];
+          break;
+      case STAGE_TYPE_BONUS:
+          [bonusUILayer update];
+          break;
+    }
   }
   else if(gameState == GAME_STATE_CLEAR)
   {
-    [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.cart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
+     [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.cart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
   }
+    
 }
 
 -(void)dealloc

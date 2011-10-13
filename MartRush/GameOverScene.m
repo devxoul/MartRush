@@ -8,6 +8,7 @@
 
 #import "GameOverScene.h"
 #import "SimpleAudioEngine.h"
+#import "UserData.h"
 
 #import "MenuLayer.h"
 #import "GameScene.h"
@@ -45,7 +46,7 @@
     }];
 
     CCMenuItemImage *menuTry = [CCMenuItemImage itemFromNormalImage:@"GameOver_Btn_normal_Retry.png" selectedImage:@"GameOver_Btn_Retry_click.png" block:^(id sender) {
-      [[CCDirector sharedDirector] replaceScene:[[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
+      [[CCDirector sharedDirector] replaceScene:[[[GameScene alloc] init] autorelease]];
     }];
 
     [menuMain setPosition:ccp(170, -60)];
@@ -56,17 +57,6 @@
 		return self;
   }
   return nil;
-}
-
--(void)menuItemTry:(id)sender
-{
-//    [[CCDirector sharedDirector] replaceScene:[GameScene node]];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];
-}
-
--(void)menuItemMain:(id)sender
-{
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];
 }
 
 -(void)menuItemShop:(id)sender

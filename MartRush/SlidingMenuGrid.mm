@@ -1,10 +1,13 @@
 #import "SlidingMenuGrid.h"
 
+<<<<<<< HEAD
 @interface SlidingMenuGrid(Private)
 - (void)buildGridVertical;
 - (void) moveToCurrentPage;
 @end
 
+=======
+>>>>>>> 90875aae98f1da45960a46120cd60e654ba894c8
 @implementation SlidingMenuGrid
 
 @synthesize padding;
@@ -25,7 +28,11 @@
 	return [[[self alloc] initWithArray:items cols:cols rows:rows position:pos padding:pad verticalPaging:false] autorelease];
 }
 
+<<<<<<< HEAD
 +(id) menuWithArray:(NSMutableArray*)items cols:(int)cols rows:(int)rows position:(CGPoint)pos padding:(CGPoint)pad verticalPaging:(bool)vertical
+=======
++(id) menuWithArray:(NSMutableArray*)items cols:(int)cols rows:(int)rows position:(CGPoint)pos padding:(CGPoint)pad verticalPages:(bool)vertical
+>>>>>>> 90875aae98f1da45960a46120cd60e654ba894c8
 {
 	return [[[self alloc] initWithArray:items cols:cols rows:rows position:pos padding:pad verticalPaging:vertical] autorelease];
 }
@@ -221,7 +228,11 @@
 // Run the action necessary to slide the menu grid to the current page.
 - (void) moveToCurrentPage
 {
+<<<<<<< HEAD
 	//CGSize winSize = [[CCDirector sharedDirector] winSize];
+=======
+	CGSize winSize = [[CCDirector sharedDirector] winSize];
+>>>>>>> 90875aae98f1da45960a46120cd60e654ba894c8
 	
 	// Perform the action
 	id action = [CCMoveTo actionWithDuration:(fAnimSpeed*0.5) position:[self GetPositionOfCurrentPage]];

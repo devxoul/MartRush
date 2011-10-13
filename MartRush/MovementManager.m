@@ -39,16 +39,22 @@
 }
 
 - (void)update
-{	
-	if( arc4random() % 60 == 1 )
+{
+	if( [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MIN_GAP )
 	{
 		[self createMerchandise:[merchandiseTypeArray objectAtIndex:arc4random()%merchandiseTypeArray.count] wayState:arc4random() % 2];
-		[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:3500 speed:10];
 	}
+	
+	if( [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP )
+	{
+		if( arc4random() % 100 <= 100 )
+			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
+	}
+	
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		merchandise.z -= 10;
+		merchandise.z -= 10;//gameScene_.gameLayer.player.playerSpeed;
 		
 		if( merchandise.z < 0 )
 		{
@@ -60,27 +66,28 @@
 	{
 		obstacle.z -= obstacle.speed;
 		
-		if( 0 <= obstacle.z && obstacle.z <= 50 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
+		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
 		{
-      // hit
-			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
+            gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
 			[self removeObstacle:obstacle];
+			continue;
 		}
 		
 		if( obstacle.z < 0 )
 		{
 			[self removeObstacle:obstacle];
+			continue;
 		}
 	}
+    
+    gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
 {
 	Merchandise *merchandise = [[Merchandise alloc] initWithName:image andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andWay:wayState andPrice:100 andZ:3500];
 	merchandise.merchandiseSpr.anchorPoint = ccp( 0.5f, 1.0f );
-  
-	int zOrder = [gameScene_.merchandises lastObject] ? ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1 : Z_ORDER_MERCHANDISE;
-  
+	int zOrder = [gameScene_.merchandises count] ? ((Merchandise *)[gameScene_.merchandises lastObject]).merchandiseSpr.zOrder - 1 : Z_ORDER_MERCHANDISE;
 	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:zOrder];
 	[gameScene_.merchandises addObject:[merchandise autorelease]];
 }
@@ -92,7 +99,7 @@
 	obstacle.obstacleSpr.anchorPoint = ccp( 0.5f, 1.0f );
 	obstacle.z = z;
   
-	int zOrder = [gameScene_.obstacles lastObject] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
+	int zOrder = [gameScene_.obstacles count] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
 	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
 	[gameScene_.obstacles addObject:[obstacle autorelease]];
 }
