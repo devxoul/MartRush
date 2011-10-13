@@ -26,10 +26,8 @@
 -(void)init:(GameLayer*)_layer{
     gamelayer = _layer;
     [self createPlayerRunAnimation];
-    
-    int _z = playerSpr.zOrder;
-    stateSpr = [[CCSprite alloc] initWithFile:@"crash_effect.png"];
-    [gamelayer addChild:stateSpr z:(_z) + 1];
+        
+    stateSpr = [[CCSprite alloc] initWithFile:@"boom.png"];
     stateSpr.anchorPoint = ccp(0.5f, 0.0f);
     [stateSpr setVisible:NO];
     
@@ -39,13 +37,16 @@
     
     playerHp = 3;
     playerCount = 0;
+    playerRunDistance = 0;
     
     playerCart = [Cart alloc];
     [playerCart init:gamelayer];
     
-    playerSpeed = gamelayer.gameScene.stageNumber + 10 ;
+    playerSpeed = gamelayer.gameScene.stageNumber*2 + 10 ;
     
     [self startPlayerRunning];
+    [gamelayer addChild:stateSpr z:Z_ORDER_PLAYER+1];
+    
 }
 
 /*
@@ -114,7 +115,7 @@
 
         CCCallFunc* endPlayerCrashCall = [CCCallFunc actionWithTarget:self selector:@selector(endPlayerCrash:)];
                 
-        stateSpr.position = ccp(playerSpr.position.x, playerSpr.position.y + 40);
+        stateSpr.position = ccp(playerSpr.position.x, playerSpr.position.y);
         
         [stateSpr runAction:[CCSequence actions:[CCFadeOut actionWithDuration:1] ,endPlayerCrashCall, nil]];
         playerState = PLAYER_STATE_CRASHING;
@@ -150,7 +151,7 @@
         if(playerWayState == RIGHT_WAY)
         {
             playerWayState = LEFT_WAY;
-            [playerSpr runAction:[CCEaseInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)] rate:2.0]];
+            [playerSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.3 position:ccp(PLAYER_LEFT_X_POSITION, PLAYER_Y_POSITION)]]];
             [playerCart cartMovingWay:LEFT_WAY];
         }
         else
@@ -161,7 +162,7 @@
         if(playerWayState == LEFT_WAY)
         {            
             playerWayState = RIGHT_WAY;
-            [playerSpr runAction:[CCEaseInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)] rate:2.0]];
+            [playerSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.3 position:ccp(PLAYER_RIGHT_X_POSITION, PLAYER_Y_POSITION)]]];
             [playerCart cartMovingWay:RIGHT_WAY];
         }
         else

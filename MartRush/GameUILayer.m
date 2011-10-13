@@ -110,10 +110,11 @@
 }
 
 -(void) gaugeUpdate{
-    if(i==200)
-        i=0;
-    i += 1;
-    [gauge setTextureRect:CGRectMake(0,0,i,8)];
+    
+    float gaugeCount = 196.0 / 100000.0;
+        
+    [gauge setTextureRect:CGRectMake(0,0,gaugeCount*(float)gameScene.gameLayer.player.playerRunDistance,8)];   
+
 }
 
 -(void)endGame:(id)sender

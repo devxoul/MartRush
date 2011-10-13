@@ -120,7 +120,7 @@
 {    
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run_student.plist"];
     bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_student_0.png"] retain];
-    bossSpr.position = ccp(240, BOSS_Y_POSITION);
+    bossSpr.position = ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION);
     bossSpr.anchorPoint = ccp(0.5f, 0.0f);
     
     CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run_student.png"];

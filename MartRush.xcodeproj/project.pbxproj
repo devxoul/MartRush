@@ -205,6 +205,7 @@
 		CFD5D21A1445BF8200A3DB5F /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CFD5D2181445BF8200A3DB5F /* pause.png */; };
 		CFEBA0891445D4FE0019343F /* cartbutton_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEBA0851445D4FE0019343F /* cartbutton_pressed.png */; };
 		CFEBA08A1445D4FE0019343F /* cartbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = CFEBA0861445D4FE0019343F /* cartbutton.png */; };
+		CFFBF6F314475C3C00FAECF5 /* obstacle_mom.png in Resources */ = {isa = PBXBuildFile; fileRef = CFFBF6F214475C3C00FAECF5 /* obstacle_mom.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -542,6 +543,7 @@
 		CFD5D2181445BF8200A3DB5F /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		CFEBA0851445D4FE0019343F /* cartbutton_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartbutton_pressed.png; sourceTree = "<group>"; };
 		CFEBA0861445D4FE0019343F /* cartbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartbutton.png; sourceTree = "<group>"; };
+		CFFBF6F214475C3C00FAECF5 /* obstacle_mom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = obstacle_mom.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -613,6 +615,7 @@
 		03AB064B1435EF2E009CA68F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CFFBF6F514475C4200FAECF5 /* Obstacle */,
 				CF8E13DD144706D80035201C /* BurstMyBubble.ttf */,
 				BA25D2021445DF5800CB29F0 /* gamebg_sound.mp3 */,
 				CFB557BA14449B3200594AD1 /* UILayer */,
@@ -1113,6 +1116,14 @@
 			name = UILayer;
 			sourceTree = "<group>";
 		};
+		CFFBF6F514475C4200FAECF5 /* Obstacle */ = {
+			isa = PBXGroup;
+			children = (
+				CFFBF6F214475C3C00FAECF5 /* obstacle_mom.png */,
+			);
+			name = Obstacle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1240,6 +1251,7 @@
 				CF1345BC14475AA300A20B5E /* player_run_8.png in Resources */,
 				CF1345BD14475AA300A20B5E /* player_run.plist in Resources */,
 				CF1345BE14475AA300A20B5E /* player_run.png in Resources */,
+				CFFBF6F314475C3C00FAECF5 /* obstacle_mom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

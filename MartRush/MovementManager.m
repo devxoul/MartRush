@@ -45,7 +45,7 @@
 	if( [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP )
 	{
 		if( arc4random() % 100 <= 100 )
-			[self createObstacle:@"fruit_banana.png" wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
+			[self createObstacle:@"obstacle_mom.png" wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
 	}
 	
 	
@@ -63,7 +63,7 @@
 	{
 		obstacle.z -= obstacle.speed;
 		
-		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.playerWayState )
+		if( 100 <= obstacle.z && obstacle.z <= 130 && obstacle.wayState == gameScene_.gameLayer.player.playerWayState )
 		{
             gameScene_.gameLayer.player.playerState = PLAYER_STATE_CRASH;
 			[self removeObstacle:obstacle];
@@ -76,6 +76,8 @@
 			continue;
 		}
 	}
+    
+    gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.playerSpeed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState

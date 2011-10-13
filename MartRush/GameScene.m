@@ -33,7 +33,7 @@
 {
 	if( self = [super init] )
 	{		
-        [self init:1 :1];
+        [self init:0 :0];
 	}
 	
 	return self;
