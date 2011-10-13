@@ -79,7 +79,7 @@
 		}
 	}
     
-    gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.playerSpeed;
+    gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
