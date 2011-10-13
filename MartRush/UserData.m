@@ -39,7 +39,7 @@
     boughtStage = [dict objectForKey:@"stages"];
     
     if (!boughtStage) {
-      boughtStage = [NSMutableArray array];
+      boughtStage = [NSMutableArray arrayWithObjects:@"fruit_1", nil];
     }
     
     [boughtStage retain];

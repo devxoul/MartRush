@@ -176,6 +176,9 @@
 		3C44A824144790E200151340 /* menu_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = BAC19A2A14462B710007BB37 /* menu_bg.png */; };
 		3C44A825144790E200151340 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BAC19A19144622A40007BB37 /* click.mp3 */; };
 		3C44A827144790E200151340 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03AB065C1435EF2E009CA68F /* Info.plist */; };
+		3C44A8311447956100151340 /* fruit_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8301447956000151340 /* fruit_1.png */; };
+		3C44A8341447957400151340 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8331447957400151340 /* lock.png */; };
+		3C44A836144795C400151340 /* stage_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A835144795C400151340 /* stage_bg.png */; };
 		3CAAB7C71447312100C0D67C /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAAB7C61447312100C0D67C /* UserData.m */; };
 		3CAAB7D51447725F00C0D67C /* Game BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAAB7D31447725F00C0D67C /* Game BGM.mp3 */; };
 		3CAAB7D61447725F00C0D67C /* Title BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAAB7D41447725F00C0D67C /* Title BGM.mp3 */; };
@@ -519,6 +522,9 @@
 		3C44A80E14478C2E00151340 /* ResultScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultScene.m; sourceTree = "<group>"; };
 		3C44A81214478F0000151340 /* mart_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mart_bg.png; path = Resources/mart_bg.png; sourceTree = "<group>"; };
 		3C44A81414478F8700151340 /* touchthescreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = touchthescreen.png; path = Resources/touchthescreen.png; sourceTree = "<group>"; };
+		3C44A8301447956000151340 /* fruit_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fruit_1.png; path = Resources/fruit_1.png; sourceTree = "<group>"; };
+		3C44A8331447957400151340 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
+		3C44A835144795C400151340 /* stage_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stage_bg.png; path = Resources/stage_bg.png; sourceTree = "<group>"; };
 		3CAAB7C51447312100C0D67C /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		3CAAB7C61447312100C0D67C /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		3CAAB7D31447725F00C0D67C /* Game BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Game BGM.mp3"; path = "Resources/sounds/Game BGM.mp3"; sourceTree = "<group>"; };
@@ -689,6 +695,7 @@
 				BAC19A2214462B710007BB37 /* arrowL_on.jpg */,
 				BAC19A2314462B710007BB37 /* arrowL.jpg */,
 				BAC19A2414462B710007BB37 /* arrowR_on.jpg */,
+				3C44A835144795C400151340 /* stage_bg.png */,
 				BAC19A2514462B710007BB37 /* arrowR.jpg */,
 				BAC19A2614462B710007BB37 /* menu_01.gif */,
 				BAC19A2714462B710007BB37 /* menu_02.gif */,
@@ -700,6 +707,8 @@
 				3CF2B4BE144723EA00A37B9E /* Sound */,
 				3CF2B4BA144722B700A37B9E /* Font */,
 				BA8FD85A144489B500707EA4 /* angry.png */,
+				3C44A8301447956000151340 /* fruit_1.png */,
+				3C44A8331447957400151340 /* lock.png */,
 				3C44A81214478F0000151340 /* mart_bg.png */,
 				BA8FD85B144489B500707EA4 /* crash_effect.png */,
 				BA8FD85C144489B600707EA4 /* GameOver_bg.png */,
@@ -1395,6 +1404,9 @@
 				3CAAB7D61447725F00C0D67C /* Title BGM.mp3 in Resources */,
 				3C44A81314478F0000151340 /* mart_bg.png in Resources */,
 				3C44A81514478F8700151340 /* touchthescreen.png in Resources */,
+				3C44A8311447956100151340 /* fruit_1.png in Resources */,
+				3C44A8341447957400151340 /* lock.png in Resources */,
+				3C44A836144795C400151340 /* stage_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
