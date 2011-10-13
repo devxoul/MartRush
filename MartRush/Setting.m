@@ -7,6 +7,8 @@
 //
 
 #import "Setting.h"
+#import "SimpleAudioEngine.h"
+#import "MenuLayer.h"
 
 @implementation Setting
 

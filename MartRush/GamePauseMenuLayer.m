@@ -7,7 +7,7 @@
 //
 
 #import "GamePauseMenuLayer.h"
-#import "GameScene.h"
+#import "Const.h"
 #import "GameScene.h"
 
 

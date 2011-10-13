@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "GameScene.h"
 #import "GameOverScene.h"
+#import "TitleLayer.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -114,11 +115,8 @@
 	
 	// Run the intro Scene
 //	[[CCDirector sharedDirector] runWithScene: [GameOverScene scene]];
-<<<<<<< HEAD
 	[[CCDirector sharedDirector] runWithScene: [TitleLayer scene]];
-=======
-	[[CCDirector sharedDirector] runWithScene: [[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
->>>>>>> e5a8509388a95bc04e031f847b9b69a6cce00342
+//	[[CCDirector sharedDirector] runWithScene: [[[GameScene alloc] initWithMissionName:@"fruit_1"] autorelease]];
 }
 
 

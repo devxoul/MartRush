@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "Const.h"
-#import "GameOverScene.h"
-#import "ResultScene.h"
-#import "SimpleAudioEngine.h"
 
 @class MovementManager;
 @class GameLayer;
@@ -25,7 +21,7 @@
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
   
-  NSString *missionName;
+    NSString *missionName;
 	
 	NSMutableArray *merchandises;
 	NSMutableArray *obstacles;

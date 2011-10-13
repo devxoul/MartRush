@@ -8,15 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "StageSelectLayer.h"
-#import "Shop.h"
-#import "GameScene.h"
 #import "Setting.h"
 
 @class StageSelectLayer;
 @class Shop;
 @class GameScene;
 @class Setting;
+@class TutorialLayer;
+@class InfoLayer;
 
 @interface MenuLayer : CCLayer
 {
@@ -48,6 +47,7 @@
 
 -(void)moveStage:(id)sender;
 -(void)moveTutorial:(id)sender;
+-(void)moveInfinite:(id)sender;
 -(void)moveShop:(id)sender;
 
 -(void)moveSetting:(id)sender;

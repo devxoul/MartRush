@@ -11,6 +11,7 @@
 #import "ControlManager.h"
 #import "Player.h"
 #import "Boss.h"
+#import "GameScene.h"
 
 @implementation GameLayer
 

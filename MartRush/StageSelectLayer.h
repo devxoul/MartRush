@@ -11,9 +11,10 @@
 
 @interface StageSelectLayer : CCLayer
 {
-    
+    NSArray *stageInfoArray;    
 }
 
-+(CCScene*)scene;
++ (CCScene *)scene;
+- (void)selectLevel:(id)sender;
 
 @end

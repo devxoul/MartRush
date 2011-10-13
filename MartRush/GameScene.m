@@ -13,6 +13,11 @@
 #import "GameLayer.h"
 #import "GameUILayer.h"
 #import "ResultScene.h"
+#import "Const.h"
+#import "Cart.h"
+#import "GameOverScene.h"
+#import "ResultScene.h"
+#import "SimpleAudioEngine.h"
 
 
 @interface GameScene(Private)
@@ -88,6 +93,7 @@
     [gameLayer update];    
     gameUILayer.processedPortion += 1.0f / [[gameInfoDictionary objectForKey:@"length"] intValue] * 200;
     [gameUILayer update];
+
     if (gameUILayer.processedPortion >= 200) {
       gameState = GAME_STATE_CLEAR;
     }

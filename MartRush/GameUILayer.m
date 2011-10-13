@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "Player.h"
 #import "GamePauseMenuLayer.h"
+#import "GameLayer.h"
 
 @implementation GameUILayer
 

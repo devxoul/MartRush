@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
-#import "Merchandise.h"
 
 @class GameLayer;
 @class Merchandise;

@@ -7,6 +7,8 @@
 //
 
 #import "TitleLayer.h"
+#import "SimpleAudioEngine.h"
+#import "MenuLayer.h"
 
 
 @implementation TitleLayer
@@ -28,7 +30,7 @@
         
 //        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
         
-        titleBgSprite = [[CCSprite alloc] initWithFile:@"mart_bg.jpg"];
+        titleBgSprite = [[CCSprite alloc] initWithFile:@"mart_bg.png"];
         titleBgSprite.anchorPoint = CGPointZero;
 		[titleBgSprite setPosition:ccp(0, 0)];
         

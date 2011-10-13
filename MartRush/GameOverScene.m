@@ -7,6 +7,11 @@
 //
 
 #import "GameOverScene.h"
+#import "SimpleAudioEngine.h"
+
+#import "MenuLayer.h"
+#import "GameScene.h"
+#import "TitleLayer.h"
 
 @implementation GameOverScene
 
@@ -53,7 +58,6 @@
   return nil;
 }
 
-<<<<<<< HEAD
 -(void)menuItemTry:(id)sender
 {
 //    [[CCDirector sharedDirector] replaceScene:[GameScene node]];
@@ -65,8 +69,6 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];
 }
 
-=======
->>>>>>> e5a8509388a95bc04e031f847b9b69a6cce00342
 -(void)menuItemShop:(id)sender
 {
     

@@ -7,6 +7,10 @@
 //
 
 #import "Boss.h"
+#import "Obstacle.h"
+#import "GameScene.h"
+#import "GameLayer.h"
+#import "MovementManager.h"
 
 
 @implementation Boss
@@ -254,7 +258,6 @@
         bossState = BOSS_STATE_RUN;
 #endif
     }    
-    
 }
 
 @end

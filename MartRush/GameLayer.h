@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-#import "GameScene.h"
-
 @class Player;
 @class Boss;
 @class Cart;
+@class GameScene;
 
 @interface GameLayer : CCLayer<CCStandardTouchDelegate> {
   GameScene *gameScene;

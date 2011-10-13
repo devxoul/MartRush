@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
-#import "Cart.h"
 
+@class Cart;
 @class GameLayer;
 
 @interface Player : NSObject {

@@ -1,13 +1,15 @@
+
 #import "SlidingMenuGrid.h"
 
 @interface SlidingMenuGrid(Private)
-- (void)buildGridVertical;
+
 - (void) moveToCurrentPage;
+
 @end
 
 @implementation SlidingMenuGrid
 
-@synthesize padding;
+//@synthesize padding;
 @synthesize menuOrigin;
 @synthesize touchOrigin;
 @synthesize touchStop;
@@ -221,8 +223,7 @@
 // Run the action necessary to slide the menu grid to the current page.
 - (void) moveToCurrentPage
 {
-	//CGSize winSize = [[CCDirector sharedDirector] winSize];
-	
+//	CGSize winSize = [[CCDirector sharedDirector] winSize];	
 	// Perform the action
 	id action = [CCMoveTo actionWithDuration:(fAnimSpeed*0.5) position:[self GetPositionOfCurrentPage]];
 	[self runAction:action];
@@ -301,7 +302,8 @@
 - (void) SetVerticalPaging:(bool)bValue
 {
 	bVerticalPaging = bValue;
-	[self buildGridVertical];
+//	[self buildGridVertical];
+//	[self buildGridVertical];
 }
 
 @end

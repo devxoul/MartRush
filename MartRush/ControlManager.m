@@ -7,9 +7,11 @@
 //
 
 #import "ControlManager.h"
+#import "GameScene.h"
 #import "Merchandise.h"
 #import "GameLayer.h"
 #import "Player.h"
+#import "Cart.h"
 
 @implementation ControlManager
 

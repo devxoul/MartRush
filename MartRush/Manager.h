@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "GameScene.h"
+
+@class GameScene;
 
 @interface Manager : NSObject {
     GameScene *gameScene_;

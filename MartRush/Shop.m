@@ -7,6 +7,8 @@
 //
 
 #import "Shop.h"
+#import "SimpleAudioEngine.h"
+#import "MenuLayer.h"
 
 @implementation Shop
 

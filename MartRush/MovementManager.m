@@ -10,6 +10,7 @@
 #import "Merchandise.h"
 #import "Obstacle.h"
 #import "GameLayer.h"
+#import "GameScene.h"
 #import "Player.h"
 
 // private methods

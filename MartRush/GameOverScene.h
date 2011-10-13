@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "SimpleAudioEngine.h"
-
-#import "GameScene.h"
-#import "TitleLayer.h"
 
 @interface GameOverScene : CCLayer<CCStandardTouchDelegate> {
    

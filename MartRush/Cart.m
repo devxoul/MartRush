@@ -7,6 +7,7 @@
 //
 
 #import "Cart.h"
+#import "Merchandise.h"
 
 @implementation Cart
 

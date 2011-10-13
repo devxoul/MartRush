@@ -3,6 +3,7 @@
 //
 //  Created by Brandon Reynolds on 1/9/11.
 
+#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
 @interface SlidingMenuGrid : CCLayer
@@ -34,7 +35,7 @@
 
 -(void) buildGrid:(int)cols rows:(int)rows;
 -(void) buildGridVertical:(int)cols rows:(int)rows;
--(CCMenuItem*) GetItemWithinTouch:(UITouch*)touch;
+-(CCMenuItem *) GetItemWithinTouch:(UITouch*)touch;
 - (CGPoint) GetPositionOfCurrentPageWithOffset:(float)offset;
 - (CGPoint) GetPositionOfCurrentPage;
 
@@ -47,6 +48,7 @@
 - (bool) IsVerticallyPaged;
 - (void) SetVerticalPaging:(bool)bValue;
 
+//@property (nonatomic, readwrite) CGPoint padding;
 @property (nonatomic, readwrite) CGPoint padding;
 @property (nonatomic, readwrite) CGPoint menuOrigin;
 @property (nonatomic, readwrite) CGPoint touchOrigin;

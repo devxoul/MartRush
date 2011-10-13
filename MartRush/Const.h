@@ -12,6 +12,8 @@
 #define MARTRUSH_BOC_EDIT
 #define MARTRUSH_HAN_EDIT
 
+#define TUTORIAL_MAX_SCENE          6
+
 //GAME STAGE LEVEL
 #define MARTRUSH_STAGE_1            0
 #define MARTRUSH_STAGE_2            1

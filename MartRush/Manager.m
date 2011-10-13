@@ -7,6 +7,7 @@
 //
 
 #import "Manager.h"
+#import "GameScene.h"
 
 
 @implementation Manager

@@ -8,6 +8,13 @@
 
 #import "MenuLayer.h"
 
+#import "SimpleAudioEngine.h"
+#import "StageSelectLayer.h"
+#import "Shop.h"
+#import "GameScene.h"
+#import "TutorialLayer.h"
+#import "InfoLayer.h"
+
 @implementation MenuLayer
 
 - (id)init
@@ -36,7 +43,7 @@
         mainmenu[2] = [CCMenuItemImage itemFromNormalImage:@"menu_03.gif" selectedImage:@"menu_02.gif" target:self 
                                                   selector:@selector(moveStage:)];
         
-        // shop
+        // shops
         mainmenu[3] = [CCMenuItemImage itemFromNormalImage:@"menu_04.gif" selectedImage:@"menu_01.gif" target:self 
                                                   selector:@selector(moveShop:)];
         
@@ -58,10 +65,10 @@
 		
         [self addChild: menu z:1];
         
-        mainmenuLb[0] = [CCLabelTTF labelWithString:@"Tutorial" fontName:@"Marker Felt" fontSize:24];
-        mainmenuLb[1] = [CCLabelTTF labelWithString:@"Stage" fontName:@"Marker Felt" fontSize:24];
-        mainmenuLb[2] = [CCLabelTTF labelWithString:@"Infinite" fontName:@"Marker Felt" fontSize:24];
-        mainmenuLb[3] = [CCLabelTTF labelWithString:@"Shop" fontName:@"Marker Felt" fontSize:24];
+        mainmenuLb[0] = [CCLabelTTF labelWithString:@"Tutorial" fontName:@"sheepsansbold.ttf" fontSize:24];
+        mainmenuLb[1] = [CCLabelTTF labelWithString:@"Stage" fontName:@"sheepsansbold.ttf" fontSize:24];
+        mainmenuLb[2] = [CCLabelTTF labelWithString:@"Infinite" fontName:@"sheepsansbold.ttf" fontSize:24];
+        mainmenuLb[3] = [CCLabelTTF labelWithString:@"Shop" fontName:@"sheepsansbold.ttf" fontSize:24];
         
         for (int i = 0; i < 4; i++) {
             mainmenuLb[i].color = ccBLACK;
@@ -149,30 +156,35 @@
 
 -(void)moveStage:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[StageSelectLayer scene]]];    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[StageSelectLayer scene]]];    
 }
 
 -(void)moveTutorial:(id)sender
 {
-    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[TutorialLayer scene]]];    
+}
+
+-(void)moveInfinite:(id)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];        
 }
 
 -(void)moveSetting:(id)sender{
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[Setting scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Setting scene]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
     
 }
 
 -(void)moveShop:(id)sender
 {    
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[Shop scene]]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Shop scene]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
 
 -(void)moveFacebook:(id)sender
 {
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.facebook.com/profile.php?id=100002194178648"]];
 }
 
 -(void)moveRank:(id)sender
@@ -182,7 +194,7 @@
 
 -(void)moveInfo:(id)sender
 {
-    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[InfoLayer scene]]];        
 }
 
 
