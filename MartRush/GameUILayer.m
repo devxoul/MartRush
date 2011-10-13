@@ -19,7 +19,7 @@
 {
 	if( self = [super init] )
 	{
-    processedPortion = 0;
+    self.processedPortion = 0;
     
     backGround = [CCSprite spriteWithFile:@"uilayer_bg.png"];
     [backGround setPosition:ccp(240,280)];
@@ -61,16 +61,17 @@
       
     }];
     info.anchorPoint = ccp(0.5f, 0.0f);
-        gaugeBg = [[CCSprite alloc] initWithFile:@"gaugebg.png"];
-        [gaugeBg setPosition:ccp(253,294)];
-        gaugeBg.anchorPoint = ccp(0.5f, 0.0f);
-        [self addChild:gaugeBg];
+    
+      gaugeBg = [[CCSprite alloc] initWithFile:@"gaugebg.png"];
+      [gaugeBg setPosition:ccp(253,294)];
+      gaugeBg.anchorPoint = ccp(0.5f, 0.0f);
+      [self addChild:gaugeBg];
 
-        gauge = [CCSprite spriteWithTexture:[[CCTextureCache sharedTextureCache] addImage:@"gauge.png"] rect:CGRectMake(0,0,0,8)];
-        [gauge setPosition:ccp(155,296)];
-        gauge.anchorPoint = ccp(0.0f, 0.0f);
-        
-        [self addChild:gauge];
+      gauge = [CCSprite spriteWithTexture:[[CCTextureCache sharedTextureCache] addImage:@"gauge.png"] rect:CGRectMake(0,0,0,8)];
+      [gauge setPosition:ccp(155,296)];
+      gauge.anchorPoint = ccp(0.0f, 0.0f);
+      
+      [self addChild:gauge];
 
     pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" block:^(id sender) {
       gameScene.gameState = GAME_STATE_PAUSE;
@@ -103,15 +104,14 @@
 - (void)setProcessedPortion:(float)processedPortion_
 {
   processedPortion = processedPortion_;
-  [gauge setTextureRect:CGRectMake(0, 0, processedPortion, 30)];
+  [gauge setTextureRect:CGRectMake(0, 0, processedPortion, 8)];
 }
 
 -(void) heartUpdate{
   CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
-  CCSprite *heart;
+  CCSprite *heart = 0;
   if(gameScene.gameLayer.player.hp == 2){
     heart = [heartArray objectAtIndex:2];
-      
   }  
   if(gameScene.gameLayer.player.hp == 1){
     heart = [heartArray objectAtIndex:1];
@@ -120,7 +120,9 @@
     heart = [heartArray objectAtIndex:0];
     action = [CCSequence actions:action, [CCCallFunc actionWithTarget:self selector:@selector(endGame:)], nil];
   }
-  [heart runAction:action];
+  if (heart) {
+    [heart runAction:action];
+  }
 }
 
 - (void)update{
