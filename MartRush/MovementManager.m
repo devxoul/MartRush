@@ -47,7 +47,7 @@
 	if( [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP )
 	{
 		if( arc4random() % 100 <= 100 )
-			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:3500 speed:10];
+			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
 	}
 	
 	
@@ -78,6 +78,8 @@
 			continue;
 		}
 	}
+    
+    gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.playerSpeed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState

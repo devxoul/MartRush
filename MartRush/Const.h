@@ -58,8 +58,8 @@
 #define BOSS_STATE_ATTACK           4
 #define BOSS_STATE_MOVING           5
 
-#define BOSS_LEFT_X_POSITION        155
-#define BOSS_RIGHT_X_POSITION       325
+#define BOSS_LEFT_X_POSITION        210
+#define BOSS_RIGHT_X_POSITION       270
 
 #define BOSS_Y_POSITION             210
 
@@ -78,7 +78,7 @@
 #define DEFAULT_Z					3500
 
 // Level Design
-#define MIN_GAP						200
+#define MIN_GAP						400
 #define LEVEL_SPEEDS				[]
 #define LEVEL_DISTANCES				[]
 

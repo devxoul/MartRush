@@ -618,6 +618,7 @@
 				3CF2B4BF1447243500A37B9E /* plist */,
 				3CF2B4BE144723EA00A37B9E /* Sound */,
 				3CF2B4BA144722B700A37B9E /* Font */,
+				CFFBF6F514475C4200FAECF5 /* Obstacle */,
 				CF8E13DD144706D80035201C /* BurstMyBubble.ttf */,
 				BA8FD85A144489B500707EA4 /* angry.png */,
 				BA8FD85B144489B500707EA4 /* crash_effect.png */,
@@ -1264,6 +1265,7 @@
 				3CAAB7D51447725F00C0D67C /* Game BGM.mp3 in Resources */,
 				3CAAB7D61447725F00C0D67C /* Title BGM.mp3 in Resources */,
 				3C44A7E2144772A600151340 /* gamebg_sound.mp3 in Resources */,
+				CFFBF6F314475C3C00FAECF5 /* obstacle_mom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

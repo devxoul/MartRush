@@ -34,8 +34,8 @@
     wayState = LEFT_WAY;
     y = PLAYER_Y_POSITION;
     
-    stateSpr = [[CCSprite alloc] initWithFile:@"crash_effect.png"];
-    [gamelayer addChild:stateSpr z:(_z) + 1];
+    stateSpr = [[CCSprite alloc] initWithFile:@"boom.png"];
+    [gamelayer addChild:stateSpr z:Z_ORDER_PLAYER + 1];
     stateSpr.anchorPoint = ccp(0.5f, 0.0f);
     [stateSpr setVisible:NO];
     
@@ -106,7 +106,7 @@
 
         CCCallFunc* endPlayerCrashCall = [CCCallFunc actionWithTarget:self selector:@selector(endPlayerCrash:)];
                 
-        stateSpr.position = ccp(spr.position.x, spr.position.y + 40);
+        stateSpr.position = ccp(spr.position.x, spr.position.y);
         
         [stateSpr runAction:[CCSequence actions:[CCFadeOut actionWithDuration:1] ,endPlayerCrashCall, nil]];
         state = PLAYER_STATE_CRASHING;
