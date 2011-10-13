@@ -19,28 +19,28 @@
 
 @interface MenuLayer : CCLayer
 {
-    CCSprite *menuBgSprite;
-    
-    CCMenuItemImage* mainmenu[4];
-    CCLabelTTF* mainmenuLb[4];
-    
-    CCSprite *arrowRSprite;
-    CCSprite *arrowRPressedSprite;
-    CCSprite *arrowLSprite;
-    CCSprite *arrowLPressedSprite;
-    
-    BOOL isOpenArrowPressed;
-    BOOL isCloseArrowPressed;
-    
-    CCMenuItemImage *arrow;
-    CCMenuItemImage *menu_facebook;
-    CCMenuItemImage *menu_ranking;
-    CCMenuItemImage *menu_info;
-    CCMenuItemImage *menu_setting;
-    
-    CCMenu *settingMenu;
-    CCMenu *arrowMenu;
-    CCMenu *menu_more;    
+  CCSprite *menuBgSprite;
+  
+  CCMenuItemImage* mainmenu[4];
+  CCLabelTTF* mainmenuLb[4];
+  
+  CCSprite *arrowRSprite;
+  CCSprite *arrowRPressedSprite;
+  CCSprite *arrowLSprite;
+  CCSprite *arrowLPressedSprite;
+  
+  BOOL isOpenArrowPressed;
+  BOOL isCloseArrowPressed;
+  
+  CCMenuItemImage *arrow;
+  CCMenuItemImage *menu_facebook;
+  CCMenuItemImage *menu_ranking;
+  CCMenuItemImage *menu_info;
+  CCMenuItemImage *menu_setting;
+  
+  CCMenu *settingMenu;
+  CCMenu *arrowMenu;
+  CCMenu *menu_more;    
 }
 
 +(CCScene*) scene;

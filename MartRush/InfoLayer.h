@@ -14,7 +14,7 @@
 
 @interface InfoLayer : CCLayer
 {
-    CCSprite* infoBg;
+  CCSprite* infoBg;
 }
 
 +(CCScene*) scene;

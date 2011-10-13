@@ -12,7 +12,7 @@
 @class GameScene;
 
 @interface Manager : NSObject {
-    GameScene *gameScene_;
+  GameScene *gameScene_;
 }
 
 @property (nonatomic, retain, readonly) GameScene *gameScene;

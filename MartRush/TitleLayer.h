@@ -12,10 +12,10 @@
 @class MenuLayer;
 
 @interface TitleLayer : CCLayer {
-
-    CCSprite *titleBgSprite;
-    CCSprite *touchTheScreenSprite;
-    
+  
+  CCSprite *titleBgSprite;
+  CCSprite *touchTheScreenSprite;
+  
 }
 
 + (CCScene *)scene;

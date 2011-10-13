@@ -14,28 +14,28 @@
 @class GameLayer;
 
 @interface Player : NSObject {
-    
-    @public
-    GameLayer* gamelayer;
-    
-    NSInteger state;            //플레이어 상태
-    NSInteger wayState;         //플레이어 way 방향
-    NSInteger hp;               //플레이어 목숨
-    
-    float y;              //Y
-    float speed;
-    
-    CCAnimate* runAni;    //플레이어 Run Animation
-    CCAnimate* stateAni;  //플레이어 런을 제외한 Animation    
-    
-    CCSpriteBatchNode *bachNode;
-    CCSprite* spr;        //플레이어 Sprite
-    Cart* cart;           //플레이어 Cart
-    
-    CCSpriteBatchNode *bachNodeState;       
-    CCSprite* stateSpr;             
-    
-    float playerRunDistance;
+  
+@public
+  GameLayer* gamelayer;
+  
+  NSInteger state;            //플레이어 상태
+  NSInteger wayState;         //플레이어 way 방향
+  NSInteger hp;               //플레이어 목숨
+  
+  float y;              //Y
+  float speed;
+  
+  CCAnimate* runAni;    //플레이어 Run Animation
+  CCAnimate* stateAni;  //플레이어 런을 제외한 Animation    
+  
+  CCSpriteBatchNode *bachNode;
+  CCSprite* spr;        //플레이어 Sprite
+  Cart* cart;           //플레이어 Cart
+  
+  CCSpriteBatchNode *bachNodeState;       
+  CCSprite* stateSpr;             
+  
+  float playerRunDistance;
 }
 
 @property (readwrite) NSInteger state;

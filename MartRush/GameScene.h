@@ -18,7 +18,7 @@
 @class BonusUILayer;
 
 @interface GameScene : CCScene {
-    
+  
 @public
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
@@ -31,7 +31,7 @@
   ControlManager *controlManager;
   
   NSMutableDictionary *gameInfoDictionary;
-    
+  
   NSInteger gameState;
 	NSInteger stageNumber;
   NSInteger stageType;

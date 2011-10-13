@@ -15,10 +15,10 @@
 
 @interface Cart : NSObject{
 @public
-    NSMutableArray* itemList;     //카트 담긴 아이템
-    
-    CCSprite* cartSpr;            //카트 이미지
-    NSInteger cartHp;                   //카트 체력
+  NSMutableArray* itemList;     //카트 담긴 아이템
+  
+  CCSprite* cartSpr;            //카트 이미지
+  NSInteger cartHp;                   //카트 체력
 }
 
 @property (retain, readonly) NSMutableArray* itemList;

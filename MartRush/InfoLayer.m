@@ -12,36 +12,36 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        infoBg = [[CCSprite alloc] initWithFile:@"setting_bg.png"];
-        [self addChild:infoBg];
-        
-        [infoBg setPosition:ccp(0, 0)];
-        [infoBg setAnchorPoint:CGPointZero];
-        
-        CCMenuItemImage* back = [CCMenuItemImage itemFromNormalImage:@"skip.png" selectedImage:@"skip_click.png" target:self selector:@selector(moveBack:)];
-        
-        CCMenu* menu = [CCMenu menuWithItems:back, nil];
-        [self addChild:menu];
-    }
+  self = [super init];
+  if (self) {
+    // Initialization code here.
+    infoBg = [[CCSprite alloc] initWithFile:@"setting_bg.png"];
+    [self addChild:infoBg];
     
-    return self;
+    [infoBg setPosition:ccp(0, 0)];
+    [infoBg setAnchorPoint:CGPointZero];
+    
+    CCMenuItemImage* back = [CCMenuItemImage itemFromNormalImage:@"skip.png" selectedImage:@"skip_click.png" target:self selector:@selector(moveBack:)];
+    
+    CCMenu* menu = [CCMenu menuWithItems:back, nil];
+    [self addChild:menu];
+  }
+  
+  return self;
 }
 
 +(CCScene*) scene
 {
-    CCScene *scene = [CCScene node];
-    InfoLayer *layer = [InfoLayer node];
-    [scene addChild:layer];
-    
-    return scene;       
+  CCScene *scene = [CCScene node];
+  InfoLayer *layer = [InfoLayer node];
+  [scene addChild:layer];
+  
+  return scene;       
 }
 
 -(void)moveBack:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[MenuLayer scene]]];        
+  [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[MenuLayer scene]]];        
 }
 
 @end

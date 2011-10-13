@@ -9,20 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
-#import "StageSelectLayer.h"
-#import "MenuLayer.h"
 
-@class StageSelectLayer;
-@class MenuLayer;
 
 @interface TutorialLayer : CCLayer
 {
-    CCSprite*  sceneSpr[TUTORIAL_MAX_SCENE];
-    
-    CCMenuItemImage* skip;
-    CCMenuItemImage* back;
-    
-    int tutorialCount;
+  CCSprite*  sceneSpr[TUTORIAL_MAX_SCENE];
+  
+  CCMenuItemImage* skip;
+  CCMenuItemImage* back;
+  
+  int tutorialCount;
 }
 
 +(CCScene*)scene;

@@ -46,10 +46,10 @@
 	float z_2 = cameraY / ( tanAngle + ( cameraY - h ) / z );
 	float y_2 = cameraY * tanAngle / ( tanAngle + ( cameraY - h ) / z );
 	
-//	float z3 = cosf(angle) * z2 - sinf(angle) * y2;
+  //	float z3 = cosf(angle) * z2 - sinf(angle) * y2;
 	float y3 = sinf(angle) * z2 + cosf(angle) * y2;
 	
-//	float z_3 = cosf(angle) * z_2 - sinf(angle) * y_2;
+  //	float z_3 = cosf(angle) * z_2 - sinf(angle) * y_2;
 	float y_3 = sinf(angle) * z_2 + cosf(angle) * y_2;
 	
 	self.merchandiseSpr.position = ccp( !wayState ? y3 / 0.9 - 200 : -1 * y3 / 0.9 + 680, y3 );

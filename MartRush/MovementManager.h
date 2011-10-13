@@ -14,8 +14,8 @@
 @class GameScene;
 
 @interface MovementManager : Manager {
-    NSArray *obstacleTypeArray;
-    NSArray *merchandiseTypeArray;
+  NSArray *obstacleTypeArray;
+  NSArray *merchandiseTypeArray;
 }
 
 - (id)initWithGameScene:(GameScene *)gameScene andGameInfo:(NSDictionary *)gameInfo;

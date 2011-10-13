@@ -34,12 +34,12 @@
     NSMutableArray *menuArray = [NSMutableArray array];
     for (NSString *stageName in stageInfoArray) {
       CCSprite *disabledSprite = [CCSprite node];
-      [disabledSprite addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png"]] z:0];
+      [disabledSprite addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
       [disabledSprite addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 50)] z:5];
-      [disabledSprite addChild:[CCSprite spriteWithFile:@""] z:10];
-      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png"]]
-                                                      selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png"]]
-                                                      disabledSprite:disabledSprite
+      [disabledSprite addChild:[CCSprite spriteWithFile:@"lock.png"] z:10];
+      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
+                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
+                                                       disabledSprite:disabledSprite
                                                                target:self selector:@selector(selectLevel:)];
       item.tag = [stageInfoArray indexOfObject:stageName];
       item.isEnabled = [[UserData userData] isAvaliableStage:stageName];
@@ -57,10 +57,10 @@
     [moneyLabel setPosition:CGPointMake(400, 280)];
     
     CCMenuItemSprite *shopButton = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@""]
-                                                     selectedSprite:[CCSprite spriteWithFile:@""]
-                                                              block:^(id sender) {
-                                                                // TODO: push shop
-                                                              }];
+                                                           selectedSprite:[CCSprite spriteWithFile:@""]
+                                                                    block:^(id sender) {
+                                                                      // TODO: push shop
+                                                                    }];
     
     [shopButton setPosition:CGPointMake(420, 300)];
     
@@ -75,9 +75,6 @@
 
 - (void)selectLevel:(id)sender
 {
-<<<<<<< HEAD
-  [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] initWithMissionName:[stageInfoArray objectAtIndex:[sender tag]]] autorelease]];
-=======
   if ([(CCMenuItem *)sender isEnabled]) {
     [UserData userData].lastPlayedStage = [stageInfoArray objectAtIndex:[sender tag]];
     [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] init] autorelease]];
@@ -96,7 +93,6 @@
 {
   [stageInfoArray dealloc];
   [super dealloc];
->>>>>>> 90875aae98f1da45960a46120cd60e654ba894c8
 }
 
 @end

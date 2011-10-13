@@ -15,11 +15,11 @@
 
 +(CCScene *)scene
 {
-    CCScene *scene = [CCScene node];
-    TitleLayer *layer = [TitleLayer node];
-    [scene addChild:layer];
-    
-    return scene;
+  CCScene *scene = [CCScene node];
+  TitleLayer *layer = [TitleLayer node];
+  [scene addChild:layer];
+  
+  return scene;
 }
 
 -(id)init
@@ -27,39 +27,39 @@
 	if( (self=[super init] )) {
 		
 		self.isTouchEnabled = YES;
-        
-//        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
-        
-        titleBgSprite = [[CCSprite alloc] initWithFile:@"mart_bg.png"];
-        titleBgSprite.anchorPoint = CGPointZero;
+    
+    //        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
+    
+    titleBgSprite = [[CCSprite alloc] initWithFile:@"mart_bg.png"];
+    titleBgSprite.anchorPoint = CGPointZero;
 		[titleBgSprite setPosition:ccp(0, 0)];
-        
-        [self addChild:titleBgSprite z:0];
-        
-        touchTheScreenSprite = [[CCSprite alloc] initWithFile:@"touchthescreen.png"];
-        touchTheScreenSprite.anchorPoint = CGPointZero;
-        [touchTheScreenSprite setPosition:ccp(0, 50)];
-        
-        [self addChild:touchTheScreenSprite z:1];
-                
+    
+    [self addChild:titleBgSprite z:0];
+    
+    touchTheScreenSprite = [[CCSprite alloc] initWithFile:@"touchthescreen.png"];
+    touchTheScreenSprite.anchorPoint = CGPointZero;
+    [touchTheScreenSprite setPosition:ccp(0, 50)];
+    
+    [self addChild:touchTheScreenSprite z:1];
+    
 	}
 	return self;
-    
+  
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-//    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[MenuLayer scene]]];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+  
+  //    [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[MenuLayer scene]]];
+  [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];
+  [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
 
 
 -(void)dealloc
 {
-    [super dealloc];
-    
-//    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+  [super dealloc];
+  
+  //    [[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
 }
 
 @end

@@ -20,14 +20,8 @@
 		<string>vegetables_tomato</string>
 	</array>
 	<key>length</key>
-<<<<<<< HEAD
-	<integer>10000</integer>
-	<key>boss</key>
-	<false/>
-=======
 	<integer>5000</integer>
 	<key>type</key>
 	<integer>0</integer>
->>>>>>> 90875aae98f1da45960a46120cd60e654ba894c8
 </dict>
 </plist>

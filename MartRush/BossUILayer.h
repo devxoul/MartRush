@@ -11,31 +11,31 @@
 #import "GameScene.h"
 
 @interface BossUILayer : CCLayer{
-
-    GameScene *gameScene;
-    
-    CCSprite *backGround;
-    
-    CCSprite *heartSprite1;
-    CCSprite *heartSprite2;
-    CCSprite *heartSprite3;
-    
-    CCSprite *gaugeBg;
-    CCSprite *gauge;
-    
-    CCSprite *infoButton;
-    CCSprite *pauseButton;
-    
-    CCSprite *startIcon;
-    CCSprite *endIcon;
-    
-    float i;
-    
-    CCMenu *pauseMenu;
-    
-    CCMenuItemImage *info;
-    CCMenuItemImage *pause;
-    
+  
+  GameScene *gameScene;
+  
+  CCSprite *backGround;
+  
+  CCSprite *heartSprite1;
+  CCSprite *heartSprite2;
+  CCSprite *heartSprite3;
+  
+  CCSprite *gaugeBg;
+  CCSprite *gauge;
+  
+  CCSprite *infoButton;
+  CCSprite *pauseButton;
+  
+  CCSprite *startIcon;
+  CCSprite *endIcon;
+  
+  float i;
+  
+  CCMenu *pauseMenu;
+  
+  CCMenuItemImage *info;
+  CCMenuItemImage *pause;
+  
 }
 
 @property (nonatomic, retain) GameScene *gameScene;

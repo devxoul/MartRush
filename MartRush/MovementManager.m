@@ -68,7 +68,7 @@
 		
 		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
 		{
-            gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
+      gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
 			[self removeObstacle:obstacle];
 			continue;
 		}
@@ -79,8 +79,8 @@
 			continue;
 		}
 	}
-    
-    gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.playerSpeed;
+  
+  gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
@@ -106,7 +106,7 @@
 
 - (void)moveMerchandise:(Merchandise *)merchandise
 {
-//	merchandise.merchandiseSpr.position.y += 
+  //	merchandise.merchandiseSpr.position.y += 
 }
 
 - (void)moveObstalce:(Obstacle *)obstacle
@@ -135,7 +135,7 @@
 - (void)setObstacleY:(Obstacle *)obstacle newY:(int)y
 {
 	obstacle.obstacleSpr.position = ccp(!obstacle.wayState ? y * 3 / 16 + 155 : -1 * y * 3 / 16 + 325, y );
-    obstacle.obstacleSpr.scale = ( -1 * y * 3 / 8 + 170 ) / obstacle.obstacleSpr.contentSize.width;
+  obstacle.obstacleSpr.scale = ( -1 * y * 3 / 8 + 170 ) / obstacle.obstacleSpr.contentSize.width;
 }
 
 @end

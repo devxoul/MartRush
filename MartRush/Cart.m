@@ -25,7 +25,7 @@
     cartSpr = [[CCSprite alloc] initWithFile:@"cart.png"];
     [cartSpr setTextureRect:CGRectMake(0, 0, 92, 68)];
     cartSpr.position = ccp(CART_LEFT_X_POSITION, CART_Y_POSITION);  
-
+    
     [_layer addChild:cartSpr z:1];
     
     return self;
@@ -42,24 +42,24 @@
 -(void)setWayState:(NSInteger)wayState
 {
   if(wayState == LEFT_WAY)
-        [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]]];           
+    [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_LEFT_X_POSITION, CART_Y_POSITION)]]];           
   else if(wayState == RIGHT_WAY)
-        [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]]];           
+    [cartSpr runAction:[CCEaseBackOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(CART_RIGHT_X_POSITION, CART_Y_POSITION)]]];           
 }
 
 -(void)cartItemAdd:(Merchandise*)_item
 {
-    [itemList addObject:_item];
+  [itemList addObject:_item];
 }
 
 -(void)update
 {    
-    if(itemList.count < 3)
-        [cartSpr setTextureRect:CGRectMake(0, 0, 92, 68)];
-    else if(itemList.count < 6)
-        [cartSpr setTextureRect:CGRectMake(92, 0, 92, 68)];
-    else 
-        [cartSpr setTextureRect:CGRectMake(184, 0, 92, 68)];
+  if(itemList.count < 3)
+    [cartSpr setTextureRect:CGRectMake(0, 0, 92, 68)];
+  else if(itemList.count < 6)
+    [cartSpr setTextureRect:CGRectMake(92, 0, 92, 68)];
+  else 
+    [cartSpr setTextureRect:CGRectMake(184, 0, 92, 68)];
 }
 
 -(void)dealloc

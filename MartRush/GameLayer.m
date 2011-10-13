@@ -29,7 +29,7 @@
     
     boss = [Boss alloc];
     [boss init:self];
-
+    
     self.isTouchEnabled = YES;
     
     return self;
@@ -41,10 +41,10 @@
 {
 	[player update];
   [boss update];
-
+  
   if (player.state == PLAYER_STATE_DEAD)
   {
-      gameScene.gameState = GAME_STATE_OVER;
+    gameScene.gameState = GAME_STATE_OVER;
   }
 }
 
@@ -68,7 +68,7 @@
   for (UITouch *touch in touches) {
     if (touch) {
       CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
-     
+      
       for (Merchandise *merchandise in gameScene.merchandises) {
         if (CGRectContainsPoint(merchandise.merchandiseSpr.boundingBox, location)) {
           [gameScene.controlManager addMerchandiseToList:merchandise withTouch:touch];

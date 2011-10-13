@@ -13,19 +13,19 @@
 
 @interface Shop : CCLayer
 {
-    CGSize winSize;
-    
-    CCSprite *shopBgSprite;
-    CCSprite *tab1BgSprite;
-    CCSprite *tab2BgSprite;
-    CCSprite *userInfoBgSprite;
-    
-    CCMenuItemImage *menu_back;
-    CCMenuItemImage *tab1;
-    CCMenuItemImage *tab2;
-    
-    CCMenu *backMenu;
-    CCMenu *tabMenu;    
+  CGSize winSize;
+  
+  CCSprite *shopBgSprite;
+  CCSprite *tab1BgSprite;
+  CCSprite *tab2BgSprite;
+  CCSprite *userInfoBgSprite;
+  
+  CCMenuItemImage *menu_back;
+  CCMenuItemImage *tab1;
+  CCMenuItemImage *tab2;
+  
+  CCMenu *backMenu;
+  CCMenu *tabMenu;    
 }
 
 +(CCScene*)scene;
