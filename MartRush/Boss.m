@@ -7,7 +7,10 @@
 //
 
 #import "Boss.h"
-
+#import "GameLayer.h"
+#import "GameScene.h"
+#import "Player.h"
+#import "MovementManager.h"
 
 @implementation Boss
 
@@ -15,9 +18,10 @@
 @synthesize bossWayState;
 @synthesize bossY;
 @synthesize bossHp;
+@synthesize bossMaxHp;
 
 
--(void)init:(GameLayer*)_layer:(int)_stage
+-(void)init:(GameLayer*)_layer
 {
     [self createBossRunAnimation:_layer];
     
@@ -30,8 +34,8 @@
     [self setBossY:BOSS_Y_POSITION];
     [self startBossRunnig];
     gameLayer = _layer;
-    bossHp = 1;                    
-    bossStage = _stage;
+    bossHp = gameLayer.gameScene.stageNumber * 15 + 15 ;  
+    bossMaxHp = bossHp;
     nTemp = 0;
     nTemp2 = 0;
     bossAttackCount = 0;
@@ -114,23 +118,23 @@
 
 -(void)createBossRunAnimation:(GameLayer*)_layer
 {    
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run.plist"];
-    bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_0.png"] retain];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run_student.plist"];
+    bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_student_0.png"] retain];
     bossSpr.position = ccp(240, BOSS_Y_POSITION);
     bossSpr.anchorPoint = ccp(0.5f, 0.0f);
     
-    CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run.png"];
+    CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run_student.png"];
     [bachNode addChild:bossSpr];
     [_layer addChild:bachNode];
     
     NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 5; i++) {
-        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%d.png", i]];
+    for (int i = 0; i < 9; i++) {
+        CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_student_%d.png", i]];
         [aniFrames addObject:frame];
     }
     
-    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.1f];
+    CCAnimation *animation = [CCAnimation animationWithFrames:aniFrames delay:0.03];
     bossRunAni = [[CCAnimate alloc] initWithAnimation:animation restoreOriginalFrame:NO];    
 }
 
@@ -169,11 +173,11 @@
     }
     
   
-
+/*
     if( arc4random() % 100 == 3 && bossState == BOSS_STATE_RUN){
         [self setBossState:BOSS_STATE_CRASH];
     }
-    
+*/  
     if(nTemp == bossMoveCount)
         [self bossAiMoving:MARTRUSH_STAGE_1];
 
@@ -247,10 +251,11 @@
     //발사하면 상태 변화
     if(isFired && bossState == BOSS_STATE_RUN){
         bossState = BOSS_STATE_ATTACK;
-
+        NSLog(@"Boss balsa!");
 #ifdef MARTRUSH_HAN_EDIT
         //Obstacle 생성..   
-        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" wayState:bossWayState z:200000000 speed:(float)bossStage];
+        [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" wayState:bossWayState z:DEFAULT_Z 
+                                                          speed:gameLayer.player.speed];
         bossState = BOSS_STATE_RUN;
 #endif
     }    

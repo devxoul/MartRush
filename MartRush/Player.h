@@ -23,7 +23,6 @@
     NSInteger hp;               //플레이어 목숨
     
     float y;              //Y
-    float speed;
     
     CCAnimate* runAni;    //플레이어 Run Animation
     CCAnimate* stateAni;  //플레이어 런을 제외한 Animation    
@@ -35,7 +34,7 @@
     CCSpriteBatchNode *bachNodeState;       
     CCSprite* stateSpr;             
     
-    CGRect boundingBox;
+    float playerRunDistance;
 }
 
 @property (readwrite) NSInteger state;
@@ -45,6 +44,7 @@
 @property (readonly) CGRect boundingBox;
 @property (readwrite) NSInteger hp;
 @property (retain) Cart* cart;
+@property (readwrite) float playerRunDistance;
 
 -(id)initWithGameLayer:(GameLayer *)_layer;
 

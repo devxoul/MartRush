@@ -13,6 +13,7 @@
 #import "GameScene.h"
 #import "GameOverScene.h"
 #import "RootViewController.h"
+#import "UserData.h"
 
 @implementation AppDelegate
 
@@ -114,6 +115,9 @@
 	
 	// Run the intro Scene
 //	[[CCDirector sharedDirector] runWithScene: [GameOverScene scene]];
+#pragma warning testCase
+  [UserData userData].lastPlayedStage = @"fruit_1";
+  
 	[[CCDirector sharedDirector] runWithScene: [[[GameScene alloc] init] autorelease]];
 }
 

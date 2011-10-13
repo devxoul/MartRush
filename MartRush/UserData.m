@@ -28,7 +28,7 @@
 {
   if (self = [super init])
   {
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] pathForResource:@"UserData" ofType:@"plist"]];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UserData.plist"]];
     
     money = [[dict objectForKey:@"money"] integerValue];
     

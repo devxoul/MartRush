@@ -24,6 +24,8 @@
 
 @property (nonatomic, retain) GameScene *gameScene;
 @property (readonly) Player *player;
+@property( readonly) Boss* boss;
+
 
 - (void)update;
 - (Cart*)getCartpointer;

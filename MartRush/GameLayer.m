@@ -14,7 +14,7 @@
 
 @implementation GameLayer
 
-@synthesize gameScene, player;
+@synthesize gameScene, player, boss;
 
 - (id)init
 {
@@ -27,7 +27,7 @@
 		player = [[Player alloc] initWithGameLayer:self];
     
     boss = [Boss alloc];
-    [boss init:self:MARTRUSH_STAGE_1];
+    [boss init:self];
 
     self.isTouchEnabled = YES;
     

@@ -50,11 +50,6 @@
     startIcon.anchorPoint = ccp(0.5f, 0.0f);
     [self addChild:startIcon];
     
-    gauge = [CCSprite spriteWithTexture:[[CCTextureCache sharedTextureCache] addImage:@"gauge.png"] rect:CGRectMake(0,0,0,30)];
-    [gauge setPosition:ccp(153,285)];
-    gauge.anchorPoint = ccp(0.0f, 0.0f);
-    
-    [self addChild:gauge];
     
     endIcon = [CCSprite spriteWithFile:@"heart.png"];
     [endIcon setPosition:ccp(371,285)];
@@ -66,6 +61,16 @@
       
     }];
     info.anchorPoint = ccp(0.5f, 0.0f);
+        gaugeBg = [[CCSprite alloc] initWithFile:@"gaugebg.png"];
+        [gaugeBg setPosition:ccp(253,294)];
+        gaugeBg.anchorPoint = ccp(0.5f, 0.0f);
+        [self addChild:gaugeBg];
+
+        gauge = [CCSprite spriteWithTexture:[[CCTextureCache sharedTextureCache] addImage:@"gauge.png"] rect:CGRectMake(0,0,0,8)];
+        [gauge setPosition:ccp(155,296)];
+        gauge.anchorPoint = ccp(0.0f, 0.0f);
+        
+        [self addChild:gauge];
 
     pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" block:^(id sender) {
       gameScene.gameState = GAME_STATE_PAUSE;
@@ -90,21 +95,6 @@
 	return nil;
 }
 
--(void)changePlayerHp:(NSInteger)hp
-{
-  for (CCSprite *heart in heartArray) {
-    if (hp > 0) {
-      heart.opacity = 255;
-    }
-    else
-    {
-      heart.opacity = 0;
-    }
-    hp--;
-  }
-
-}
-
 -(float)processedPortion
 {
   return processedPortion;
@@ -116,8 +106,30 @@
   [gauge setTextureRect:CGRectMake(0, 0, processedPortion, 30)];
 }
 
+-(void) heartUpdate{
+  CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
+  CCSprite *heart;
+  if(gameScene.gameLayer.player.hp == 2){
+    heart = [heartArray objectAtIndex:2];
+      
+  }  
+  if(gameScene.gameLayer.player.hp == 1){
+    heart = [heartArray objectAtIndex:1];
+  }  
+  if(gameScene.gameLayer.player.hp == 0){
+    heart = [heartArray objectAtIndex:0];
+    action = [CCSequence actions:action, [CCCallFunc actionWithTarget:self selector:@selector(endGame:)], nil];
+  }
+  [heart runAction:action];
+}
+
 - (void)update{
-  [self changePlayerHp:gameScene.gameLayer.player.hp];
+  [self heartUpdate];
+}
+
+-(void)endGame:(id)sender
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
 }
 
 @end
