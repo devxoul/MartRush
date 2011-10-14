@@ -114,7 +114,11 @@
   {
     [movementManager update];
     [gameLayer update];
-    gameUILayer.processedPortion +=  1.0 / [[gameInfoDictionary objectForKey:@"length"] integerValue] * 199;
+    gameUILayer.processedPortion +=  1.0 / [[gameInfoDictionary objectForKey:@"length"] integerValue] * 169;
+    
+    if (gameUILayer.processedPortion > 169) {
+      gameState = GAME_STATE_CLEAR;
+    }
     
     switch (stageType) {
       case STAGE_TYPE_NORMAL:

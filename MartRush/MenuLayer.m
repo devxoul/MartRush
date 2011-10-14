@@ -149,24 +149,24 @@
 
 -(void)moveTutorial:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[TutorialLayer scene]]];    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[TutorialLayer scene]]];    
 }
 
 -(void)moveInfinite:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];        
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];        
 }
 
 -(void)moveSetting:(id)sender{
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Setting scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Setting scene]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
     
 }
 
 -(void)moveShop:(id)sender
 {    
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Shop scene]]];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Shop scene]]];
     [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
 

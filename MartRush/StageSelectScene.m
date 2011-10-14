@@ -31,25 +31,28 @@
     [background setPosition:CGPointMake(240, 160)];
     [self addChild:background];
     
-    NSDictionary *tmp1 = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]];
-    NSLog(@"%@", tmp1);
     stageInfoArray = [[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]] allKeys] retain];
     
     NSMutableArray *menuArray = [NSMutableArray array];
     for (NSString *stageName in stageInfoArray) {
+      /*
+      CCLabelTTF *label;
       CCSprite *disabledSprite = [CCSprite node];
       [disabledSprite addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
-      //[disabledSprite addChild:[CCSprite spriteWithFile:@"lock.png"] z:10];
-      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",
-                                                                                                stageName]]
-                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",
-                                                                                                stageName]]
+      label = [CCLabelTTF labelWithString:stageName fontName:@"NanumScript.ttf" fontSize:20];
+      [label setColor:ccc3(0, 0, 0)];
+      [disabledSprite addChild:label z:10];
+      
+      CCSprite *selected = [CCSprite node];
+      label = [CCLabelTTF labelWithString:stageName fontName:@"NanumScript.ttf" fontSize:20];
+      [label setColor:ccc3(0, 0, 0)];
+      [selected addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
+      [selected addChild:label z:10];
+      */
+      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
+                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
                                                                target:self
                                                              selector:@selector(selectLevel:)];
-      /*
-      if (![[UserData userData] isAvaliableStage:stageName])
-        item.normalImage = disabledSprite;
-       */
       [menuArray addObject:item];
     }
     
