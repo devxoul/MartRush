@@ -12,7 +12,7 @@
 #define MARTRUSH_BOC_EDIT
 #define MARTRUSH_HAN_EDIT
 
-#define TUTORIAL_MAX_SCENE          6
+#define TUTORIAL_MAX_SCENE          5
 //STAGE TYPE
 #define STAGE_TYPE_NORMAL			0
 #define STAGE_TYPE_BOSS				1

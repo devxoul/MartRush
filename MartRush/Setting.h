@@ -13,11 +13,11 @@
 
 @interface Setting : CCLayer
 {
-  CCSprite *settingBgSprite;
-  
-  CCMenuItemImage *menu_back;
-  
-  CCMenu *backMenu;   
+    CCSprite *settingBgSprite;
+    CCSprite *setOff[2];
+    
+    CCMenuItemImage *menu_back;
+    CCMenu *backMenu;
 }
 
 +(CCScene*) scene;

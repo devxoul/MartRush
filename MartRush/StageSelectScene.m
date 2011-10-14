@@ -27,7 +27,7 @@
 - (id)init
 {
   if (self = [super init]) {
-    CCSprite *background = [CCSprite spriteWithFile:@"stage_bg.png"];
+    CCSprite *background = [CCSprite spriteWithFile:@"mainbg.png"];
     [background setPosition:CGPointMake(240, 160)];
     [self addChild:background];
     

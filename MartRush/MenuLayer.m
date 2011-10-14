@@ -149,12 +149,12 @@
 
 -(void)moveTutorial:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[TutorialLayer scene]]];    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[TutorialLayer scene]]];    
 }
 
 -(void)moveInfinite:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];        
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[GameScene node]]];        
 }
 
 -(void)moveSetting:(id)sender{
