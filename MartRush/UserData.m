@@ -54,6 +54,15 @@
             vibration = YES;
         }
         
+        
+        boughtStage = [dict objectForKey:@"stages"];
+        
+        if (!boughtStage) {
+            boughtStage = [NSMutableArray arrayWithObjects:@"fruit_1", nil];
+        }
+        
+        [boughtStage retain];
+        
         return self;
     }
     

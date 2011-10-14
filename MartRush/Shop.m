@@ -21,7 +21,6 @@
     winSize = [[CCDirector sharedDirector] winSize];
     
     CCLayer *layer = [CCLayer node];
-    layer = [CCLayer node];
     layer.anchorPoint = CGPointZero;
 		[layer setPosition: ccp(0,0)];
     [self addChild: layer z:-1];

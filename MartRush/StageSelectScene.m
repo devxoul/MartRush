@@ -10,6 +10,8 @@
 #import "GameScene.h"
 #import "UserData.h"
 #import "SlidingMenuGrid.h"
+#import "Shop.h"
+#import "SimpleAudioEngine.h"
 
 @implementation StageSelectScene
 
@@ -25,48 +27,62 @@
 - (id)init
 {
   if (self = [super init]) {
-    CCSprite *background = [CCSprite spriteWithFile:@""];
+    CCSprite *background = [CCSprite spriteWithFile:@"stage_bg.png"];
     [background setPosition:CGPointMake(240, 160)];
     [self addChild:background];
     
-    stageInfoArray = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]] allKeys];
+    NSDictionary *tmp1 = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]];
+    NSLog(@"%@", tmp1);
+    stageInfoArray = [[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]] allKeys] retain];
     
     NSMutableArray *menuArray = [NSMutableArray array];
     for (NSString *stageName in stageInfoArray) {
       CCSprite *disabledSprite = [CCSprite node];
       [disabledSprite addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
-      [disabledSprite addChild:[CCLayerColor layerWithColor:ccc4(0, 0, 0, 50)] z:5];
-      [disabledSprite addChild:[CCSprite spriteWithFile:@"lock.png"] z:10];
-      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
-                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
-                                                       disabledSprite:disabledSprite
-                                                               target:self selector:@selector(selectLevel:)];
-      item.tag = [stageInfoArray indexOfObject:stageName];
-      item.isEnabled = [[UserData userData] isAvaliableStage:stageName];
+      //[disabledSprite addChild:[CCSprite spriteWithFile:@"lock.png"] z:10];
+      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",
+                                                                                                stageName]]
+                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",
+                                                                                                stageName]]
+                                                               target:self
+                                                             selector:@selector(selectLevel:)];
+      /*
+      if (![[UserData userData] isAvaliableStage:stageName])
+        item.normalImage = disabledSprite;
+       */
       [menuArray addObject:item];
     }
     
-    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:4 rows:1 position:CGPointMake(240, 160) padding:CGPointMake(20, 0)];
+    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:4 rows:1 position:CGPointMake(90, 160) padding:CGPointMake(100, 0)];
     
-    [menu setPosition:CGPointMake(240, 160)];
+    [self addChild:menu z:5];
     
-    [self addChild:menu];
+    moneyLabel = [[CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", [UserData userData].money] fontName:@"NanumScript.ttf" fontSize:40] retain];
     
-    moneyLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", [UserData userData].money] fontName:@"Nanum Pen Script" fontSize:20];
+    [self addChild:moneyLabel z:20];
+    
+    [moneyLabel setColor:ccc3(0, 0, 0)];
     
     [moneyLabel setPosition:CGPointMake(400, 280)];
     
-    CCMenuItemSprite *shopButton = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@""]
-                                                           selectedSprite:[CCSprite spriteWithFile:@""]
+    CCMenu *shopButton = [CCMenu menuWithItems:[CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"shop.jpg"]
+                                                           selectedSprite:[CCSprite spriteWithFile:@"shop.jpg"]
                                                                     block:^(id sender) {
-                                                                      // TODO: push shop
-                                                                    }];
+                                                                      [[CCDirector sharedDirector] pushScene:[Shop scene]];
+                                                                    }], nil];
     
-    [shopButton setPosition:CGPointMake(420, 300)];
+    [self addChild:shopButton z:20];
     
-    [self addChild:moneyLabel z:10];
-    [self addChild:shopButton z:10];
+    [shopButton setPosition:CGPointMake(400, 300)];
     
+    CCMenu *backButton = [CCMenu menuWithItems:[CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"pause.png"] selectedSprite:[CCSprite spriteWithFile:@"pause.png"] block:^(id sender) {
+        [[CCDirector sharedDirector] popScene];
+    }], nil];
+    
+    [backButton setPosition:CGPointMake(25, 300)];
+    
+    [self addChild:backButton z:20];
+        
     return self;
   }
   
@@ -75,17 +91,22 @@
 
 - (void)selectLevel:(id)sender
 {
-  if ([(CCMenuItem *)sender isEnabled]) {
-    [UserData userData].lastPlayedStage = [stageInfoArray objectAtIndex:[sender tag]];
+  if ([[UserData userData] isAvaliableStage:[stageInfoArray objectAtIndex:[sender tag] - 1]]) {
+    [UserData userData].lastPlayedStage = [stageInfoArray objectAtIndex:[sender tag] - 1];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
     [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] init] autorelease]];
   }
   else
   {
     // TODO: buyStage?
     
-    // Success
-    [moneyLabel setString:[NSString stringWithFormat:@"%d", [UserData userData].money]];
-    [(CCMenuItem *)sender setIsEnabled:YES];
+    if ([[UserData userData] buyStage:[stageInfoArray objectAtIndex:[sender tag] - 1]]) {
+      // Success
+      [[SimpleAudioEngine sharedEngine] playEffect:@"unlock.mp3"];
+      [moneyLabel setString:[NSString stringWithFormat:@"%d", [UserData userData].money]];
+      [(CCMenuItem *)sender setIsEnabled:YES];
+    }
+    
   }
 }
 

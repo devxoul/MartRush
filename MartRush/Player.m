@@ -30,7 +30,7 @@
     gamelayer = _layer;
     [self createPlayerRunAnimation];
     
-    int _z = spr.zOrder;
+    //int _z = spr.zOrder;
     state = PLAYER_STATE_RUN;
     wayState = LEFT_WAY;
     y = PLAYER_Y_POSITION;

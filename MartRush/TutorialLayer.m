@@ -77,7 +77,7 @@
 
 -(void)clickBack:(id)back
 {
-  [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[MenuLayer scene]]];    
+  [[CCDirector sharedDirector] popScene];    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
