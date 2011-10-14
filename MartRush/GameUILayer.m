@@ -47,12 +47,12 @@
       [self addChild:heart];
     }
     
-    startIcon = [CCSprite spriteWithFile:@"heart.png"];
+    startIcon = [CCSprite spriteWithFile:@"start.png"];
     [startIcon setPosition:ccp(135,285)];
     startIcon.anchorPoint = ccp(0.5f, 0.0f);
     [self addChild:startIcon];
     
-    endIcon = [CCSprite spriteWithFile:@"heart.png"];
+    endIcon = [CCSprite spriteWithFile:@"goal.png"];
     [endIcon setPosition:ccp(371,285)];
     endIcon.anchorPoint = ccp(0.5f, 0.0f);
     [self addChild:endIcon];
