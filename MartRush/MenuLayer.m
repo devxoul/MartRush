@@ -156,7 +156,7 @@
 
 -(void)moveStage:(id)sender
 {
-  [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[StageSelectScene scene]]];    
+  [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[StageSelectScene scene]]];    
 }
 
 -(void)moveTutorial:(id)sender

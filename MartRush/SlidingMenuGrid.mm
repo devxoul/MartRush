@@ -46,7 +46,7 @@
 		padding = pad;
 		iCurrentPage = 0;
 		bMoving = false;
-		bSwipeOnlyOnMenu = false;
+		bSwipeOnlyOnMenu = true;
 		menuOrigin = pos;
 		fMoveDeadZone = 10;
 		bVerticalPaging = vertical;
@@ -221,7 +221,7 @@
 // Run the action necessary to slide the menu grid to the current page.
 - (void) moveToCurrentPage
 {
-	CGSize winSize = [[CCDirector sharedDirector] winSize];
+	//CGSize winSize = [[CCDirector sharedDirector] winSize];
 	
 	// Perform the action
 	id action = [CCMoveTo actionWithDuration:(fAnimSpeed*0.5) position:[self GetPositionOfCurrentPage]];

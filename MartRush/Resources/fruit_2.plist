@@ -5,8 +5,10 @@
 	<key>mission</key>
 	<dict>
 		<key>fruit_apple</key>
-		<integer>10</integer>
+		<integer>5</integer>
 		<key>fruit_banana</key>
+		<integer>10</integer>
+		<key>fruit_cherry</key>
 		<integer>10</integer>
 	</dict>
 	<key>merchandises</key>
@@ -19,15 +21,16 @@
 	</array>
 	<key>obstacles</key>
 	<array>
-		<string>obstacle_mom</string>
+		<string>zzukkume</string>
+		<string>jammanbo</string>
 	</array>
 	<key>length</key>
-	<integer>5500</integer>
+	<integer>6000</integer>
 	<key>type</key>
 	<integer>0</integer>
 	<key>speed</key>
-	<integer>12</integer>
+	<integer>14</integer>
 	<key>rate</key>
-	<integer>55</integer>
+	<integer>60</integer>
 </dict>
 </plist>

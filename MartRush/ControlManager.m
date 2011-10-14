@@ -70,7 +70,7 @@
   
   CCSprite *targetSprite = (CCSprite *)merchandise.merchandiseSpr;
   
-  CCAction *action;
+  CCAction *action = 0;
   
   CGPoint location = [[CCDirector sharedDirector] convertToGL:[touch locationInView: [touch view]]];
   
@@ -102,8 +102,8 @@
       [node removeFromParentAndCleanup:YES];
     }], nil];
   }
-  
-  [targetSprite runAction:action];
+  if (action)
+    [targetSprite runAction:action];
   
   [managedList removeObject:merchandise];
   [touchList removeObject:touch];

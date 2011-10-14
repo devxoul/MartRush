@@ -21,7 +21,7 @@
 {
 	if( self = [super init] )
 	{
-		CCSprite *bg = [CCSprite spriteWithFile:@"game_bg.jpg"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"game_bg.png"];
 		bg.anchorPoint = ccp( 0, 0 );
 		[self addChild:bg];
 		

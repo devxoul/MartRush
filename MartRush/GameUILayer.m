@@ -127,7 +127,6 @@
 }
 
 - (void)update{
-  [self heartUpdate];
 }
 
 -(void)endGame:(id)sender
