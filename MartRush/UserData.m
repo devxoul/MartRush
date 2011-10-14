@@ -44,15 +44,8 @@
         
         [boughtStage retain];
         
-        backSound = [[dict objectForKey:@"sound"] boolValue];
-        if (!backSound) {
-            backSound = YES;
-        }
-        
+        backSound = [[dict objectForKey:@"sound"] boolValue];        
         vibration = [[dict objectForKey:@"vibration"] boolValue];
-        if (!vibration) {
-            vibration = YES;
-        }
         
         
         boughtStage = [dict objectForKey:@"stages"];
@@ -73,9 +66,11 @@
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    [dict setObject:[NSNumber numberWithInteger:money] forKey:@"money"];    
+    [dict setObject:[NSNumber numberWithInteger:money] forKey:@"money"];
+    [dict setObject:[NSNumber numberWithBool:backSound] forKey:@"sound"];
+    [dict setObject:[NSNumber numberWithBool:vibration] forKey:@"vibration"];
     
-    return [dict writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] pathForResource:@"UserData" ofType:@"plist"] atomically:YES];
+    return [dict writeToFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UserData.plist"] atomically:YES];
 }
 
 - (BOOL)buyStage:(NSString *)stage
