@@ -23,4 +23,8 @@
 +(CCScene*) scene;
 -(void)back:(id)sender;
 
+-(void)setSound:(id)sender;
+-(void)setVibration:(id)sender;
+-(void)setReset:(id)sender;
 @end
+

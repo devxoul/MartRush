@@ -12,10 +12,15 @@
 @class MenuLayer;
 
 @interface TitleLayer : CCLayer {
-  
-  CCSprite *titleBgSprite;
-  CCSprite *touchTheScreenSprite;
-  
+    
+    CCSprite *titleBgSprite;        // 연한 백
+    CCSprite *titleBgSprite2;       // 진한 백
+    CCSprite *titleBack;            // 마트 안에 백
+
+    CCSprite *titleLogo;            // 마트 러쉬 로고
+    CCSprite *titleLine[2];           // 자동문
+    
+    CCSprite *touchTheScreenSprite;     // 터치더 스크린 없어져요
 }
 
 + (CCScene *)scene;

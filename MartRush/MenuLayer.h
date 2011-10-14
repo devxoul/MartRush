@@ -21,16 +21,7 @@
 {
   CCSprite *menuBgSprite;
   
-  CCMenuItemImage* mainmenu[4];
-  CCLabelTTF* mainmenuLb[4];
-  
-  CCSprite *arrowRSprite;
-  CCSprite *arrowRPressedSprite;
-  CCSprite *arrowLSprite;
-  CCSprite *arrowLPressedSprite;
-  
-  BOOL isOpenArrowPressed;
-  BOOL isCloseArrowPressed;
+  CCMenuItemLabel * mainmenu[4];
   
   CCMenuItemImage *arrow;
   CCMenuItemImage *menu_facebook;
@@ -55,10 +46,5 @@
 -(void)moveFacebook:(id)sender;
 -(void)moveRank:(id)sender;
 -(void)moveInfo:(id)sender;
-
--(void)onArrowTouch:(id)sender;
--(void)openArrow;
--(void)closeArrow;
-
 
 @end
