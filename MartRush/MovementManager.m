@@ -16,6 +16,7 @@
 
 // private methods
 @interface MovementManager(Private)
+- (BOOL)isMerchandiseCreatable;
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState;
 
 - (void)moveMerchandise:(Merchandise *)merchandise;
@@ -41,16 +42,14 @@
 
 - (void)update
 {
-	if( [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MIN_GAP )
+	if( [self isMerchandiseCreatable] )
 	{
 		[self createMerchandise:[merchandiseTypeArray objectAtIndex:arc4random()%merchandiseTypeArray.count] wayState:arc4random() % 2];
 	}
-	if(gameScene_.stageType == STAGE_TYPE_NORMAL){
-        if( [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP )
-        {
-            if( arc4random() % 100 <= rate )
-                [self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
-        }
+	
+	if(gameScene_.stageType == STAGE_TYPE_NORMAL && [self isObstacleCreatable] ){
+		if( arc4random() % 100 <= rate )
+			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
     }
 	
 	NSMutableIndexSet *willBeRemovedMerchandisesIndices = [[NSMutableIndexSet alloc] init];
@@ -107,6 +106,16 @@
 	gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
 }
 
+- (BOOL)isMerchandiseCreatable
+{
+	return [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MIN_GAP;
+}
+
+- (BOOL)isObstacleCreatable
+{
+	return [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP;
+}
+
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
 {
 	Merchandise *merchandise = [[Merchandise alloc] initWithName:image andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andWay:wayState andPrice:100 andZ:3500];
@@ -126,16 +135,6 @@
 	int zOrder = [gameScene_.obstacles count] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
 	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
 	[gameScene_.obstacles addObject:[obstacle autorelease]];
-}
-
-- (void)moveMerchandise:(Merchandise *)merchandise
-{
-    //	merchandise.merchandiseSpr.position.y += 
-}
-
-- (void)moveObstalce:(Obstacle *)obstacle
-{
-	
 }
 
 - (void)removeMerchandise:(Merchandise *)merchandise
