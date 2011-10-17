@@ -32,6 +32,12 @@
         [background setPosition:CGPointMake(240, 160)];
         [self addChild:background];
         
+//        CCSprite* bigAlert = [CCSprite spriteWithFile:@"big_alert.png"];
+//        [bigAlert setAnchorPoint:ccp(0.5, 0.5)];
+//        [bigAlert setPosition:CGPointMake(240, 160)];
+//
+//        [self addChild:bigAlert];
+        
         stageInfoArray = [UserData userData].stageInfo;
         stageKeys = [[stageInfoArray keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [[(NSDictionary *)obj1 objectForKey:@"level"] integerValue] > [[(NSDictionary *)obj2 objectForKey:@"level"] integerValue];
@@ -40,26 +46,13 @@
         NSMutableArray *menuArray = [NSMutableArray array];
         for (NSString *key in stageKeys) {
             NSDictionary *stageInfo = [stageInfoArray objectForKey:key];
-            /*
-             CCLabelTTF *label;
-             CCSprite *disabledSprite = [CCSprite node];
-             [disabledSprite addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
-             label = [CCLabelTTF labelWithString:stageName fontName:@"NanumScript.ttf" fontSize:20];
-             [label setColor:ccc3(0, 0, 0)];
-             [disabledSprite addChild:label z:10];
-             
-             CCSprite *selected = [CCSprite node];
-             label = [CCLabelTTF labelWithString:stageName fontName:@"NanumScript.ttf" fontSize:20];
-             [label setColor:ccc3(0, 0, 0)];
-             [selected addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
-             [selected addChild:label z:10];
-             */
             CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[stageInfo objectForKey:@"icon"]]
                                                              selectedSprite:[CCSprite spriteWithFile:[stageInfo objectForKey:@"icon"]]
                                                                      target:self
                                                                    selector:@selector(selectLevel:)];
             [menuArray addObject:item];
         }
+
         
         SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:5 rows:1 position:CGPointMake(90, 160) padding:CGPointMake(80, 0)];
         
@@ -85,7 +78,6 @@
         
         CCMenu *backButton = [CCMenu menuWithItems:
                               [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"back_pink.png"] selectedSprite:[CCSprite spriteWithFile:@"back_blue.png"] block:^(id sender) {
-//            [[CCDirector sharedDirector] popScene];
             [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInL transitionWithDuration:0.3 scene:[MenuLayer scene]]];
         }], nil];
         
@@ -126,8 +118,13 @@
 
 -(void)dealloc
 {
-    [stageInfoArray dealloc];
-    [super dealloc];
+  [stageInfoArray release];
+  stageInfoArray = nil;
+  
+  [stageKeys release];
+  stageKeys = nil;
+  
+  [super dealloc];
 }
 
 @end

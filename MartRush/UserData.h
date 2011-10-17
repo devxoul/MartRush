@@ -23,7 +23,6 @@
     NSDictionary *cartInfo;
     NSMutableArray *boughtCart;    
     NSNumber *lastPlayedStage;
-    
 }
 
 @property (readwrite) NSUInteger money;

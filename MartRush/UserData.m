@@ -170,6 +170,7 @@
     return NO;
 }
 
+
 - (BOOL)isAvaliableCart:(NSNumber *)cart
 {
     return ([boughtCart indexOfObjectIdenticalTo:cart] != NSNotFound);

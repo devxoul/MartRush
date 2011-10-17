@@ -147,4 +147,14 @@
   }
 }
 
+-(void)dealloc
+{
+  [cartInfoArray release];
+  cartInfoArray = nil;
+  
+  [cartKeys release];
+  cartKeys = nil;
+  [super dealloc];
+}
+
 @end

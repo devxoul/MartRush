@@ -51,7 +51,7 @@
 		fMoveDeadZone = 10;
 		bVerticalPaging = vertical;
 		fAnimSpeed = 1;
-    iPageCount = 1;
+        iPageCount = 1;
 
 		(bVerticalPaging) ? [self buildGridVertical:cols rows:rows] : [self buildGrid:cols rows:rows];
 		self.position = menuOrigin;
