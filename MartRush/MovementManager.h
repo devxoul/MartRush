@@ -16,6 +16,7 @@
 @interface MovementManager : Manager {
   NSArray *obstacleTypeArray;
   NSArray *merchandiseTypeArray;
+	NSInteger rate;
 }
 
 - (id)initWithGameScene:(GameScene *)gameScene andGameInfo:(NSDictionary *)gameInfo;

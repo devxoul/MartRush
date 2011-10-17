@@ -20,9 +20,10 @@
 	<key>obstacles</key>
 	<array>
 		<string>obstacle_mom</string>
+		<string>obstacle_dog</string>
 	</array>
 	<key>length</key>
-	<integer>5500</integer>
+	<integer>1000</integer>
 	<key>type</key>
 	<integer>0</integer>
 	<key>speed</key>

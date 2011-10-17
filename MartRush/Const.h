@@ -26,10 +26,13 @@
 #define MARTRUSH_STAGE_5            4
 
 //GAME STATE 
-#define GAME_STATE_START            0
-#define GAME_STATE_PAUSE            1
-#define GAME_STATE_OVER             2
-#define GAME_STATE_CLEAR            3
+#define GAME_STATE_MISSION			0
+#define GAME_STATE_MISSION_ALERT	1
+#define GAME_STATE_COUNT			2
+#define GAME_STATE_START            3
+#define GAME_STATE_PAUSE            4
+#define GAME_STATE_OVER             5
+#define GAME_STATE_CLEAR            6
 
 // PLAYER STATE
 #define PLAYER_STATE_RUN            0

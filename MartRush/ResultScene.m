@@ -23,98 +23,117 @@
 
 +(CCScene *)sceneWithMerchandises:(NSArray *)merchandises andMission:(NSDictionary *)mission
 {
-  CCScene *scene = [CCScene node];
-  
-  CCLayer *layer = [[[ResultScene alloc] initWithMerchandises:merchandises andMission:mission] autorelease];
-  
-  [scene addChild:layer];
-  
-  return scene;
+	CCScene *scene = [CCScene node];
+	
+	CCLayer *layer = [[[ResultScene alloc] initWithMerchandises:merchandises andMission:mission] autorelease];
+	
+	[scene addChild:layer];
+	
+	return scene;
 }
 
 - (CCLayer *)initWithMerchandises:(NSArray *)merchandises andMission:(NSDictionary *)mission
 {
-  if (self = [super init])
-  {
-    numberOfCorrect = numberOfMiscorrect = compensation = 0;
-    
-    gottenMerchandiseArray = [[NSMutableArray alloc] initWithArray:merchandises];
-    missionDictionary = [[NSMutableDictionary alloc] initWithDictionary:mission];
-    
-    CCSprite *background = [CCSprite spriteWithFile:@""];
-    
-    [background setPosition:CGPointMake(240, 160)];
-    [self addChild:background z:0];
-    
-    CCSprite *reciept = [CCSprite spriteWithFile:@""];
-    
-    [reciept setPosition:CGPointMake(270, 20)];
-    [self addChild:reciept z:10];
-    
-    numberOfCorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Nanum Pen Script" fontSize:24];
-    numberOfMiscorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Nanum Pen Script" fontSize:24];
-    compensationLabel = [CCLabelTTF labelWithString:@"0" fontName:@"Nanum Pen Script" fontSize:24];
-    
-    [numberOfCorrectLabel setPosition:CGPointMake(0, 0)];
-    [numberOfMiscorrectLabel setPosition:CGPointMake(0, 0)];
-    [compensationLabel setPosition:CGPointMake(0, 0)];
-    
-    [self addChild:numberOfCorrectLabel z:15];
-    [self addChild:numberOfMiscorrectLabel z:15];
-    [self addChild:compensationLabel z:15];
-    
-    [self schedule:@selector(update) interval:0.05];
-    
-    return self;
-  }
-  
-  return nil;
+	if (self = [super init])
+	{
+		self.isTouchEnabled = YES;
+		numberOfCorrect = numberOfMiscorrect = compensation = 0;
+		
+		gottenMerchandiseArray = [[NSMutableArray alloc] initWithArray:merchandises];
+		missionDictionary = [[NSMutableDictionary alloc] initWithDictionary:mission];
+		
+		CCSprite *background = [CCSprite spriteWithFile:@"stage_bg.png"];
+		
+		[background setPosition:CGPointMake(240, 160)];
+		[self addChild:background z:0];
+		/*
+		CCSprite *reciept = [CCSprite spriteWithFile:@""];
+		
+		[reciept setPosition:CGPointMake(270, 20)];
+		[self addChild:reciept z:10];
+		*/
+		numberOfCorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"NanumScript.ttf" fontSize:50];
+		numberOfMiscorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"NanumScript.ttf" fontSize:50];
+		compensationLabel = [CCLabelTTF labelWithString:@"0" fontName:@"NanumScript.ttf" fontSize:50];
+		
+		[numberOfCorrectLabel setColor:ccc3(0, 0, 0)];
+		[numberOfMiscorrectLabel setColor:ccc3(0, 0, 0)];
+		[compensationLabel setColor:ccc3(0, 0, 0)];
+		[numberOfCorrectLabel setPosition:CGPointMake(300, 250)];
+		[numberOfMiscorrectLabel setPosition:CGPointMake(300, 200)];
+		[compensationLabel setPosition:CGPointMake(300, 150)];
+		
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"성공" fontName:@"NanumScript.ttf" fontSize:50];
+		[label setColor:ccc3(0, 0, 0)];
+		[label setPosition:CGPointMake(200, 250)];
+		[self addChild:label z:15];
+		
+		label = [CCLabelTTF labelWithString:@"실패" fontName:@"NanumScript.ttf" fontSize:50];
+		[label setColor:ccc3(0, 0, 0)];
+		[label setPosition:CGPointMake(200, 200)];
+		[self addChild:label z:15];
+		
+		label = [CCLabelTTF labelWithString:@"보상" fontName:@"NanumScript.ttf" fontSize:50];
+		[label setColor:ccc3(0, 0, 0)];
+		[label setPosition:CGPointMake(200, 150)];
+		[self addChild:label z:15];
+		
+		[self addChild:numberOfCorrectLabel z:15];
+		[self addChild:numberOfMiscorrectLabel z:15];
+		[self addChild:compensationLabel z:15];
+		
+		[self schedule:@selector(update:) interval:0.05];
+		
+		return self;
+	}
+	
+	return nil;
 }
 
 - (void)update:(ccTime)dt
 {
-  if (gottenMerchandiseArray.count > 0) {
-    NSString *name = [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] name];
-    
-    if ([missionDictionary objectForKey:name] > 0) {
-      [missionDictionary setObject:[NSNumber numberWithInt:([[missionDictionary objectForKey:name] intValue] - 1)] forKey:name];
-      numberOfCorrect++;
-      compensation += [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price];
-      [numberOfCorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfCorrect]];
-      [compensationLabel setString:[NSString stringWithFormat:@"%d", compensation]];
-    }
-    else
-    {
-      numberOfMiscorrect++;
-      [numberOfMiscorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfMiscorrect]];
-    }
-    
-    [gottenMerchandiseArray removeObjectAtIndex:0];
-  }
-  else
-    [self unscheduleAllSelectors];
+	if (gottenMerchandiseArray.count > 0) {
+		NSString *name = [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] name];
+		
+		if ([missionDictionary objectForKey:name] > 0) {
+			[missionDictionary setObject:[NSNumber numberWithInt:([[missionDictionary objectForKey:name] intValue] - 1)] forKey:name];
+			numberOfCorrect++;
+			compensation += [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price];
+			[numberOfCorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfCorrect]];
+			[compensationLabel setString:[NSString stringWithFormat:@"%d", compensation]];
+		}
+		else
+		{
+			numberOfMiscorrect++;
+			[numberOfMiscorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfMiscorrect]];
+		}
+		
+		[gottenMerchandiseArray removeObjectAtIndex:0];
+	}
+	else
+		[self unscheduleAllSelectors];
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  if ([gottenMerchandiseArray count] > 0) {
-    [self unscheduleAllSelectors];
-    [self schedule:@selector(update:) interval:0.01];
-  }
-  else
-  {
-    // Goto Stage Select Menu
-    [UserData userData].money += compensation;
-    [[UserData userData] saveToFile];
-    [[CCDirector sharedDirector] popScene];
-  }
+	if ([gottenMerchandiseArray count] > 0) {
+		[self unscheduleAllSelectors];
+		[self schedule:@selector(update:) interval:0.01];
+	}
+	else
+	{
+		// Goto Stage Select Menu
+		[UserData userData].money += compensation;
+		[[UserData userData] saveToFile];
+		[[CCDirector sharedDirector] popScene];
+	}
 }
 
 -(void)dealloc
 {
-  [gottenMerchandiseArray dealloc];
-  [missionDictionary dealloc];
-  [super dealloc];
+	[gottenMerchandiseArray dealloc];
+	[missionDictionary dealloc];
+	[super dealloc];
 }
 
 @end

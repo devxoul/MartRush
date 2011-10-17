@@ -27,8 +27,11 @@
 		
 		player = [[Player alloc] initWithGameLayer:self];
     
+		if( gameScene.stageType == STAGE_TYPE_BOSS )
+		{
     boss = [Boss alloc];
     [boss init:self];
+		}
     
     self.isTouchEnabled = YES;
     
@@ -40,6 +43,9 @@
 - (void)update
 {
 	[player update];
+	
+	
+	if( gameScene.stageType == STAGE_TYPE_BOSS )
   [boss update];
   
   if (player.state == PLAYER_STATE_DEAD)

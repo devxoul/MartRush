@@ -38,10 +38,9 @@
 {
   if( self = [super init] )
 	{		
-    [self init:1 :1];
     merchandises = [[NSMutableArray alloc] init];
     obstacles = [[NSMutableArray alloc] init];
-    gameState = GAME_STATE_START;
+    gameState = GAME_STATE_MISSION;
     
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
     
@@ -49,6 +48,7 @@
     
     stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
     
+	[self init:STAGE_TYPE_NORMAL :0];
     [self initLayers];
     [self initManagers];
     
@@ -67,7 +67,7 @@
   //[self initArrays];
   [self initManagers];
   
-  gameState = GAME_STATE_START;
+	gameState = GAME_STATE_MISSION;
   
   [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Game BGM.mp3"];
 }
@@ -109,8 +109,23 @@
 - (void)draw
 {
 	[super draw];
-  
-  if (gameState == GAME_STATE_START) 
+	
+	if( gameState == GAME_STATE_MISSION )
+	{
+		NSString *msg = @"";
+		NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
+		for( NSString *key in missions )
+		{
+			msg = [msg stringByAppendingFormat:@"%@ : %d\n", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
+		}
+		
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Mission" message:msg delegate:self cancelButtonTitle:@"Start" otherButtonTitles:nil] autorelease];
+		[alert show];
+		
+		gameState = GAME_STATE_MISSION_ALERT;
+	}
+	
+  else if (gameState == GAME_STATE_START) 
   {
     [movementManager update];
     [gameLayer update];
@@ -166,6 +181,14 @@
     [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.cart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
   }
   
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if( gameState == GAME_STATE_MISSION_ALERT )
+	{
+		gameState = GAME_STATE_START;
+	}
 }
 
 -(void)dealloc

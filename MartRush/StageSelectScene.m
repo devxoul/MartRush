@@ -102,12 +102,10 @@
   else
   {
     // TODO: buyStage?
-    
     if ([[UserData userData] buyStage:[stageInfoArray objectAtIndex:[sender tag] - 1]]) {
       // Success
       [[SimpleAudioEngine sharedEngine] playEffect:@"unlock.mp3"];
       [moneyLabel setString:[NSString stringWithFormat:@"%d", [UserData userData].money]];
-      [(CCMenuItem *)sender setIsEnabled:YES];
     }
     
   }
