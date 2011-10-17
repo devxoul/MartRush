@@ -51,16 +51,21 @@
 			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
 	}
 	
+	NSMutableIndexSet *willBeRemovedMerchandisesIndices = [[NSMutableIndexSet alloc] init];
+	NSMutableIndexSet *willBeRemovedObstaclesIndices = [[NSMutableIndexSet alloc] init];
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		merchandise.z -= 10;//gameScene_.gameLayer.player.playerSpeed;
+		merchandise.z -= 10;
 		
 		if( merchandise.z < 0 )
 		{
-			[self removeMerchandise:merchandise];
+			[willBeRemovedMerchandisesIndices addIndex:[gameScene_.merchandises indexOfObject:merchandise]];
+      [merchandise.merchandiseSpr removeFromParentAndCleanup:YES];
 		}
 	}
+	
+	[gameScene_.merchandises removeObjectsAtIndexes:willBeRemovedMerchandisesIndices];
 	
 	for( Obstacle *obstacle in gameScene_.obstacles )
 	{
@@ -68,19 +73,28 @@
 		
 		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
 		{
-      gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
-			[self removeObstacle:obstacle];
+			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
+      [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
+      [willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
 			continue;
 		}
 		
 		if( obstacle.z < 0 )
 		{
-			[self removeObstacle:obstacle];
-			continue;
-		}
+      [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
+      
+			[willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
+    }
 	}
-  
-  gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
+	
+	[gameScene_.obstacles removeObjectsAtIndexes:willBeRemovedObstaclesIndices];
+	
+	willBeRemovedMerchandisesIndices = nil;
+	willBeRemovedObstaclesIndices = nil;
+	[willBeRemovedMerchandisesIndices release];
+	[willBeRemovedObstaclesIndices release];
+	
+	gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState

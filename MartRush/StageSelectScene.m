@@ -31,7 +31,7 @@
     [background setPosition:CGPointMake(240, 160)];
     [self addChild:background];
     
-    stageInfoArray = [UserData userData].stageInfo;
+    stageInfoArray = [[UserData userData].stageInfo retain];
     stageKeys = [[stageInfoArray keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
       return [[(NSDictionary *)obj1 objectForKey:@"level"] integerValue] > [[(NSDictionary *)obj2 objectForKey:@"level"] integerValue];
     }] retain];
@@ -39,20 +39,6 @@
     NSMutableArray *menuArray = [NSMutableArray array];
     for (NSString *key in stageKeys) {
       NSDictionary *stageInfo = [stageInfoArray objectForKey:key];
-      /*
-      CCLabelTTF *label;
-      CCSprite *disabledSprite = [CCSprite node];
-      [disabledSprite addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
-      label = [CCLabelTTF labelWithString:stageName fontName:@"NanumScript.ttf" fontSize:20];
-      [label setColor:ccc3(0, 0, 0)];
-      [disabledSprite addChild:label z:10];
-      
-      CCSprite *selected = [CCSprite node];
-      label = [CCLabelTTF labelWithString:stageName fontName:@"NanumScript.ttf" fontSize:20];
-      [label setColor:ccc3(0, 0, 0)];
-      [selected addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
-      [selected addChild:label z:10];
-      */
       CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[stageInfo objectForKey:@"icon"]]
                                                        selectedSprite:[CCSprite spriteWithFile:[stageInfo objectForKey:@"icon"]]
                                                                target:self
@@ -117,7 +103,12 @@
 
 -(void)dealloc
 {
-  [stageInfoArray dealloc];
+  [stageInfoArray release];
+  stageInfoArray = nil;
+  
+  [stageKeys release];
+  stageKeys = nil;
+  
   [super dealloc];
 }
 
