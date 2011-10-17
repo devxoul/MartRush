@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "MenuLayer.h"
+#import "SimpleAudioEngine.h"
 
 @class MenuLayer;
+@class UserData;
 
 @interface InfoLayer : CCLayer
 {

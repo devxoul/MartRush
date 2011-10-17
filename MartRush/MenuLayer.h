@@ -16,22 +16,26 @@
 @class Setting;
 @class TutorialLayer;
 @class InfoLayer;
+@class TitleLayer;
+@class UserData;
 
 @interface MenuLayer : CCLayer
 {
-  CCSprite *menuBgSprite;
-  
-  CCMenuItemLabel * mainmenu[4];
-  
-  CCMenuItemImage *arrow;
-  CCMenuItemImage *menu_facebook;
-  CCMenuItemImage *menu_ranking;
-  CCMenuItemImage *menu_info;
-  CCMenuItemImage *menu_setting;
-  
-  CCMenu *settingMenu;
-  CCMenu *arrowMenu;
-  CCMenu *menu_more;    
+    CCSprite *menuBgSprite;
+    
+    CCMenuItemLabel * mainmenu[4];
+    
+    CCMenuItemImage *arrow;
+    CCMenuItemImage *menu_facebook;
+    CCMenuItemImage *menu_ranking;
+    CCMenuItemImage *menu_info;
+    
+    CCMenuItemImage *menu_setting;
+    CCMenuItemImage *menu_back;
+    
+    CCMenu *settingMenu;
+    CCMenu *arrowMenu;
+    CCMenu *menu_more;    
 }
 
 +(CCScene*) scene;
@@ -42,6 +46,7 @@
 -(void)moveShop:(id)sender;
 
 -(void)moveSetting:(id)sender;
+-(void)moveTitle:(id)sender;
 
 -(void)moveFacebook:(id)sender;
 -(void)moveRank:(id)sender;

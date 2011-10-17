@@ -81,16 +81,15 @@
     
     touchTheScreenSprite.visible = NO;
     
-    [titleLogo runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(titleLogo.position.x , 350)], 
+    [titleLogo runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(titleLogo.position.x , 350)], 
                           [CCCallBlockN actionWithBlock:^(CCNode *node) {
         
-        [titleLine[0] runAction:[CCMoveTo actionWithDuration:1.5 position:ccp(360, titleLine[0].position.y)]];
-        [titleLine[1] runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1.5 position:ccp(120, titleLine[0].position.y)], 
+        [titleLine[0] runAction:[CCMoveTo actionWithDuration:1 position:ccp(360, titleLine[0].position.y)]];
+        [titleLine[1] runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(120, titleLine[0].position.y)], 
                                  [CCCallBlockN actionWithBlock:^(CCNode *node) {
             
             titleLogo.visible = NO;
-            
-            [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.5 scene:[MenuLayer scene]]];
+            [[CCDirector sharedDirector] pushScene:[CCTransitionPageTurn transitionWithDuration:0.5 scene:[MenuLayer scene]]];
             
             if ([UserData userData].backSound)
                 [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];        

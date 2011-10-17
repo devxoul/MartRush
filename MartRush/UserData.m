@@ -92,6 +92,12 @@
     return ([boughtStage indexOfObject:stage] != NSNotFound);
 }
 
+- (void)userDateReset
+{
+    money = 0;
+    [boughtStage release];
+}
+
 - (void)dealloc
 {
     [boughtStage dealloc];

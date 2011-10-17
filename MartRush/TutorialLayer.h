@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Const.h"
+#import "SimpleAudioEngine.h"
 
-
+@class UserData;
 @interface TutorialLayer : CCLayer
 {
   CCSprite*  sceneSpr[TUTORIAL_MAX_SCENE];

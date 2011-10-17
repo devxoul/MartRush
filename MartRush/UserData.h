@@ -10,10 +10,10 @@
 
 @interface UserData : NSObject
 {
+    @public
     // game state 
     NSUInteger money;
     NSMutableArray *boughtStage;
-    NSString *lastPlayedStage;
     
     // user setting value
     BOOL backSound;         // back ground sound
@@ -32,5 +32,7 @@
 
 - (BOOL)buyStage:(NSString *)stage;
 - (BOOL)isAvaliableStage:(NSString *)stage;
+
+- (void)userDateReset;
 
 @end

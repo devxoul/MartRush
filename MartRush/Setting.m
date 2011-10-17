@@ -46,6 +46,7 @@
                        
         CCMenuItemImage *set_vibration = [CCMenuItemImage itemFromNormalImage:@"vibration.png" selectedImage:@"vibration.png" target:self selector:@selector(setVibration:)];
         set_vibration.anchorPoint = CGPointZero;
+        
         CCMenuItemImage *set_reset = [CCMenuItemImage itemFromNormalImage:@"reset.png" selectedImage:@"reset.png" target:self selector:@selector(setReset:)];
         set_reset.anchorPoint = CGPointZero;
         
@@ -74,9 +75,10 @@
         
         backMenu = [CCMenu menuWithItems:menu_back, nil];
         backMenu.anchorPoint = CGPointZero;
-        [backMenu setPosition:ccp(10, 260)];
         
+        [backMenu setPosition:ccp(0, 270)];
         [self addChild:backMenu];        
+        
     }
     
     return self;
@@ -107,10 +109,13 @@
         
         [[UserData userData] saveToFile];    
     }
+    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 -(void)setVibration:(id)sender
-{
+{    
     if ([UserData userData].vibration == YES)
     {
         [UserData userData].vibration = NO;
@@ -126,17 +131,23 @@
         [[UserData userData] saveToFile];    
     }
     
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 -(void)setReset:(id)sender
 {
+//    [[UserData userData] userDateReset];
     
-}
+    
+} 
 
 - (void)back:(id)sender {
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[MenuLayer scene]]];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInL transitionWithDuration:0.3 scene:[MenuLayer scene]]];
+
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 @end

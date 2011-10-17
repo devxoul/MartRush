@@ -14,6 +14,8 @@
 #import "GameScene.h"
 #import "TutorialLayer.h"
 #import "InfoLayer.h"
+#import "TitleLayer.h"
+#import "UserData.h"
 
 @implementation MenuLayer
 
@@ -39,7 +41,7 @@
         
         // 무한모드 
         mainmenu[2] = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Infinite" fontName:@"sheepsansbold.ttf" fontSize:24] target:self selector:@selector(moveInfinite:)];
-
+        
         // shops
         mainmenu[3] = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Shop" fontName:@"sheepsansbold.ttf" fontSize:24] target:self selector:@selector(moveShop:)];        
         
@@ -71,15 +73,24 @@
         [settingMenu setPosition:ccp(420, 270)];
         
         [self addChild:settingMenu];
-                
-        //화살표
-        //        arrow = [CCMenuItemSprite itemFromNormalSprite:arrowRSprite selectedSprite:arrowRPressedSprite target:self selector:@selector(onArrowTouch:)];        
-        //        arrow.position = ccp(10, 10);
+        
+        //타이틀 백 화면
+        menu_back = [CCMenuItemImage itemFromNormalImage:@"back_pink.png" selectedImage:@"back_blue.png"
+                                                  target:self selector:@selector(moveTitle:)];
+        menu_back.anchorPoint = CGPointZero;
+        
+        
+        CCMenu* back = [CCMenu menuWithItems:menu_back, nil];
+        back.anchorPoint = CGPointZero;
+        [back setPosition:ccp(0, 270)];
+        
+        [self addChild:back];
+        
+        // 아랫 화살표 
         
         arrow = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"arrowPink.png"] 
                                         selectedSprite:[CCSprite spriteWithFile:@"arrowPink.png"]
                                                  block:^(id sender) {
-                                                     [sender runAction:[CCRotateBy actionWithDuration:0.5 angle:180]];
                                                      if (menu_more.visible) {
                                                          [menu_more runAction:
                                                           [CCSequence actions:
@@ -87,11 +98,15 @@
                                                            [CCCallBlockN actionWithBlock:^(CCNode *node) {
                                                               menu_more.visible = NO;
                                                           }], nil]];
+                                                         
+                                                         [sender runAction:[CCRotateTo actionWithDuration:0.5 angle:360]];
                                                      }
                                                      else
                                                      {
                                                          menu_more.visible = YES;
                                                          [menu_more runAction:[CCEaseInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(0, 0)] rate:2.0]];
+                                                         
+                                                         [sender runAction:[CCRotateTo actionWithDuration:0.5 angle:180]];
                                                      }
                                                  }];
         
@@ -144,30 +159,51 @@
 
 -(void)moveStage:(id)sender
 {
-  [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[StageSelectScene scene]]];    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[StageSelectScene scene]]];  
+        
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 -(void)moveTutorial:(id)sender
 {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[TutorialLayer scene]]];    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[TutorialLayer scene]]]; 
+    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 -(void)moveInfinite:(id)sender
 {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];        
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[GameScene node]]];
+    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 -(void)moveSetting:(id)sender{
     
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Setting scene]]];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:0.3 scene:[Setting scene]]];
     
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
+
+-(void)moveTitle:(id)sender
+{
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInL transitionWithDuration:0.3 scene:[TitleLayer scene]]];
+    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+}
+
 
 -(void)moveShop:(id)sender
 {    
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[Shop scene]]];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+//    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.5 scene:[Shop scene]]];
+//    
+//    if ([UserData userData].backSound)
+//        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
 
 -(void)moveFacebook:(id)sender
@@ -182,7 +218,10 @@
 
 -(void)moveInfo:(id)sender
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:1 scene:[InfoLayer scene]]];        
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[InfoLayer scene]]]; 
+    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 @end

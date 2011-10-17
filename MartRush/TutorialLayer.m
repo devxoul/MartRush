@@ -9,6 +9,7 @@
 #import "TutorialLayer.h"
 #import "StageSelectScene.h"
 #import "MenuLayer.h"
+#import "UserData.h"
 
 @implementation TutorialLayer
 
@@ -35,24 +36,21 @@
         
         skip = [CCMenuItemImage itemFromNormalImage:@"skip.png" selectedImage:@"skip_click.png" target:self 
                                            selector:@selector(clickSkip:)];     
-        
-        [skip setPosition:ccp(380, 260)];
         [skip setAnchorPoint:CGPointZero];
         
         back = [CCMenuItemImage itemFromNormalImage:@"back_pink.png" selectedImage:@"back_blue.png" target:self 
                                            selector:@selector(clickBack:)];
         
-        [back setPosition:ccp(40, 280)];
-        [skip setAnchorPoint:CGPointZero];
+        [back setAnchorPoint:CGPointZero];
         
         CCMenu* menu = [CCMenu menuWithItems:back, nil];
-        [menu setPosition:CGPointZero];
+        [menu setPosition:ccp(0, 270)];
         [menu setAnchorPoint:CGPointZero];
         
         [self addChild:menu];
         
         CCMenu* menu1 = [CCMenu menuWithItems:skip, nil];
-        [menu1 setPosition:CGPointZero];
+        [menu1 setPosition:ccp(380, 270)];
         [menu1 setAnchorPoint:CGPointZero];
         
         [self addChild:menu1];
@@ -73,12 +71,18 @@
 
 -(void)clickSkip:(id)sender
 {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:1 scene:[StageSelectScene scene]]];    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
+    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInR transitionWithDuration:0.3 scene:[StageSelectScene scene]]];    
 }
 
 -(void)clickBack:(id)back
 {
-    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInL transitionWithDuration:1 scene:[MenuLayer scene]]];    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
+    
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInL transitionWithDuration:0.3 scene:[MenuLayer scene]]];    
 }
 
 -(void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -87,10 +91,12 @@
     
     tutorialCount++;
     if (tutorialCount == TUTORIAL_MAX_SCENE) 
-        [[CCDirector sharedDirector] pushScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[StageSelectScene scene]]];    
+        [[CCDirector sharedDirector] pushScene:[CCTransitionFadeDown transitionWithDuration:0.3 scene:[StageSelectScene scene]]];    
     else
         sceneSpr[tutorialCount].visible = YES;
     
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
 
 -(void)dealloc
