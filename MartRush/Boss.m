@@ -42,6 +42,8 @@
   nTemp2 = 0;
   bossAttackCount = 0;
   bossMoveCount = 0;
+//    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@""];
+//BOSS STAGE - 보스 INIT 전에 nsuserdefault 사용 - 넣고 , 빼고 
 }
 
 #ifdef MARTRUSH_HAN_EDIT
@@ -167,12 +169,19 @@
 
 -(void)update
 {
-  // BOSS DRAW
+
+    
+    if(bossState ==BOSS_STATE_DEAD){
+        //게임 스테이트를 클리어로 변경 !
+    }
+// BOSS DRAW
+    //1번째는 모스 이동
+    //2번쨰는 보스 아이템 발사 
   if (nTemp == 0 ) {
-    nTemp = (arc4random() % (80 - (10 * 7) + 3)) + 4;
+    nTemp = (arc4random() % (50 - (10 * bossStage) + bossHp)) + 4;
   }
   if (nTemp2 == 0 ){
-    nTemp2 = (arc4random() % (80 - (10 * 7) + 3)) + 4;
+    nTemp2 = (arc4random() % (50 - (10 * bossStage) + bossHp)) + 4;
   }
   
   
@@ -185,6 +194,8 @@
   
   bossMoveCount++;
   bossAttackCount++;
+    
+
   
 }
 
@@ -212,7 +223,7 @@
 
 -(void)bossAiMoving:(int)_stage
 {
-  BOOL isMoved = (arc4random()%5 == 0) ? YES : NO ;          // 이동 %는 20%로 고정
+  BOOL isMoved = (arc4random()%4 == 0) ? YES : NO ;          // 이동 %는 25%로 고정
   //이동하면 웨이 상태 변경
   bossMoveCount = 0;
   nTemp = 0;
@@ -247,7 +258,7 @@
   nTemp2 = 0;
   
   //발사하면 상태 변화
-  if(isFired && bossState == BOSS_STATE_RUN){
+  if(isFired && [gameLayer.gameScene.movementManager isObstacleCreatable] && bossState == BOSS_STATE_RUN){
     bossState = BOSS_STATE_ATTACK;
     //Obstacle 생성..   
     [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_student_0" wayState:bossWayState z:DEFAULT_Z_BOSS_OBSTACLE

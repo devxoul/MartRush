@@ -72,7 +72,7 @@
 	{
 		obstacle.z -= obstacle.speed;
 		
-		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.wayState && obstacle.speed > 0 )
+		if( 100 <= obstacle.z && obstacle.z <= 140 && obstacle.wayState == gameScene_.gameLayer.player.wayState && obstacle.speed > 0 )
 		{
 			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
             [obstacle.obstacleSpr removeFromParentAndCleanup:YES];

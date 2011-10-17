@@ -26,7 +26,6 @@
 		[self addChild:bg];
 		
 		player = [[Player alloc] initWithGameLayer:self];
-        NSInteger type = gameScene.stageType;
 		if([gameScene stageType] == STAGE_TYPE_BOSS )
 		{
             boss = [Boss alloc];
