@@ -10,7 +10,8 @@
 #import "cocos2d.h"
 
 @interface StageSelectScene : CCLayer {
-  NSArray *stageInfoArray;
+  NSDictionary *stageInfoArray;
+  NSArray *stageKeys;
   CCLabelTTF *moneyLabel;
 }
 

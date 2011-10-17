@@ -31,7 +31,7 @@
     [self addChild:menuBackground];
     */
     CCMenu *menu = [CCMenu menuWithItems:
-                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:[UserData userData].lastPlayedStage fontName:@"NanumScript.ttf" fontSize:24]],
+                    [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:[UserData userData].lastStage fontName:@"NanumScript.ttf" fontSize:24]],
                     [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Continue" fontName:@"NanumScript.ttf" fontSize:24] block:^(id sender) {
       // Continue
       [self removeFromParentAndCleanup:YES];

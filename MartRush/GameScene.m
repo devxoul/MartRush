@@ -44,7 +44,7 @@
     
     [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
     
-    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[UserData userData].lastPlayedStage ofType:@"plist"]];
+    gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[UserData userData].lastStage ofType:@"plist"]];
     
     stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
     

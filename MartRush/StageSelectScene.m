@@ -31,10 +31,14 @@
     [background setPosition:CGPointMake(240, 160)];
     [self addChild:background];
     
-    stageInfoArray = [[[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]] allKeys] retain];
+    stageInfoArray = [UserData userData].stageInfo;
+    stageKeys = [[stageInfoArray keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+      return [[(NSDictionary *)obj1 objectForKey:@"level"] integerValue] > [[(NSDictionary *)obj2 objectForKey:@"level"] integerValue];
+    }] retain];
     
     NSMutableArray *menuArray = [NSMutableArray array];
-    for (NSString *stageName in stageInfoArray) {
+    for (NSString *key in stageKeys) {
+      NSDictionary *stageInfo = [stageInfoArray objectForKey:key];
       /*
       CCLabelTTF *label;
       CCSprite *disabledSprite = [CCSprite node];
@@ -49,14 +53,14 @@
       [selected addChild:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]] z:0];
       [selected addChild:label z:10];
       */
-      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
-                                                       selectedSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", stageName]]
+      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[stageInfo objectForKey:@"icon"]]
+                                                       selectedSprite:[CCSprite spriteWithFile:[stageInfo objectForKey:@"icon"]]
                                                                target:self
                                                              selector:@selector(selectLevel:)];
       [menuArray addObject:item];
     }
     
-    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:4 rows:1 position:CGPointMake(90, 160) padding:CGPointMake(100, 0)];
+    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:5 rows:1 position:CGPointMake(90, 160) padding:CGPointMake(80, 0)];
     
     [self addChild:menu z:5];
     
@@ -78,11 +82,11 @@
     
     [shopButton setPosition:CGPointMake(400, 300)];
     
-    CCMenu *backButton = [CCMenu menuWithItems:[CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"pause.png"] selectedSprite:[CCSprite spriteWithFile:@"pause.png"] block:^(id sender) {
+    CCMenu *backButton = [CCMenu menuWithItems:[CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:@"back_pink.png"] selectedSprite:[CCSprite spriteWithFile:@"back_blue.png"] block:^(id sender) {
         [[CCDirector sharedDirector] popScene];
     }], nil];
     
-    [backButton setPosition:CGPointMake(25, 300)];
+    [backButton setPosition:CGPointMake(30, 295)];
     
     [self addChild:backButton z:20];
         
@@ -94,15 +98,15 @@
 
 - (void)selectLevel:(id)sender
 {
-  if ([[UserData userData] isAvaliableStage:[stageInfoArray objectAtIndex:[sender tag] - 1]]) {
-    [UserData userData].lastPlayedStage = [stageInfoArray objectAtIndex:[sender tag] - 1];
+  if ([[UserData userData] isAvaliableStage:[[stageInfoArray objectForKey:[stageKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"]]) {
+    [UserData userData].lastPlayedStage = [[stageInfoArray objectForKey:[stageKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"];
     [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
     [[CCDirector sharedDirector] pushScene:[[[GameScene alloc] init] autorelease]];
   }
   else
   {
     // TODO: buyStage?
-    if ([[UserData userData] buyStage:[stageInfoArray objectAtIndex:[sender tag] - 1]]) {
+    if ([[UserData userData] buyStage:[[stageInfoArray objectForKey:[stageKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"]]) {
       // Success
       [[SimpleAudioEngine sharedEngine] playEffect:@"unlock.mp3"];
       [moneyLabel setString:[NSString stringWithFormat:@"%d", [UserData userData].money]];

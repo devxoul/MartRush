@@ -177,6 +177,7 @@
 		3C44A8401447D7E900151340 /* fruit_2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A83B1447D7E900151340 /* fruit_2.plist */; };
 		3C44A8411447D7E900151340 /* fruit_3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A83C1447D7E900151340 /* fruit_3.plist */; };
 		3C44A8421447D7E900151340 /* fruit_4.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A83D1447D7E900151340 /* fruit_4.plist */; };
+		3CA3584D144C83B300286E54 /* CartList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CA3584C144C83B300286E54 /* CartList.plist */; };
 		3CAAB7C71447312100C0D67C /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAAB7C61447312100C0D67C /* UserData.m */; };
 		3CAAB7D51447725F00C0D67C /* Game BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAAB7D31447725F00C0D67C /* Game BGM.mp3 */; };
 		3CAAB7D61447725F00C0D67C /* Title BGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3CAAB7D41447725F00C0D67C /* Title BGM.mp3 */; };
@@ -570,6 +571,7 @@
 		3C44A83B1447D7E900151340 /* fruit_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_2.plist; path = Resources/fruit_2.plist; sourceTree = "<group>"; };
 		3C44A83C1447D7E900151340 /* fruit_3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_3.plist; path = Resources/fruit_3.plist; sourceTree = "<group>"; };
 		3C44A83D1447D7E900151340 /* fruit_4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_4.plist; path = Resources/fruit_4.plist; sourceTree = "<group>"; };
+		3CA3584C144C83B300286E54 /* CartList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CartList.plist; path = Resources/CartList.plist; sourceTree = "<group>"; };
 		3CAAB7C51447312100C0D67C /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		3CAAB7C61447312100C0D67C /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		3CAAB7D31447725F00C0D67C /* Game BGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Game BGM.mp3"; path = "Resources/sounds/Game BGM.mp3"; sourceTree = "<group>"; };
@@ -1315,6 +1317,7 @@
 				3C44A83B1447D7E900151340 /* fruit_2.plist */,
 				3C44A83C1447D7E900151340 /* fruit_3.plist */,
 				3C44A83D1447D7E900151340 /* fruit_4.plist */,
+				3CA3584C144C83B300286E54 /* CartList.plist */,
 			);
 			name = plist;
 			sourceTree = "<group>";
@@ -1573,6 +1576,7 @@
 				03AE2A8014480F2C00EF9ABA /* Default-Landscape@2x.png in Resources */,
 				03AE2A8314480F4400EF9ABA /* Default.png in Resources */,
 				03AE2A8514480F4D00EF9ABA /* Default@2x.png in Resources */,
+				3CA3584D144C83B300286E54 /* CartList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1757,6 +1761,7 @@
 				GCC_PREFIX_HEADER = MartRush/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = MartRush/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1772,6 +1777,7 @@
 				GCC_PREFIX_HEADER = MartRush/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = MartRush/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;

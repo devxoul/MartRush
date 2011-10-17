@@ -9,6 +9,8 @@
 #import "Shop.h"
 #import "SimpleAudioEngine.h"
 #import "MenuLayer.h"
+#import "SlidingMenuGrid.h"
+#import "UserData.h"
 
 @implementation Shop
 
@@ -75,6 +77,25 @@
     
     [self addChild:backMenu];
     
+    cartInfoArray = [UserData userData].stageInfo;
+    cartKeys = [[cartInfoArray keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+      return [[(NSDictionary *)obj1 objectForKey:@"level"] integerValue] > [[(NSDictionary *)obj2 objectForKey:@"level"] integerValue];
+    }] retain];
+    
+    NSMutableArray *menuArray = [NSMutableArray array];
+    for (NSString *key in cartKeys) {
+      NSDictionary *cartInfo = [cartInfoArray objectForKey:key];
+      CCMenuItemSprite *item = [CCMenuItemSprite itemFromNormalSprite:[CCSprite spriteWithFile:[cartInfo objectForKey:@"icon"]]
+                                                       selectedSprite:[CCSprite spriteWithFile:[cartInfo objectForKey:@"icon"]]
+                                                               target:self
+                                                             selector:@selector(selectCart:)];
+      [menuArray addObject:item];
+    }
+    
+    SlidingMenuGrid* menu = [SlidingMenuGrid menuWithArray:menuArray cols:5 rows:1 position:CGPointMake(90, 160) padding:CGPointMake(80, 0)];
+    
+    [self addChild:menu z:5];
+    
   }
   
   return self;
@@ -109,6 +130,21 @@
   
   [[CCDirector sharedDirector] replaceScene:[CCTransitionCrossFade transitionWithDuration:1 scene:[MenuLayer scene]]];
   [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+}
+
+-(void)selectCart:(id)sender
+{
+  if ([[UserData userData] isAvaliableStage:[[cartInfoArray objectForKey:[cartKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"]]) {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+  }
+  else
+  {
+    // TODO: buyStage?
+    if ([[UserData userData] buyStage:[[cartInfoArray objectForKey:[cartKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"]]) {
+      // Success
+      [[SimpleAudioEngine sharedEngine] playEffect:@"unlock.mp3"];
+    }    
+  }
 }
 
 @end

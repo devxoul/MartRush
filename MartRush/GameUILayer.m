@@ -75,10 +75,11 @@
     [self addChild:gauge];
     
     pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" block:^(id sender) {
-      gameScene.gameState = GAME_STATE_PAUSE;
-      // TODO: show pause menu
-      [self addChild:[GamePauseMenuLayer layerWithStage:gameScene] z:10000];
-      gameScene.gameLayer.isTouchEnabled = NO;
+      if (gameScene.gameState != GAME_STATE_PAUSE) {
+        gameScene.gameState = GAME_STATE_PAUSE;
+        [self addChild:[GamePauseMenuLayer layerWithStage:gameScene] z:10000];
+        gameScene.gameLayer.isTouchEnabled = NO;
+      }
     }];
     pause.anchorPoint = ccp(0.5f, 0.0f);        
     
