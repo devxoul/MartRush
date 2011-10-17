@@ -16,10 +16,8 @@
   
   CCSprite *backGround;
   
-  CCSprite *heartSprite1;
-  CCSprite *heartSprite2;
-  CCSprite *heartSprite3;
-  
+  NSMutableArray *heartArray;
+
   CCSprite *gaugeBg;
   CCSprite *gauge;
   

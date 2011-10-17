@@ -21,14 +21,15 @@
 @synthesize bossHp;
 @synthesize bossMaxHp;
 
+-(int) bossState{
+    return bossState;
+}
 
 -(void)init:(GameLayer*)_layer
 {
   [self createBossRunAnimation:_layer];
   
-#ifdef MARTRUSH_HAN_EDIT
   [self createBossCollisionAnimation:_layer];
-#endif
   
   [self setBossState:BOSS_STATE_RUN];
   [self setBossWayState:LEFT_WAY];
@@ -47,8 +48,9 @@
 
 -(void) bossEndDead:(id)sender{
   
-  NSLog(@"bossEndDead");
-  [bossSpr setVisible:NO];
+    NSLog(@"bossEndDead");
+    [bossSpr setVisible:NO];
+    bossState = BOSS_STATE_DEAD;
   
 }
 
@@ -80,17 +82,19 @@
 
 -(void) bossDoCollisionAnimation {
   NSLog(@"bossDoCollisionAnimation");
-  
-  [collisionSpr setVisible:YES];
-  [collisionSpr setPosition:bossSpr.position];
-  [self stopBossRunning];
-  //충돌 애니메이션 후
-  CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndCollision:)];
-  
-  CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
-  
-  [collisionSpr runAction:action];
-  [collisionSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];
+  bossHp--;
+    if (bossHp>=0) {
+        [collisionSpr setVisible:YES];
+        [collisionSpr setPosition:bossSpr.position];
+        [self stopBossRunning];
+        //충돌 애니메이션 후
+        CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndCollision:)];
+        
+        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:1.0];
+        
+        [collisionSpr runAction:action];
+        [collisionSpr runAction:[CCSequence actions:action, bossCollisionCallback,nil]];  
+    }
   
 }
 
@@ -100,9 +104,7 @@
   [collisionSpr stopAllActions];
   [collisionSpr setVisible:NO];
   
-  bossHp--;
-  if(bossHp == 0){
-    bossState = BOSS_STATE_DEAD;
+  if(bossHp <= 0){
     NSLog(@"Boss last collision");
     [self bossDoDead];
   }
@@ -167,18 +169,13 @@
 {
   // BOSS DRAW
   if (nTemp == 0 ) {
-    nTemp = (arc4random() % (100 - (10 * bossStage) + bossHp)) + 4;
+    nTemp = (arc4random() % (80 - (10 * 7) + 3)) + 4;
   }
   if (nTemp2 == 0 ){
-    nTemp2 = (arc4random() % (100 - (10 * bossStage) + bossHp)) + 4;
+    nTemp2 = (arc4random() % (80 - (10 * 7) + 3)) + 4;
   }
   
   
-  /*
-   if( arc4random() % 100 == 3 && bossState == BOSS_STATE_RUN){
-   [self setBossState:BOSS_STATE_CRASH];
-   }
-   */  
   if(nTemp == bossMoveCount)
     [self bossAiMoving:MARTRUSH_STAGE_1];
   
@@ -197,9 +194,9 @@
   CCCallFunc* bossEndMoving = [CCCallFunc actionWithTarget:self selector:@selector(bossEndMoving:)];
   
   if (_num == LEFT_WAY) 
-    [bossSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION)], bossEndMoving, nil]];
+    [bossSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.2 position:ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION)], bossEndMoving, nil]];
   else if (_num == RIGHT_WAY)
-    [bossSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(BOSS_RIGHT_X_POSITION, BOSS_Y_POSITION)], bossEndMoving, nil]];
+    [bossSpr runAction:[CCSequence actions:[CCMoveTo actionWithDuration:0.2 position:ccp(BOSS_RIGHT_X_POSITION, BOSS_Y_POSITION)], bossEndMoving, nil]];
 }
 
 -(void)bossEndMoving:(id)sender
@@ -215,7 +212,7 @@
 
 -(void)bossAiMoving:(int)_stage
 {
-  BOOL isMoved = (arc4random()%2 == 0) ? YES : NO ;          // 이동 %는 50%로 고정
+  BOOL isMoved = (arc4random()%5 == 0) ? YES : NO ;          // 이동 %는 20%로 고정
   //이동하면 웨이 상태 변경
   bossMoveCount = 0;
   nTemp = 0;
@@ -252,13 +249,10 @@
   //발사하면 상태 변화
   if(isFired && bossState == BOSS_STATE_RUN){
     bossState = BOSS_STATE_ATTACK;
-    NSLog(@"Boss balsa!");
-#ifdef MARTRUSH_HAN_EDIT
     //Obstacle 생성..   
-    [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_0.png" wayState:bossWayState z:DEFAULT_Z 
+    [[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_student_0" wayState:bossWayState z:DEFAULT_Z_BOSS_OBSTACLE
                                                       speed:gameLayer.player.speed];
     bossState = BOSS_STATE_RUN;
-#endif
   }    
 }
 

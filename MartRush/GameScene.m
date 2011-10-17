@@ -46,11 +46,9 @@
     
     gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[UserData userData].lastPlayedStage ofType:@"plist"]];
     
-    stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
-    
-	[self init:STAGE_TYPE_NORMAL :0];
-    [self initLayers];
-    [self initManagers];
+    //stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
+        
+	[self init:STAGE_TYPE_BOSS :0];
     
     return self;
 	}
@@ -64,7 +62,6 @@
   stageNumber = _stageNumber;
   
   [self initLayers];
-  //[self initArrays];
   [self initManagers];
   
 	gameState = GAME_STATE_MISSION;
@@ -74,7 +71,9 @@
 
 - (void)initLayers
 {
-	gameLayer = [[GameLayer alloc] init];
+    gameLayer = [GameLayer alloc];
+	gameLayer.gameScene = self;
+    [gameLayer init];
   
 	[self addChild:gameLayer];
 	
@@ -96,7 +95,6 @@
       break;
   }
   
-  gameLayer.gameScene = self;
 }
 
 - (void)initManagers

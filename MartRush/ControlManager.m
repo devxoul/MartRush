@@ -76,10 +76,10 @@
   
   if (CGRectIntersectsRect(gameScene_.gameLayer.player.boundingBox, CGRectMake(location.x - targetSprite.boundingBox.size.width/2, location.y - targetSprite.boundingBox.size.height/2, targetSprite.boundingBox.size.width, targetSprite.boundingBox.size.height)))
   {
-    if (gameScene_.gameState == STAGE_TYPE_BOSS) {
+    if (gameScene_.stageType == STAGE_TYPE_BOSS) {
       // 보스
       [merchandise.merchandiseSpr removeFromParentAndCleanup:YES];
-      [gameScene_.movementManager createObstacle:merchandise.name wayState:gameScene_.gameLayer.player.wayState z:0 speed:-10];
+        [gameScene_.movementManager createObstacle:merchandise.name wayState:gameScene_.gameLayer.player.wayState z:0 speed:-10];
     }
     else
     {
