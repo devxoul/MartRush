@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         // Initialization code here.
-        infoBg = [[CCSprite alloc] initWithFile:@"setting_bg.png"];
+        infoBg = [[CCSprite alloc] initWithFile:@"mainbg.png"];
         [self addChild:infoBg];
         
         [infoBg setPosition:ccp(0, 0)];

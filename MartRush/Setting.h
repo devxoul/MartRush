@@ -18,6 +18,11 @@
     
     CCMenuItemImage *menu_back;
     CCMenu *backMenu;
+    
+    int resetState;
+    CCMenu* reset_menu;
+    CCSprite* popSpr;
+    CCLabelTTF* label;
 }
 
 +(CCScene*) scene;
@@ -26,5 +31,6 @@
 -(void)setSound:(id)sender;
 -(void)setVibration:(id)sender;
 -(void)setReset:(id)sender;
+
 @end
 

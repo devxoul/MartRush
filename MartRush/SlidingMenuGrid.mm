@@ -51,6 +51,7 @@
 		fMoveDeadZone = 10;
 		bVerticalPaging = vertical;
 		fAnimSpeed = 1;
+    iPageCount = 1;
 
 		(bVerticalPaging) ? [self buildGridVertical:cols rows:rows] : [self buildGrid:cols rows:rows];
 		self.position = menuOrigin;
@@ -72,7 +73,7 @@
 	for (CCMenuItem* item in self.children)
 	{
 		// Calculate the position of our menu item. 
-		item.position = CGPointMake(self.position.x + col * padding.x + (iPageCount * winSize.width), self.position.y - row * padding.y);
+		item.position = CGPointMake(self.position.x + col * padding.x + ((iPageCount - 1) * winSize.width), self.position.y - row * padding.y);
 		
 		// Increment our positions for the next item(s).
 		++col;
@@ -89,6 +90,9 @@
 			}
 		}
 	}
+  if (col == 0 && row == 0) {
+    iPageCount--;
+  }
 }
 -(void) buildGridVertical:(int)cols rows:(int)rows
 {
@@ -98,7 +102,7 @@
 	for (CCMenuItem* item in self.children)
 	{
 		// Calculate the position of our menu item. 
-		item.position = CGPointMake(self.position.x + col * padding.x , self.position.y - row * padding.y + (iPageCount * winSize.height));
+		item.position = CGPointMake(self.position.x + col * padding.x , self.position.y - row * padding.y + ((iPageCount - 1) * winSize.height));
 		
 		// Increment our positions for the next item(s).
 		++col;
@@ -115,6 +119,9 @@
 			}
 		}
 	}
+  if (col == 0 && row == 0) {
+    iPageCount--;
+  }
 }
 
 -(void) addChild:(CCMenuItem*)child z:(int)z tag:(int)aTag

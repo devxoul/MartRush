@@ -124,7 +124,7 @@
                                                     selector:@selector(moveFacebook:)];
         menu_facebook.anchorPoint = CGPointZero;
         
-        menu_ranking = [CCMenuItemImage itemFromNormalImage:@"ranking.jpg" selectedImage:@"facebook.png" target:self 
+        menu_ranking = [CCMenuItemImage itemFromNormalImage:@"gamecenter.png" selectedImage:@"gamecenter.png" target:self 
                                                    selector:@selector(moveRank:)];
         menu_ranking.anchorPoint = CGPointZero;
         
@@ -132,8 +132,8 @@
                                                 selector:@selector(moveInfo:)];
         menu_info.anchorPoint = CGPointZero;
         
-        [menu_facebook setPosition:ccp(65, 10)];
-        [menu_ranking setPosition:ccp(120, 10)];
+        [menu_facebook setPosition:ccp(120, 10)];
+        [menu_ranking setPosition:ccp(65, 10)];
         [menu_info setPosition:ccp(175, 10)];
         
         menu_more = [CCMenu menuWithItems:menu_facebook, menu_ranking, menu_info, nil];
@@ -160,7 +160,7 @@
 -(void)moveStage:(id)sender
 {
     [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.3 scene:[StageSelectScene scene]]];  
-        
+    
     if ([UserData userData].backSound)
         [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
 }
@@ -200,10 +200,10 @@
 
 -(void)moveShop:(id)sender
 {    
-//    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.5 scene:[Shop scene]]];
-//    
-//    if ([UserData userData].backSound)
-//        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+    [[CCDirector sharedDirector] pushScene:[CCTransitionSlideInT transitionWithDuration:0.5 scene:[Shop scene]]];
+    
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
 }
 
 -(void)moveFacebook:(id)sender

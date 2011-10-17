@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class MenuLayer;
+
 @interface StageSelectScene : CCLayer {
-  NSArray *stageInfoArray;
+  NSDictionary *stageInfoArray;
+  NSArray *stageKeys;
   CCLabelTTF *moneyLabel;
 }
 

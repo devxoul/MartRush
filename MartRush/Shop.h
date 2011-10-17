@@ -13,6 +13,9 @@
 
 @interface Shop : CCLayer
 {
+  NSDictionary *cartInfoArray;
+  NSArray *cartKeys;
+  
   CGSize winSize;
   
   CCSprite *shopBgSprite;
@@ -34,5 +37,7 @@
 -(void)onTabTouch:(id)sender;
 -(void)tab1Clicked:(id)sender;
 -(void)tab2Clicked:(id)sender;
+
+-(void)selectCart:(id)sender;
 
 @end

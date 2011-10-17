@@ -29,13 +29,13 @@
 
 - (id)initWithGameScene:(GameScene *)gameScene andGameInfo:(NSDictionary *)gameInfo;
 {
-  if (self = [super initWithGameScene:gameScene]) {
-    obstacleTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"obstacles"]];
-    merchandiseTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"merchandises"]];
-    
-    return self;
-  }
-  return nil;
+    if (self = [super initWithGameScene:gameScene]) {
+        obstacleTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"obstacles"]];
+        merchandiseTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"merchandises"]];
+        
+        return self;
+    }
+    return nil;
 }
 
 - (void)update
@@ -51,16 +51,21 @@
 			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
 	}
 	
+	NSMutableIndexSet *willBeRemovedMerchandisesIndices = [[NSMutableIndexSet alloc] init];
+	NSMutableIndexSet *willBeRemovedObstaclesIndices = [[NSMutableIndexSet alloc] init];
 	
 	for( Merchandise *merchandise in gameScene_.merchandises )
 	{
-		merchandise.z -= 10;//gameScene_.gameLayer.player.playerSpeed;
+		merchandise.z -= 10;
 		
 		if( merchandise.z < 0 )
 		{
-			[self removeMerchandise:merchandise];
+			[willBeRemovedMerchandisesIndices addIndex:[gameScene_.merchandises indexOfObject:merchandise]];
+            [merchandise.merchandiseSpr removeFromParentAndCleanup:YES];
 		}
 	}
+	
+	[gameScene_.merchandises removeObjectsAtIndexes:willBeRemovedMerchandisesIndices];
 	
 	for( Obstacle *obstacle in gameScene_.obstacles )
 	{
@@ -68,19 +73,28 @@
 		
 		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
 		{
-      gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
-			[self removeObstacle:obstacle];
+			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
+            [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
+            [willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
 			continue;
 		}
 		
 		if( obstacle.z < 0 )
 		{
-			[self removeObstacle:obstacle];
-			continue;
-		}
+            [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
+            
+			[willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
+        }
 	}
-  
-  gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
+	
+	[gameScene_.obstacles removeObjectsAtIndexes:willBeRemovedObstaclesIndices];
+	
+	willBeRemovedMerchandisesIndices = nil;
+	willBeRemovedObstaclesIndices = nil;
+	[willBeRemovedMerchandisesIndices release];
+	[willBeRemovedObstaclesIndices release];
+	
+	gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
@@ -95,10 +109,10 @@
 - (void)createObstacle:(NSString *)image wayState:(int)wayState z:(float)z speed:(float)speed
 {
 	Obstacle *obstacle = [[Obstacle alloc] initWithWay:wayState andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andSpeed:speed];
-  
+    
 	obstacle.obstacleSpr.anchorPoint = ccp( 0.5f, 1.0f );
 	obstacle.z = z;
-  
+    
 	int zOrder = [gameScene_.obstacles count] ? ((Obstacle *)[gameScene_.obstacles lastObject]).obstacleSpr.zOrder - 1 : Z_ORDER_OBSTACLE;
 	[gameScene_.gameLayer addChild:obstacle.obstacleSpr z:zOrder];
 	[gameScene_.obstacles addObject:[obstacle autorelease]];
@@ -106,7 +120,7 @@
 
 - (void)moveMerchandise:(Merchandise *)merchandise
 {
-  //	merchandise.merchandiseSpr.position.y += 
+    //	merchandise.merchandiseSpr.position.y += 
 }
 
 - (void)moveObstalce:(Obstacle *)obstacle
@@ -135,7 +149,7 @@
 - (void)setObstacleY:(Obstacle *)obstacle newY:(int)y
 {
 	obstacle.obstacleSpr.position = ccp(!obstacle.wayState ? y * 3 / 16 + 155 : -1 * y * 3 / 16 + 325, y );
-  obstacle.obstacleSpr.scale = ( -1 * y * 3 / 8 + 170 ) / obstacle.obstacleSpr.contentSize.width;
+    obstacle.obstacleSpr.scale = ( -1 * y * 3 / 8 + 170 ) / obstacle.obstacleSpr.contentSize.width;
 }
 
 @end

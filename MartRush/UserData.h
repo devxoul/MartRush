@@ -10,7 +10,7 @@
 
 @interface UserData : NSObject
 {
-    @public
+@public
     // game state 
     NSUInteger money;
     NSMutableArray *boughtStage;
@@ -18,21 +18,32 @@
     // user setting value
     BOOL backSound;         // back ground sound
     BOOL vibration;         // 진동
-
+    
+    NSDictionary *stageInfo;
+    NSDictionary *cartInfo;
+    NSMutableArray *boughtCart;    
+    NSNumber *lastPlayedStage;
+    
 }
 
 @property (readwrite) NSUInteger money;
 @property (readwrite) BOOL backSound;
 @property (readwrite) BOOL vibration;
-@property (retain, readwrite) NSString *lastPlayedStage;
+@property (retain, readwrite) NSNumber *lastPlayedStage;
+@property (readonly) NSString *lastStage;
+@property (readonly) NSDictionary *stageInfo;
 
 + (UserData *)userData;
 
 - (BOOL)saveToFile;
+- (BOOL)removeToFile;
+- (BOOL)setToFile;
 
-- (BOOL)buyStage:(NSString *)stage;
-- (BOOL)isAvaliableStage:(NSString *)stage;
+- (BOOL)buyStage:(NSNumber *)stage;
+- (BOOL)isAvaliableStage:(NSNumber *)stage;
 
-- (void)userDateReset;
+- (BOOL)buyCart:(NSNumber *)cart;
+- (BOOL)isAvaliableCart:(NSNumber *)cart;
+
 
 @end
