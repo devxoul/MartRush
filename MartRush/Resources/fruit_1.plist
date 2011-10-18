@@ -25,7 +25,9 @@
 	<key>length</key>
 	<integer>1000</integer>
 	<key>type</key>
-	<integer>0</integer>
+	<integer>1</integer>
+	<key>level</key>
+	<integer>1</integer>
 	<key>speed</key>
 	<integer>12</integer>
 	<key>rate</key>

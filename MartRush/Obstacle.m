@@ -7,6 +7,7 @@
 //
 
 #import "Obstacle.h"
+#import "Const.h"
 
 
 @implementation Obstacle
@@ -50,6 +51,8 @@
 	
 	self.obstacleSpr.position = ccp( !self.wayState ? y3 / 3 + 120 : -1 * y3 / 3 + 360, y3 );
 	self.obstacleSpr.scale = 0.5 * ( y_3 - y3 ) / self.obstacleSpr.contentSize.width;
+	
+	[self.obstacleSpr.parent reorderChild:self.obstacleSpr z:DEFAULT_Z - z];
 	
 	z_ = z;
 }

@@ -32,7 +32,7 @@
 @implementation GameScene
 
 @synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager,bossUILayer, bonusUILayer;
-@synthesize gameState, stageNumber, stageType;
+@synthesize gameState, stageLevel, stageType;
 
 -(id)init
 {
@@ -49,9 +49,8 @@
 		gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:
 																				  [UserData userData].lastPlayedStage ofType:@"plist"]];
 
-		//stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];		
-		stageType = STAGE_TYPE_BOSS;
-		stageNumber = 0;
+		stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
+		stageLevel = [[gameInfoDictionary objectForKey:@"level"] integerValue];
 		
 		[self initLayers];
 		[self initManagers];
@@ -130,9 +129,9 @@
         
 		[movementManager update];
 		[gameLayer update];
-		gameUILayer.processedPortion +=  1.0 / [[gameInfoDictionary objectForKey:@"length"] integerValue] * 169;
+		gameUILayer.processedPortion +=  1.0 / [[gameInfoDictionary objectForKey:@"length"] integerValue] * 200;
 		
-		if (gameUILayer.processedPortion > 169) {
+		if (gameUILayer.processedPortion > 200) {
 			gameState = GAME_STATE_CLEAR;
 		}
 		

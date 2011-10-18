@@ -9,7 +9,7 @@
 		<key>level</key>
 		<integer>0</integer>
 		<key>value</key>
-		<integer>100</integer>
+		<integer>0</integer>
 	</dict>
 	<key>fruit_1</key>
 	<dict>
@@ -18,7 +18,7 @@
 		<key>level</key>
 		<integer>1</integer>
 		<key>value</key>
-		<integer>300</integer>
+		<integer>0</integer>
 	</dict>
 	<key>fruit_2</key>
 	<dict>

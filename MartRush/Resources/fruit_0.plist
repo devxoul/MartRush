@@ -17,11 +17,13 @@
 	</array>
 	<key>obstacles</key>
 	<array>
-		<string>obstalcle_mom</string>
+		<string>obstacle_mom</string>
 	</array>
 	<key>length</key>
-	<integer>10</integer>
+	<integer>1000</integer>
 	<key>type</key>
+	<integer>0</integer>
+	<key>level</key>
 	<integer>0</integer>
 	<key>speed</key>
 	<integer>10</integer>

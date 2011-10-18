@@ -73,19 +73,15 @@
 
 // Z ORDER
 #define Z_ORDER_BACKGROUND			0
-#define Z_ORDER_MERCHANDISE			100000000
-#define Z_ORDER_OBSTACLE			200000000
-#define Z_ORDER_PLAYER				200000001
-#define Z_ORDER_DRAGGING_MERCHANDISE    200000002
+#define Z_ORDER_PLAYER				3501
+#define Z_ORDER_DRAGGING_MERCHANDISE    3502
 
 
 // Default Z
 #define DEFAULT_Z					3500
 #define DEFAULT_Z_BOSS_OBSTACLE     1000
 // Level Design
-#define MIN_GAP						400
-#define LEVEL_SPEEDS				[]
-#define LEVEL_DISTANCES				[]
+#define MIN_GAP						300
 
 
 #endif

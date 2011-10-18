@@ -7,6 +7,7 @@
 //
 
 #import "Merchandise.h"
+#import "Const.h"
 
 
 @implementation Merchandise
@@ -54,6 +55,8 @@
 	
 	self.merchandiseSpr.position = ccp( !wayState ? y3 / 0.9 - 200 : -1 * y3 / 0.9 + 680, y3 );
 	self.merchandiseSpr.scale = 0.5 * ( y_3 - y3 ) / self.merchandiseSpr.contentSize.width;
+	
+	[self.merchandiseSpr.parent reorderChild:self.merchandiseSpr z:DEFAULT_Z - z];
 	
 	z_ = z;
 }

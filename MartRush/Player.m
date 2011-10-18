@@ -44,7 +44,7 @@
     
     cart = [[Cart alloc] init:gamelayer];
     
-    speed = gamelayer.gameScene.stageNumber + 10 ;
+    speed = gamelayer.gameScene.stageLevel + 10 ;
     
     [self startPlayerRunning];
     return self;

@@ -33,8 +33,8 @@
 	NSMutableDictionary *gameInfoDictionary;
 	
 	NSInteger gameState;
-	NSInteger stageNumber;
 	NSInteger stageType;
+	NSInteger stageLevel;
 	
 	NSInteger count;
 	CCLabelTTF *label;
@@ -53,9 +53,7 @@
 
 @property (readwrite) NSInteger gameState;
 
-@property (readwrite) NSInteger stageNumber;
 @property (readwrite) NSInteger stageType;
-
-- (void)init:(NSInteger)_stageType:(NSInteger)_stageNumber;
+@property (readwrite) NSInteger stageLevel;
 
 @end
