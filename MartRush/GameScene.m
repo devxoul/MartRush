@@ -32,7 +32,7 @@
 @implementation GameScene
 
 @synthesize gameLayer, gameUILayer, merchandises, obstacles, movementManager, controlManager,bossUILayer, bonusUILayer;
-@synthesize gameState, stageLevel, stageType;
+@synthesize gameState, stageLevel, stageType, gameInfoDictionary;
 
 -(id)init
 {
@@ -48,9 +48,9 @@
 		
 		gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:
 																				  [UserData userData].lastPlayedStage ofType:@"plist"]];
-
+		
 		stageType = [[gameInfoDictionary objectForKey:@"type"] integerValue];
-		stageLevel = [[gameInfoDictionary objectForKey:@"level"] integerValue];
+		stageLevel = [[[[UserData userData].stageInfo objectForKey:[UserData userData].lastPlayedStage] objectForKey:@"level"] integerValue];
 		
 		[self initLayers];
 		[self initManagers];

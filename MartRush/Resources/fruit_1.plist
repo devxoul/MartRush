@@ -25,12 +25,6 @@
 	<key>length</key>
 	<integer>1000</integer>
 	<key>type</key>
-	<integer>1</integer>
-	<key>level</key>
-	<integer>1</integer>
-	<key>speed</key>
-	<integer>12</integer>
-	<key>rate</key>
-	<integer>55</integer>
+	<integer>0</integer>
 </dict>
 </plist>

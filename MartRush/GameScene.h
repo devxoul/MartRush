@@ -56,4 +56,6 @@
 @property (readwrite) NSInteger stageType;
 @property (readwrite) NSInteger stageLevel;
 
+@property (nonatomic, retain) NSMutableDictionary *gameInfoDictionary;
+
 @end

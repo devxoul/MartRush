@@ -12,6 +12,7 @@
 #import "GameLayer.h"
 #import "MovementManager.h"
 #import "Player.h"
+#import "UserData.h"
 
 @implementation Boss
 
@@ -27,6 +28,11 @@
 
 -(void)init:(GameLayer*)_layer
 {
+	//	bossFile = [[[[UserData userData].stageInfo objectForKey:[UserData userData].lastPlayedStage] objectForKey:@"boss"] stringValue];
+	bossFile = [_layer.gameScene.gameInfoDictionary objectForKey:@"boss"];
+	bossObstacleFile = [_layer.gameScene.gameInfoDictionary objectForKey:@"boss_obstacle"];
+
+	
 	[self createBossRunAnimation:_layer];
 	
 	[self createBossCollisionAnimation:_layer];
@@ -122,20 +128,22 @@
 
 
 -(void)createBossRunAnimation:(GameLayer*)_layer
-{    
-	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"boss_run_student.plist"];
-	bossSpr = [[CCSprite spriteWithSpriteFrameName:@"boss_run_student_0.png"] retain];
+{
+	
+	
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:[NSString stringWithFormat:@"boss_run_%@.plist", bossFile]];
+	bossSpr = [[CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"boss_run_%@_0.png", bossFile]] retain];
 	bossSpr.position = ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION);
 	bossSpr.anchorPoint = ccp(0.5f, 0.0f);
 	
-	CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:@"boss_run_student.png"];
+	CCSpriteBatchNode *bachNode = [CCSpriteBatchNode batchNodeWithFile:[NSString stringWithFormat:@"boss_run_%@.png", bossFile]];
 	[bachNode addChild:bossSpr];
 	[_layer addChild:bachNode];
 	
 	NSMutableArray *aniFrames = [[NSMutableArray alloc] init];
 	
 	for (int i = 0; i < 9; i++) {
-		CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_student_%d.png", i]];
+		CCSpriteFrame* frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"boss_run_%@_%d.png", bossFile, i]];
 		[aniFrames addObject:frame];
 	}
 	
@@ -261,7 +269,7 @@
 	if(isFired && [gameLayer.gameScene.movementManager isObstacleCreatable] && bossState == BOSS_STATE_RUN){
 		bossState = BOSS_STATE_ATTACK;
 		//Obstacle 생성..   
-		[[[gameLayer gameScene] movementManager] createObstacle:@"boss_run_student_0" wayState:bossWayState z:DEFAULT_Z_BOSS_OBSTACLE
+		[[[gameLayer gameScene] movementManager] createObstacle:bossObstacleFile wayState:bossWayState z:DEFAULT_Z_BOSS_OBSTACLE
 														  speed:gameLayer.player.speed];
 		bossState = BOSS_STATE_RUN;
 	}    

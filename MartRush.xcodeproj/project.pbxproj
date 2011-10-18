@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03030BDD144E1A25007FBCA4 /* boss_obstacle_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 03030BDC144E1A24007FBCA4 /* boss_obstacle_book.png */; };
 		0359B79C143B042F001D9D94 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0359B79B143B042F001D9D94 /* Manager.m */; };
 		03AB063B1435EF2E009CA68F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063A1435EF2E009CA68F /* QuartzCore.framework */; };
 		03AB063D1435EF2E009CA68F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063C1435EF2E009CA68F /* OpenGLES.framework */; };
@@ -164,7 +165,7 @@
 		3C44A8311447956100151340 /* fruit_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8301447956000151340 /* fruit_1.png */; };
 		3C44A8341447957400151340 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8331447957400151340 /* lock.png */; };
 		3C44A8381447C2FD00151340 /* game_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8371447C2FD00151340 /* game_bg.png */; };
-		3C44A83E1447D7E900151340 /* fruit_0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8391447D7E900151340 /* fruit_0.plist */; };
+		3C44A83E1447D7E900151340 /* fruit_5.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A8391447D7E900151340 /* fruit_5.plist */; };
 		3C44A83F1447D7E900151340 /* fruit_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A83A1447D7E900151340 /* fruit_1.plist */; };
 		3C44A8401447D7E900151340 /* fruit_2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A83B1447D7E900151340 /* fruit_2.plist */; };
 		3C44A8411447D7E900151340 /* fruit_3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C44A83C1447D7E900151340 /* fruit_3.plist */; };
@@ -301,6 +302,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03030BDC144E1A24007FBCA4 /* boss_obstacle_book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = boss_obstacle_book.png; path = ../../MartRushResource/obstacles/boss_obstacle_book.png; sourceTree = "<group>"; };
 		0359B79A143B042F001D9D94 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		0359B79B143B042F001D9D94 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
 		03AB06361435EF2D009CA68F /* MartRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MartRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -584,7 +586,7 @@
 		3C44A8301447956000151340 /* fruit_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fruit_1.png; path = Resources/fruit_1.png; sourceTree = "<group>"; };
 		3C44A8331447957400151340 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
 		3C44A8371447C2FD00151340 /* game_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_bg.png; path = Resources/game_bg.png; sourceTree = "<group>"; };
-		3C44A8391447D7E900151340 /* fruit_0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_0.plist; path = Resources/fruit_0.plist; sourceTree = "<group>"; };
+		3C44A8391447D7E900151340 /* fruit_5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_5.plist; path = Resources/fruit_5.plist; sourceTree = "<group>"; };
 		3C44A83A1447D7E900151340 /* fruit_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_1.plist; path = Resources/fruit_1.plist; sourceTree = "<group>"; };
 		3C44A83B1447D7E900151340 /* fruit_2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_2.plist; path = Resources/fruit_2.plist; sourceTree = "<group>"; };
 		3C44A83C1447D7E900151340 /* fruit_3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = fruit_3.plist; path = Resources/fruit_3.plist; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				3C44A81414478F8700151340 /* touchthescreen.png */,
 				BABE29FF14476100002AB4DF /* skip.png */,
 				BABE2A0014476100002AB4DF /* skip_click.png */,
+				03030BDC144E1A24007FBCA4 /* boss_obstacle_book.png */,
 				CFB557BA14449B3200594AD1 /* UILayer */,
 				3CF2B4BF1447243500A37B9E /* plist */,
 				3CF2B4BE144723EA00A37B9E /* Sound */,
@@ -1345,11 +1348,11 @@
 			isa = PBXGroup;
 			children = (
 				3CE272641447DA5000A0206C /* StageList.plist */,
-				3C44A8391447D7E900151340 /* fruit_0.plist */,
 				3C44A83A1447D7E900151340 /* fruit_1.plist */,
 				3C44A83B1447D7E900151340 /* fruit_2.plist */,
 				3C44A83C1447D7E900151340 /* fruit_3.plist */,
 				3C44A83D1447D7E900151340 /* fruit_4.plist */,
+				3C44A8391447D7E900151340 /* fruit_5.plist */,
 				3CA3584C144C83B300286E54 /* CartList.plist */,
 			);
 			name = plist;
@@ -1596,7 +1599,7 @@
 				3C44A8311447956100151340 /* fruit_1.png in Resources */,
 				3C44A8341447957400151340 /* lock.png in Resources */,
 				3C44A8381447C2FD00151340 /* game_bg.png in Resources */,
-				3C44A83E1447D7E900151340 /* fruit_0.plist in Resources */,
+				3C44A83E1447D7E900151340 /* fruit_5.plist in Resources */,
 				3C44A83F1447D7E900151340 /* fruit_1.plist in Resources */,
 				3C44A8401447D7E900151340 /* fruit_2.plist in Resources */,
 				3C44A8411447D7E900151340 /* fruit_3.plist in Resources */,
@@ -1661,6 +1664,7 @@
 				BA5784F5144CDF6500139C6D /* 5_5_3.png in Resources */,
 				BA5784F6144CDF6500139C6D /* 5_5_4.png in Resources */,
 				BA5784F7144CDF6500139C6D /* 5_5_5.png in Resources */,
+				03030BDD144E1A25007FBCA4 /* boss_obstacle_book.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

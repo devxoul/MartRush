@@ -2,228 +2,228 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>fruit_0</key>
+	<key>fruit_1</key>
 	<dict>
 		<key>icon</key>
 		<string>1_1_1.png</string>
 		<key>level</key>
-		<integer>0</integer>
-		<key>value</key>
-		<integer>0</integer>
-	</dict>
-	<key>fruit_1</key>
-	<dict>
-		<key>icon</key>
-		<string>1_1_2.png</string>
-		<key>level</key>
-		<integer>1</integer>
+		<string>1</string>
 		<key>value</key>
 		<integer>0</integer>
 	</dict>
 	<key>fruit_2</key>
 	<dict>
 		<key>icon</key>
-		<string>1_1_3.png</string>
+		<string>1_1_2.png</string>
 		<key>level</key>
-		<integer>2</integer>
+		<string>2</string>
 		<key>value</key>
-		<integer>400</integer>
+		<integer>0</integer>
 	</dict>
 	<key>fruit_3</key>
 	<dict>
 		<key>icon</key>
-		<string>1_1_4.png</string>
+		<string>1_1_3.png</string>
 		<key>level</key>
-		<integer>3</integer>
+		<string>3</string>
 		<key>value</key>
-		<integer>700</integer>
+		<integer>400</integer>
 	</dict>
 	<key>fruit_4</key>
 	<dict>
 		<key>icon</key>
-		<string>1_1_5.png</string>
+		<string>1_1_4.png</string>
 		<key>level</key>
-		<integer>4</integer>
+		<string>4</string>
 		<key>value</key>
-		<integer>1000</integer>
+		<integer>700</integer>
 	</dict>
 	<key>fruit_5</key>
 	<dict>
 		<key>icon</key>
-		<string>2_2_1.png</string>
+		<string>1_1_5.png</string>
 		<key>level</key>
-		<integer>5</integer>
+		<string>5</string>
 		<key>value</key>
-		<integer>1000</integer>
+		<integer>0</integer>
 	</dict>
-	<key>fruit_6</key>
+	<key>vegetable_1</key>
 	<dict>
 		<key>icon</key>
-		<string>2_2_2.png</string>
+		<string>2_2_1.png</string>
 		<key>level</key>
 		<integer>6</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_7</key>
+	<key>vegetable_2</key>
 	<dict>
 		<key>icon</key>
-		<string>2_2_3.png</string>
+		<string>2_2_2.png</string>
 		<key>level</key>
 		<integer>7</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_8</key>
+	<key>vegetable_3</key>
 	<dict>
 		<key>icon</key>
-		<string>2_2_4.png</string>
+		<string>2_2_3.png</string>
 		<key>level</key>
 		<integer>8</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_9</key>
+	<key>vegetable_4</key>
 	<dict>
 		<key>icon</key>
-		<string>2_2_5.png</string>
+		<string>2_2_4.png</string>
 		<key>level</key>
 		<integer>9</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_10</key>
+	<key>vegetable_5</key>
 	<dict>
 		<key>icon</key>
-		<string>3_3_1.png</string>
+		<string>2_2_5.png</string>
 		<key>level</key>
 		<integer>10</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_11</key>
+	<key>seafood_1</key>
 	<dict>
 		<key>icon</key>
-		<string>3_3_2.png</string>
+		<string>3_3_1.png</string>
 		<key>level</key>
 		<integer>11</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_12</key>
+	<key>seafood_2</key>
 	<dict>
 		<key>icon</key>
-		<string>3_3_3.png</string>
+		<string>3_3_2.png</string>
 		<key>level</key>
 		<integer>12</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_13</key>
+	<key>seafood_3</key>
 	<dict>
 		<key>icon</key>
-		<string>3_3_4.png</string>
+		<string>3_3_3.png</string>
 		<key>level</key>
 		<integer>13</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_14</key>
+	<key>seafood_4</key>
 	<dict>
 		<key>icon</key>
-		<string>3_3_5.png</string>
+		<string>3_3_4.png</string>
 		<key>level</key>
 		<integer>14</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_15</key>
+	<key>seafood_5</key>
 	<dict>
 		<key>icon</key>
-		<string>4_4_1.png</string>
+		<string>3_3_5.png</string>
 		<key>level</key>
 		<integer>15</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_16</key>
+	<key>snack_1</key>
 	<dict>
 		<key>icon</key>
-		<string>4_4_2.png</string>
+		<string>4_4_1.png</string>
 		<key>level</key>
 		<integer>16</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_17</key>
+	<key>snack_2</key>
 	<dict>
 		<key>icon</key>
-		<string>4_4_3.png</string>
+		<string>4_4_2.png</string>
 		<key>level</key>
 		<integer>17</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_18</key>
+	<key>snack_3</key>
 	<dict>
 		<key>icon</key>
-		<string>4_4_4.png</string>
+		<string>4_4_3.png</string>
 		<key>level</key>
 		<integer>18</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_19</key>
+	<key>snack_4</key>
 	<dict>
 		<key>icon</key>
-		<string>4_4_5.png</string>
+		<string>4_4_4.png</string>
 		<key>level</key>
 		<integer>19</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_20</key>
+	<key>snack_5</key>
 	<dict>
 		<key>icon</key>
-		<string>5_5_1.png</string>
+		<string>4_4_5.png</string>
 		<key>level</key>
 		<integer>20</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_21</key>
+	<key>beverage_1</key>
 	<dict>
 		<key>icon</key>
-		<string>5_5_2.png</string>
+		<string>5_5_1.png</string>
 		<key>level</key>
 		<integer>21</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_22</key>
+	<key>beverage_2</key>
 	<dict>
 		<key>icon</key>
-		<string>5_5_3.png</string>
+		<string>5_5_2.png</string>
 		<key>level</key>
 		<integer>22</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_23</key>
+	<key>beverage_3</key>
 	<dict>
 		<key>icon</key>
-		<string>5_5_4.png</string>
+		<string>5_5_3.png</string>
 		<key>level</key>
 		<integer>23</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>
-	<key>fruit_24</key>
+	<key>beverage_4</key>
+	<dict>
+		<key>icon</key>
+		<string>5_5_4.png</string>
+		<key>level</key>
+		<integer>24</integer>
+		<key>value</key>
+		<integer>1000</integer>
+	</dict>
+	<key>beverage_5</key>
 	<dict>
 		<key>icon</key>
 		<string>5_5_5.png</string>
 		<key>level</key>
-		<integer>24</integer>
+		<integer>25</integer>
 		<key>value</key>
 		<integer>1000</integer>
 	</dict>

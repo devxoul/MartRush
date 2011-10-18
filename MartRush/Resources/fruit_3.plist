@@ -31,9 +31,5 @@
 	<integer>6500</integer>
 	<key>type</key>
 	<integer>0</integer>
-	<key>speed</key>
-	<integer>16</integer>
-	<key>rate</key>
-	<integer>65</integer>
 </dict>
 </plist>

@@ -92,10 +92,9 @@
 }
 
 - (void)selectLevel:(id)sender
-{
-	
-    if ([[UserData userData] isAvaliableStage:[[stageInfoArray objectForKey:[stageKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"]]) {
-//        [UserData userData].lastPlayedStage = [[stageInfoArray objectForKey:[stageKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"];
+{	
+    if ([[UserData userData] isAvaliableStage:[[stageInfoArray objectForKey:[stageKeys objectAtIndex:[sender tag] - 1]] objectForKey:@"level"]])
+	{
 		[UserData userData].lastPlayedStage = [stageKeys objectAtIndex:[sender tag] - 1];
         
         if ([UserData userData].backSound)

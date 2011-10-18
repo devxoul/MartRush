@@ -18,9 +18,5 @@
 	<integer>5000</integer>
 	<key>type</key>
 	<integer>1</integer>
-	<key>speed</key>
-	<integer>10</integer>
-	<key>rate</key>
-	<integer>0</integer>
 </dict>
 </plist>

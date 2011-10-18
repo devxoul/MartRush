@@ -36,6 +36,8 @@
         obstacleTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"obstacles"]];
         merchandiseTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"merchandises"]];
         
+		rate = gameScene_.stageLevel + 20;
+		
         return self;
     }
     return nil;
