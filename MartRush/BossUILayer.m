@@ -27,32 +27,39 @@
 	{
         i=0;
         
-        backGround = [[CCSprite alloc] initWithFile:@"uilayer_bg.png"];
+        backGround = [CCSprite spriteWithFile:@"uilayer_bg.png"];
         [backGround setPosition:ccp(240,280)];
         backGround.anchorPoint = ccp(0.5f, 0.0f);
         [self addChild:backGround];
         
-        heartSprite1 = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [heartSprite1 setPosition:ccp(25,285)];
-        heartSprite1.anchorPoint = ccp(0.5f, 0.0f);
-        [self addChild:heartSprite1];
+        heartArray = [[NSMutableArray alloc] init];
         
+        CCSprite *heart = [CCSprite spriteWithFile:@"heart.png"];
+        [heart setPosition:ccp(25,285)];
+        [heartArray addObject:heart];
         
-        heartSprite2 = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [heartSprite2 setPosition:ccp(58,285)];
-        heartSprite2.anchorPoint = ccp(0.5f, 0.0f);
-        [self addChild:heartSprite2];
+        heart = [CCSprite spriteWithFile:@"heart.png"];
+        [heart setPosition:ccp(58,285)];
+        [heartArray addObject:heart];
         
+        heart = [CCSprite spriteWithFile:@"heart.png"];
+        [heart setPosition:ccp(91,285)];
+        [heartArray addObject:heart];
         
-        heartSprite3 = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [heartSprite3 setPosition:ccp(91,285)];
-        heartSprite3.anchorPoint = ccp(0.5f, 0.0f);
-        [self addChild:heartSprite3];
+        for (CCSprite *heart in heartArray) {
+            heart.anchorPoint = ccp(0.5f, 0.0f);
+            [self addChild:heart];
+        }
         
-        startIcon = [[CCSprite alloc] initWithFile:@"heart.png"];
+        startIcon = [[CCSprite alloc] initWithFile:@"start.png"];
         [startIcon setPosition:ccp(135,285)];
         startIcon.anchorPoint = ccp(0.5f, 0.0f);
         [self addChild:startIcon];
+        
+        endIcon = [[CCSprite alloc] initWithFile:@"goal.png"];
+        [endIcon setPosition:ccp(371,285)];
+        endIcon.anchorPoint = ccp(0.5f, 0.0f);
+        [self addChild:endIcon];
         
         gaugeBg = [[CCSprite alloc] initWithFile:@"gaugebg.png"];
         [gaugeBg setPosition:ccp(253,294)];
@@ -64,10 +71,6 @@
         gauge.anchorPoint = ccp(0.0f, 0.0f);
         [self addChild:gauge];
         
-        endIcon = [[CCSprite alloc] initWithFile:@"heart.png"];
-        [endIcon setPosition:ccp(371,285)];
-        endIcon.anchorPoint = ccp(0.5f, 0.0f);
-        [self addChild:endIcon];
         
         
         info = [CCMenuItemImage itemFromNormalImage:@"cartbutton.png" selectedImage:@"cartbutton_pressed.png" target:self selector:nil];
@@ -90,20 +93,20 @@
 }
 
 -(void) heartUpdate{
+    CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
+    CCSprite *heart = 0;
     if(gameScene.gameLayer.player.hp == 2){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
-        [heartSprite3 runAction:action];
-        
+        heart = [heartArray objectAtIndex:2];
     }  
     if(gameScene.gameLayer.player.hp == 1){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];
-        [heartSprite2 runAction:action];
-        
+        heart = [heartArray objectAtIndex:1];
     }  
     if(gameScene.gameLayer.player.hp == 0){
-        CCFiniteTimeAction *action = [CCFadeOut actionWithDuration:0.3];        
-        CCCallFunc* gameEnd = [CCCallFunc actionWithTarget:self selector:@selector(endGame:)];
-        [heartSprite1 runAction:[CCSequence actions:action, gameEnd,nil]];        
+        heart = [heartArray objectAtIndex:0];
+        action = [CCSequence actions:action, [CCCallFunc actionWithTarget:self selector:@selector(endGame:)], nil];
+    }
+    if (heart) {
+        [heart runAction:action];
     }
 }
 - (void)update{
@@ -112,9 +115,10 @@
 }
 
 -(void) gaugeUpdate{
-    
-    float gaugeCount = 200 / (float)gameScene.gameLayer.boss.bossMaxHp; 
-    [gauge setTextureRect:CGRectMake(0,0,(gaugeCount * (float)gameScene.gameLayer.boss.bossHp),8)];   
+    if(gameScene.gameLayer.boss.bossHp > -1){
+        float gaugeCount = 200 / (float)gameScene.gameLayer.boss.bossMaxHp; 
+        [gauge setTextureRect:CGRectMake(0,0,(gaugeCount * (float)gameScene.gameLayer.boss.bossHp),8)];   
+    }
 }
 
 -(void)endGame:(id)sender

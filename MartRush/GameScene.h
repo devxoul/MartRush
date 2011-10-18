@@ -18,23 +18,26 @@
 @class BonusUILayer;
 
 @interface GameScene : CCScene {
-  
+	
 @public
 	GameLayer *gameLayer;
 	GameUILayer *gameUILayer;
-  BossUILayer *bossUILayer;
+	BossUILayer *bossUILayer;
 	BonusUILayer *bonusUILayer;
 	NSMutableArray *merchandises;
 	NSMutableArray *obstacles;
 	
 	MovementManager *movementManager;
-  ControlManager *controlManager;
-  
-  NSMutableDictionary *gameInfoDictionary;
-  
-  NSInteger gameState;
+	ControlManager *controlManager;
+	
+	NSMutableDictionary *gameInfoDictionary;
+	
+	NSInteger gameState;
 	NSInteger stageNumber;
-  NSInteger stageType;
+	NSInteger stageType;
+	
+	NSInteger count;
+	CCLabelTTF *label;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;

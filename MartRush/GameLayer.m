@@ -26,11 +26,10 @@
 		[self addChild:bg];
 		
 		player = [[Player alloc] initWithGameLayer:self];
-    
-		if( gameScene.stageType == STAGE_TYPE_BOSS )
+		if([gameScene stageType] == STAGE_TYPE_BOSS )
 		{
-    boss = [Boss alloc];
-    [boss init:self];
+            boss = [Boss alloc];
+            [boss init:self];
 		}
     
     self.isTouchEnabled = YES;

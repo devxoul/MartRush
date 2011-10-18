@@ -12,9 +12,11 @@
 #import "GameLayer.h"
 #import "GameScene.h"
 #import "Player.h"
+#import "Boss.h"
 
 // private methods
 @interface MovementManager(Private)
+- (BOOL)isMerchandiseCreatable;
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState;
 
 - (void)moveMerchandise:(Merchandise *)merchandise;
@@ -40,16 +42,15 @@
 
 - (void)update
 {
-	if( [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MIN_GAP )
+	if( [self isMerchandiseCreatable] )
 	{
 		[self createMerchandise:[merchandiseTypeArray objectAtIndex:arc4random()%merchandiseTypeArray.count] wayState:arc4random() % 2];
 	}
 	
-	if( [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP )
-	{
+	if(gameScene_.stageType == STAGE_TYPE_NORMAL && [self isObstacleCreatable] ){
 		if( arc4random() % 100 <= rate )
 			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
-	}
+    }
 	
 	NSMutableIndexSet *willBeRemovedMerchandisesIndices = [[NSMutableIndexSet alloc] init];
 	NSMutableIndexSet *willBeRemovedObstaclesIndices = [[NSMutableIndexSet alloc] init];
@@ -71,18 +72,25 @@
 	{
 		obstacle.z -= obstacle.speed;
 		
-		if( 100 <= obstacle.z && obstacle.z <= 150 && obstacle.wayState == gameScene_.gameLayer.player.wayState )
+		if( 100 <= obstacle.z && obstacle.z <= 140 && obstacle.wayState == gameScene_.gameLayer.player.wayState && obstacle.speed > 0 )
 		{
 			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
             [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
             [willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
 			continue;
 		}
-		
-		if( obstacle.z < 0 )
+		else if( DEFAULT_Z_BOSS_OBSTACLE - 50 <= obstacle.z && obstacle.z <= DEFAULT_Z_BOSS_OBSTACLE + 25 && obstacle.speed < 0 && [gameScene_.gameLayer.boss bossState] != BOSS_STATE_MOVING)
 		{
-            [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
-            
+            if(gameScene_.gameLayer.boss.bossWayState == obstacle.wayState){
+                gameScene_.gameLayer.boss.bossState = BOSS_STATE_CRASH;
+                [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
+                [willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
+                continue;
+            }
+		}
+		
+		if( obstacle.z < 0 || obstacle.z > 3500 )
+		{
 			[willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
         }
 	}
@@ -95,6 +103,16 @@
 	[willBeRemovedObstaclesIndices release];
 	
 	gameScene_.gameLayer.player.playerRunDistance += gameScene_.gameLayer.player.speed;
+}
+
+- (BOOL)isMerchandiseCreatable
+{
+	return [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MIN_GAP;
+}
+
+- (BOOL)isObstacleCreatable
+{
+	return [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState

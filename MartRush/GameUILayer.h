@@ -12,32 +12,30 @@
 @class GameScene;
 
 @interface GameUILayer : CCLayer {
-  GameScene *gameScene;
-  
-  CCSprite *backGround;
-  
-  NSMutableArray *heartArray;
-  
-  CCSprite *gauge;
-  CCSprite *gaugeBg;
-  
-  CCSprite *infoButton;
-  CCSprite *pauseButton;
-  
-  CCSprite *startIcon;
-  CCSprite *endIcon;
-  
-  float processedPortion;
-  
-  CCMenu *pauseMenu;
-  
-  CCMenuItemImage *info;
-  CCMenuItemImage *pause;
-  
+	GameScene *gameScene;
+	
+	CCSprite *backGround;
+	
+	NSMutableArray *heartArray;
+	
+	CCSprite *gauge;
+	CCSprite *gaugeBg;
+	
+	CCSprite *infoButton;
+	CCSprite *pauseButton;
+	
+	CCSprite *startIcon;
+	CCSprite *endIcon;
+	
+	float processedPortion;
+	
+	CCMenu *pauseMenu;
+	
+	CCMenuItemImage *info;
+	CCMenuItemImage *pause;
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
-
 @property (readwrite) float processedPortion;
 
 -(void) update;

@@ -27,12 +27,12 @@
 
 //GAME STATE 
 #define GAME_STATE_MISSION			0
-#define GAME_STATE_MISSION_ALERT	1
-#define GAME_STATE_COUNT			2
-#define GAME_STATE_START            3
-#define GAME_STATE_PAUSE            4
-#define GAME_STATE_OVER             5
-#define GAME_STATE_CLEAR            6
+#define GAME_STATE_COUNT			1
+#define GAME_STATE_START            2
+#define GAME_STATE_PAUSE            3
+#define GAME_STATE_OVER             4
+#define GAME_STATE_CLEAR            5
+#define GAME_STATE_CLEARING         6
 
 // PLAYER STATE
 #define PLAYER_STATE_RUN            0
@@ -78,9 +78,10 @@
 #define Z_ORDER_PLAYER				200000001
 #define Z_ORDER_DRAGGING_MERCHANDISE    200000002
 
+
 // Default Z
 #define DEFAULT_Z					3500
-
+#define DEFAULT_Z_BOSS_OBSTACLE     1000
 // Level Design
 #define MIN_GAP						400
 #define LEVEL_SPEEDS				[]

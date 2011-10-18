@@ -205,7 +205,7 @@ static BOOL _mixerRateSet = NO;
 		context = alcCreateContext(newDevice, 0);
 		if (context != NULL)
 		{
-			// Make the new context the Current OpenAL Context
+			// Make the ne      w context the Current OpenAL Context
 			alcMakeContextCurrent(context);
 			
 			// Create some OpenAL Buffer Objects

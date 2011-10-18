@@ -35,6 +35,7 @@
         if (!money) {
             money = 0;
         }
+		
         
         backSound = [[dict objectForKey:@"sound"] boolValue];        
         vibration = [[dict objectForKey:@"vibration"] boolValue];
