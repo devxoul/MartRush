@@ -78,15 +78,15 @@
 		}
 		else if (stageType == STAGE_TYPE_BOSS)
 		{
-			msg = @"Bit It!!";
+			msg = @"Beat It!!";
 		}
 		else if (stageType == STAGE_TYPE_BONUS)
 		{
-			msg = @"Get As many as Possible!";
+			msg = @"Get as many as possible!";
 		}
 		else if(stageType == STAGE_TYPE_INFINITE)
 		{
-			msg = @"Survive as long as Possible";
+			msg = @"Survive as long as possible";
 		}
 				
 		missionAlert = [[CCSprite alloc] initWithFile:@"mission.png"];
@@ -163,13 +163,13 @@
 		
 	if (gameState == GAME_STATE_START) 
 	{
-		NSString *msg = @"";
-		NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
-        
-		for( NSString *key in missions )
-		{
-			msg = [msg stringByAppendingFormat:@"%@ : %d\n", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
-		}
+//		NSString *msg = @"";
+//		NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
+//        
+//		for( NSString *key in missions )
+//		{
+//			msg = [msg stringByAppendingFormat:@"%@ : %d", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
+//		}
         
 		[movementManager update];
 		[gameLayer update];
