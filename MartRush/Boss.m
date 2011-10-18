@@ -42,7 +42,7 @@
 	[self setBossY:BOSS_Y_POSITION];
 	[self startBossRunnig];
 	gameLayer = _layer;
-	bossHp = gameLayer.gameScene.stageLevel * 15 + 15 ;  
+	bossHp = [[_layer.gameScene.gameInfoDictionary objectForKey:@"hp"] integerValue];
 	bossMaxHp = bossHp;
 	nTemp = 0;
 	nTemp2 = 0;

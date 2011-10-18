@@ -40,7 +40,6 @@
 	{
 		merchandises = [[NSMutableArray alloc] init];
 		obstacles = [[NSMutableArray alloc] init];
-		gameState = GAME_STATE_MISSION;
 		
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
 		
@@ -184,6 +183,9 @@
 		[label runAction:[CCEaseBackInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp( 240, 160 )]]];
 		gameState = GAME_STATE_CLEARING;
 		[self schedule:@selector(onClearLabelEnd:) interval:2.0];
+		
+		if ([UserData userData].backSound) 
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"clear.mp3"];
 	}
 	
 }

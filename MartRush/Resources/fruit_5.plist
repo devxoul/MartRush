@@ -16,5 +16,7 @@
 	<string>student</string>
 	<key>boss_obstacle</key>
 	<string>boss_obstacle_book</string>
+	<key>hp</key>
+	<integer>50</integer>
 </dict>
 </plist>

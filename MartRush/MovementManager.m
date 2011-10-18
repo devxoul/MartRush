@@ -36,7 +36,7 @@
         obstacleTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"obstacles"]];
         merchandiseTypeArray = [[NSArray alloc] initWithArray:[gameInfo objectForKey:@"merchandises"]];
         
-		rate = gameScene_.stageLevel + 20;
+		rate = gameScene_.stageLevel + 1;
 		
         return self;
     }
@@ -50,9 +50,8 @@
 		[self createMerchandise:[merchandiseTypeArray objectAtIndex:arc4random()%merchandiseTypeArray.count] wayState:arc4random() % 2];
 	}
 	
-	if( gameScene_.stageType == STAGE_TYPE_NORMAL && [self isObstacleCreatable] ){
-		if( arc4random() % 100 <= rate )
-			[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
+	if( gameScene_.stageType == STAGE_TYPE_NORMAL && [self isObstacleCreatable] && arc4random() % 1000 < rate ){
+		[self createObstacle:[obstacleTypeArray objectAtIndex:arc4random()%obstacleTypeArray.count] wayState:arc4random() % 2 z:DEFAULT_Z speed:10];
     }
 	
 	NSMutableIndexSet *willBeRemovedMerchandisesIndices = [[NSMutableIndexSet alloc] init];
@@ -112,12 +111,12 @@
 
 - (BOOL)isMerchandiseCreatable
 {
-	return [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MIN_GAP;
+	return [gameScene_.merchandises count] == 0 || ( (Merchandise *)[gameScene_.merchandises lastObject] ).z < DEFAULT_Z - MERCHANDISE_MIN_GAP;
 }
 
 - (BOOL)isObstacleCreatable
 {
-	return [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - MIN_GAP;
+	return [gameScene_.obstacles count] == 0 || ( (Obstacle *)[gameScene_.obstacles lastObject] ).z < DEFAULT_Z - OBSTACLE_MIN_GAP;
 }
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState

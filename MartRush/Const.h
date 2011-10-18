@@ -17,6 +17,7 @@
 #define STAGE_TYPE_NORMAL			0
 #define STAGE_TYPE_BOSS				1
 #define STAGE_TYPE_BONUS			2
+#define STAGE_TYPE_INFINITE			3
 
 //GAME STAGE LEVEL
 #define MARTRUSH_STAGE_1            0
@@ -81,7 +82,8 @@
 #define DEFAULT_Z					3500
 #define DEFAULT_Z_BOSS_OBSTACLE     1000
 // Level Design
-#define MIN_GAP						300
+#define MERCHANDISE_MIN_GAP			150
+#define OBSTACLE_MIN_GAP			300
 
 
 #endif
