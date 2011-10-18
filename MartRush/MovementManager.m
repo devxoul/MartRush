@@ -13,6 +13,8 @@
 #import "GameScene.h"
 #import "Player.h"
 #import "Boss.h"
+#import "UserData.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 // private methods
 @interface MovementManager(Private)
@@ -21,6 +23,8 @@
 
 - (void)removeMerchandise:(Merchandise *)merchandise;
 - (void)removeObstacle:(Obstacle *)obstacle;
+
+- (void)vibrate;
 @end
 
 
@@ -72,6 +76,7 @@
 		if( 100 <= obstacle.z && obstacle.z <= 140 && obstacle.wayState == gameScene_.gameLayer.player.wayState && obstacle.speed > 0 )
 		{
 			gameScene_.gameLayer.player.state = PLAYER_STATE_CRASH;
+			[self vibrate];
             [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
             [willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
 			continue;
@@ -80,6 +85,7 @@
 		{
             if(gameScene_.gameLayer.boss.bossWayState == obstacle.wayState){
                 gameScene_.gameLayer.boss.bossState = BOSS_STATE_CRASH;
+				[self vibrate];
                 [obstacle.obstacleSpr removeFromParentAndCleanup:YES];
                 [willBeRemovedObstaclesIndices addIndex:[gameScene_.obstacles indexOfObject:obstacle]];
                 continue;
@@ -153,6 +159,12 @@
 {
 	obstacle.obstacleSpr.position = ccp(!obstacle.wayState ? y * 3 / 16 + 155 : -1 * y * 3 / 16 + 325, y );
     obstacle.obstacleSpr.scale = ( -1 * y * 3 / 8 + 170 ) / obstacle.obstacleSpr.contentSize.width;
+}
+
+- (void)vibrate
+{
+	if( [UserData userData].vibration )
+		AudioServicesPlaySystemSound( kSystemSoundID_Vibrate );
 }
 
 @end
