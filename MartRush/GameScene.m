@@ -37,12 +37,14 @@
 -(id)init
 {
 	if( self = [super init] )
-	{		
+	{
 		merchandises = [[NSMutableArray alloc] init];
 		obstacles = [[NSMutableArray alloc] init];
 		gameState = GAME_STATE_MISSION;
 		
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
+		
+		NSLog( @"lastPlayedStage : %@", [UserData userData].lastPlayedStage );
 		
 		gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:
 																				  [UserData userData].lastPlayedStage ofType:@"plist"]];

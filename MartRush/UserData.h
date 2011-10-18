@@ -22,13 +22,13 @@
     NSDictionary *stageInfo;
     NSDictionary *cartInfo;
     NSMutableArray *boughtCart;    
-    NSNumber *lastPlayedStage;
+    NSString *lastPlayedStage;
 }
 
 @property (readwrite) NSUInteger money;
 @property (readwrite) BOOL backSound;
 @property (readwrite) BOOL vibration;
-@property (retain, readwrite) NSNumber *lastPlayedStage;
+@property (retain, readwrite) NSString *lastPlayedStage;
 @property (readonly) NSString *lastStage;
 @property (readonly) NSDictionary *stageInfo;
 
