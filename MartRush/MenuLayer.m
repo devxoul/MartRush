@@ -82,7 +82,7 @@
         
         CCMenu* back = [CCMenu menuWithItems:menu_back, nil];
         back.anchorPoint = CGPointZero;
-        [back setPosition:ccp(0, 270)];
+        [back setPosition:ccp(5, 270)];
         
         [self addChild:back];
         
@@ -99,13 +99,19 @@
                                                               menu_more.visible = NO;
                                                           }], nil]];
                                                          
+														 if ([UserData userData].backSound)
+															 [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+
                                                          [sender runAction:[CCRotateTo actionWithDuration:0.5 angle:360]];
                                                      }
                                                      else
                                                      {
                                                          menu_more.visible = YES;
                                                          [menu_more runAction:[CCEaseInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp(0, 0)] rate:2.0]];
-                                                         
+
+														 if ([UserData userData].backSound)
+															 [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+
                                                          [sender runAction:[CCRotateTo actionWithDuration:0.5 angle:180]];
                                                      }
                                                  }];
@@ -213,7 +219,8 @@
 
 -(void)moveRank:(id)sender
 {
-    
+	if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];       
 }
 
 -(void)moveInfo:(id)sender

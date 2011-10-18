@@ -38,10 +38,12 @@
 {
 	if( self = [super init] )
 	{
+		[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+		
 		merchandises = [[NSMutableArray alloc] init];
 		obstacles = [[NSMutableArray alloc] init];
 		
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
+//		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
 		
 		NSLog( @"lastPlayedStage : %@", [UserData userData].lastPlayedStage );
 		
@@ -56,22 +58,65 @@
 		
 		gameState = GAME_STATE_MISSION;
 		
-		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Game BGM.mp3"];
+		if ([UserData userData].backSound) 
+			[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
 		
 		// 카운트다운, 클리어 라벨
 		label = [[CCLabelTTF alloc] initWithString:@"" fontName:@"NanumScript.ttf" fontSize:100];
 		label.color = ccc3( 0, 0, 0 );
 		
 		NSString *msg = @"";
-		NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
-		for( NSString *key in missions )
+		
+		if (stageType == STAGE_TYPE_NORMAL) 
 		{
-			msg = [msg stringByAppendingFormat:@"%@ : %d\n", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
+			NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
+			
+			for( NSString *key in missions )
+			{
+				msg = [msg stringByAppendingFormat:@"%@ : %d\n", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
+			}
 		}
+		else if (stageType == STAGE_TYPE_BOSS)
+		{
+			msg = @"Bit It!!";
+		}
+		else if (stageType == STAGE_TYPE_BONUS)
+		{
+			msg = @"Get As many as Possible!";
+		}
+		else if(stageType == STAGE_TYPE_INFINITE)
+		{
+			msg = @"Survive as long as Possible";
+		}
+				
+		missionAlert = [[CCSprite alloc] initWithFile:@"mission.png"];
+		[missionAlert setAnchorPoint:ccp(0.5, 0.5)];
+		[missionAlert setPosition:ccp(240, 140)];
 		
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Mission" message:msg delegate:self cancelButtonTitle:@"Start" otherButtonTitles:nil] autorelease];
-		[alert show];
+		[self addChild:missionAlert z:10];
 		
+		missionLabel = [CCLabelTTF labelWithString:msg fontName:@"BurstMyBubble.ttf" fontSize:45];
+		[missionLabel setAnchorPoint:ccp(0.5, 0.5)];
+		[missionLabel setPosition:ccp(205, 100)];
+		missionLabel.color = ccBLACK;
+		
+		[missionAlert addChild:missionLabel];
+		
+		missionCheck = [CCMenuItemImage itemFromNormalImage:@"btn_yes.png" selectedImage:@"btn_yes.png" 
+													 target:self selector:@selector(missionAlertCheck:)];
+		[missionCheck setAnchorPoint:CGPointZero];
+		
+		missionMenu = [CCMenu menuWithItems:missionCheck, nil];
+		[missionMenu setAnchorPoint:CGPointZero];
+		[missionMenu setPosition:ccp(190, 50)];
+		
+		[self addChild:missionMenu z:11];
+		
+		missionLabel.visible = YES;
+		missionAlert.visible = YES;
+		missionCheck.visible = YES;
+		missionMenu.visible = YES;
+
 		return self;
 	}
 	
@@ -190,17 +235,25 @@
 	
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)missionAlertCheck:(id)sender
 {
 	if( gameState == GAME_STATE_MISSION )
 	{
+		missionLabel.visible = NO;
+		missionAlert.visible = NO;
+		missionCheck.visible = NO;
+		missionMenu.visible = NO;
+		
 		gameState = GAME_STATE_COUNT;
 		count = 3;
 		label.position = ccp( 240, 160 );
 		label.string = @"3";
 		[self addChild:label];
 		[self schedule:@selector(countDown:) interval:1];
-	}
+		
+		if ([UserData userData].backSound)
+			[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];        
+	}	
 }
 
 - (void)countDown:(id)sender

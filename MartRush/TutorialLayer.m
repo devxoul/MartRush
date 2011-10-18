@@ -44,7 +44,7 @@
         [back setAnchorPoint:CGPointZero];
         
         CCMenu* menu = [CCMenu menuWithItems:back, nil];
-        [menu setPosition:ccp(0, 270)];
+        [menu setPosition:ccp(5, 270)];
         [menu setAnchorPoint:CGPointZero];
         
         [self addChild:menu];

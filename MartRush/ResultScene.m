@@ -42,16 +42,11 @@
 		gottenMerchandiseArray = [[NSMutableArray alloc] initWithArray:merchandises];
 		missionDictionary = [[NSMutableDictionary alloc] initWithDictionary:mission];
 		
-		CCSprite *background = [CCSprite spriteWithFile:@"stage_bg.png"];
+		CCSprite *background = [CCSprite spriteWithFile:@"counter.png"];
 		
 		[background setPosition:CGPointMake(240, 160)];
 		[self addChild:background z:0];
-		/*
-		CCSprite *reciept = [CCSprite spriteWithFile:@""];
-		
-		[reciept setPosition:CGPointMake(270, 20)];
-		[self addChild:reciept z:10];
-		*/
+
 		numberOfCorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"NanumScript.ttf" fontSize:50];
 		numberOfMiscorrectLabel = [CCLabelTTF labelWithString:@"0" fontName:@"NanumScript.ttf" fontSize:50];
 		compensationLabel = [CCLabelTTF labelWithString:@"0" fontName:@"NanumScript.ttf" fontSize:50];
@@ -65,17 +60,17 @@
 		
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"성공" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(200, 250)];
+		[label setPosition:CGPointMake(300, 250)];
 		[self addChild:label z:15];
 		
 		label = [CCLabelTTF labelWithString:@"실패" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(200, 200)];
+		[label setPosition:CGPointMake(300, 200)];
 		[self addChild:label z:15];
 		
 		label = [CCLabelTTF labelWithString:@"보상" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(200, 150)];
+		[label setPosition:CGPointMake(300, 150)];
 		[self addChild:label z:15];
 		
 		[self addChild:numberOfCorrectLabel z:15];

@@ -12,6 +12,22 @@
 
 @implementation InfoLayer
 
+NSString* infoArr[15] = 
+{
+	@"Information",
+	@" ",
+	@"ters213@gmail.com",
+	@" ",
+	@"Credit",
+	@" ",
+	@"imeugenius",
+	@"MC.Im",
+	@"Cute Sanghun",
+	@"Nice Gyuseon",
+	@"Youngest Xoul"
+};
+
+
 - (id)init
 {
     self = [super init];
@@ -30,9 +46,21 @@
         
         CCMenu* menu = [CCMenu menuWithItems:back, nil];
         [menu setAnchorPoint:CGPointZero];
-        [menu setPosition:ccp(0, 270)];
+        [menu setPosition:ccp(5, 270)];
         
         [self addChild:menu];
+		
+		CCLabelTTF* infolab[10];
+		
+		for (int i = 0; i < 15; i++)
+		{
+			infolab[i] = [CCLabelTTF labelWithString:infoArr[i] fontName:@"NanumScript.ttf" fontSize:30];
+			infolab[i].anchorPoint = ccp(0.5, 0.5);
+			infolab[i].position = ccp(240, 280 - (i * 25));
+			infolab[i].color = ccBLACK;
+			
+			[self addChild:infolab[i]];
+		}		
     }
     
     return self;

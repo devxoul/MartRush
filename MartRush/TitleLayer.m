@@ -29,7 +29,7 @@
 		self.isTouchEnabled = YES;
         
         if ([UserData userData].backSound) 
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"GameBGM.mp3"];
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"TitleBGM.mp3"];
         
         titleBack = [[CCSprite alloc] initWithFile:@"mainbg.png"];
         titleBack.anchorPoint = CGPointZero;
@@ -81,6 +81,9 @@
     
     touchTheScreenSprite.visible = NO;
     
+    if ([UserData userData].backSound)
+        [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];    
+
     [titleLogo runAction:[CCSequence actions:[CCMoveTo actionWithDuration:1 position:ccp(titleLogo.position.x , 350)], 
                           [CCCallBlockN actionWithBlock:^(CCNode *node) {
         
@@ -90,9 +93,6 @@
             
             titleLogo.visible = NO;
             [[CCDirector sharedDirector] pushScene:[CCTransitionPageTurn transitionWithDuration:0.5 scene:[MenuLayer scene]]];
-            
-            if ([UserData userData].backSound)
-                [[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];        
         }], nil]];
     }],nil]];
 }

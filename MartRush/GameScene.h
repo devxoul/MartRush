@@ -38,6 +38,11 @@
 	
 	NSInteger count;
 	CCLabelTTF *label;
+	
+	CCSprite* missionAlert;
+	CCLabelTTF* missionLabel;
+	CCMenuItemImage* missionCheck;
+	CCMenu* missionMenu;
 }
 
 @property (nonatomic, retain) GameLayer *gameLayer;
@@ -57,5 +62,7 @@
 @property (readwrite) NSInteger stageLevel;
 
 @property (nonatomic, retain) NSMutableDictionary *gameInfoDictionary;
+
+-(void)missionAlertCheck:(id)sender;
 
 @end

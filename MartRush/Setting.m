@@ -79,7 +79,7 @@
         backMenu = [CCMenu menuWithItems:menu_back, nil];
         backMenu.anchorPoint = CGPointZero;
         
-        [backMenu setPosition:ccp(0, 270)];
+        [backMenu setPosition:ccp(5, 270)];
         [self addChild:backMenu];        
         
         resetState = SETTING_RESET;
