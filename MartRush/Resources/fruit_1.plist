@@ -23,7 +23,7 @@
 		<string>obstacle_dog</string>
 	</array>
 	<key>length</key>
-	<integer>100</integer>
+	<integer>5000</integer>
 	<key>type</key>
 	<integer>0</integer>
 </dict>

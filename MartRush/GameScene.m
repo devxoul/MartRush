@@ -71,9 +71,14 @@
 		{
 			NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
 			
+            int i=0;
 			for( NSString *key in missions )
 			{
-				msg = [msg stringByAppendingFormat:@"%@ : %d\n", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
+                i++;
+				msg = [msg stringByAppendingFormat:@"%@ : %d", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
+                if(i < [missions count]){
+                    msg = [msg stringByAppendingFormat:@"\n"];
+                }
 			}
 		}
 		else if (stageType == STAGE_TYPE_BOSS)
@@ -95,10 +100,10 @@
 		
 		[self addChild:missionAlert z:10];
 		
-        missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(200,100) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:45];
+        missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(400,130) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:24];
         
 		[missionLabel setAnchorPoint:ccp(0.5, 0.5)];
-		[missionLabel setPosition:ccp(205, 100)];
+		[missionLabel setPosition:ccp(205, 80)];
 		missionLabel.color = ccBLACK;
 		
 		[missionAlert addChild:missionLabel];
@@ -221,13 +226,10 @@
 		label.string = @"Clear!";
 		[label runAction:[CCEaseBackInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp( 240, 160 )]]];
 		gameState = GAME_STATE_CLEARING;
-		[self schedule:@selector(onClearLabelEnd:) interval:4.0];
+		[self schedule:@selector(onClearLabelEnd:) interval:2.0];
 		
-		if ([UserData userData].backSound)
-		{
-			[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
-            [[SimpleAudioEngine sharedEngine] playEffect:@"clear.mp3"];
-		}
+		if ([UserData userData].backSound) 
+            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"clear.mp3"];
 	}
 	
 }
@@ -249,10 +251,7 @@
 		[self schedule:@selector(countDown:) interval:1];
 		
 		if ([UserData userData].backSound)
-		{
-			[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
-			[[SimpleAudioEngine sharedEngine] playEffect:@"count_down.mp3"];
-		}
+			[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];        
 	}	
 }
 

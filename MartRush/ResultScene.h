@@ -10,16 +10,18 @@
 #import "cocos2d.h"
 
 @interface ResultScene : CCLayer<CCStandardTouchDelegate> {
-  NSMutableArray *gottenMerchandiseArray;
-  NSMutableDictionary *missionDictionary;
-  
-  CCLabelTTF *numberOfCorrectLabel;
-  CCLabelTTF *numberOfMiscorrectLabel;
-  CCLabelTTF *compensationLabel;
-  
-  NSUInteger numberOfCorrect;
-  NSUInteger numberOfMiscorrect;
-  NSUInteger compensation;
+    NSMutableArray *gottenMerchandiseArray;
+    NSMutableDictionary *missionDictionary;
+    
+    CCLabelTTF *numberOfCorrectLabel;
+    CCLabelTTF *numberOfMiscorrectLabel;
+    CCLabelTTF *compensationLabel;
+    
+    NSUInteger numberOfCorrect;
+    NSUInteger numberOfMiscorrect;
+    NSUInteger compensation;
+    
+    NSInteger stageType;
 }
 
 + (CCScene *)sceneWithMerchandises:(NSArray *)merchandises andMission:(NSDictionary *)mission;
