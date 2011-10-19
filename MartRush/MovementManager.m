@@ -38,6 +38,8 @@
         
 		rate = gameScene_.stageLevel + 5;
 		
+		priceList = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PriceList" ofType:@"plist"]];
+		
         return self;
     }
     return nil;
@@ -121,7 +123,7 @@
 
 - (void)createMerchandise:(NSString *)image wayState:(int)wayState
 {
-	Merchandise *merchandise = [[Merchandise alloc] initWithName:image andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andWay:wayState andPrice:100 andZ:DEFAULT_Z];
+	Merchandise *merchandise = [[Merchandise alloc] initWithName:image andSprite:[CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", image]] andWay:wayState andPrice:[[priceList objectForKey:image] integerValue] andZ:DEFAULT_Z];
 	merchandise.merchandiseSpr.anchorPoint = ccp( 0.5f, 1.0f );
 	[gameScene_.gameLayer addChild:merchandise.merchandiseSpr z:DEFAULT_Z];
 	[gameScene_.merchandises addObject:[merchandise autorelease]];

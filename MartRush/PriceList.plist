@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fruit_apple</key>
+	<integer>100</integer>
+	<key>fruit_banana</key>
+	<integer>200</integer>
+	<key>fruit_cherry</key>
+	<integer>300</integer>
+	<key>fruit_grape</key>
+	<integer>400</integer>
+	<key>fruit_kiwi</key>
+	<integer>500</integer>
+	<key>fruit_lemon</key>
+	<integer>600</integer>
+	<key>fruit_melon</key>
+	<integer>700</integer>
+	<key>fruit_orange</key>
+	<integer>800</integer>
+	<key>fruit_pineapple</key>
+	<integer>900</integer>
+	<key>fruit_watermelon</key>
+	<integer>1000</integer>
+</dict>
+</plist>

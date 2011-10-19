@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0359B79C143B042F001D9D94 /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0359B79B143B042F001D9D94 /* Manager.m */; };
+		03622976144F535B000F9CD2 /* PriceList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03622975144F535B000F9CD2 /* PriceList.plist */; };
 		03AB063B1435EF2E009CA68F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063A1435EF2E009CA68F /* QuartzCore.framework */; };
 		03AB063D1435EF2E009CA68F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063C1435EF2E009CA68F /* OpenGLES.framework */; };
 		03AB063F1435EF2E009CA68F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB063E1435EF2E009CA68F /* OpenAL.framework */; };
@@ -309,6 +310,7 @@
 /* Begin PBXFileReference section */
 		0359B79A143B042F001D9D94 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		0359B79B143B042F001D9D94 /* Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
+		03622975144F535B000F9CD2 /* PriceList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PriceList.plist; sourceTree = "<group>"; };
 		03AB06361435EF2D009CA68F /* MartRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MartRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03AB063A1435EF2E009CA68F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		03AB063C1435EF2E009CA68F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1367,6 +1369,7 @@
 				3C44A8391447D7E900151340 /* fruit_5.plist */,
 				3CA3584C144C83B300286E54 /* CartList.plist */,
 				CF97F766144E4FBE00D3E21D /* bonus.plist */,
+				03622975144F535B000F9CD2 /* PriceList.plist */,
 			);
 			name = plist;
 			sourceTree = "<group>";
@@ -1685,6 +1688,7 @@
 				CF97F76B144E517700D3E21D /* coin_incre.png in Resources */,
 				CFA3E5F3144ECA79007FA505 /* cart.png in Resources */,
 				CFA3E5F5144F1311007FA505 /* clockicon.png in Resources */,
+				03622976144F535B000F9CD2 /* PriceList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,7 @@
   NSArray *obstacleTypeArray;
   NSArray *merchandiseTypeArray;
 	NSInteger rate;
+	NSMutableDictionary *priceList;
 }
 
 - (id)initWithGameScene:(GameScene *)gameScene andGameInfo:(NSDictionary *)gameInfo;
