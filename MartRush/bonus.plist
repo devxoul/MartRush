@@ -4,6 +4,11 @@
 <dict>
 	<key>type</key>
 	<integer>2</integer>
+	<key>mission</key>
+	<dict>
+		<key>coin_incre</key>
+		<string></string>
+	</dict>
 	<key>merchandises</key>
 	<array>
 		<string>coin_incre</string>

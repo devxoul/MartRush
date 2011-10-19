@@ -25,7 +25,7 @@
 	if( self = [super init] )
 	{
         i=0;
-        limitTime = 30;
+        limitTime = 10;
         
         backGround = [CCSprite spriteWithFile:@"uilayer_bg.png"];
         [backGround setPosition:ccp(240,280)];

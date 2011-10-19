@@ -54,23 +54,23 @@
 		[numberOfCorrectLabel setColor:ccc3(0, 0, 0)];
 		[numberOfMiscorrectLabel setColor:ccc3(0, 0, 0)];
 		[compensationLabel setColor:ccc3(0, 0, 0)];
-		[numberOfCorrectLabel setPosition:CGPointMake(300, 250)];
-		[numberOfMiscorrectLabel setPosition:CGPointMake(300, 200)];
-		[compensationLabel setPosition:CGPointMake(300, 150)];
+		[numberOfCorrectLabel setPosition:CGPointMake(400, 250)];
+		[numberOfMiscorrectLabel setPosition:CGPointMake(400, 200)];
+		[compensationLabel setPosition:CGPointMake(400, 150)];
 		
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"성공" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(300, 250)];
+		[label setPosition:CGPointMake(320, 250)];
 		[self addChild:label z:15];
 		
 		label = [CCLabelTTF labelWithString:@"실패" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(300, 200)];
+		[label setPosition:CGPointMake(320, 200)];
 		[self addChild:label z:15];
 		
 		label = [CCLabelTTF labelWithString:@"보상" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(300, 150)];
+		[label setPosition:CGPointMake(320, 150)];
 		[self addChild:label z:15];
 		
 		[self addChild:numberOfCorrectLabel z:15];
@@ -93,13 +93,18 @@
 		if ([missionDictionary objectForKey:name] > 0) {
 			[missionDictionary setObject:[NSNumber numberWithInt:([[missionDictionary objectForKey:name] intValue] - 1)] forKey:name];
 			numberOfCorrect++;
-			compensation += [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price];
+            compensation += [(Merchandise *)[gottenMerchandiseArray objectAtIndex:0] price];
+            
 			[numberOfCorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfCorrect]];
 			[compensationLabel setString:[NSString stringWithFormat:@"%d", compensation]];
 		}
 		else
 		{
 			numberOfMiscorrect++;
+            if([[UserData userData].lastPlayedStage isEqualToString:@"bonus"]){
+                compensation-=10;
+                [compensationLabel setString:[NSString stringWithFormat:@"%d", compensation]];
+            }
 			[numberOfMiscorrectLabel setString:[NSString stringWithFormat:@"%d", numberOfMiscorrect]];
 		}
 		
