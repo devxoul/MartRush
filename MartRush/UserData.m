@@ -97,6 +97,13 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:path])
     {
         [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+		
+        money = 0;
+        boughtStage = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0], nil];
+        stageInfo = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StageList" ofType:@"plist"]] retain];
+        cartInfo = [[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CartList" ofType:@"plist"]] retain];
+        boughtCart = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0], nil];
+		
         return YES;
     }
     else
