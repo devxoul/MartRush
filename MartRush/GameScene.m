@@ -221,10 +221,13 @@
 		label.string = @"Clear!";
 		[label runAction:[CCEaseBackInOut actionWithAction:[CCMoveTo actionWithDuration:0.5 position:ccp( 240, 160 )]]];
 		gameState = GAME_STATE_CLEARING;
-		[self schedule:@selector(onClearLabelEnd:) interval:2.0];
+		[self schedule:@selector(onClearLabelEnd:) interval:4.0];
 		
-		if ([UserData userData].backSound) 
-            [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"clear.mp3"];
+		if ([UserData userData].backSound)
+		{
+			[[SimpleAudioEngine sharedEngine] stopBackgroundMusic];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"clear.mp3"];
+		}
 	}
 	
 }
@@ -246,7 +249,10 @@
 		[self schedule:@selector(countDown:) interval:1];
 		
 		if ([UserData userData].backSound)
-			[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];        
+		{
+			[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];
+			[[SimpleAudioEngine sharedEngine] playEffect:@"count_down.mp3"];
+		}
 	}	
 }
 

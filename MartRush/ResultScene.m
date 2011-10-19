@@ -121,6 +121,7 @@
 		[UserData userData].money += compensation;
 		[[UserData userData] saveToFile];
 		[[CCDirector sharedDirector] popScene];
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"TitleBGM.mp3"];
 	}
 }
 
