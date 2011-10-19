@@ -93,7 +93,12 @@
 	bossHp--;
     if (bossHp>=0) {
         [collisionSpr setVisible:YES];
-        [collisionSpr setPosition:bossSpr.position];
+        if(bossWayState == LEFT_WAY){
+            [collisionSpr setPosition:ccp(BOSS_LEFT_X_POSITION, BOSS_Y_POSITION)];
+        }
+        else{
+            [collisionSpr setPosition:ccp(BOSS_RIGHT_X_POSITION, BOSS_Y_POSITION)];
+        }
         [self stopBossRunning];
         //충돌 애니메이션 후
         CCCallFunc* bossCollisionCallback = [CCCallFunc actionWithTarget:self selector:@selector(bossEndCollision:)];

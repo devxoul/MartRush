@@ -43,7 +43,7 @@
 		merchandises = [[NSMutableArray alloc] init];
 		obstacles = [[NSMutableArray alloc] init];
 		
-//		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
+        //		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"gamebg_sound.mp3"];
 		
 		NSLog( @"lastPlayedStage : %@", [UserData userData].lastPlayedStage );
 		
@@ -88,14 +88,15 @@
 		{
 			msg = @"Survive as long as possible";
 		}
-				
+        
 		missionAlert = [[CCSprite alloc] initWithFile:@"mission.png"];
 		[missionAlert setAnchorPoint:ccp(0.5, 0.5)];
 		[missionAlert setPosition:ccp(240, 140)];
 		
 		[self addChild:missionAlert z:10];
 		
-		missionLabel = [CCLabelTTF labelWithString:msg fontName:@"BurstMyBubble.ttf" fontSize:45];
+        missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(200,100) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:45];
+        
 		[missionLabel setAnchorPoint:ccp(0.5, 0.5)];
 		[missionLabel setPosition:ccp(205, 100)];
 		missionLabel.color = ccBLACK;
@@ -116,7 +117,7 @@
 		missionAlert.visible = YES;
 		missionCheck.visible = YES;
 		missionMenu.visible = YES;
-
+        
 		return self;
 	}
 	
@@ -160,16 +161,9 @@
 - (void)draw
 {
 	[super draw];
-		
+    
 	if (gameState == GAME_STATE_START) 
 	{
-//		NSString *msg = @"";
-//		NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
-//        
-//		for( NSString *key in missions )
-//		{
-//			msg = [msg stringByAppendingFormat:@"%@ : %d", [[key componentsSeparatedByString:@"_"] objectAtIndex:1], [[missions objectForKey:key] integerValue]];
-//		}
         
 		[movementManager update];
 		[gameLayer update];
@@ -267,6 +261,8 @@
 	}
 	else if( count == -1 )
 	{
+        if(stageType == STAGE_TYPE_BONUS)
+            [bonusUILayer startTimer];
 		[self removeChild:label cleanup:NO];
 		[self unschedule:@selector(countDown:)];
 	}
@@ -275,7 +271,14 @@
 - (void)onClearLabelEnd:(id)sender
 {
 	[self unschedule:@selector(countDown:)];
-	[[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.cart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
+    if(stageType == STAGE_TYPE_BOSS){
+        [[UserData userData] setLastPlayedStage:@"bonus"];
+        [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInL transitionWithDuration:0.3 scene:[[[GameScene alloc]init] autorelease]]];
+    }
+    
+    else{
+        [[CCDirector sharedDirector] replaceScene:[ResultScene sceneWithMerchandises:gameLayer.player.cart.itemList andMission:[gameInfoDictionary objectForKey:@"mission"]]];
+    }
 }
 
 -(void)dealloc

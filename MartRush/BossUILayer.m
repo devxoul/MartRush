@@ -12,7 +12,7 @@
 #import "Player.h"
 #import "GameLayer.h"
 #import "GameOverScene.h"
-
+#import "GamePauseMenuLayer.h"
 
 @implementation BossUILayer
 
@@ -76,7 +76,15 @@
         info = [CCMenuItemImage itemFromNormalImage:@"cartbutton.png" selectedImage:@"cartbutton_pressed.png" target:self selector:nil];
         info.anchorPoint = ccp(0.5f, 0.0f);
         
-        pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" target:self selector:nil];
+        
+        
+        pause = [CCMenuItemImage itemFromNormalImage:@"pause.png" selectedImage:@"pause_pressed.png" block:^(id sender) {
+            if (gameScene.gameState == GAME_STATE_START) {
+                gameScene.gameState = GAME_STATE_PAUSE;
+                [self addChild:[GamePauseMenuLayer layerWithStage:gameScene] z:10000];
+                gameScene.gameLayer.isTouchEnabled = NO;
+            }
+        }];
         pause.anchorPoint = ccp(0.5f, 0.0f);        
         
         pauseMenu = [CCMenu menuWithItems:pause, info,nil];

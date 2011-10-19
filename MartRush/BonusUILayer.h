@@ -11,33 +11,30 @@
 #import "GameScene.h"
 
 @interface BonusUILayer : CCLayer{
-  
-  GameScene *gameScene;
-  
-  CCSprite *backGround;
-  
-  CCSprite *heartSprite1;
-  CCSprite *heartSprite2;
-  CCSprite *heartSprite3;
-  
-  CCLabelTTF *countLabel;
-  
-  CCSprite *infoButton;
-  CCSprite *pauseButton;
-  
-  CCSprite *startIcon;
-  CCSprite *endIcon;
-  
-  float i;
-  
-  CCMenu *pauseMenu;
-  
-  CCMenuItemImage *info;
-  CCMenuItemImage *pause;
-  
-  int limitTime;
-  
-  NSTimer *timer;
+    
+    GameScene *gameScene;
+    
+    CCSprite *backGround;
+    
+    NSMutableArray *heartArray;
+    
+    CCLabelTTF *countLabel;
+    
+    CCSprite *infoButton;
+    CCSprite *pauseButton;
+    
+    CCSprite *clockIcon;
+    
+    float i;
+    
+    CCMenu *pauseMenu;
+    
+    CCMenuItemImage *info;
+    CCMenuItemImage *pause;
+    
+    int limitTime;
+    
+    NSTimer *timer;
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
@@ -49,5 +46,5 @@
 -(void)update;
 -(void) gaugeUpdate;
 -(void)timeDecrease:(id)sender;
-
+-(void) startTimer;
 @end
