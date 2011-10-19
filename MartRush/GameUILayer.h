@@ -33,6 +33,12 @@
 	
 	CCMenuItemImage *info;
 	CCMenuItemImage *pause;
+    
+    
+    CCSprite* missionAlert;
+	CCLabelTTF* missionLabel;
+	CCMenuItemImage* missionCheck;
+	CCMenu* missionMenu;
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
@@ -41,5 +47,5 @@
 -(void) update;
 -(void) endGame:(id)sender;
 -(void) heartUpdate;
-
+-(void)missionAlertCheck:(id)sender;
 @end

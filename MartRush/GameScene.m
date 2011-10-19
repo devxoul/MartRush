@@ -123,6 +123,7 @@
 		missionCheck.visible = YES;
 		missionMenu.visible = YES;
         
+        gameLayer.isTouchEnabled = YES;
 		return self;
 	}
 	
@@ -221,6 +222,7 @@
 	}
 	else if(gameState == GAME_STATE_CLEAR)
 	{
+        gameLayer.isTouchEnabled = NO;
 		[self addChild:label];
 		label.position = ccp( 240, 480 );
 		label.string = @"Clear!";

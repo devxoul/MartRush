@@ -11,29 +11,33 @@
 #import "GameScene.h"
 
 @interface BossUILayer : CCLayer{
-  
-  GameScene *gameScene;
-  
-  CCSprite *backGround;
-  
-  NSMutableArray *heartArray;
-
-  CCSprite *gaugeBg;
-  CCSprite *gauge;
-  
-  CCSprite *infoButton;
-  CCSprite *pauseButton;
-  
-  CCSprite *startIcon;
-  CCSprite *endIcon;
-  
-  float i;
-  
-  CCMenu *pauseMenu;
-  
-  CCMenuItemImage *info;
-  CCMenuItemImage *pause;
-  
+    
+    GameScene *gameScene;
+    
+    CCSprite *backGround;
+    
+    NSMutableArray *heartArray;
+    
+    CCSprite *gaugeBg;
+    CCSprite *gauge;
+    
+    CCSprite *infoButton;
+    CCSprite *pauseButton;
+    
+    CCSprite *startIcon;
+    CCSprite *endIcon;
+    
+    float i;
+    
+    CCMenu *pauseMenu;
+    
+    CCMenuItemImage *info;
+    CCMenuItemImage *pause;
+    
+    CCSprite* missionAlert;
+	CCLabelTTF* missionLabel;
+	CCMenuItemImage* missionCheck;
+	CCMenu* missionMenu;
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
@@ -46,5 +50,6 @@
 -(void)gaugeUpdate;
 -(void)endGame:(id)sender;
 -(void) heartUpdate;
+-(void)missionAlertCheck:(id)sender;
 
 @end

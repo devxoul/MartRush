@@ -12,6 +12,10 @@
 #import "GamePauseMenuLayer.h"
 #import "GameLayer.h"
 #import "GameOverScene.h"
+#import "UserData.h"
+#import "SimpleAudioEngine.h"
+#import "Cart.h"
+#import "Merchandise.h"
 
 @implementation GameUILayer
 
@@ -58,7 +62,62 @@
         [self addChild:endIcon];
         
         
-        info = [CCMenuItemImage itemFromNormalImage:@"cartbutton.png" selectedImage:@"cartbutton_pressed.png" block:^(id sender) { }];
+        info = [CCMenuItemImage itemFromNormalImage:@"cartbutton.png" selectedImage:@"cartbutton_pressed.png" block:^(id sender) {
+            if (gameScene.gameState == GAME_STATE_START) {
+                gameScene.gameState = GAME_STATE_PAUSE;
+                gameScene.gameLayer.isTouchEnabled = NO;
+
+                NSDictionary *gameInfoDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:
+                                                                                                        [UserData userData].lastPlayedStage ofType:@"plist"]];
+                NSString *msg = @"";
+                
+                NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
+                int i=0;
+                for( NSString *key in missions )
+                {   int count = 0;
+                    i++;
+                    for(Merchandise *temp in gameScene.gameLayer.player.cart.itemList){
+                        if([[temp name] isEqualToString:key])
+                            count++;
+                    }
+                    msg = [msg stringByAppendingFormat:@"%@ : %d / %d", [[key componentsSeparatedByString:@"_"] objectAtIndex:1],count, [[missions objectForKey:key] integerValue]];
+                    if(i < [missions count]){
+                        msg = [msg stringByAppendingFormat:@"\n"];
+                    }
+                }
+                
+                
+                missionAlert = [[CCSprite alloc] initWithFile:@"mission.png"];
+                [missionAlert setAnchorPoint:ccp(0.5, 0.5)];
+                [missionAlert setPosition:ccp(240, 140)];
+                
+                [self addChild:missionAlert z:Z_ORDER_PLAYER+1];
+                
+                missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(400,130) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:24];
+                
+                [missionLabel setAnchorPoint:ccp(0.5, 0.5)];
+                [missionLabel setPosition:ccp(205, 80)];
+                missionLabel.color = ccBLACK;
+                
+                [missionAlert addChild:missionLabel];
+                
+                missionCheck = [CCMenuItemImage itemFromNormalImage:@"btn_yes.png" selectedImage:@"btn_yes.png" 
+                                                             target:self selector:@selector(missionAlertCheck:)];
+                [missionCheck setAnchorPoint:CGPointZero];
+                
+                missionMenu = [CCMenu menuWithItems:missionCheck, nil];
+                [missionMenu setAnchorPoint:CGPointZero];
+                [missionMenu setPosition:ccp(190, 50)];
+                
+                [self addChild:missionMenu z:Z_ORDER_PLAYER+2];
+                
+                missionLabel.visible = YES;
+                missionAlert.visible = YES;
+                missionCheck.visible = YES;
+                missionMenu.visible = YES;
+                
+            }
+        }];
         info.anchorPoint = ccp(0.5f, 0.0f);
         
         gaugeBg = [[CCSprite alloc] initWithFile:@"gaugebg.png"];
@@ -92,8 +151,8 @@
         
         return self;
     }
-
-return nil;
+    
+    return nil;
 }
 
 -(float)processedPortion
@@ -131,6 +190,23 @@ return nil;
 -(void)endGame:(id)sender
 {
 	[[CCDirector sharedDirector] replaceScene:[CCTransitionFadeDown transitionWithDuration:1 scene:[GameOverScene scene]]];
+}
+
+-(void)missionAlertCheck:(id)sender
+{
+	if( gameScene.gameState == GAME_STATE_PAUSE )
+	{
+		missionLabel.visible = NO;
+		missionAlert.visible = NO;
+		missionCheck.visible = NO;
+		missionMenu.visible = NO;
+        
+        gameScene.gameState = GAME_STATE_START;
+        gameScene.gameLayer.isTouchEnabled = YES;
+
+		if ([UserData userData].backSound)
+			[[SimpleAudioEngine sharedEngine] playEffect:@"click.mp3"];        
+	}	
 }
 
 @end

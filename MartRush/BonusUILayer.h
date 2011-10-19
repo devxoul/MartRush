@@ -35,6 +35,11 @@
     int limitTime;
     
     NSTimer *timer;
+    
+    CCSprite* missionAlert;
+	CCLabelTTF* missionLabel;
+	CCMenuItemImage* missionCheck;
+	CCMenu* missionMenu;
 }
 
 @property (nonatomic, retain) GameScene *gameScene;
@@ -47,4 +52,6 @@
 -(void) gaugeUpdate;
 -(void)timeDecrease:(id)sender;
 -(void) startTimer;
+-(void)missionAlertCheck:(id)sender;
+
 @end

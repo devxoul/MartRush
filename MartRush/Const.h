@@ -34,7 +34,7 @@
 #define GAME_STATE_OVER             4
 #define GAME_STATE_CLEAR            5
 #define GAME_STATE_CLEARING         6
-
+#define GAME_STATE_MISSION_GAME     7
 // PLAYER STATE
 #define PLAYER_STATE_RUN            0
 #define PLAYER_STATE_CRASH          1
