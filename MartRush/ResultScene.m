@@ -54,23 +54,23 @@
 		[numberOfCorrectLabel setColor:ccc3(0, 0, 0)];
 		[numberOfMiscorrectLabel setColor:ccc3(0, 0, 0)];
 		[compensationLabel setColor:ccc3(0, 0, 0)];
-		[numberOfCorrectLabel setPosition:CGPointMake(300, 250)];
-		[numberOfMiscorrectLabel setPosition:CGPointMake(300, 200)];
-		[compensationLabel setPosition:CGPointMake(300, 150)];
+		[numberOfCorrectLabel setPosition:CGPointMake(410, 250)];
+		[numberOfMiscorrectLabel setPosition:CGPointMake(410, 200)];
+		[compensationLabel setPosition:CGPointMake(410, 150)];
 		
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"성공" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(300, 250)];
+		[label setPosition:CGPointMake(320, 250)];
 		[self addChild:label z:15];
 		
 		label = [CCLabelTTF labelWithString:@"실패" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(300, 200)];
+		[label setPosition:CGPointMake(320, 200)];
 		[self addChild:label z:15];
 		
 		label = [CCLabelTTF labelWithString:@"보상" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
-		[label setPosition:CGPointMake(300, 150)];
+		[label setPosition:CGPointMake(320, 150)];
 		[self addChild:label z:15];
 		
 		[self addChild:numberOfCorrectLabel z:15];
