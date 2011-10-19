@@ -26,7 +26,7 @@
     [cartSpr setTextureRect:CGRectMake(0, 0, 92, 68)];
     cartSpr.position = ccp(CART_LEFT_X_POSITION, CART_Y_POSITION);  
     
-    [_layer addChild:cartSpr z:1];
+//    [_layer addChild:cartSpr z:1];
     
     return self;
   }

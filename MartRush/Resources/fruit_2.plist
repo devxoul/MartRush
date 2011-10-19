@@ -21,8 +21,8 @@
 	</array>
 	<key>obstacles</key>
 	<array>
-		<string>zzukkume</string>
-		<string>jammanbo</string>
+		<string>obstacle_mom</string>
+		<string>obstacle_dog</string>
 	</array>
 	<key>length</key>
 	<integer>6000</integer>
