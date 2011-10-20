@@ -78,12 +78,12 @@
                 [missionAlert setAnchorPoint:ccp(0.5, 0.5)];
                 [missionAlert setPosition:ccp(240, 140)];
                 
-                [self addChild:missionAlert z:Z_ORDER_PLAYER+1];
+                [self addChild:missionAlert z:10];
                 
-                missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(400,130) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:24];
+                missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(400,140) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:35];
                 
                 [missionLabel setAnchorPoint:ccp(0.5, 0.5)];
-                [missionLabel setPosition:ccp(205, 80)];
+                [missionLabel setPosition:ccp(205, 120)];
                 missionLabel.color = ccBLACK;
                 
                 [missionAlert addChild:missionLabel];
@@ -94,14 +94,15 @@
                 
                 missionMenu = [CCMenu menuWithItems:missionCheck, nil];
                 [missionMenu setAnchorPoint:CGPointZero];
-                [missionMenu setPosition:ccp(190, 50)];
+                [missionMenu setPosition:ccp(190, 30)];
                 
-                [self addChild:missionMenu z:Z_ORDER_PLAYER+2];
+                [self addChild:missionMenu z:11];
                 
                 missionLabel.visible = YES;
                 missionAlert.visible = YES;
                 missionCheck.visible = YES;
                 missionMenu.visible = YES;
+
                 
             }
         }];

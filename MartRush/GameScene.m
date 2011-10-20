@@ -66,7 +66,7 @@
 		label.color = ccc3( 0, 0, 0 );
 		
 		NSString *msg = @"";
-		
+		int fontSize = 24;
 		if (stageType == STAGE_TYPE_NORMAL) 
 		{
 			NSMutableDictionary *missions = [NSMutableDictionary dictionaryWithDictionary:[gameInfoDictionary objectForKey:@"mission"]];
@@ -83,10 +83,12 @@
 		}
 		else if (stageType == STAGE_TYPE_BOSS)
 		{
+            fontSize = 55;
 			msg = @"Beat It!!";
 		}
 		else if (stageType == STAGE_TYPE_BONUS)
 		{
+            fontSize = 35;
 			msg = @"Get as many as possible!";
 		}
 		else if(stageType == STAGE_TYPE_INFINITE)
@@ -100,10 +102,10 @@
 		
 		[self addChild:missionAlert z:10];
 		
-        missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(400,130) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:24];
+        missionLabel = [CCLabelTTF labelWithString:msg dimensions:CGSizeMake(400,140) alignment:UITextAlignmentCenter lineBreakMode:UILineBreakModeWordWrap  fontName:@"BurstMyBubble.ttf" fontSize:fontSize];
         
 		[missionLabel setAnchorPoint:ccp(0.5, 0.5)];
-		[missionLabel setPosition:ccp(205, 80)];
+		[missionLabel setPosition:ccp(205, 120)];
 		missionLabel.color = ccBLACK;
 		
 		[missionAlert addChild:missionLabel];
@@ -114,7 +116,7 @@
 		
 		missionMenu = [CCMenu menuWithItems:missionCheck, nil];
 		[missionMenu setAnchorPoint:CGPointZero];
-		[missionMenu setPosition:ccp(190, 50)];
+		[missionMenu setPosition:ccp(190, 30)];
 		
 		[self addChild:missionMenu z:11];
 		
