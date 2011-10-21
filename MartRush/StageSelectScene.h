@@ -10,11 +10,34 @@
 #import "cocos2d.h"
 
 @class MenuLayer;
+@class SlidingMenuGrid;
 
 @interface StageSelectScene : CCLayer {
-  NSDictionary *stageInfoArray;
-  NSArray *stageKeys;
-  CCLabelTTF *moneyLabel;
+	NSDictionary *stageInfoArray;
+	NSArray *stageKeys;
+	CCLabelTTF *moneyLabel;
+	
+	CCSprite* buyAlert;
+	CCMenuItemImage* buyYes;
+	CCMenuItemImage* buyNO;
+	CCMenu* menuBuy;
+	CCLabelTTF* buylab;
+	CCLabelTTF* buyValue;
+	
+	CCMenuItemImage* cashNO;
+	CCMenu* cashMenu;
+	
+	NSInteger buyState;
+	
+	NSNumber* selectStage;
+	NSString* tempStage;
+	
+	CCLayer* buyLayer;
+	
+	///
+	NSMutableArray *menuArray;
+	CCMenuItemSprite *item;
+	SlidingMenuGrid* menu;
 }
 
 + (CCScene *)scene;

@@ -71,8 +71,8 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     [dict setObject:[NSNumber numberWithInteger:money] forKey:@"money"];
-    [dict setObject:[NSNumber numberWithBool:backSound] forKey:@"sound"];
-    [dict setObject:[NSNumber numberWithBool:vibration] forKey:@"vibration"];
+//    [dict setObject:[NSNumber numberWithBool:backSound] forKey:@"sound"];
+//    [dict setObject:[NSNumber numberWithBool:vibration] forKey:@"vibration"];
     [dict setObject:boughtStage forKey:@"stages"];
     [dict setObject:boughtCart forKey:@"cart"];
     
@@ -134,7 +134,7 @@
     if (price <= money)
     {
         money -= price;
-        [boughtStage addObject:stage];
+        [boughtStage  addObject:stage];
         [self saveToFile];
         return YES;
     }
@@ -144,6 +144,10 @@
 
 - (BOOL)isAvaliableStage:(NSNumber *)stage
 {
+//	NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[(NSString *)[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"UserData.plist"]];
+//	
+//	boughtStage = [dict objectForKey:@"stages"];
+
     return ([boughtStage indexOfObjectIdenticalTo:stage] != NSNotFound);
 }
 

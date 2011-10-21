@@ -58,17 +58,17 @@
 		[numberOfMiscorrectLabel setPosition:CGPointMake(400, 200)];
 		[compensationLabel setPosition:CGPointMake(400, 150)];
 		
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"성공" fontName:@"NanumScript.ttf" fontSize:50];
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Success" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
 		[label setPosition:CGPointMake(320, 250)];
 		[self addChild:label z:15];
 		
-		label = [CCLabelTTF labelWithString:@"실패" fontName:@"NanumScript.ttf" fontSize:50];
+		label = [CCLabelTTF labelWithString:@"Fail" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
 		[label setPosition:CGPointMake(320, 200)];
 		[self addChild:label z:15];
 		
-		label = [CCLabelTTF labelWithString:@"보상" fontName:@"NanumScript.ttf" fontSize:50];
+		label = [CCLabelTTF labelWithString:@"Compensation" fontName:@"NanumScript.ttf" fontSize:50];
 		[label setColor:ccc3(0, 0, 0)];
 		[label setPosition:CGPointMake(320, 150)];
 		[self addChild:label z:15];

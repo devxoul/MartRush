@@ -6,6 +6,8 @@
 	<dict>
 		<key>icon</key>
 		<string>1_1_1.png</string>
+		<key>bought</key>
+		<string>1_lock.png</string>
 		<key>level</key>
 		<string>1</string>
 		<key>value</key>
@@ -13,15 +15,19 @@
 	</dict>
 	<key>fruit_2</key>
 	<dict>
+		<key>bought</key>
+		<string>1_lock.png</string>
 		<key>icon</key>
 		<string>1_1_2.png</string>
 		<key>level</key>
 		<string>2</string>
 		<key>value</key>
-		<integer>0</integer>
+		<integer>100</integer>
 	</dict>
 	<key>fruit_3</key>
 	<dict>
+		<key>bought</key>
+		<string>1_lock.png</string>
 		<key>icon</key>
 		<string>1_1_3.png</string>
 		<key>level</key>
@@ -31,6 +37,8 @@
 	</dict>
 	<key>fruit_4</key>
 	<dict>
+		<key>bought</key>
+		<string>1_lock.png</string>
 		<key>icon</key>
 		<string>1_1_4.png</string>
 		<key>level</key>
@@ -40,6 +48,8 @@
 	</dict>
 	<key>fruit_5</key>
 	<dict>
+		<key>bought</key>
+		<string>1_lock.png</string>
 		<key>icon</key>
 		<string>1_1_5.png</string>
 		<key>level</key>
@@ -49,6 +59,8 @@
 	</dict>
 	<key>vegetable_1</key>
 	<dict>
+		<key>bought</key>
+		<string>2_lock.png</string>
 		<key>icon</key>
 		<string>2_2_1.png</string>
 		<key>level</key>
@@ -58,6 +70,8 @@
 	</dict>
 	<key>vegetable_2</key>
 	<dict>
+		<key>bought</key>
+		<string>2_lock.png</string>
 		<key>icon</key>
 		<string>2_2_2.png</string>
 		<key>level</key>
@@ -67,6 +81,8 @@
 	</dict>
 	<key>vegetable_3</key>
 	<dict>
+		<key>bought</key>
+		<string>2_lock.png</string>
 		<key>icon</key>
 		<string>2_2_3.png</string>
 		<key>level</key>
@@ -76,6 +92,8 @@
 	</dict>
 	<key>vegetable_4</key>
 	<dict>
+		<key>bought</key>
+		<string>2_lock.png</string>
 		<key>icon</key>
 		<string>2_2_4.png</string>
 		<key>level</key>
@@ -85,6 +103,8 @@
 	</dict>
 	<key>vegetable_5</key>
 	<dict>
+		<key>bought</key>
+		<string>2_lock.png</string>
 		<key>icon</key>
 		<string>2_2_5.png</string>
 		<key>level</key>
@@ -94,6 +114,8 @@
 	</dict>
 	<key>seafood_1</key>
 	<dict>
+		<key>bought</key>
+		<string>3_lock.png</string>
 		<key>icon</key>
 		<string>3_3_1.png</string>
 		<key>level</key>
@@ -103,6 +125,8 @@
 	</dict>
 	<key>seafood_2</key>
 	<dict>
+		<key>bought</key>
+		<string>3_lock.png</string>
 		<key>icon</key>
 		<string>3_3_2.png</string>
 		<key>level</key>
@@ -112,6 +136,8 @@
 	</dict>
 	<key>seafood_3</key>
 	<dict>
+		<key>bought</key>
+		<string>3_lock.png</string>
 		<key>icon</key>
 		<string>3_3_3.png</string>
 		<key>level</key>
@@ -121,6 +147,8 @@
 	</dict>
 	<key>seafood_4</key>
 	<dict>
+		<key>bought</key>
+		<string>3_lock.png</string>
 		<key>icon</key>
 		<string>3_3_4.png</string>
 		<key>level</key>
@@ -130,6 +158,8 @@
 	</dict>
 	<key>seafood_5</key>
 	<dict>
+		<key>bought</key>
+		<string>3_lock.png</string>
 		<key>icon</key>
 		<string>3_3_5.png</string>
 		<key>level</key>
@@ -139,6 +169,8 @@
 	</dict>
 	<key>snack_1</key>
 	<dict>
+		<key>bought</key>
+		<string>4_lock.png</string>
 		<key>icon</key>
 		<string>4_4_1.png</string>
 		<key>level</key>
@@ -148,6 +180,8 @@
 	</dict>
 	<key>snack_2</key>
 	<dict>
+		<key>bought</key>
+		<string>4_lock.png</string>
 		<key>icon</key>
 		<string>4_4_2.png</string>
 		<key>level</key>
@@ -157,6 +191,8 @@
 	</dict>
 	<key>snack_3</key>
 	<dict>
+		<key>bought</key>
+		<string>4_lock.png</string>
 		<key>icon</key>
 		<string>4_4_3.png</string>
 		<key>level</key>
@@ -166,6 +202,8 @@
 	</dict>
 	<key>snack_4</key>
 	<dict>
+		<key>bought</key>
+		<string>4_lock.png</string>
 		<key>icon</key>
 		<string>4_4_4.png</string>
 		<key>level</key>
@@ -175,6 +213,8 @@
 	</dict>
 	<key>snack_5</key>
 	<dict>
+		<key>bought</key>
+		<string>4_lock.png</string>
 		<key>icon</key>
 		<string>4_4_5.png</string>
 		<key>level</key>
@@ -184,6 +224,8 @@
 	</dict>
 	<key>beverage_1</key>
 	<dict>
+		<key>bought</key>
+		<string>5_lock.png</string>
 		<key>icon</key>
 		<string>5_5_1.png</string>
 		<key>level</key>
@@ -193,6 +235,8 @@
 	</dict>
 	<key>beverage_2</key>
 	<dict>
+		<key>bought</key>
+		<string>5_lock.png</string>
 		<key>icon</key>
 		<string>5_5_2.png</string>
 		<key>level</key>
@@ -202,6 +246,8 @@
 	</dict>
 	<key>beverage_3</key>
 	<dict>
+		<key>bought</key>
+		<string>5_lock.png</string>
 		<key>icon</key>
 		<string>5_5_3.png</string>
 		<key>level</key>
@@ -211,6 +257,8 @@
 	</dict>
 	<key>beverage_4</key>
 	<dict>
+		<key>bought</key>
+		<string>5_lock.png</string>
 		<key>icon</key>
 		<string>5_5_4.png</string>
 		<key>level</key>
@@ -220,6 +268,8 @@
 	</dict>
 	<key>beverage_5</key>
 	<dict>
+		<key>bought</key>
+		<string>5_lock.png</string>
 		<key>icon</key>
 		<string>5_5_5.png</string>
 		<key>level</key>
